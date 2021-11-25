@@ -1,4 +1,4 @@
-/* Lucas Wallin är en liten mes */
+/* Lucas Wallin är en cool kille */
 
 import { createApp } from 'vue'
 import App from './App.vue'
