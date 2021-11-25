@@ -26,7 +26,7 @@
       Run question
     </button>
     {{data}}
-    <router-link to="/result/">Check result</router-link>
+    <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
   </div>
 </template>
 
