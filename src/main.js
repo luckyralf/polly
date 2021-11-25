@@ -1,5 +1,7 @@
 /* Lucas Wallin är en cool kille */
 /* Marcus är också cool */
+/*Elsa är coolast*/
+/* Marcus är också cool! */
 /*Elsa är coolast och adam med*/
 /* Johanna är också med u guys*/
 import { createApp } from "vue";
