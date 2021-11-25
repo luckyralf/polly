@@ -4,8 +4,8 @@
     <router-link v-bind:to="'/create/' + lang">{{
       uiLabels.createPoll
     }}</router-link>
-    <label>
-      Write poll id:
+    <label
+      >{{ uiLabels.writePollId }}
       <input type="text" v-model="id" />
     </label>
     <router-link v-bind:to="'/poll/' + id" tag="button">{{

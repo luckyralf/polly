@@ -1,8 +1,9 @@
 {
-	"sales-pitch": "Svar. Helt. Enkelt.",
-	"invite": "Bjud in deltagare med den här länken:",
-	"createPoll": "Skapa röstning",
-	"participatePoll": "Delta i röstning",
-	"question": "Fråga",
-	"changeLanguage": "Change to English"
+  "sales-pitch": "Svar. Helt. Enkelt.",
+  "invite": "Bjud in deltagare med den här länken:",
+  "createPoll": "Skapa röstning",
+  "participatePoll": "Delta i röstning",
+  "question": "Fråga",
+  "changeLanguage": "Change to English",
+  "writePollId": "Skriv poll id:"
 }
