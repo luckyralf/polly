@@ -70,19 +70,11 @@ Data.prototype.getAnswers = function (pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== "undefined") {
     const answers = poll.answers[poll.currentQuestion];
-<<<<<<< HEAD
-    console.log(poll.questions[poll.currentQuestion].q);
-    return { q: poll.questions[poll.currentQuestion].q, a: answers };
-  } else {
-    return {};
-  }
-};
-=======
     if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
       return {q: poll.questions[poll.currentQuestion].q, a: answers};
     }
   }
   return {}
 }
->>>>>>> 43cbf19d47e8a4d600ac57c270b7b89b809a3b0f
 module.exports = Data;
+/*bajs*/
