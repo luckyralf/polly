@@ -15,7 +15,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 
 Data.prototype.getUILabels = function (lang = "en") {
   const ui = require("./data/labels-" + lang + ".json");
-  console.log('hej' + ui);
+  console.log("hej" + ui);
   return ui;
 };
 
@@ -35,6 +35,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
 Data.prototype.addQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
+  console.log(poll.questions);
   if (typeof poll !== "undefined") {
     poll.questions.push(q);
   }
@@ -71,11 +72,11 @@ Data.prototype.getAnswers = function (pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== "undefined") {
     const answers = poll.answers[poll.currentQuestion];
-    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
-      return {q: poll.questions[poll.currentQuestion].q, a: answers};
+    if (typeof poll.questions[poll.currentQuestion] !== "undefined") {
+      return { q: poll.questions[poll.currentQuestion].q, a: answers };
     }
   }
-  return {}
-}
+  return {};
+};
 module.exports = Data;
 /* johanna är en bajskorv*/
