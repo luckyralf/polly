@@ -1,9 +1,9 @@
 <template>
   <div>
-    {{uiLabels.pollLink}}
+    Poll link: 
     <input type="text" v-model="pollId">
     <button v-on:click="createPoll">
-      {{uiLabels.createPoll}}
+      Create poll
     </button>
     <div>
       {{uiLabels.question}}:
@@ -41,7 +41,6 @@ export default {
       lang: "",
       pollId: "",
       question: "",
-      pollLink: "",
       answers: ["", ""],
       questionNumber: 0,
       data: {},

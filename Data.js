@@ -15,6 +15,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
 
 Data.prototype.getUILabels = function (lang = "en") {
   const ui = require("./data/labels-" + lang + ".json");
+  console.log('hej' + ui);
   return ui;
 };
 
