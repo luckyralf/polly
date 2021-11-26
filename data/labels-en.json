@@ -6,5 +6,6 @@
   "question": "Question",
   "changeLanguage": "Byt till svenska",
   "pollLink": "Poll link: ",
-  "writePollId": "Write poll id:"
+  "writePollId": "Write poll id:",
+  "answerText": "Answer: "
 }
