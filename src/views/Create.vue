@@ -9,12 +9,12 @@
       {{uiLabels.question}}:
       <input type="text" v-model="question">
       <div>
-        Answers:
+        {{uiLabels.answerText}}
         <input v-for="(_, i) in answers" 
                v-model="answers[i]" 
                v-bind:key="'answer'+i">
         <button v-on:click="addAnswer">
-          Add answer alternative
+          {{uiLabels.addAnswer}}
         </button>
       </div>
     </div>

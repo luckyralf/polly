@@ -7,5 +7,6 @@
   "changeLanguage": "Byt till svenska",
   "pollLink": "Poll link: ",
   "writePollId": "Write poll id:",
-  "answerText": "Answer: "
+  "answerText": "Answer: ",
+  "addAnswer": "Add answer alternative"
 }

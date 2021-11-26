@@ -7,5 +7,6 @@
   "changeLanguage": "Change to English",
   "pollLink": "Poll länk: ",
   "writePollId": "Skriv poll id:",
-  "answerText": "Svar: "
+  "answerText": "Svar: ",
+  "addAnswer": "Lägg till svarsalternativ"
 }
