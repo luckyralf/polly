@@ -44,4 +44,12 @@ export default {
 
 <style scoped>
 
+
+
+#nav{
+background-color: #6b62c7;
+}
+
+
+
 </style>
