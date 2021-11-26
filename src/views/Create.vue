@@ -25,8 +25,11 @@
     <button v-on:click="runQuestion">
       Run question
     </button>
-    {{data}}
+    {{data}} ggg;
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
+    <div>
+
+    </div>
   </div>
 </template>
 
