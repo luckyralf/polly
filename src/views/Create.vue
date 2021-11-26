@@ -23,7 +23,7 @@
     </button>
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
-      Run question
+      {{uiLabels.runQuestion}} 
     </button>
     {{data}}
     <router-link v-bind:to="'/result/'+pollId">Check result</router-link>

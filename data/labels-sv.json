@@ -9,5 +9,6 @@
   "writePollId": "Skriv poll id:",
   "answerText": "Svar: ",
   "addAnswer": "Lägg till svarsalternativ",
-  "addQuestion": "Lägg till fråga"
+  "addQuestion": "Lägg till fråga",
+  "runQuestion": "Kör fråga"
 }

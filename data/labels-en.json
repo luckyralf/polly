@@ -9,5 +9,6 @@
   "writePollId": "Write poll id:",
   "answerText": "Answer: ",
   "addAnswer": "Add answer alternative",
-  "addQuestion": "Add question"
+  "addQuestion": "Add question",
+  "runQuestion": "Run question"
 }
