@@ -8,5 +8,6 @@
   "pollLink": "Poll länk: ",
   "writePollId": "Skriv poll id:",
   "answerText": "Svar: ",
-  "addAnswer": "Lägg till svarsalternativ"
+  "addAnswer": "Lägg till svarsalternativ",
+  "addQuestion": "Lägg till fråga"
 }

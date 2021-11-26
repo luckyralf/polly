@@ -19,7 +19,7 @@
       </div>
     </div>
     <button v-on:click="addQuestion">
-      Add question
+      {{uiLabels.addQuestion}}
     </button>
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
