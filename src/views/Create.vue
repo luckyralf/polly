@@ -19,17 +19,14 @@
       </div>
     </div>
     <button v-on:click="addQuestion">
-      Add question
+      {{uiLabels.addQuestion}}
     </button>
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
-      Run question
+      {{uiLabels.runQuestion}} 
     </button>
-    {{data}} ggg;
-    <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
-    <div>
-
-    </div>
+    {{data}}
+    <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResultsText}}</router-link>
   </div>
 </template>
 

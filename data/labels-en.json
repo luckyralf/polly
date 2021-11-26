@@ -8,5 +8,8 @@
   "pollLink": "Poll link: ",
   "writePollId": "Write poll id:",
   "answerText": "Answer: ",
-  "addAnswer": "Add answer alternative"
+  "addAnswer": "Add answer alternative",
+  "addQuestion": "Add question",
+  "runQuestion": "Run question",
+  "checkResultsText": "Check Results"
 }
