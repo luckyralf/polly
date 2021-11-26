@@ -34,7 +34,6 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
 Data.prototype.addQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
-  console.log(poll.questions);
   if (typeof poll !== "undefined") {
     poll.questions.push(q);
   }
