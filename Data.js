@@ -71,9 +71,18 @@ Data.prototype.getAnswers = function (pollId) {
   if (typeof poll !== "undefined") {
     const answers = poll.answers[poll.currentQuestion];
     if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
-      return {q: poll.questions[poll.currentQuestion].q, a: answers};
+      return { q: poll.questions[poll.currentQuestion].q, a: answers };
     }
   }
   return {}
 }
+//Försök att returnera hela pollen till Create-sidan, rad 18 i socket är ändrad
+Data.prototype.getPoll = function (pollId) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== "undefined") {
+      return {poll};
+  }
+  return{}
+}
+
 module.exports = Data;
