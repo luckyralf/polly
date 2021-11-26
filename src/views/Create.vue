@@ -41,7 +41,6 @@ export default {
       lang: "",
       pollId: "",
       question: "",
-      // pollLink: "",
       answers: ["", ""],
       questionNumber: 0,
       data: {},
