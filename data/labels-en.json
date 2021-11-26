@@ -10,5 +10,6 @@
   "answerText": "Answer: ",
   "addAnswer": "Add answer alternative",
   "addQuestion": "Add question",
-  "runQuestion": "Run question"
+  "runQuestion": "Run question",
+  "checkResultsText": "Check Results"
 }
