@@ -25,7 +25,7 @@
     <button v-on:click="runQuestion">
       {{uiLabels.runQuestion}} 
     </button>
-    {{data}}
+    {{data}}<!-- data är poll objektet som returneras via data.js  -->
     <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResultsText}}</router-link>
   </div>
 </template>
