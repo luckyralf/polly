@@ -23,7 +23,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     let poll = {};
     poll.lang = lang;
     poll.questions = [];
-    poll.answers = [];
+    poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
     poll.currentQuestion = 0;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
