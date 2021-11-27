@@ -27,12 +27,13 @@
     <button v-on:click="runQuestion">
       {{ uiLabels.runQuestion }}
     </button>
-    {{ data}}<!-- data är poll objektet som returneras via data.js  -->
+    <!-- {{ data}} data är poll objektet som returneras via data.js  -->
     <router-link v-bind:to="'/result/' + pollId">{{
       uiLabels.checkResultsText
     }}</router-link>
-    <div id="showPollDiv">    <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
-    
+    <div><!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
+      <div id="showPollName"></div>
+      <div id="showQuestion"></div>
     </div>
   </div>
 </template>
@@ -66,8 +67,8 @@ export default {
   methods: {
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      document.getElementById("showPollDiv").innerHTML =  `Poll created: `+ this.pollId;
-
+      document.getElementById("showPollName").innerHTML =
+        `Poll created: ` + this.pollId;
     },
     addQuestion: function () {
       socket.emit("addQuestion", {
@@ -75,6 +76,8 @@ export default {
         q: this.question,
         a: this.answers,
       });
+      const questionInText = this.question;
+      document.getElementById("showQuestion").innerHTML = `Question: ` + questionInText;
     },
     addAnswer: function () {
       this.answers.push("");
