@@ -34,6 +34,7 @@
     <div><!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
       <div id="showPollName"></div>
       <div id="showQuestion"></div>
+      <div id="showAnswers"></div>
     </div>
   </div>
 </template>
@@ -77,7 +78,9 @@ export default {
         a: this.answers,
       });
       const questionInText = this.question;
+      const answerAlternatives = this.answers;
       document.getElementById("showQuestion").innerHTML = `Question: ` + questionInText;
+      document.getElementById("showAnswers").innerHTML = `Answers: ` + answerAlternatives;
     },
     addAnswer: function () {
       this.answers.push("");
