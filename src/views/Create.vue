@@ -6,7 +6,7 @@
       {{ uiLabels.createPoll }}
     </button>
     <div>
-      {{ uiLabels.question }}:
+      {{ uiLabels.question }}
       <input type="text" v-model="question" />
       <div>
         {{ uiLabels.answerText }}
@@ -69,7 +69,7 @@ export default {
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
       document.getElementById("showPollName").innerHTML =
-        `Poll created: ` + this.pollId;
+        this.uiLabels.pollCreated + this.pollId;
     },
     addQuestion: function () {
       socket.emit("addQuestion", {
@@ -79,8 +79,8 @@ export default {
       });
       const questionInText = this.question;
       const answerAlternatives = this.answers;
-      document.getElementById("showQuestion").innerHTML = `Question: ` + questionInText;
-      document.getElementById("showAnswers").innerHTML = `Answers: ` + answerAlternatives;
+      document.getElementById("showQuestion").innerHTML = this.uiLabels.question + questionInText;
+      document.getElementById("showAnswers").innerHTML = this.uiLabels.answerText + answerAlternatives;
     },
     addAnswer: function () {
       this.answers.push("");
