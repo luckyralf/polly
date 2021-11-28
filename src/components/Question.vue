@@ -13,7 +13,6 @@ export default {
   methods: {
     answer: function (answer) {
       this.$emit("answer", answer);
-      
       document.getElementById("answerButton").style.backgroundColor = "#C73EE1";
     } 
   }
