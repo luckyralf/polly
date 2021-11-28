@@ -1,6 +1,6 @@
 <template>
 <p>{{question.q}}</p>
-<button v-for="a in question.a" v-on:click="answer(a)" v-bind:key="a">
+<button v-for="a in question.a" v-on:click="answer(a)" v-bind:key="a" id="answerButton">
   {{ a }}
 </button>
 </template>
@@ -13,6 +13,8 @@ export default {
   methods: {
     answer: function (answer) {
       this.$emit("answer", answer);
+      
+      document.getElementById("answerButton").style.backgroundColor = "#C73EE1";
     } 
   }
 }
