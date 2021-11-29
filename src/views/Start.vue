@@ -1,6 +1,6 @@
 <template>
  <body class="Wrapped">
-  <section id ="Header" >
+  <section id ="headerText">
       <header>
          <h1>CAT POLL</h1>
       </header>
@@ -62,29 +62,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 <style scoped>
 
-.languageButton{
-font-family: 'Courier New', Courier, monospace;
-height: 50px;
-width: 70px;
-transition: 200ms;
-border-radius:5px;
-}
 
-.languageButton:hover {
-    cursor:pointer;
-    color: black;
-    border: none;
- }
- .languangeButtonContainer{
-   padding-top:-10px;
-   margin-top: -20px;
-   background-image:url(https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_the_United_States_%281795-1818%29.jpg) no-repeat;
-
- }
- .createPoll{
-   margin-top:30px;
-   margin-bottom:20px;
- }
 
 
 #nav{
@@ -92,20 +70,21 @@ border-radius:5px;
 
 .langButton{
   border-radius: 50%;
-  background-color: yellow;
+  background-color: red;
   font-family: "Monaco", monospace;
 }
 
-#Header{
+#headerText{
   text-align: center;
   text-transform: uppercase;
   font-family: "Monaco", monospace;
-  color: white;
+  color: ##d3ffce;
   color: #fff;
   overflow:hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
   border: 10px dotted #D84141;
+  margin-left:
 
 }
 
@@ -119,4 +98,7 @@ border-radius:5px;
   
 }
 
+/*hejhej*/
 </style>
+
+
