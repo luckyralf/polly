@@ -3,17 +3,19 @@
   <button
     v-for="(a, index) in question.a"
     v-bind:class="{ selected: index === selectedAnswer }"
-    v-on:click="changeColor(index)"
+    v-on:click="selectAnswer(index)"
     v-bind:key="a"
     class="isClicked"
   >
     {{ a }}
   </button>
   <div>
-    <button v-on:click="answer" id="submitAnswerButton">Submit answer</button>
+    <button v-on:click="answer; runQuestion" id="submitAnswerButton">Submit answer</button>
   </div>
 </template>
 <script>
+import io from "socket.io-client";
+const socket = io();
 export default {
   name: "Question",
   props: {
@@ -28,7 +30,13 @@ export default {
     answer: function () {
       this.$emit("answer", this.question.a[this.selectedAnswer]);
     },
-    changeColor: function (i) {
+    runQuestion: function () {
+      socket.emit("runQuestion", {
+        pollId: this.pollId,
+        questionNumber: this.questionNumber,
+      });
+    },
+    selectAnswer: function (i) {
       this.selectedAnswer = i;
     },
   },
