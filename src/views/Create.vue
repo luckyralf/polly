@@ -18,6 +18,9 @@
         <button v-on:click="addAnswer">
           {{ uiLabels.addAnswer }}
         </button>
+        <button v-on:click="delAnswer">
+         {{ uiLabels.delAnswer }}
+        </button>
       </div>
     </div>
     <button v-on:click="addQuestion">
@@ -31,10 +34,18 @@
     <router-link v-bind:to="'/result/' + pollId">{{
       uiLabels.checkResultsText
     }}</router-link>
-    <h4 id="showPollName"></h4>
-    <section id="QandA"> <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
+    <!-- <h4 id="showPollName"></h4>
+    <section id="QandA"> vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här 
       <div id="showQandA"></div>
-    </section>
+    </section> -->
+    <br>
+    <br>
+
+    <div v-if="data.poll !== undefined">
+      {{data.poll.questions}}
+    </div>
+
+    
   </div>
 </template>
 
@@ -61,7 +72,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    socket.on("dataUpdate", (data) => (this.data = data));
+    socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
   },
   methods: {
@@ -84,6 +95,11 @@ export default {
     addAnswer: function () {
       this.answers.push("");
     },
+
+    delAnswer: function (){
+      this.answers.pop();
+    },
+
     runQuestion: function () {
       socket.emit("runQuestion", {
         pollId: this.pollId,
