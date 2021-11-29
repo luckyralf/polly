@@ -4,6 +4,8 @@
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
+  <br>
+  <button id="submitAnswerButton">Submit answer</button>
 </template>
 
 <script>
@@ -35,7 +37,7 @@ export default {
   },
   methods: {
     submitAnswer: function (answer) {
-      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer})
+      socket.emit("submitAnswer", {pollId: this.pollId, answer: answer});
     }
   }
 }
