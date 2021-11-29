@@ -29,12 +29,7 @@
         }}</router-link>
       </div>
     </div>
-    <div id="Finalword">
-      <hr />
-      <footer>
-        <h3>&copy; Cat Poll Corp.</h3>
-      </footer>
-    </div>
+   
 
     <div id="Finalword">
       <hr />
