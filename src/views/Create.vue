@@ -1,32 +1,32 @@
 <template>
   <div>
-    {{uiLabels.pollLink}}
+    Poll link:
     <input type="text" v-model="pollId">
     <button v-on:click="createPoll">
-      {{uiLabels.createPoll}}
+      Create poll
     </button>
     <div>
       {{uiLabels.question}}:
       <input type="text" v-model="question">
       <div>
-        {{uiLabels.answerText}}
+        Answers:
         <input v-for="(_, i) in answers" 
                v-model="answers[i]" 
                v-bind:key="'answer'+i">
         <button v-on:click="addAnswer">
-          {{uiLabels.addAnswer}}
+          Add answer alternative
         </button>
       </div>
     </div>
     <button v-on:click="addQuestion">
-      {{uiLabels.addQuestion}}
+      Add question
     </button>
     <input type="number" v-model="questionNumber">
     <button v-on:click="runQuestion">
-      {{uiLabels.runQuestion}} 
+      Run question
     </button>
     {{data}}
-    <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResultsText}}</router-link>
+    <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
   </div>
 </template>
 
