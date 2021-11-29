@@ -22,7 +22,7 @@
       </div>
 
       <div class="createOwn">
-      <p> or you can make your own here: </p>
+      <p> {{ uiLabels.orMakeOwn }} </p>
         <router-link v-bind:to="'/create/' + lang">{{
           uiLabels.createPoll
         }}</router-link>
