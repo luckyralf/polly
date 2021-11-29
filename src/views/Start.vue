@@ -27,12 +27,6 @@
         }}</router-link>
       </div>
     </div>
-    <div id="Finalword">
-      <hr />
-      <footer>
-        <h3>&copy; Cat Poll Corp.</h3>
-      </footer>
-    </div>
 
     <div id="Finalword">
       <hr />
@@ -76,7 +70,6 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 <style scoped>
 #nav {
 }
-
 
 .langButtonSWE {
   padding-top: 40px;

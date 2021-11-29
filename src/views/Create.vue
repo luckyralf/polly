@@ -34,10 +34,23 @@
     <router-link v-bind:to="'/result/' + pollId">{{
       uiLabels.checkResultsText
     }}</router-link>
-    <h4 id="showPollName"></h4>
+     <h4 id="showPollName"></h4>
     <section id="QandA"> <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
       <div id="showQandA"></div>
-    </section>
+    </section> 
+    <br>
+    <br>
+
+    <div v-if="data.poll !== undefined">
+      <div  v-for="question in data.poll.questions" 
+            v-bind:key="question.q"
+            v-bind:question="question"> 
+      
+      </div>
+      {{data.poll.questions}}
+    </div>
+
+    
   </div>
 </template>
 
