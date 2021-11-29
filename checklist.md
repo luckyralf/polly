@@ -7,4 +7,4 @@
 - [Lucky jobbar på det ] Få så att alla skapade frågor syns samtidigt i Create 
 - [ Elsa jobbar på de] Lägg till en knapp som tar bort svarsalternativ i Create
 - [Johanna jobbar på de ] Styla framsida
-- [  ] Submit knapp till svarssidan 
+- [Adam jobbar på det ] Submit knapp till svarssidan 

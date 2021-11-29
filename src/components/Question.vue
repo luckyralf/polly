@@ -1,15 +1,16 @@
 <template>
   <p>{{ question.q }}</p>
   <button
-    v-for="(a, index) in question.a"
-    v-on:click="changeColor(index)"
+    v-for="(a, index) in question.a" 
+    v-bind:class="{selected: index === selectedAnswer}"
+    v-on:click="changeColor(index);"
     v-bind:key="a"
     class="isClicked"
   >
     {{ a }}
   </button>
   <div>
-    <button v-on:click="answer(a)" id="submitAnswerButton">Submit answer</button>
+    <button v-on:click="answer" id="submitAnswerButton">Submit answer</button>
   </div>
 </template>
 <script>
@@ -20,23 +21,21 @@ export default {
   },
   data: function () {
     return {
-      isChosen: false,
+      selectedAnswer: null,
     };
   },
   methods: {
-    answer: function (answer) {
-      this.isChosen != this.isChosen;
-      this.$emit("answer", answer);
+    answer: function () {
+      this.$emit("answer", this.question.a[this.selectedAnswer]);
     },
     changeColor: function (i) {
-      let answerButton = document.getElementsByClassName("isClicked")[i];
-      answerButton.classList.toggle("isClickd");
+      this.selectedAnswer = i
     },
   },
 };
 </script>
 <style>
-.isClickd {
+.selected {
   background-color: #c73ee1;
 }
 

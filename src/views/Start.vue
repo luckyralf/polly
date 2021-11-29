@@ -2,11 +2,7 @@
   <body class="Wrapped">
     <section id="Header">
       <header>
-<<<<<<< HEAD
-         <h1 class = "headerText">CAT POLL</h1>
-=======
         <h1>CAT POLL</h1>
->>>>>>> dcf138e2a9477b281369b95caaef00421520a427
       </header>
     </section>
 
@@ -66,15 +62,6 @@ export default {
 @import
 url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 <style scoped>
-<<<<<<< HEAD
-
-.headerText{
-border:dotted orange;
-margin-left: 400px;
-margin-right:400px;
-}
-
-=======
 .languageButton {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
@@ -98,7 +85,6 @@ margin-right:400px;
   margin-top: 30px;
   margin-bottom: 20px;
 }
->>>>>>> dcf138e2a9477b281369b95caaef00421520a427
 
 #nav {
 }
@@ -118,13 +104,7 @@ margin-right:400px;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
-<<<<<<< HEAD
-  border: 10px dotted #D84141;
-  margin-left:
-
-=======
   border: 10px dotted #d84141;
->>>>>>> dcf138e2a9477b281369b95caaef00421520a427
 }
 
 .Wrapped {
@@ -135,13 +115,4 @@ margin-right:400px;
   font-family: "Monaco", monospace;
   color: green;
 }
-<<<<<<< HEAD
-
-
-template{
-  background-color:black;
-}
-
-=======
->>>>>>> dcf138e2a9477b281369b95caaef00421520a427
 </style>
