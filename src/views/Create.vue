@@ -35,6 +35,12 @@
     <section id="QandA"> <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
       <div id="showQandA"></div>
     </section>
+    <br>
+
+    <br>
+    {{data}}
+    <br>
+    {{data.poll.questions[0]}}
   </div>
 </template>
 
