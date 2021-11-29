@@ -39,16 +39,19 @@
       <div id="showQandA"></div>
     </section> 
     <br>
-    <br>
+    {{data}}
+    
 
-    <div v-if="data.poll !== undefined">
+
       <!-- <div  v-for="question in data.poll.questions" 
             v-bind:key="question.q"
             v-bind:question="question"> 
+
+      {{data.poll.questions}}
+      <div v-if="data.poll !== undefined">
+      </div>
       
       </div> -->
-      {{data.poll.questions}}
-    </div>
 
     
   </div>
