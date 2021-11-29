@@ -8,3 +8,4 @@
 - [Johanna jobbar på de ] Styla framsida
 - [Adam joxar här] Submit knapp till svarssidan
 - [Marcus] Style design på "create poll"
+- [Elsa] Flaggor me språk framsida
