@@ -24,6 +24,7 @@
       </div>
 
       <div class="createOwn">
+      <p> or you can make your own here: </p>
         <router-link v-bind:to="'/create/' + lang">{{
           uiLabels.createPoll
         }}</router-link>
@@ -159,7 +160,8 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 
 .createOwn{
   font-family: 'Outfit', sans-serif;
-  padding-top:50px;
+  font-size: 20px;
+  padding-top:10px;
   color:white;
   border:dotted 5px;
   border-radius:20px;
@@ -175,7 +177,11 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 
 #Finalword {
   font-family: "Monaco", monospace;
-  color: green;
+  color: #d84141;
+  font-size: 12px;
+  text-align:left;
+  padding-left:20px;
+  padding-bottom:4px;
 }
 
 /*hejhej*/
