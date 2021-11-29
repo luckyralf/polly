@@ -7,11 +7,9 @@
     </section>
 
     <div id="nav">
-      <div class="langButtonWrapper">
-        <button class="langButton" v-on:click="switchLanguage">
+        <button class="langButtonSWE" v-on:click="switchLanguage">
           {{ uiLabels.changeLanguage }}
         </button>
-      </div>
 
       <div class="writeAndParticipate">
         <label
@@ -76,45 +74,16 @@ export default {
 @import
 url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 <style scoped>
-<<<<<<< HEAD
-.languageButton {
-  font-family: "Courier New", Courier, monospace;
-  height: 50px;
-  width: 70px;
-  transition: 200ms;
-  border-radius: 5px;
-}
-
-.languageButton:hover {
-  cursor: pointer;
-  color: black;
-  border: none;
-}
-.languangeButtonContainer {
-  padding-top: -10px;
-  margin-top: -20px;
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_the_United_States_%281795-1818%29.jpg)
-    no-repeat;
-}
-.createPoll {
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-
-#nav{
-  
-=======
 #nav {
->>>>>>> 63e709ff381d05186e56f6fd02212eafa4febe02
 }
 
-.langButton {
-  border-radius: 50%;
-  background-color: yellow;
-  font-family: "Monaco", monospace;
-}
-.langButtonWrapper {
+
+.langButtonSWE {
   padding-top: 40px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
+  background-size: cover;
+  border-radius: 50%;  
+  font-family: "Monaco", monospace;
 }
 
 #headerText {
