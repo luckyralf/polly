@@ -42,11 +42,11 @@
     <br>
 
     <div v-if="data.poll !== undefined">
-      <div  v-for="question in data.poll.questions" 
+      <!-- <div  v-for="question in data.poll.questions" 
             v-bind:key="question.q"
             v-bind:question="question"> 
       
-      </div>
+      </div> -->
       {{data.poll.questions}}
     </div>
 
