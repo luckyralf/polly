@@ -3,7 +3,7 @@
   "invite": "Bjud in deltagare med den här länken:",
   "createPoll": "Skapa röstning",
   "participatePoll": "Delta i röstning",
-  "question": "Fråga",
+  "question": "Fråga: ",
   "changeLanguage": "Change to English",
   "pollLink": "Poll länk: ",
   "writePollId": "Skriv poll id:",
@@ -11,5 +11,6 @@
   "addAnswer": "Lägg till svarsalternativ",
   "addQuestion": "Lägg till fråga",
   "runQuestion": "Kör fråga",
-  "checkResultsText": "Se svar"
+  "checkResultsText": "Se svar",
+  "pollCreated": "Poll skapad: "
 }

@@ -1,41 +1,49 @@
 <template>
   <div>
-    {{uiLabels.pollLink}}
-    <input type="text" v-model="pollId">
+    {{ uiLabels.pollLink }}
+    <input type="text" v-model="pollId" />
     <button v-on:click="createPoll">
-      {{uiLabels.createPoll}}
+      {{ uiLabels.createPoll }}
     </button>
     <div>
-      {{uiLabels.question}}:
-      <input type="text" v-model="question">
+      {{ uiLabels.question }}
+      <input type="text" v-model="question" />
       <div>
-        {{uiLabels.answerText}}
-        <input v-for="(_, i) in answers" 
-               v-model="answers[i]" 
-               v-bind:key="'answer'+i">
+        {{ uiLabels.answerText }}
+        <input
+          v-for="(_, i) in answers"
+          v-model="answers[i]"
+          v-bind:key="'answer' + i"
+        />
         <button v-on:click="addAnswer">
-          {{uiLabels.addAnswer}}
+          {{ uiLabels.addAnswer }}
         </button>
       </div>
     </div>
     <button v-on:click="addQuestion">
-      {{uiLabels.addQuestion}}
+      {{ uiLabels.addQuestion }}
     </button>
-    <input type="number" v-model="questionNumber">
+    <input type="number" v-model="questionNumber" />
     <button v-on:click="runQuestion">
-      {{uiLabels.runQuestion}} 
+      {{ uiLabels.runQuestion }}
     </button>
-    {{data}}
-    <router-link v-bind:to="'/result/'+pollId">{{uiLabels.checkResultsText}}</router-link>
+    <!-- {{ data}} data är poll objektet som returneras via data.js  -->
+    <router-link v-bind:to="'/result/' + pollId">{{
+      uiLabels.checkResultsText
+    }}</router-link>
+    <h4 id="showPollName"></h4>
+    <section id="QandA"> <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
+      <div id="showQandA"></div>
+    </section>
   </div>
 </template>
 
 <script>
-import io from 'socket.io-client';
+import io from "socket.io-client";
 const socket = io();
 
 export default {
-  name: 'Create',
+  name: "Create",
   data: function () {
     return {
       lang: "",
@@ -44,34 +52,44 @@ export default {
       answers: ["", ""],
       questionNumber: 0,
       data: {},
-      uiLabels: {}
-    }
+      uiLabels: {},
+    };
   },
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
-      this.uiLabels = labels
-    })
-    socket.on("dataUpdate", (data) =>
-      this.data = data
-    )
-    socket.on("pollCreated", (data) =>
-      this.data = data)
+      this.uiLabels = labels;
+    });
+    socket.on("dataUpdate", (data) => (this.data = data));
+    socket.on("pollCreated", (data) => (this.data = data));
   },
   methods: {
     createPoll: function () {
-      socket.emit("createPoll", {pollId: this.pollId, lang: this.lang, })
+      socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+      document.getElementById("showPollName").innerHTML =
+        this.uiLabels.pollCreated + this.pollId;
     },
     addQuestion: function () {
-      socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
+      socket.emit("addQuestion", {
+        pollId: this.pollId,
+        q: this.question,
+        a: this.answers,
+      });
+      const questionInText = this.question;
+      const answerAlternatives = this.answers;
+      document.getElementById("showQandA").innerHTML =
+        this.uiLabels.question + questionInText+ "<br />" +this.uiLabels.answerText + answerAlternatives;
     },
     addAnswer: function () {
       this.answers.push("");
     },
     runQuestion: function () {
-      socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
-    }
-  }
-}
+      socket.emit("runQuestion", {
+        pollId: this.pollId,
+        questionNumber: this.questionNumber,
+      });
+    },
+  },
+};
 </script>

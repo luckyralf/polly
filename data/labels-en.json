@@ -3,7 +3,7 @@
   "invite": "Invite participants with this link:",
   "createPoll": "Create poll",
   "participatePoll": "Participate in poll",
-  "question": "Question",
+  "question": "Question: ",
   "changeLanguage": "Byt till svenska",
   "pollLink": "Poll link: ",
   "writePollId": "Write poll id:",
@@ -11,5 +11,6 @@
   "addAnswer": "Add answer alternative",
   "addQuestion": "Add question",
   "runQuestion": "Run question",
-  "checkResultsText": "Check Results"
+  "checkResultsText": "Check Results",
+  "pollCreated": "Poll Created: "
 }

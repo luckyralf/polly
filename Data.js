@@ -23,7 +23,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     let poll = {};
     poll.lang = lang;
     poll.questions = [];
-    poll.answers = [];
+    poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
     poll.currentQuestion = 0;
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
@@ -70,10 +70,19 @@ Data.prototype.getAnswers = function (pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== "undefined") {
     const answers = poll.answers[poll.currentQuestion];
-    if (typeof poll.questions[poll.currentQuestion] !== "undefined") {
+    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
       return { q: poll.questions[poll.currentQuestion].q, a: answers };
     }
   }
-  return {};
-};
+  return {}
+}
+//Försök att returnera hela pollen till Create-sidan, rad 18 i socket är ändrad
+Data.prototype.getPoll = function (pollId) {
+  const poll = this.polls[pollId];
+  if (typeof poll !== "undefined") {
+      return {poll};
+  }
+  return{}
+}
+
 module.exports = Data;
