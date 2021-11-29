@@ -16,7 +16,7 @@ function sockets(io, socket, data) {
   socket.on('addQuestion', function(d) {
     data.addQuestion(d.pollId, {q: d.q, a: d.a});
     socket.emit('dataUpdate', data.getPoll(d.pollId));
-    //socket.emit('dataUpdate', data.getAnswers(d.pollId)); //returnera hela pollen istället
+    // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
 
   socket.on('joinPoll', function(pollId) {
