@@ -1,9 +1,9 @@
 <template>
   <p>{{ question.q }}</p>
   <button
-    v-for="(a, index) in question.a" 
-    v-bind:class="{selected: index === selectedAnswer}"
-    v-on:click="changeColor(index);"
+    v-for="(a, index) in question.a"
+    v-bind:class="{ selected: index === selectedAnswer }"
+    v-on:click="changeColor(index)"
     v-bind:key="a"
     class="isClicked"
   >
@@ -29,7 +29,7 @@ export default {
       this.$emit("answer", this.question.a[this.selectedAnswer]);
     },
     changeColor: function (i) {
-      this.selectedAnswer = i
+      this.selectedAnswer = i;
     },
   },
 };
@@ -37,6 +37,11 @@ export default {
 <style>
 .selected {
   background-color: #c73ee1;
+}
+
+#submitAnswerButton {
+    padding: 10px;
+    margin-top: 10px;
 }
 
 .isClicked:hover {

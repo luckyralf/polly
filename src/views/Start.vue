@@ -7,20 +7,28 @@
   </section>
 
   <div id="nav">
-    <button class="langButton" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}</button>
-    <router-link v-bind:to="'/create/' + lang">{{
-      uiLabels.createPoll
-    }}</router-link>
-    <label
-      >{{ uiLabels.writePollId }}
-      <input type="text" v-model="id" />
-    </label>
-    <router-link v-bind:to="'/poll/' + id" tag="button">{{
-      uiLabels.participatePoll
-    }}</router-link>
+    <div class = "langButtonWrapper">
+      <button class="langButton" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}</button>
+    </div>
+    
+
+    <div class = "writeAndParticipate">
+        <label
+         >{{ uiLabels.writePollId }}
+          <input type="text" v-model="id" />
+        </label>
+        <router-link v-bind:to="'/poll/' + id" tag="button">{{
+          uiLabels.participatePoll
+        }}</router-link>
+
+      </div>
+
+      <div class="createOwn">
+        <router-link v-bind:to="'/create/' + lang">{{
+        uiLabels.createPoll}}</router-link>
+      </div>
+
   </div>
-
-
    <div id="Finalword">
         <hr>
           <footer>
@@ -86,12 +94,16 @@ export default {
 }
 
 #nav{
+  
 }
 
 .langButton{
   border-radius: 50%;
-  background-color: red;
+  background-color: yellow;
   font-family: "Monaco", monospace;
+}
+.langButtonWrapper{
+  padding-top:40px;
 }
 
 #headerText{
@@ -104,12 +116,35 @@ export default {
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
   border: 10px dotted #D84141;
-  
+  margin-bottom:100px;
 
+  font-size: 40pt;
+    font-weight: 200;
+    font-style: italic;
+    color: #fff;
+    text-shadow:
+    0 0 7px rgb(253, 117, 67),
+    0 0 10px rgb(247, 82, 22),
+    0 0 21px #f40,
+    0 0 42px #f40,
+    0 0 82px #f40;
+    /*padding: 0rem 6rem 5.5rem;*/
+    border-radius: 2rem;
+    text-transform: uppercase; 
+}
+
+.writeAndParticipate{
+  padding-top:40px;
+  font-family:techmono;
+}
+
+.createOwn{
+  font-family: "Monaco", monospace;
+  padding-top:50px;
 }
 
 .Wrapped {
-   background-color: #1B1BB1;;
+   background-color: #0c2c63;;
 }
 
 #Finalword{
