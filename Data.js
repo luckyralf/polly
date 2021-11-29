@@ -77,4 +77,3 @@ Data.prototype.getAnswers = function (pollId) {
   return {};
 };
 module.exports = Data;
-/* johanna är en bajskorv*/
