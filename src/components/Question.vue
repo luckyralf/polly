@@ -28,6 +28,7 @@ export default {
 
 .isClicked:hover {
   background-color:#D794E3;
+  cursor:pointer;
 }
 .isClicked:active {
   background-color: #C73EE1;
