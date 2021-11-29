@@ -1,29 +1,14 @@
 <template>
   <div>
-<<<<<<< HEAD
-    Poll link:
-    <input type="text" v-model="pollId">
-    <button v-on:click="createPoll">
-      Create poll
-=======
     {{ uiLabels.pollLink }}
     <input type="text" v-model="pollId" />
     <button v-on:click="createPoll">
       {{ uiLabels.createPoll }}
->>>>>>> 677892590617e9c77d1995ac7db5f7f6de7aa003
     </button>
     <div>
       {{ uiLabels.question }}
       <input type="text" v-model="question" />
       <div>
-<<<<<<< HEAD
-        Answers:
-        <input v-for="(_, i) in answers" 
-               v-model="answers[i]" 
-               v-bind:key="'answer'+i">
-        <button v-on:click="addAnswer">
-          Add answer alternative
-=======
         {{ uiLabels.answerText }}
         <input
           v-for="(_, i) in answers"
@@ -32,25 +17,14 @@
         />
         <button v-on:click="addAnswer">
           {{ uiLabels.addAnswer }}
->>>>>>> 677892590617e9c77d1995ac7db5f7f6de7aa003
         </button>
       </div>
     </div>
     <button v-on:click="addQuestion">
-<<<<<<< HEAD
-      Add question
-=======
       {{ uiLabels.addQuestion }}
->>>>>>> 677892590617e9c77d1995ac7db5f7f6de7aa003
     </button>
     <input type="number" v-model="questionNumber" />
     <button v-on:click="runQuestion">
-<<<<<<< HEAD
-      Run question
-    </button>
-    {{data}}
-    <router-link v-bind:to="'/result/'+pollId">Check result</router-link>
-=======
       {{ uiLabels.runQuestion }}
     </button>
     <!-- {{ data}} data är poll objektet som returneras via data.js  -->
@@ -62,7 +36,6 @@
       <div id="showQuestion"></div>
       <div id="showAnswers"></div>
     </div>
->>>>>>> 677892590617e9c77d1995ac7db5f7f6de7aa003
   </div>
 </template>
 
