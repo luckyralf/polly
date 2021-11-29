@@ -70,7 +70,7 @@ export default {
 
 .langButton{
   border-radius: 50%;
-  background-color: yellow;
+  background-color: red;
   font-family: "Monaco", monospace;
 }
 
