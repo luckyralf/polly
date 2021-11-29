@@ -10,6 +10,7 @@
   "answerText": "Svar: ",
   "addAnswer": "Lägg till svarsalternativ",
   "addQuestion": "Lägg till fråga",
+  "delAnswer": "Ta bort svarsalternativ",
   "runQuestion": "Kör fråga",
   "checkResultsText": "Se svar",
   "pollCreated": "Poll skapad: "

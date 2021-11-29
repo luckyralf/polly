@@ -10,6 +10,7 @@
   "answerText": "Answer: ",
   "addAnswer": "Add answer alternative",
   "addQuestion": "Add question",
+  "delAnswer": "Delete answer alternative",
   "runQuestion": "Run question",
   "checkResultsText": "Check Results",
   "pollCreated": "Poll Created: "
