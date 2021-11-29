@@ -18,6 +18,9 @@
         <button v-on:click="addAnswer">
           {{ uiLabels.addAnswer }}
         </button>
+        <button v-on:click="delAnswer">
+         {{ uiLabels.delAnswer }}
+        </button>
       </div>
     </div>
     <button v-on:click="addQuestion">
@@ -92,6 +95,11 @@ export default {
     addAnswer: function () {
       this.answers.push("");
     },
+
+    delAnswer: function (){
+      this.answers.pop();
+    },
+
     runQuestion: function () {
       socket.emit("runQuestion", {
         pollId: this.pollId,
