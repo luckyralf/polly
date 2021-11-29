@@ -66,7 +66,7 @@ export default {
       pollId: "",
       question: "",
       answers: ["", ""],
-      questionNumber: 0,
+      questionNumber: 1,
       data: {},
       uiLabels: {},
     };
@@ -77,7 +77,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    socket.on("allQuestions", (data) => (this.data = data));
+    socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
   },
   methods: {
