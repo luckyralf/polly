@@ -31,11 +31,11 @@
     <router-link v-bind:to="'/result/' + pollId">{{
       uiLabels.checkResultsText
     }}</router-link>
-    <div><!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
-      <div id="showPollName"></div>
+    <h4 id="showPollName"></h4>
+    <section id="QandA"> <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
       <div id="showQuestion"></div>
       <div id="showAnswers"></div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -79,8 +79,10 @@ export default {
       });
       const questionInText = this.question;
       const answerAlternatives = this.answers;
-      document.getElementById("showQuestion").innerHTML = this.uiLabels.question + questionInText;
-      document.getElementById("showAnswers").innerHTML = this.uiLabels.answerText + answerAlternatives;
+      document.getElementById("showQuestion").innerHTML =
+        this.uiLabels.question + questionInText;
+      document.getElementById("showAnswers").innerHTML =
+        this.uiLabels.answerText + answerAlternatives;
     },
     addAnswer: function () {
       this.answers.push("");
