@@ -4,6 +4,8 @@
     <Question v-bind:question="question"
               v-on:answer="submitAnswer"/>
   </div>
+  <br>
+  <button id="submitAnswerButton">Submit answer</button>
 </template>
 
 <script>
