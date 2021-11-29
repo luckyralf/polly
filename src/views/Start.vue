@@ -76,7 +76,6 @@ export default {
 @import
 url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 <style scoped>
-<<<<<<< HEAD
 .languageButton {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
@@ -103,9 +102,6 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 
 #nav{
   
-=======
-#nav {
->>>>>>> 63e709ff381d05186e56f6fd02212eafa4febe02
 }
 
 .langButton {

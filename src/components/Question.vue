@@ -3,7 +3,7 @@
   <button
     v-for="(a, index) in question.a"
     v-bind:class="{ selected: index === selectedAnswer }"
-    v-on:click="changeColor(index)"
+    v-on:click="selectAnswer(index)"
     v-bind:key="a"
     class="isClicked"
   >
@@ -28,7 +28,7 @@ export default {
     answer: function () {
       this.$emit("answer", this.question.a[this.selectedAnswer]);
     },
-    changeColor: function (i) {
+    selectAnswer: function (i) {
       this.selectedAnswer = i;
     },
   },
