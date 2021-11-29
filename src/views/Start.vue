@@ -7,11 +7,9 @@
     </section>
 
     <div id="nav">
-      <div class="langButtonWrapper">
-        <button class="langButton" v-on:click="switchLanguage">
+        <button class="langButtonSWE" v-on:click="switchLanguage">
           {{ uiLabels.changeLanguage }}
         </button>
-      </div>
 
       <div class="writeAndParticipate">
         <label
@@ -30,7 +28,6 @@
         }}</router-link>
       </div>
     </div>
-   
 
     <div id="Finalword">
       <hr />
@@ -69,18 +66,10 @@ export default {
 };
 </script>
 
-
-
-
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
-
-
-@import
-url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
-<style scoped>
 .languageButton {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
@@ -95,7 +84,6 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
   border: none;
 }
 .languangeButtonContainer {
-  padding-top: -10px;
   margin-top: -20px;
   background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_the_United_States_%281795-1818%29.jpg)
     no-repeat;
@@ -110,13 +98,12 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
   
 }
 
-.langButton {
-  border-radius: 50%;
-  background-color: yellow;
-  font-family: 'Outfit', sans-serif;
-}
-.langButtonWrapper {
+.langButtonSWE {
   padding-top: 40px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
+  background-size: cover;
+  border-radius: 50%;  
+  font-family: "Monaco", monospace;
 }
 
 #headerText {
@@ -129,7 +116,7 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
   border: 10px dotted #d84141;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
 
   font-size: 40pt;
   font-weight: 200;
@@ -137,14 +124,17 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
     0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
-  /*padding: 0rem 6rem 5.5rem;*/
-  border-radius: 2rem;
+  border-radius: 0rem;
+  margin-left: 20px;
+  margin-right:20px;
+  margin-top:5px;
   text-transform: uppercase;
 }
 
 .writeAndParticipate{
   padding-top:40px;
   padding-bottom:40px;
+  font-size: 20px;
   color: white;
   font-family: 'Outfit', sans-serif;
   font-style:bold;
@@ -177,11 +167,10 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 
 #Finalword {
   font-family: "Monaco", monospace;
-  color: #d84141;
+  color: white;
   font-size: 12px;
-  text-align:left;
-  padding-left:20px;
-  padding-bottom:4px;
+  text-align: left;
+  padding-left:4px;
 }
 
 /*hejhej*/
