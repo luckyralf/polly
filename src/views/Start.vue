@@ -29,12 +29,7 @@
         }}</router-link>
       </div>
     </div>
-    <div id="Finalword">
-      <hr />
-      <footer>
-        <h3>&copy; Cat Poll Corp.</h3>
-      </footer>
-    </div>
+   
 
     <div id="Finalword">
       <hr />
@@ -73,6 +68,15 @@ export default {
 };
 </script>
 
+
+
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
+
+
+
 @import
 url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 <style scoped>
@@ -100,6 +104,7 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
   margin-bottom: 20px;
 }
 
+
 #nav{
   
 }
@@ -107,7 +112,7 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 .langButton {
   border-radius: 50%;
   background-color: yellow;
-  font-family: "Monaco", monospace;
+  font-family: 'Outfit', sans-serif;
 }
 .langButtonWrapper {
   padding-top: 40px;
@@ -136,14 +141,32 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
   text-transform: uppercase;
 }
 
-.writeAndParticipate {
-  padding-top: 40px;
-  font-family: techmono;
+.writeAndParticipate{
+  padding-top:40px;
+  padding-bottom:40px;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-style:bold;
+  border:dotted 5px;
+  border-radius:20px;
+  background-color:#88ddff;
+  margin-left:200px;
+  margin-right: 200px;
+  margin-top:20px;
+  
+
 }
 
-.createOwn {
-  font-family: "Monaco", monospace;
-  padding-top: 50px;
+.createOwn{
+  font-family: 'Outfit', sans-serif;
+  padding-top:50px;
+  color:white;
+  border:dotted 5px;
+  border-radius:20px;
+  background-color:#88ddff;
+  margin-left:200px;
+  margin-right: 200px;
+  margin-top:20px;
 }
 
 .Wrapped {
