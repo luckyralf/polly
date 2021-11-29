@@ -1,19 +1,16 @@
 <template>
-<div class = "header">
-</div>
-
+ <body class="Wrapped">
+  <section id ="Header" >
+      <header>
+         <h1>CAT POLL</h1>
+      </header>
+  </section>
 
   <div id="nav">
-    <div class = languangeButtonContainer>
-      <button v-on:click="switchLanguage" class = "languageButton">{{ uiLabels.changeLanguage }}</button>
-    </div>
-
-    <div class = "createPoll">
-      <router-link v-bind:to="'/create/' + lang">{{
-        uiLabels.createPoll
-      }}</router-link>
-    </div>
-
+    <button class="langButton" v-on:click="switchLanguage">{{ uiLabels.changeLanguage }}</button>
+    <router-link v-bind:to="'/create/' + lang">{{
+      uiLabels.createPoll
+    }}</router-link>
     <label
       >{{ uiLabels.writePollId }}
       <input type="text" v-model="id" />
@@ -22,6 +19,15 @@
       uiLabels.participatePoll
     }}</router-link>
   </div>
+
+
+   <div id="Finalword">
+        <hr>
+          <footer>
+              <h3> &copy; Cat Poll Corp.</h3>
+          </footer>
+    </div>
+ </body>
 </template>
 
 <script>
@@ -82,12 +88,35 @@ border-radius:5px;
 
 
 #nav{
-  padding-top:50px;
-  padding-bottom:200px;
-  background-color: #6b62c7;
-  
 }
 
+.langButton{
+  border-radius: 50%;
+  background-color: yellow;
+  font-family: "Monaco", monospace;
+}
 
+#Header{
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Monaco", monospace;
+  color: white;
+  color: #fff;
+  overflow:hidden;
+  text-shadow: 2px 2px 2px black;
+  font-size: 30pt;
+  border: 10px dotted #D84141;
+
+}
+
+.Wrapped {
+   background-color: #1B1BB1;;
+}
+
+#Finalword{
+  font-family: "Monaco", monospace;
+  color: green;
+  
+}
 
 </style>
