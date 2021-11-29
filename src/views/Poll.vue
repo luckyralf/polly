@@ -36,7 +36,7 @@ export default {
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer});
-    }
-  }
+    },
+  },
 }
 </script>
