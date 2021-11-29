@@ -33,8 +33,7 @@
     }}</router-link>
     <h4 id="showPollName"></h4>
     <section id="QandA"> <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
-      <div id="showQuestion"></div>
-      <div id="showAnswers"></div>
+      <div id="showQandA"></div>
     </section>
   </div>
 </template>
@@ -79,10 +78,8 @@ export default {
       });
       const questionInText = this.question;
       const answerAlternatives = this.answers;
-      document.getElementById("showQuestion").innerHTML =
-        this.uiLabels.question + questionInText;
-      document.getElementById("showAnswers").innerHTML =
-        this.uiLabels.answerText + answerAlternatives;
+      document.getElementById("showQandA").innerHTML =
+        this.uiLabels.question + questionInText+ "<br />" +this.uiLabels.answerText + answerAlternatives;
     },
     addAnswer: function () {
       this.answers.push("");
