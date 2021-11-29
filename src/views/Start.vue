@@ -67,7 +67,7 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 
 .langButton {
   border-radius: 50%;
-  background-color: yellow;
+  background-color: red;
   font-family: "Monaco", monospace;
 }
 
