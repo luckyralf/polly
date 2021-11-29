@@ -4,7 +4,7 @@
 
 
   <div id="nav">
-    <div class = languangeButtonContainer>
+    <div class = "languangeButtonContainer">
       <button v-on:click="switchLanguage" class = "languageButton">{{ uiLabels.changeLanguage }}</button>
     </div>
 
@@ -55,6 +55,12 @@ export default {
 
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 <style scoped>
+
+.header{
+background-color:#0c2c63;
+min-height: 300px;
+}
+
 
 .languageButton{
 font-family: 'Courier New', Courier, monospace;
