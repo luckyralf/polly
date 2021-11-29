@@ -1,15 +1,17 @@
-<template>
+<template class ="temp">
   <body class="Wrapped">
     <section id="headerText">
       <header>
-        <h1>CAT POLL</h1>
+        <h1 class ="CATPOLL">CAT POLL</h1>
       </header>
     </section>
 
     <div id="nav">
+      <div class= "languangeButtonContainer">
         <button class="langButtonSWE" v-on:click="switchLanguage">
           {{ uiLabels.changeLanguage }}
         </button>
+        </div>
 
       <div class="writeAndParticipate">
         <label
@@ -72,8 +74,8 @@ export default {
 
 .languageButton {
   font-family: "Courier New", Courier, monospace;
-  height: 50px;
-  width: 70px;
+  height: 40px;
+  width: 60px;
   transition: 200ms;
   border-radius: 5px;
 }
@@ -84,9 +86,7 @@ export default {
   border: none;
 }
 .languangeButtonContainer {
-  margin-top: -20px;
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/bc/Flag_of_the_United_States_%281795-1818%29.jpg)
-    no-repeat;
+  
 }
 .createPoll {
   margin-top: 30px;
@@ -99,26 +99,31 @@ export default {
 }
 
 .langButtonSWE {
-  padding-top: 40px;
+  padding-top: 20px;
+  padding-right:-20px;
   background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
   background-size: cover;
-  border-radius: 50%;  
+  background-position:30%;
+  border-radius: 100%;  
   font-family: "Monaco", monospace;
+  position:relative;
+  left:45%;
+
 }
 
 #headerText {
   text-align: center;
   text-transform: uppercase;
   font-family: "Monaco", monospace;
-  color: ##d3ffce;
+  color: #d3ffce;
   color: #fff;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
   border: 10px dotted #d84141;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
 
-  font-size: 40pt;
+  font-size: 44pt;
   font-weight: 200;
   font-style: italic;
   color: #fff;
@@ -129,6 +134,16 @@ export default {
   margin-right:20px;
   margin-top:5px;
   text-transform: uppercase;
+  
+}
+.CATPOLL:hover{
+  color: #fff;
+    text-shadow:
+    0 0 7px rgb(65, 253, 65),
+    0 0 10px rgb(130, 252, 16),
+    0 0 21px rgb(130, 252, 16),
+    0 0 42px rgb(130, 252, 16),
+    0 0 82px rgb(130, 252, 16);
 }
 
 .writeAndParticipate{
@@ -138,9 +153,10 @@ export default {
   color: white;
   font-family: 'Outfit', sans-serif;
   font-style:bold;
-  border:dotted 5px;
+  border:solid 5px;
   border-radius:20px;
-  background-color:#88ddff;
+  /*background-color:#88ddff;*/
+  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   margin-left:200px;
   margin-right: 200px;
   margin-top:20px;
@@ -152,18 +168,21 @@ export default {
   font-family: 'Outfit', sans-serif;
   font-size: 20px;
   padding-top:10px;
+  padding-bottom:50px;
   color:white;
-  border:dotted 5px;
+  border:solid 5px;
   border-radius:20px;
-  background-color:#88ddff;
+  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   margin-left:200px;
   margin-right: 200px;
   margin-top:20px;
 }
 
 .Wrapped {
-  background-color: #0c2c63;
+  /*background-color: #0c2c63;*/
+  background: linear-gradient(to left, #0c2c63, #1941B2);
 }
+
 
 #Finalword {
   font-family: "Monaco", monospace;
