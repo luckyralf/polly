@@ -7,11 +7,9 @@
     </section>
 
     <div id="nav">
-      <div class="langButtonWrapper">
-        <button class="langButton" v-on:click="switchLanguage">
+        <button class="langButtonSWE" v-on:click="switchLanguage">
           {{ uiLabels.changeLanguage }}
         </button>
-      </div>
 
       <div class="writeAndParticipate">
         <label
@@ -30,7 +28,6 @@
         }}</router-link>
       </div>
     </div>
-   
 
     <div id="Finalword">
       <hr />
@@ -69,18 +66,10 @@ export default {
 };
 </script>
 
-
-
-
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
-
-
-@import
-url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
-<style scoped>
 .languageButton {
   font-family: "Courier New", Courier, monospace;
   height: 50px;
@@ -109,13 +98,12 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
   
 }
 
-.langButton {
-  border-radius: 50%;
-  background-color: yellow;
-  font-family: 'Outfit', sans-serif;
-}
-.langButtonWrapper {
+.langButtonSWE {
   padding-top: 40px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
+  background-size: cover;
+  border-radius: 50%;  
+  font-family: "Monaco", monospace;
 }
 
 #headerText {
@@ -179,11 +167,10 @@ url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 
 #Finalword {
   font-family: "Monaco", monospace;
-  color: #d84141;
+  color: white;
   font-size: 12px;
-  text-align:left;
-  padding-left:20px;
-  padding-bottom:4px;
+  text-align: left;
+  padding-left:4px;
 }
 
 /*hejhej*/
