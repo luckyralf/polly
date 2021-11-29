@@ -10,10 +10,12 @@
     {{ a }}
   </button>
   <div>
-    <button v-on:click="answer" id="submitAnswerButton">Submit answer</button>
+    <button v-on:click="answer; runQuestion" id="submitAnswerButton">Submit answer</button>
   </div>
 </template>
 <script>
+import io from "socket.io-client";
+const socket = io();
 export default {
   name: "Question",
   props: {
@@ -27,6 +29,12 @@ export default {
   methods: {
     answer: function () {
       this.$emit("answer", this.question.a[this.selectedAnswer]);
+    },
+    runQuestion: function () {
+      socket.emit("runQuestion", {
+        pollId: this.pollId,
+        questionNumber: this.questionNumber,
+      });
     },
     selectAnswer: function (i) {
       this.selectedAnswer = i;
