@@ -13,5 +13,6 @@
   "delAnswer": "Delete answer alternative",
   "runQuestion": "Run question",
   "checkResultsText": "Check Results",
-  "pollCreated": "Poll Created: "
+  "pollCreated": "Poll Created: ",
+  "orMakeOwn": "Or you can make your own poll here: "
 }
