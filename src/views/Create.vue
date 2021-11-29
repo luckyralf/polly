@@ -34,18 +34,10 @@
     <router-link v-bind:to="'/result/' + pollId">{{
       uiLabels.checkResultsText
     }}</router-link>
-    <!-- <h4 id="showPollName"></h4>
-    <section id="QandA"> vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här 
+    <h4 id="showPollName"></h4>
+    <section id="QandA"> <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
       <div id="showQandA"></div>
-    </section> -->
-    <br>
-    <br>
-
-    <div v-if="data.poll !== undefined">
-      {{data.poll.questions}}
-    </div>
-
-    
+    </section>
   </div>
 </template>
 
@@ -61,7 +53,7 @@ export default {
       pollId: "",
       question: "",
       answers: ["", ""],
-      questionNumber: 0,
+      questionNumber: 1,
       data: {},
       uiLabels: {},
     };
@@ -72,7 +64,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    socket.on("allQuestions", (data) => (this.data = data));
+    socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
   },
   methods: {
