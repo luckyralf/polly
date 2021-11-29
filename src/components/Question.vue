@@ -1,8 +1,11 @@
 <template>
 <p>{{question.q}}</p>
-<button v-for="(a, index) in question.a" v-on:click="answer(a); changeColor(index);" v-bind:key="a" class="isClicked">
+<button v-for="(a, index) in question.a" v-on:click="changeColor(index);" v-bind:key="a" class="isClicked">
   {{ a }}
 </button>
+<div>
+<button id="submitAnswerButton" v-on:click="answer();">Submit answer</button>
+</div>
 </template>
 <script>
 export default {
