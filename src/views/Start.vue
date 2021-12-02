@@ -9,10 +9,8 @@
     <div id="nav">
       <div class= "languangeButtonContainer">
         <button class="langButtonSV" v-on:click="switchLanguageToSV">
-          <!---{{ uiLabels.changeLanguage }} -->
         </button>
         <button class="langButtonEN" v-on:click="switchLanguageToEN">
-          <!---{{ uiLabels.changeLanguage }} -->
         </button>
       </div>
 
