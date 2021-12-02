@@ -1,3 +1,5 @@
+
+
 <template class ="temp">
   <body class="Wrapped">
     <section id="headerText">
@@ -40,6 +42,7 @@
     </div>
   </body>
 </template>
+
 
 <script>
 import io from "socket.io-client";
@@ -87,6 +90,9 @@ export default {
   margin-bottom: 20px;
 }
 
+.temp{
+  background-color: black;
+}
 
 #nav{
   
@@ -228,5 +234,7 @@ export default {
 a {
   color:#FFF;
 }
+
+
 
 </style>
