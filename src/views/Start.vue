@@ -136,23 +136,27 @@ export default {
 
 
 #headerText {
+  height: 175px;
+  width: 600px;
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-bottom: 75px;
   text-align: center;
   font-family: "Monaco", monospace;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
-  border: 10px dotted #d84141;
-  margin-bottom: 30px;
-
+  font-size: 30pt;
+  border: 10px dashed #d84141;
+  margin-top:5px;
   font-size: 44pt;
   font-weight: 200;
   font-style: italic;
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
     0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
-  border-radius: 0rem;
-  margin-left: 20px;
+  border-radius: 30px;
+  margin-left: 200px;
   margin-right:20px;
-  margin-top:5px;
   text-transform: uppercase;
   
 }
@@ -200,6 +204,7 @@ export default {
 
 .Wrapped {
   /*background-color: #0c2c63;*/
+  padding-top: 15px;
   background: linear-gradient(to left, #0c2c63, #1941B2);
 }
 
