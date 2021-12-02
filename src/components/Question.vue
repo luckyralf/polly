@@ -22,11 +22,15 @@ export default {
   data: function () {
     return {
       selectedAnswer: null,
+      hasBeenSubmitted: false,
     };
   },
   methods: {
     answer: function () {
-      this.$emit("answer", this.question.a[this.selectedAnswer]);
+      if (this.hasBeenSubmitted == false) {
+        this.$emit("answer", this.question.a[this.selectedAnswer]);
+        this.hasBeenSubmitted = true;
+      }
     },
     changeColor: function (i) {
       this.selectedAnswer = i;
@@ -40,8 +44,8 @@ export default {
 }
 
 #submitAnswerButton {
-    padding: 10px;
-    margin-top: 10px;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .isClicked:hover {
