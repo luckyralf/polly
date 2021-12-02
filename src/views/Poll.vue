@@ -1,7 +1,8 @@
 <template>
   <div>
     {{ pollId }}
-    <Question v-bind:question="question" v-on:answer="submitAnswer" />
+    <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
+    <!-- gotonext i rad 4 är adderad av adam  -->
   </div>
 </template>
 
@@ -27,13 +28,22 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    this.currentQuestion = this.$route.params.currentQuestion; //adderad av adam
     socket.emit("joinPoll", this.pollId);
-    socket.on("newQuestion", (q) => (this.question = q));
+    socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
   },
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
+      console.log("before addidng ",typeof currentQuestion,currentQuestion)
+      var currentQuestion = this.currentQuestion+1;
+      console.log("after adding ",typeof currentQuestion,currentQuestion)
+      socket.emit("nextQuestion", {pollId: this.pollId, currentQuestion: currentQuestion});
     },
+    // goToNext: function () {
+    //   let currentQuestion = this.currentQuestion+1;
+    //   socket.emit("nextQuestion", {pollId: this.pollId, currentQuestion: currentQuestion});
+    // },
   },
 };
 </script>

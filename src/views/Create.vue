@@ -113,6 +113,7 @@ export default {
         pollId: this.pollId,
         questionNumber: this.questionNumber,
       });
+      console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
   },
 };
