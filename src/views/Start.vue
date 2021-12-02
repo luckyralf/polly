@@ -80,6 +80,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
 
 
 .languageButton:hover {
@@ -147,15 +148,33 @@ export default {
   padding-right: 200px;
   padding-bottom: 75px;
   text-align: center;
-  font-family: "Monaco", monospace;
+  /*font-family: "Monaco", monospace;*/
+  font-family: 'Exo 2', sans-serif;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
-  border: 10px solid white;
+  border: 7px solid white;
   box-shadow:
-    0 0 50px 20px #fff,  
-    0 0 90px 50px #f0f, 
-    0 0 130px 80px #0ff;
+    0 0 20px 7px #fff,  
+    0 0 37px 15px #f0f, 
+    0 0 35px 30px #0ff,
+    inset 0 0 20px 10px #fff,
+    inset 0 0 37px 20px #f0f,
+    inset 0 0 20px 30px #0ff;
+
+    /*0 0 30px 15px #fff,  
+    0 0 57px 35px #f0f, 
+    0 0 45px 50px #0ff,
+    inset 0 0 30px 15px #fff,
+    inset 0 0 57px 20px #f0f,
+    inset 0 0 45px 40px #0ff;*/
+    /*box-shadow:
+    0 0 30px 15px rgb(253, 117, 67),
+    0 0 57px 35px rgb(247, 82, 22),
+    0 0 21px #f40,
+    0 0 42px #f40,
+    inset 0 0 7px rgb(253, 117, 67),
+    inset 0 0 10px rgb(247, 82, 22);*/
     
     /*box-shadow:
             0 0 .5rem #fff,
@@ -169,18 +188,18 @@ export default {
   margin-top:5px;
   font-size: 44pt;
   font-weight: 200;
-  font-style: italic;
+  /*font-style: italic;*/
   color: #fff;
-  text-shadow: 
+  /*text-shadow: 
     0 0 7px rgb(253, 117, 67),
     0 0 10px rgb(247, 82, 22),
     0 0 21px #f40,
-    0 0 42px #f40,
-    0 0 82px #f40;
-    
-
-  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
-    0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
+    0 0 42px #f40,*/
+    text-shadow:
+    0 0 7px #fff,
+    0 0 10px #f0f,
+    0 0 21px #f40,
+    0 0 42px #f40;
   border-radius: 0rem;
   margin-left: 20px;
   margin-right: 20px;
@@ -234,7 +253,7 @@ export default {
   background: linear-gradient(to left, #0c2c63, #1941b2);
 
   padding-top: 15px;
-  background: linear-gradient(to left, #0c2c63, #1941B2);
+  background: linear-gradient(to left, #0c2c63, #15349A);
 
   margin:0;
 
