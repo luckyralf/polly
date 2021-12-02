@@ -8,13 +8,11 @@
 
     <div id="nav">
       <div class= "languangeButtonContainer">
-        <button class="langButtonSWE" v-on:click="switchLanguage">
-          <!---{{ uiLabels.changeLanguage }} -->
+        <button class="langButtonSV" v-on:click="switchLanguageToSV">
         </button>
-        <button class="langButtonENG" v-on:click="switchLanguage">
-          <!---{{ uiLabels.changeLanguage }} -->
+        <button class="langButtonEN" v-on:click="switchLanguageToEN">
         </button>
-        </div>
+      </div>
 
       <div class="writeAndParticipate">
         <label
@@ -28,8 +26,8 @@
 
       <div class="createOwn">
       <p> {{ uiLabels.orMakeOwn }} </p>
-        <router-link v-bind:to="'/create/' + lang">{{
-          uiLabels.createPoll
+        <router-link style="color:#FFF;" className="link" v-bind:to="'/create/' + lang">{{
+          uiLabels.createPoll 
         }}</router-link>
       </div>
     </div>
@@ -62,11 +60,19 @@ export default {
     });
   },
   methods: {
-    switchLanguage: function () {
-      if (this.lang === "en") this.lang = "sv";
-      else this.lang = "en";
+    // switchLanguage: function () {
+    //   if (this.lang === "en") this.lang = "sv";
+    //   else this.lang = "en";
+    //   socket.emit("switchLanguage", this.lang);
+    // },
+    switchLanguageToEN: function () {
+      this.lang = "en";
       socket.emit("switchLanguage", this.lang);
     },
+    switchLanguageToSV: function () {
+      this.lang = "sv";
+      socket.emit("switchLanguage", this.lang);
+    }
   },
 };
 </script>
@@ -86,24 +92,20 @@ export default {
   
 }
 
-.langButton {
-  font-family: "Courier New", Courier, monospace;
-  height: 40px;
-  width: 60px;
-  transition: 200ms;
-  border-radius: 5px;
-}
-
-.langButton:hover {
+.langButtonSV:hover {
   cursor: pointer;
   color: black;
   border: none;
 }
-.langButtonContainer {
-  
+
+.langButtonEN:hover {
+  cursor: pointer;
+  color: black;
+  border: none;
 }
 
-.langButtonSWE {
+
+.langButtonSV {
   padding-top: 20px;
   padding-right:-20px;
   background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
@@ -117,7 +119,7 @@ export default {
   left:45%;
 }
 
-.langButtonENG {
+.langButtonEN {
   padding-top: 20px;
   padding-right:-20px;
   background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/2560px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png);
@@ -135,11 +137,9 @@ export default {
 
 #headerText {
   text-align: center;
-  text-transform: uppercase;
   font-family: "Monaco", monospace;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
-  font-size: 30pt;
   border: 10px dotted #d84141;
   margin-bottom: 30px;
 
@@ -212,5 +212,16 @@ export default {
   padding-left:4px;
 }
 
-/*hejhej*/
+.link{
+  color:white;
+  background:#20AF19;
+  border-radius:4%;
+  border:solid #229954;
+  text-decoration:none;
+}
+
+a {
+  color:#FFF;
+}
+
 </style>
