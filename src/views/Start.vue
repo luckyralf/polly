@@ -137,8 +137,6 @@ export default {
   text-align: center;
   text-transform: uppercase;
   font-family: "Monaco", monospace;
-  color: #d3ffce;
-  color: #fff;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
