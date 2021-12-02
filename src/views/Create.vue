@@ -99,6 +99,7 @@ export default {
     });
     socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
+    socket.on("allQuestions", (data) => (this.data = data));
   },
   methods: {
     createPoll: function () {
