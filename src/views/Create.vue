@@ -23,7 +23,7 @@
         <button v-on:click="addQuestion">
           {{ uiLabels.addQuestion }}
         </button>
-        <br>
+        <br />
       </div>
     </section>
     <section id="formSection">
@@ -118,6 +118,7 @@ export default {
         pollId: this.pollId,
         questionNumber: this.questionNumber,
       });
+      console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
   },
 };
