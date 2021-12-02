@@ -47,6 +47,20 @@
         {{ data.poll.questions[index - 1].q }}
       </li>
     </div>
+    <br />
+
+    <div v-if="data.poll !== undefined">
+      <br />
+      <br />
+      <li v-for="index in data.poll.questions.length" :key="index">
+        {{ data.poll.questions[index] }}
+      </li>
+    </div>
+
+    <!-- <div  v-for="question in data.poll.questions" 
+            v-bind:key="question.q"
+            v-bind:question="question"> 
+      </div> -->
   </div>
   <!-- {{ this.allQuestions }} -->
 </template>
@@ -76,7 +90,6 @@ export default {
     });
     socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
-    // 1111111111111111111111111111111111
     socket.on("allQuestions", (data) => (this.data = data));
   },
   methods: {
@@ -91,8 +104,10 @@ export default {
         q: this.question,
         a: this.answers,
       });
+
       const questionInText = this.question;
       const answerAlternatives = this.answers;
+
       document.getElementById("showQandA").innerHTML =
         this.uiLabels.question +
         questionInText +
