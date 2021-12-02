@@ -1,17 +1,17 @@
-<template class ="temp">
+<template class="temp">
   <body class="Wrapped">
     <section id="headerText">
       <header>
-        <h1 class ="CATPOLL">CAT POLL</h1>
+        <h1 class="CATPOLL">CAT POLL</h1>
       </header>
     </section>
 
     <div id="nav">
-      <div class= "languangeButtonContainer">
+      <div class="languangeButtonContainer">
         <button class="langButtonSWE" v-on:click="switchLanguage">
           {{ uiLabels.changeLanguage }}
         </button>
-        </div>
+      </div>
 
       <div class="writeAndParticipate">
         <label
@@ -24,7 +24,7 @@
       </div>
 
       <div class="createOwn">
-      <p> {{ uiLabels.orMakeOwn }} </p>
+        <p>{{ uiLabels.orMakeOwn }}</p>
         <router-link v-bind:to="'/create/' + lang">{{
           uiLabels.createPoll
         }}</router-link>
@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
-@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 
 .languageButton {
   font-family: "Courier New", Courier, monospace;
@@ -86,29 +86,25 @@ export default {
   border: none;
 }
 .languangeButtonContainer {
-  
 }
 .createPoll {
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
-
-#nav{
-  
+#nav {
 }
 
 .langButtonSWE {
   padding-top: 20px;
-  padding-right:-20px;
+  padding-right: -20px;
   background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
   background-size: cover;
-  background-position:30%;
-  border-radius: 100%;  
+  background-position: 30%;
+  border-radius: 100%;
   font-family: "Monaco", monospace;
-  position:relative;
-  left:45%;
-
+  position: relative;
+  left: 45%;
 }
 
 #headerText {
@@ -131,65 +127,58 @@ export default {
     0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
   border-radius: 0rem;
   margin-left: 20px;
-  margin-right:20px;
-  margin-top:5px;
+  margin-right: 20px;
+  margin-top: 5px;
   text-transform: uppercase;
-  
 }
-.CATPOLL:hover{
+.CATPOLL:hover {
   color: #fff;
-    text-shadow:
-    0 0 7px rgb(65, 253, 65),
-    0 0 10px rgb(130, 252, 16),
-    0 0 21px rgb(130, 252, 16),
-    0 0 42px rgb(130, 252, 16),
+  text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
+    0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
     0 0 82px rgb(130, 252, 16);
 }
 
-.writeAndParticipate{
-  padding-top:40px;
-  padding-bottom:40px;
+.writeAndParticipate {
+  padding-top: 40px;
+  padding-bottom: 40px;
   font-size: 20px;
   color: white;
-  font-family: 'Outfit', sans-serif;
-  font-style:bold;
-  border:solid 5px;
-  border-radius:20px;
+  font-family: "Outfit", sans-serif;
+  font-style: bold;
+  border: solid 5px;
+  border-radius: 20px;
   /*background-color:#88ddff;*/
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
-  margin-left:200px;
+  margin-left: 200px;
   margin-right: 200px;
-  margin-top:20px;
-  
-
+  margin-top: 20px;
 }
 
-.createOwn{
-  font-family: 'Outfit', sans-serif;
+.createOwn {
+  font-family: "Outfit", sans-serif;
   font-size: 20px;
-  padding-top:10px;
-  padding-bottom:50px;
-  color:white;
-  border:solid 5px;
-  border-radius:20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  color: white;
+  border: solid 5px;
+  border-radius: 20px;
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
-  margin-left:200px;
+  margin-left: 200px;
   margin-right: 200px;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 .Wrapped {
   /*background-color: #0c2c63;*/
-  background: linear-gradient(to left, #0c2c63, #1941B2);
+  background: linear-gradient(to left, #0c2c63, #1941b2);
 }
-
 
 #Finalword {
   font-family: "Monaco", monospace;
   color: white;
   font-size: 12px;
   text-align: left;
-  padding-left:4px;
+  padding-left: 4px;
 }
 
 /*hejhej*/
