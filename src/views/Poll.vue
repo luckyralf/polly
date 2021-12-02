@@ -23,7 +23,8 @@ export default {
         q: "",
         a: []
       },
-      pollId: "inactive poll"
+      pollId: "inactive poll",
+      questionNumber: 0,
     }
   },
   created: function () {
@@ -36,6 +37,8 @@ export default {
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", {pollId: this.pollId, answer: answer});
+      //ha länk till nästa fråga här??
+      socket.emit("nextQuestion",{pollId: this.pollId, questionNumber: this.questionNumber+1}); //kanske såhär? +1 för nästa fråga
     },
   },
 }
