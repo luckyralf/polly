@@ -35,7 +35,7 @@
     <router-link v-bind:to="'/result/' + pollId">{{
       uiLabels.checkResultsText
     }}</router-link>
-<<<<<<< HEAD
+    
      <h4 id="showPollName"></h4>
     <br>
     <div v-if="data.poll !== undefined">
@@ -54,19 +54,6 @@
       </p>
     
 
-=======
-    <h4 id="showPollName"></h4>
-    <section id="QandA">
-      <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
-      <div id="showQandA"></div>
-    </section>
-    <br />
-
-    <div class="wrapper">
-      <li v-for="index in data.poll.questions.length" :key="index">
-        {{ data.poll.questions[index - 1].q }}
-      </li>
->>>>>>> f8db62975abe7ef82425919aee9a9fabb0734c6a
     </div>
     <br />
 
@@ -154,19 +141,10 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
 <style>
 
 #questionList{
   color: green;
 }
 
-=======
-<style scoped>
-.wrapper {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 33% 33% 33%;
-}
->>>>>>> f8db62975abe7ef82425919aee9a9fabb0734c6a
 </style>
