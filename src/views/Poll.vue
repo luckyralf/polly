@@ -35,6 +35,7 @@ export default {
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
+      //unnder detta försöker adam
       console.log("before addidng ",typeof currentQuestion,currentQuestion)
       var currentQuestion = this.currentQuestion+1;
       console.log("after adding ",typeof currentQuestion,currentQuestion)
