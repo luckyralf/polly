@@ -206,6 +206,7 @@ export default {
   /*background-color: #0c2c63;*/
   padding-top: 15px;
   background: linear-gradient(to left, #0c2c63, #1941B2);
+  margin: 0px;
 }
 
 

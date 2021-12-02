@@ -42,11 +42,11 @@
 
     <div v-if="data.poll !== undefined">
       
-      {{data.poll.questions}}
       <br>
       <br>
-      {{data.poll.questions[0].q}}
-
+      <li v-for="index in data.poll.questions.length" :key="index">
+         {{data.poll.questions[index]}} 
+      </li>
     
 
     </div>
