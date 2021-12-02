@@ -7,18 +7,9 @@
     </section>
 
     <div id="nav">
-<<<<<<< HEAD
       <div class="languangeButtonContainer">
-        <button class="langButtonSWE" v-on:click="switchLanguage">
-          {{ uiLabels.changeLanguage }}
-        </button>
-=======
-      <div class= "languangeButtonContainer">
-        <button class="langButtonSV" v-on:click="switchLanguageToSV">
-        </button>
-        <button class="langButtonEN" v-on:click="switchLanguageToEN">
-        </button>
->>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
+        <button class="langButtonSV" v-on:click="switchLanguageToSV"></button>
+        <button class="langButtonEN" v-on:click="switchLanguageToEN"></button>
       </div>
 
       <div class="writeAndParticipate">
@@ -32,16 +23,13 @@
       </div>
 
       <div class="createOwn">
-<<<<<<< HEAD
         <p>{{ uiLabels.orMakeOwn }}</p>
-        <router-link v-bind:to="'/create/' + lang">{{
-          uiLabels.createPoll
-=======
-      <p> {{ uiLabels.orMakeOwn }} </p>
-        <router-link style="color:#FFF;" className="link" v-bind:to="'/create/' + lang">{{
-          uiLabels.createPoll 
->>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
-        }}</router-link>
+        <router-link
+          style="color: #fff"
+          className="link"
+          v-bind:to="'/create/' + lang"
+          >{{ uiLabels.createPoll }}</router-link
+        >
       </div>
     </div>
 
@@ -85,7 +73,7 @@ export default {
     switchLanguageToSV: function () {
       this.lang = "sv";
       socket.emit("switchLanguage", this.lang);
-    }
+    },
   },
 };
 </script>
@@ -94,17 +82,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 
-
-<<<<<<< HEAD
-.languageButton:hover {
-  cursor: pointer;
-  color: black;
-  border: none;
-}
-.languangeButtonContainer {
-}
-=======
->>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
 .createPoll {
   margin-top: 30px;
   margin-bottom: 20px;
@@ -125,7 +102,6 @@ export default {
   border: none;
 }
 
-
 .langButtonSV {
   padding-top: 20px;
   padding-right: -20px;
@@ -134,32 +110,25 @@ export default {
   background-position: 30%;
   border-radius: 100%;
   font-family: "Monaco", monospace;
-<<<<<<< HEAD
-  position: relative;
-  left: 45%;
-=======
   height: 35px;
   width: 35px;
-  position:relative;
-  left:45%;
->>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
+  position: relative;
+  left: 45%;
 }
 
 .langButtonEN {
   padding-top: 20px;
-  padding-right:-20px;
+  padding-right: -20px;
   background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/2560px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png);
   background-size: cover;
-  background-position:50%;
-  border-radius: 100%;  
+  background-position: 50%;
+  border-radius: 100%;
   font-family: "Monaco", monospace;
   height: 35px;
   width: 35px;
-  position:relative;
-  left:45.5%;
+  position: relative;
+  left: 45.5%;
 }
-
-
 
 #headerText {
   height: 175px;
@@ -173,23 +142,16 @@ export default {
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
   border: 10px dashed #d84141;
-  margin-top:5px;
+  margin-top: 5px;
   font-size: 44pt;
   font-weight: 200;
   font-style: italic;
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
     0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
-<<<<<<< HEAD
-  border-radius: 0rem;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 5px;
-=======
   border-radius: 30px;
   margin-left: 200px;
-  margin-right:20px;
->>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
+  margin-right: 20px;
   text-transform: uppercase;
 }
 .CATPOLL:hover {
@@ -231,12 +193,8 @@ export default {
 
 .Wrapped {
   /*background-color: #0c2c63;*/
-<<<<<<< HEAD
-  background: linear-gradient(to left, #0c2c63, #1941b2);
-=======
   padding-top: 15px;
-  background: linear-gradient(to left, #0c2c63, #1941B2);
->>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
+  background: linear-gradient(to left, #0c2c63, #1941b2);
 }
 
 #Finalword {
@@ -247,16 +205,15 @@ export default {
   padding-left: 4px;
 }
 
-.link{
-  color:white;
-  background:#20AF19;
-  border-radius:4%;
-  border:solid #229954;
-  text-decoration:none;
+.link {
+  color: white;
+  background: #20af19;
+  border-radius: 4%;
+  border: solid #229954;
+  text-decoration: none;
 }
 
 a {
-  color:#FFF;
+  color: #fff;
 }
-
 </style>

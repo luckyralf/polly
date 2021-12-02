@@ -1,66 +1,70 @@
 <template>
-  <div>
-    {{ uiLabels.pollLink }}
-    <input type="text" v-model="pollId" />
-    <button v-on:click="createPoll">
-      {{ uiLabels.createPoll }}
-    </button>
+  {{ uiLabels.pollLink }}
+  <input type="text" v-model="pollId" />
+  <button v-on:click="createPoll">
+    {{ uiLabels.createPoll }}
+  </button>
+  <div class="wrapper">
     <div>
-      {{ uiLabels.question }}
-      <input type="text" v-model="question" />
-      <div>
-        {{ uiLabels.answerText }}
-        <input
-          v-for="(_, i) in answers"
-          v-model="answers[i]"
-          v-bind:key="'answer' + i"
-        />
-        <button v-on:click="addAnswer">
-          {{ uiLabels.addAnswer }}
+      <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
+        <button v-for="index in data.poll.questions.length" :key="index">
+          {{ data.poll.questions[index - 1].q }}
         </button>
-        <button v-on:click="delAnswer">
-          {{ uiLabels.delAnswer }}
+      </div>
+      <div>
+        <button v-on:click="addQuestion">
+          {{ uiLabels.addQuestion }}
         </button>
       </div>
     </div>
-    <button v-on:click="addQuestion">
-      {{ uiLabels.addQuestion }}
-    </button>
-    <input type="number" v-model="questionNumber" />
-    <div class="wrapper"></div>
-    <button v-on:click="runQuestion">
-      {{ uiLabels.runQuestion }}
-    </button>
-    <!-- {{ data}} data är poll objektet som returneras via data.js  -->
-    <router-link v-bind:to="'/result/' + pollId">{{
-      uiLabels.checkResultsText
-    }}</router-link>
-    <h4 id="showPollName"></h4>
-    <section id="QandA">
-      <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
-      <div id="showQandA"></div>
-    </section>
-    <br />
+    <div>
+      <div>
+        <div>
+          {{ uiLabels.question }}
+          <input type="text" v-model="question" />
+          <div>
+            {{ uiLabels.answerText }}
+            <input
+              v-for="(_, i) in answers"
+              v-model="answers[i]"
+              v-bind:key="'answer' + i"
+            />
+            <button v-on:click="addAnswer">
+              {{ uiLabels.addAnswer }}
+            </button>
+            <button v-on:click="delAnswer">
+              {{ uiLabels.delAnswer }}
+            </button>
+            <div v-if="data.poll !== undefined">
+              {{ data.poll.questions[2].a }}
+            </div>
+          </div>
+        </div>
 
-    <div class="wrapper">
-      <li v-for="index in data.poll.questions.length" :key="index">
-        {{ data.poll.questions[index - 1].q }}
-      </li>
-    </div>
-    <br />
+        <input type="number" v-model="questionNumber" />
+        <div class="wrapper"></div>
+        <button v-on:click="runQuestion">
+          {{ uiLabels.runQuestion }}
+        </button>
+        <!-- {{ data}} data är poll objektet som returneras via data.js  -->
+        <router-link v-bind:to="'/result/' + pollId">{{
+          uiLabels.checkResultsText
+        }}</router-link>
+        <h4 id="showPollName"></h4>
+        <section id="QandA">
+          <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
+          <div id="showQandA"></div>
+        </section>
+        <br />
 
-    <div v-if="data.poll !== undefined">
-      <br />
-      <br />
-      <li v-for="index in data.poll.questions.length" :key="index">
-        {{ data.poll.questions[index] }}
-      </li>
-    </div>
+        <br />
 
-    <!-- <div  v-for="question in data.poll.questions" 
+        <!-- <div  v-for="question in data.poll.questions" 
             v-bind:key="question.q"
             v-bind:question="question"> 
       </div> -->
+      </div>
+    </div>
   </div>
   <!-- {{ this.allQuestions }} -->
 </template>
@@ -137,6 +141,12 @@ export default {
 .wrapper {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 50% 50%;
+}
+
+.buttonChooseQuestion {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 100%;
 }
 </style>
