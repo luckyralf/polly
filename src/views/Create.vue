@@ -6,12 +6,13 @@
     <h1> Create Cat Poll </h1>
   </header>
 
-
-  {{ uiLabels.pollLink }}
-  <input type="text" v-model="pollId" />
-  <button v-on:click="createPoll">
-    {{ uiLabels.createPoll }}
-  </button>
+  <div id="createPollId">
+    {{ uiLabels.pollLink }}
+    <input type="text" v-model="pollId" />
+    <button v-on:click="createPoll">
+      {{ uiLabels.createPoll }}
+    </button>
+  </div>
   <div class="wrapper">
     <section id="questSection">
         <h4 id="showPollName"></h4>
@@ -31,33 +32,28 @@
     </section>
 
     <section id="formSection">
-        <fieldset>
           {{ uiLabels.question }}
-          <input type="text" v-model="question" />
+          <textarea type="text" v-model="question" />
 
-            {{ uiLabels.answerText }}
+            {{ uiLabels.answerText }} <br>
             <input  v-for="(_, i) in answers"
                     v-model="answers[i]"
                     v-bind:key="'answer' + i"/>
+            <br>
             <button v-on:click="addAnswer"> + </button>
             <button v-on:click="delAnswer"> - </button>
-
-        </fieldset>
-        
-
-        
-        <!-- {{ data}} data är poll objektet som returneras via data.js  -->
-        
     </section>
+
   </div>
   <!-- Check Result Knapp -->
-  <div class="result">
+  <div id="result">
     <input id="questNrBox" type="number" v-model="questionNumber" />
-          <button v-on:click="runQuestion">
-            {{ uiLabels.runQuestion }}
-          </button>
-          <br>
-    <router-link v-bind:to="'/result/' + pollId">
+
+    <button v-on:click="runQuestion">
+    {{ uiLabels.runQuestion }}
+    </button>
+
+    <router-link id="routerLink" v-bind:to="'/result/' + pollId">
     {{uiLabels.checkResultsText}}
     </router-link>
   </div>
@@ -132,6 +128,8 @@ export default {
 
 
 body{
+  display: grid;
+  grid-template-rows: auto  ;
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   min-width: 100%;
@@ -139,11 +137,21 @@ body{
   margin: 0;
   padding: 2rem 0 5rem 0;
 }
-header{
-  /* text-align: center; */
-  border-color: aliceblue;
-  border-width: 2px;
 
+header{
+  /* text-align: center;
+  border: 7px solid white;
+  border-radius: 30px;
+
+  box-shadow:
+    0 0 20px 7px #fff,  
+    0 0 37px 15px #f0f, 
+    0 0 40px 27px #0ff,
+    inset 0 0 20px 8px #fff,
+    inset 0 0 37px 18px #f0f,
+    inset 0 0 30px 27px #0ff;
+  margin: 0 4rem;
+  padding: 1rem 0; */
 }
 
 h1{
@@ -151,7 +159,18 @@ h1{
   font-size: 4rem;
   color: white;
   text-align: center;
+  margin: 0;
+  text-shadow: 0 0 7px rgb(253, 117, 67),
+   0 0 10px #f0f,
+    0 0 21px #f0f,
+     0 0 42px #f0f,
+      0 0 82px #f0f;
 }
+
+#createPollId{
+
+}
+
 .wrapper {
   display: grid;
   grid-gap: 10px;
@@ -163,19 +182,30 @@ h1{
 }
 
 #formSection{
-  margin: 3rem;
+  text-align: center;
+}
+
+#formSection, #result{
+  
+  width: min-content;
+  
+}
+
+#formSection, #result, #questSection{
+  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+  border: solid 5px;
+  border-radius: 20px;
   padding: 1rem;
+  margin: 3rem;
+
 }
 
-#questNrBox{
-  width: fit-content;
+#result{
+  margin-left: 38%;
+  display: grid;
+  grid-template-rows: auto auto;
 }
 
-
-fieldset{
-  border-radius: 5px;
-  width: 25%;
-}
 
 .buttonChooseQuestion {
   display: grid;
@@ -183,7 +213,20 @@ fieldset{
   grid-template-columns: 100%;
 }
 
-.result{
-  margin: 2rem;
+#routerLink{
+  text-decoration: none;
+  background: #20af19;
+  border-radius: 6px;
+  border: solid #229954;
+  margin: 1rem 0;
+  margin-top: 40px;
+}
+
+
+
+#result button{
+  margin-top: 5px;
+  width: fit-content;
+  align-self: center;
 }
 </style>
