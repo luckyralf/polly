@@ -9,7 +9,10 @@
     <div id="nav">
       <div class= "languangeButtonContainer">
         <button class="langButtonSWE" v-on:click="switchLanguage">
-          {{ uiLabels.changeLanguage }}
+          <!---{{ uiLabels.changeLanguage }} -->
+        </button>
+        <button class="langButtonENG" v-on:click="switchLanguage">
+          <!---{{ uiLabels.changeLanguage }} -->
         </button>
         </div>
 
@@ -72,22 +75,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
-.languageButton {
-  font-family: "Courier New", Courier, monospace;
-  height: 40px;
-  width: 60px;
-  transition: 200ms;
-  border-radius: 5px;
-}
 
-.languageButton:hover {
-  cursor: pointer;
-  color: black;
-  border: none;
-}
-.languangeButtonContainer {
-  
-}
 .createPoll {
   margin-top: 30px;
   margin-bottom: 20px;
@@ -95,6 +83,23 @@ export default {
 
 
 #nav{
+  
+}
+
+.langButton {
+  font-family: "Courier New", Courier, monospace;
+  height: 40px;
+  width: 60px;
+  transition: 200ms;
+  border-radius: 5px;
+}
+
+.langButton:hover {
+  cursor: pointer;
+  color: black;
+  border: none;
+}
+.langButtonContainer {
   
 }
 
@@ -106,10 +111,27 @@ export default {
   background-position:30%;
   border-radius: 100%;  
   font-family: "Monaco", monospace;
+  height: 35px;
+  width: 35px;
   position:relative;
   left:45%;
-
 }
+
+.langButtonENG {
+  padding-top: 20px;
+  padding-right:-20px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/2560px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png);
+  background-size: cover;
+  background-position:50%;
+  border-radius: 100%;  
+  font-family: "Monaco", monospace;
+  height: 35px;
+  width: 35px;
+  position:relative;
+  left:45.5%;
+}
+
+
 
 #headerText {
   text-align: center;
