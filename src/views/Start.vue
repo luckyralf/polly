@@ -146,14 +146,33 @@ export default {
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
-  border: 10px dashed #d84141;
+  border: 10px solid white;
+  box-shadow:
+    0 0 50px 20px #fff,  
+    0 0 90px 50px #f0f, 
+    0 0 130px 80px #0ff;
+    
+    /*box-shadow:
+            0 0 .5rem #fff,
+            inset 0 0 .5rem #fff,
+            0 0 2rem var(#08f),
+            inset 0 0 2rem var(#08f),
+            0 0 4rem var(#08f),
+            inset 0 0 4rem var(#08f);*/
+
+  
   margin-top:5px;
   font-size: 44pt;
   font-weight: 200;
   font-style: italic;
   color: #fff;
-  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
-    0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
+  text-shadow: 
+    0 0 7px rgb(253, 117, 67),
+    0 0 10px rgb(247, 82, 22),
+    0 0 21px #f40,
+    0 0 42px #f40,
+    0 0 82px #f40;
+    
   border-radius: 30px;
   margin-left: 200px;
   margin-right:20px;
@@ -206,6 +225,7 @@ export default {
   /*background-color: #0c2c63;*/
   padding-top: 15px;
   background: linear-gradient(to left, #0c2c63, #1941B2);
+  margin:0;
 }
 
 
