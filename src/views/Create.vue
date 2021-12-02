@@ -15,7 +15,7 @@
         <button v-on:click="addQuestion">
           {{ uiLabels.addQuestion }}
         </button>
-        <br>
+        <br />
       </div>
     </div>
     <div>
