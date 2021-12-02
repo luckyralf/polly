@@ -14,7 +14,7 @@
         <button class="langButtonENG" v-on:click="switchLanguage">
           <!---{{ uiLabels.changeLanguage }} -->
         </button>
-        </div>
+      </div>
 
       <div class="writeAndParticipate">
         <label
@@ -86,22 +86,18 @@ export default {
   
 }
 
-.langButton {
-  font-family: "Courier New", Courier, monospace;
-  height: 40px;
-  width: 60px;
-  transition: 200ms;
-  border-radius: 5px;
-}
-
-.langButton:hover {
+.langButtonSWE:hover {
   cursor: pointer;
   color: black;
   border: none;
 }
-.langButtonContainer {
-  
+
+.langButtonENG:hover {
+  cursor: pointer;
+  color: black;
+  border: none;
 }
+
 
 .langButtonSWE {
   padding-top: 20px;
