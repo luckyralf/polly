@@ -240,14 +240,11 @@ export default {
 }
 
 .Wrapped {
-  /*background-color: #0c2c63;*/
-
-  background: linear-gradient(to left, #0c2c63, #1941b2);
-
+  background-color: #1941b2;
+  /*background: linear-gradient(to left, #0c2c63, #1941b2);*/
   padding-top: 15px;
-  background: linear-gradient(to left, #0c2c63, #1941b2);
-
   margin: 0;
+  overflow-x: hidden; 
 }
 
 #Finalword {
@@ -264,10 +261,24 @@ export default {
   border-radius: 4%;
   border: solid #229954;
   text-decoration: none;
-
 }
 
-a {
-  color: #fff;
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: black;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
 }
+
+hr:after {
+    background: #1941b2;
+    content: 'mjau';
+    font-family: "Monaco", monospace;
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}
+
 </style>
