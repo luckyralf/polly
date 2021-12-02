@@ -25,9 +25,9 @@ function sockets(io, socket, data) {
     socket.emit('dataUpdate', data.getAnswers(pollId));
   });
 
-  socket.on('runQuestion', function(d) {
-    io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber));
-    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
+  socket.on('runQuestion', function(d) { //d är objekt med pollId och questionNumber
+    io.to(d.pollId).emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber)); //kanske ta bort io.to pga det skickar till alla?
+    io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId)); //kanske ta bort io.to pga det skickar till alla?
   });
 
   socket.on('submitAnswer', function(d) {
@@ -38,6 +38,11 @@ function sockets(io, socket, data) {
   socket.on('resetAll', () => {
     data = new Data();
     data.initializeData();
+  });
+
+  socket.on('nextQuestion', function(d) {
+      //d = {{pollId,questionNumber}}, vad ska göras här?
+      socket.emit('newQuestion', data.getQuestion(d.pollId,d.questionNumber))
   })
  
 }
