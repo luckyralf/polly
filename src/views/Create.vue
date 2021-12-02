@@ -19,7 +19,7 @@
           {{ uiLabels.addAnswer }}
         </button>
         <button v-on:click="delAnswer">
-         {{ uiLabels.delAnswer }}
+          {{ uiLabels.delAnswer }}
         </button>
       </div>
     </div>
@@ -27,6 +27,7 @@
       {{ uiLabels.addQuestion }}
     </button>
     <input type="number" v-model="questionNumber" />
+    <div class="wrapper"></div>
     <button v-on:click="runQuestion">
       {{ uiLabels.runQuestion }}
     </button>
@@ -34,6 +35,7 @@
     <router-link v-bind:to="'/result/' + pollId">{{
       uiLabels.checkResultsText
     }}</router-link>
+<<<<<<< HEAD
      <h4 id="showPollName"></h4>
     <br>
     <div v-if="data.poll !== undefined">
@@ -52,17 +54,36 @@
       </p>
     
 
+=======
+    <h4 id="showPollName"></h4>
+    <section id="QandA">
+      <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
+      <div id="showQandA"></div>
+    </section>
+    <br />
+
+    <div class="wrapper">
+      <li v-for="index in data.poll.questions.length" :key="index">
+        {{ data.poll.questions[index - 1].q }}
+      </li>
+>>>>>>> f8db62975abe7ef82425919aee9a9fabb0734c6a
     </div>
-    
+    <br />
 
+    <div v-if="data.poll !== undefined">
+      <br />
+      <br />
+      <li v-for="index in data.poll.questions.length" :key="index">
+        {{ data.poll.questions[index] }}
+      </li>
+    </div>
 
-      <!-- <div  v-for="question in data.poll.questions" 
+    <!-- <div  v-for="question in data.poll.questions" 
             v-bind:key="question.q"
             v-bind:question="question"> 
       </div> -->
-
-    
   </div>
+  <!-- {{ this.allQuestions }} -->
 </template>
 
 <script>
@@ -80,7 +101,6 @@ export default {
       questionNumber: 1,
       data: {},
       uiLabels: {},
-
     };
   },
   created: function () {
@@ -105,18 +125,22 @@ export default {
         q: this.question,
         a: this.answers,
       });
-      
+
       const questionInText = this.question;
       const answerAlternatives = this.answers;
 
       document.getElementById("showQandA").innerHTML =
-        this.uiLabels.question + questionInText+ "<br />" +this.uiLabels.answerText + answerAlternatives;
+        this.uiLabels.question +
+        questionInText +
+        "<br />" +
+        this.uiLabels.answerText +
+        answerAlternatives;
     },
     addAnswer: function () {
       this.answers.push("");
     },
 
-    delAnswer: function (){
+    delAnswer: function () {
       this.answers.pop();
     },
 
@@ -130,10 +154,19 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
 <style>
 
 #questionList{
   color: green;
 }
 
+=======
+<style scoped>
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 33% 33% 33%;
+}
+>>>>>>> f8db62975abe7ef82425919aee9a9fabb0734c6a
 </style>

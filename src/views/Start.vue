@@ -1,17 +1,24 @@
-<template class ="temp">
+<template class="temp">
   <body class="Wrapped">
     <section id="headerText">
       <header>
-        <h1 class ="CATPOLL">CAT POLL</h1>
+        <h1 class="CATPOLL">CAT POLL</h1>
       </header>
     </section>
 
     <div id="nav">
+<<<<<<< HEAD
+      <div class="languangeButtonContainer">
+        <button class="langButtonSWE" v-on:click="switchLanguage">
+          {{ uiLabels.changeLanguage }}
+        </button>
+=======
       <div class= "languangeButtonContainer">
         <button class="langButtonSV" v-on:click="switchLanguageToSV">
         </button>
         <button class="langButtonEN" v-on:click="switchLanguageToEN">
         </button>
+>>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
       </div>
 
       <div class="writeAndParticipate">
@@ -25,9 +32,15 @@
       </div>
 
       <div class="createOwn">
+<<<<<<< HEAD
+        <p>{{ uiLabels.orMakeOwn }}</p>
+        <router-link v-bind:to="'/create/' + lang">{{
+          uiLabels.createPoll
+=======
       <p> {{ uiLabels.orMakeOwn }} </p>
         <router-link style="color:#FFF;" className="link" v-bind:to="'/create/' + lang">{{
           uiLabels.createPoll 
+>>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
         }}</router-link>
       </div>
     </div>
@@ -79,17 +92,25 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
-@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 
 
+<<<<<<< HEAD
+.languageButton:hover {
+  cursor: pointer;
+  color: black;
+  border: none;
+}
+.languangeButtonContainer {
+}
+=======
+>>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
 .createPoll {
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
-
-#nav{
-  
+#nav {
 }
 
 .langButtonSV:hover {
@@ -107,16 +128,21 @@ export default {
 
 .langButtonSV {
   padding-top: 20px;
-  padding-right:-20px;
+  padding-right: -20px;
   background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
   background-size: cover;
-  background-position:30%;
-  border-radius: 100%;  
+  background-position: 30%;
+  border-radius: 100%;
   font-family: "Monaco", monospace;
+<<<<<<< HEAD
+  position: relative;
+  left: 45%;
+=======
   height: 35px;
   width: 35px;
   position:relative;
   left:45%;
+>>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
 }
 
 .langButtonEN {
@@ -154,67 +180,71 @@ export default {
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
     0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
+<<<<<<< HEAD
+  border-radius: 0rem;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+=======
   border-radius: 30px;
   margin-left: 200px;
   margin-right:20px;
+>>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
   text-transform: uppercase;
-  
 }
-.CATPOLL:hover{
+.CATPOLL:hover {
   color: #fff;
-    text-shadow:
-    0 0 7px rgb(65, 253, 65),
-    0 0 10px rgb(130, 252, 16),
-    0 0 21px rgb(130, 252, 16),
-    0 0 42px rgb(130, 252, 16),
+  text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
+    0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
     0 0 82px rgb(130, 252, 16);
 }
 
-.writeAndParticipate{
-  padding-top:40px;
-  padding-bottom:40px;
+.writeAndParticipate {
+  padding-top: 40px;
+  padding-bottom: 40px;
   font-size: 20px;
   color: white;
-  font-family: 'Outfit', sans-serif;
-  font-style:bold;
-  border:solid 5px;
-  border-radius:20px;
+  font-family: "Outfit", sans-serif;
+  font-style: bold;
+  border: solid 5px;
+  border-radius: 20px;
   /*background-color:#88ddff;*/
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
-  margin-left:200px;
+  margin-left: 200px;
   margin-right: 200px;
-  margin-top:20px;
-  
-
+  margin-top: 20px;
 }
 
-.createOwn{
-  font-family: 'Outfit', sans-serif;
+.createOwn {
+  font-family: "Outfit", sans-serif;
   font-size: 20px;
-  padding-top:10px;
-  padding-bottom:50px;
-  color:white;
-  border:solid 5px;
-  border-radius:20px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  color: white;
+  border: solid 5px;
+  border-radius: 20px;
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
-  margin-left:200px;
+  margin-left: 200px;
   margin-right: 200px;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 .Wrapped {
   /*background-color: #0c2c63;*/
+<<<<<<< HEAD
+  background: linear-gradient(to left, #0c2c63, #1941b2);
+=======
   padding-top: 15px;
   background: linear-gradient(to left, #0c2c63, #1941B2);
+>>>>>>> af4a2609036e667da9013d48b519c10a3a7bce03
 }
-
 
 #Finalword {
   font-family: "Monaco", monospace;
   color: white;
   font-size: 12px;
   text-align: left;
-  padding-left:4px;
+  padding-left: 4px;
 }
 
 .link{
