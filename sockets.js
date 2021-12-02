@@ -40,9 +40,8 @@ function sockets(io, socket, data) {
     data.initializeData();
   });
 
-  socket.on('nextQuestion', function(d) {
-      //d = {{pollId,questionNumber}}, vad ska göras här?
-      socket.emit('newQuestion', data.getQuestion(d.pollId,d.questionNumber))
+  socket.on('nextQuestion', function(d) { //ny test från Adam, d = {{pollId,questionNumber}}, vad ska göras här?
+      socket.emit('newQuestion', data.getQuestion(d.pollId,d.questionNumber)); 
   })
  
 }
