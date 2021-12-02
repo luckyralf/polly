@@ -157,7 +157,7 @@ export default {
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
     0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
-  border-radius: 0rem;
+  border-radius: 30px;
   margin-left: 200px;
   margin-right:20px;
   text-transform: uppercase;
