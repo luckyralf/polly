@@ -150,15 +150,14 @@ export default {
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
-<<<<<<< HEAD
   border: 7px solid white;
   box-shadow:
     0 0 20px 7px #fff,  
     0 0 37px 15px #f0f, 
-    0 0 35px 30px #0ff,
-    inset 0 0 20px 10px #fff,
-    inset 0 0 37px 20px #f0f,
-    inset 0 0 20px 30px #0ff;
+    0 0 40px 27px #0ff,
+    inset 0 0 20px 8px #fff,
+    inset 0 0 37px 18px #f0f,
+    inset 0 0 30px 27px #0ff;
 
     /*0 0 30px 15px #fff,  
     0 0 57px 35px #f0f, 
@@ -175,12 +174,6 @@ export default {
     inset 0 0 10px rgb(247, 82, 22);*/
     
     /*box-shadow:
-=======
-  border: 10px solid white;
-  box-shadow: 0 0 50px 20px #fff, 0 0 90px 50px #f0f, 0 0 130px 80px #0ff;
-
-  /*box-shadow:
->>>>>>> a4ca50f84034c24169cafa2cb9b9c32767d27d52
             0 0 .5rem #fff,
             inset 0 0 .5rem #fff,
             0 0 2rem var(#08f),
@@ -193,24 +186,12 @@ export default {
   font-weight: 200;
   /*font-style: italic;*/
   color: #fff;
-<<<<<<< HEAD
-  /*text-shadow: 
-    0 0 7px rgb(253, 117, 67),
-    0 0 10px rgb(247, 82, 22),
-    0 0 21px #f40,
-    0 0 42px #f40,*/
-    text-shadow:
-    0 0 7px #fff,
-    0 0 10px #f0f,
-    0 0 21px #f40,
-    0 0 42px #f40;
-=======
-  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
-    0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
 
-  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
-    0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;
->>>>>>> a4ca50f84034c24169cafa2cb9b9c32767d27d52
+  text-shadow: 0 0 7px rgb(253, 117, 67),
+   0 0 10px #f0f,
+    0 0 21px #f0f,
+     0 0 42px #f0f,
+      0 0 82px #f0f;
   border-radius: 0rem;
   margin-left: 20px;
   margin-right: 20px;
@@ -264,13 +245,7 @@ export default {
   background: linear-gradient(to left, #0c2c63, #1941b2);
 
   padding-top: 15px;
-<<<<<<< HEAD
-  background: linear-gradient(to left, #0c2c63, #15349A);
-
-  margin:0;
-=======
   background: linear-gradient(to left, #0c2c63, #1941b2);
->>>>>>> a4ca50f84034c24169cafa2cb9b9c32767d27d52
 
   margin: 0;
 }
@@ -289,6 +264,7 @@ export default {
   border-radius: 4%;
   border: solid #229954;
   text-decoration: none;
+
 }
 
 a {
