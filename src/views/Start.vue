@@ -82,6 +82,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
 
 .languageButton:hover {
   cursor: pointer;
@@ -145,7 +146,8 @@ export default {
   padding-right: 200px;
   padding-bottom: 75px;
   text-align: center;
-  font-family: "Monaco", monospace;
+  /*font-family: "Monaco", monospace;*/
+  font-family: 'Exo 2', sans-serif;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
@@ -163,7 +165,7 @@ export default {
   margin-top: 5px;
   font-size: 44pt;
   font-weight: 200;
-  font-style: italic;
+  /*font-style: italic;*/
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px rgb(247, 82, 22),
     0 0 21px #f40, 0 0 42px #f40, 0 0 82px #f40;

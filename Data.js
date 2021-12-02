@@ -24,7 +24,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     poll.lang = lang;
     poll.questions = [];
     poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
-    poll.currentQuestion = 0;
+    poll.currentQuestion = 0; 
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -39,7 +39,7 @@ Data.prototype.addQuestion = function (pollId, q) {
   }
 };
 
-Data.prototype.getQuestion = function (pollId, qId = null) { //ska qId vara null verkligen?
+Data.prototype.getQuestion = function (pollId, qId = null) { //tror att qId blir null endast om man inte ger ett värde mvh adam
   const poll = this.polls[pollId];
   console.log("question requested for ", pollId, qId);
   if (typeof poll !== "undefined") {
@@ -50,6 +50,17 @@ Data.prototype.getQuestion = function (pollId, qId = null) { //ska qId vara null
   }
   return [];
 };
+
+// Data.prototype.getNextQuestion = function(pollId,qId) {
+//   const poll = this.polls[pollId];
+//   if(typeof poll !== "undefined") {
+//     if (qId !== null) {
+//       poll.currentQuestion = qId;
+//     }
+//     return poll.questions[poll.currentQuestion+1]; //+1 pga vi vill ha nästa fråga?
+//   }
+//   return [];
+// };
 
 Data.prototype.submitAnswer = function (pollId, answer) {
   const poll = this.polls[pollId];
