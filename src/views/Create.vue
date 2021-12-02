@@ -1,76 +1,88 @@
 <template>
-  <div>
-    {{ uiLabels.pollLink }}
-    <input type="text" v-model="pollId" />
-    <button v-on:click="createPoll">
-      {{ uiLabels.createPoll }}
-    </button>
-    <div>
-      {{ uiLabels.question }}
-      <input type="text" v-model="question" />
-      <div>
-        {{ uiLabels.answerText }}
-        <input
-          v-for="(_, i) in answers"
-          v-model="answers[i]"
-          v-bind:key="'answer' + i"
-        />
-        <button v-on:click="addAnswer">
-          {{ uiLabels.addAnswer }}
+<body>
+  
+  <header>
+
+  </header>
+
+  <div id="container">
+    <main>
+
+    
+      <fieldset>
+      <div id="createQForm">
+        {{ uiLabels.pollLink }}
+        <input type="text" v-model="pollId" />
+        <button v-on:click="createPoll">
+          {{ uiLabels.createPoll }}
         </button>
-        <button v-on:click="delAnswer">
-          {{ uiLabels.delAnswer }}
+        <div>
+          {{ uiLabels.question }}
+          <input type="text" v-model="question" />
+          <div>
+            {{ uiLabels.answerText }}
+            <input
+              v-for="(_, i) in answers"
+              v-model="answers[i]"
+              v-bind:key="'answer' + i"
+            />
+            <button v-on:click="addAnswer">
+              {{ uiLabels.addAnswer }}
+            </button>
+            <button v-on:click="delAnswer">
+              {{ uiLabels.delAnswer }}
+            </button>
+          </div>
+        </div>
+        <button v-on:click="addQuestion">
+          {{ uiLabels.addQuestion }}
         </button>
+        <input type="number" v-model="questionNumber" />
+        <button v-on:click="runQuestion">
+          {{ uiLabels.runQuestion }}
+        </button>
+        <br>
       </div>
-    </div>
-    <button v-on:click="addQuestion">
-      {{ uiLabels.addQuestion }}
-    </button>
-    <input type="number" v-model="questionNumber" />
-    <div class="wrapper"></div>
-    <button v-on:click="runQuestion">
-      {{ uiLabels.runQuestion }}
-    </button>
-    <!-- {{ data}} data är poll objektet som returneras via data.js  -->
-    <router-link v-bind:to="'/result/' + pollId">{{
-      uiLabels.checkResultsText
-    }}</router-link>
-    
-     <h4 id="showPollName"></h4>
-    <br>
-    <div v-if="data.poll !== undefined">
-      <br>
-      <br>
-      <p id="questionList" v-for="index in data.poll.questions.length" :key="index"> 
-         <span id="questionInList"> {{data.poll.questions[index-1].q}}  </span>
-         <br>
-         {{this.uiLabels.answerText}}&nbsp;
-         <span id="answerInList" v-for="ind in data.poll.questions[index-1].a.length" :key="ind">
-         / {{data.poll.questions[index-1].a[ind-1]}}&nbsp; 
-         </span>
-         <br>
-         <br>
-         
-      </p>
-    
+        <!-- {{ data}} data är poll objektet som returneras via data.js  -->
 
-    </div>
-    <br />
+        
+      </fieldset>
+      <!-- Check result knapp -->
+        <router-link v-bind:to="'/result/' + pollId">{{
+          uiLabels.checkResultsText
+        }}</router-link>
+        <!-- Frågorna --> 
 
-    <div v-if="data.poll !== undefined">
-      <br />
-      <br />
-      <li v-for="index in data.poll.questions.length" :key="index">
-        {{ data.poll.questions[index] }}
-      </li>
-    </div>
+      
+      <h4 id="showPollName"></h4>
+      <div id="questionList"  v-if="data.poll !== undefined">
+        
+        
+        <p v-for="index in data.poll.questions.length" :key="index"> 
 
-    <!-- <div  v-for="question in data.poll.questions" 
-            v-bind:key="question.q"
-            v-bind:question="question"> 
-      </div> -->
+          <span id="questionInList"> {{data.poll.questions[index-1].q}}  </span>
+          {{this.uiLabels.answerText}}&nbsp;
+
+          <span id="answerInList" v-for="ind in data.poll.questions[index-1].a.length" :key="ind">
+          / {{data.poll.questions[index-1].a[ind-1]}}&nbsp; 
+
+          </span>
+          
+        </p>
+      
+
+      </div>
+
+        
+
+      
+      
+    </main>
   </div>
-  <!-- {{ this.allQuestions }} -->
+  <footer>
+
+  </footer>
+  </body>
 </template>
 
 <script>
@@ -142,6 +154,13 @@ export default {
 </script>
 
 <style>
+
+fieldset{
+  border-radius: 5px;
+}
+#createQForm{
+  text-align: left;
+}
 
 #questionList{
   color: green;
