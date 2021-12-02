@@ -1,4 +1,6 @@
 <template>
+<body>
+  
 
   <header> 
     <h1> Create Cat Poll </h1>
@@ -14,6 +16,7 @@
     <section id="questSection">
         <h4 id="showPollName"></h4>
 
+      <!-- Skriver ut frågorna som skapas -->
       <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
         <button v-for="index in data.poll.questions.length" :key="index">
           {{ data.poll.questions[index - 1].q }}
@@ -23,11 +26,11 @@
         <button v-on:click="addQuestion">
           {{ uiLabels.addQuestion }}
         </button>
-        <br />
+        <br>
       </div>
     </section>
+
     <section id="formSection">
-        
         <fieldset>
           {{ uiLabels.question }}
           <input type="text" v-model="question" />
@@ -36,12 +39,8 @@
             <input  v-for="(_, i) in answers"
                     v-model="answers[i]"
                     v-bind:key="'answer' + i"/>
-            <button v-on:click="addAnswer">
-              {{ uiLabels.addAnswer }}
-            </button>
-            <button v-on:click="delAnswer">
-              {{ uiLabels.delAnswer }}
-            </button>
+            <button v-on:click="addAnswer"> + </button>
+            <button v-on:click="delAnswer"> - </button>
 
         </fieldset>
         
@@ -62,6 +61,7 @@
     {{uiLabels.checkResultsText}}
     </router-link>
   </div>
+</body>
 </template>
 
 <script>
@@ -76,7 +76,7 @@ export default {
       pollId: "",
       question: "",
       answers: ["", ""],
-      questionNumber: 1,
+      questionNumber: 0,
       data: {},
       uiLabels: {},
     };
@@ -103,6 +103,7 @@ export default {
         q: this.question,
         a: this.answers,
       });
+
       
     },
     addAnswer: function () {
@@ -128,9 +129,28 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 
+
+
+body{
+  color: white;
+  background: linear-gradient(to left, #0c2c63, #1941b2);
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 2rem 0 5rem 0;
+}
+header{
+  /* text-align: center; */
+  border-color: aliceblue;
+  border-width: 2px;
+
+}
+
 h1{
   font-family: "Monaco", monospace;
   font-size: 4rem;
+  color: white;
+  text-align: center;
 }
 .wrapper {
   display: grid;
