@@ -10,7 +10,12 @@
     {{ a }}
   </button>
   <div>
-    <button v-on:click="answer" id="submitAnswerButton">Submit answer</button>
+    <button v-on:click="submitAnswer" id="submitAnswerButton">Submit answer</button> <br>
+    <div v-if="showAnswer">Selected answer is: {{this.submittedAnswer}}</div>
+  </div>
+  <br>
+  <div>
+    <button v-on:click="answer"> Next question </button>
   </div>
 </template>
 <script>
@@ -22,11 +27,23 @@ export default {
   data: function () {
     return {
       selectedAnswer: null,
+      showAnswer: false,
+      answerSubmitted: false,
+      submittedAnswer: null,
     };
   },
   methods: {
+    submitAnswer: function () {
+        //skriv ut vad det valda alternativet är 
+        this.showAnswer = true;
+        this.submittedAnswer = this.question.a[this.selectedAnswer];
+        console.log(this.submittedAnswer);
+    },
     answer: function () {
-      this.$emit("answer", this.question.a[this.selectedAnswer]);
+      if (this.answerSubmitted == false && this.submittedAnswer != null){
+        this.$emit("answer", this.submittedAnswer);
+        this.answerSubmitted = true;
+        }
     },
     changeColor: function (i) {
       this.selectedAnswer = i;
@@ -40,8 +57,8 @@ export default {
 }
 
 #submitAnswerButton {
-    padding: 10px;
-    margin-top: 10px;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 .isClicked:hover {
