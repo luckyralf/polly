@@ -39,7 +39,7 @@ Data.prototype.addQuestion = function (pollId, q) {
   }
 };
 
-Data.prototype.getQuestion = function (pollId, qId = null) {
+Data.prototype.getQuestion = function (pollId, qId = null) { //ska qId vara null verkligen?
   const poll = this.polls[pollId];
   console.log("question requested for ", pollId, qId);
   if (typeof poll !== "undefined") {

@@ -1,21 +1,25 @@
 <template>
-<body>
-  
-  <header>
-
-  </header>
-
-  <div id="container">
-    <main>
-
-    
-      <fieldset>
-      <div id="createQForm">
-        {{ uiLabels.pollLink }}
-        <input type="text" v-model="pollId" />
-        <button v-on:click="createPoll">
-          {{ uiLabels.createPoll }}
+  {{ uiLabels.pollLink }}
+  <input type="text" v-model="pollId" />
+  <button v-on:click="createPoll">
+    {{ uiLabels.createPoll }}
+  </button>
+  <div class="wrapper">
+    <div>
+      <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
+        <button v-for="index in data.poll.questions.length" :key="index">
+          {{ data.poll.questions[index - 1].q }}
         </button>
+      </div>
+      <div>
+        <button v-on:click="addQuestion">
+          {{ uiLabels.addQuestion }}
+        </button>
+        <br>
+      </div>
+    </div>
+    <div>
+      <div>
         <div>
           {{ uiLabels.question }}
           <input type="text" v-model="question" />
@@ -32,57 +36,42 @@
             <button v-on:click="delAnswer">
               {{ uiLabels.delAnswer }}
             </button>
+            <div v-if="data.poll !== undefined">
+              {{ data.poll.questions[2].a }}
+            </div>
           </div>
         </div>
-        <button v-on:click="addQuestion">
-          {{ uiLabels.addQuestion }}
-        </button>
+
         <input type="number" v-model="questionNumber" />
+        <div class="wrapper"></div>
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
         </button>
-        <br>
-      </div>
         <!-- {{ data}} data är poll objektet som returneras via data.js  -->
-
-        
-      </fieldset>
-      <!-- Check result knapp -->
         <router-link v-bind:to="'/result/' + pollId">{{
           uiLabels.checkResultsText
         }}</router-link>
-        <!-- Frågorna --> 
+        <h4 id="showPollName"></h4>
+        <section id="QandA">
+          <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
+          <div id="showQandA"></div>
+        </section>
+        <br />
 
-      
-      <h4 id="showPollName"></h4>
-      <div id="questionList"  v-if="data.poll !== undefined">
-        
-        
-        <p v-for="index in data.poll.questions.length" :key="index"> 
+        <br />
 
-          <span id="questionInList"> {{data.poll.questions[index-1].q}}  </span>
-          {{this.uiLabels.answerText}}&nbsp;
+        <!-- <div  v-for="question in data.poll.questions" 
+            v-bind:key="question.q"
+            v-bind:question="question"> 
 
-          <span id="answerInList" v-for="ind in data.poll.questions[index-1].a.length" :key="ind">
-          / {{data.poll.questions[index-1].a[ind-1]}}&nbsp; 
-
-          </span>
-          
-        </p>
-      
-
+      {{data.poll.questions}}
+      <div v-if="data.poll !== undefined">
       </div>
-
-        
-
       
-      
-    </main>
+      </div> -->
+      </div>
+    </div>
   </div>
-  <footer>
-
-  </footer>
-  </body>
 </template>
 
 <script>
@@ -110,7 +99,6 @@ export default {
     });
     socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
-    socket.on("allQuestions", (data) => (this.data = data));
   },
   methods: {
     createPoll: function () {
@@ -124,10 +112,8 @@ export default {
         q: this.question,
         a: this.answers,
       });
-
       const questionInText = this.question;
       const answerAlternatives = this.answers;
-
       document.getElementById("showQandA").innerHTML =
         this.uiLabels.question +
         questionInText +
@@ -153,17 +139,16 @@ export default {
 };
 </script>
 
-<style>
-
-fieldset{
-  border-radius: 5px;
-}
-#createQForm{
-  text-align: left;
+<style scoped>
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 50% 50%;
 }
 
-#questionList{
-  color: green;
+.buttonChooseQuestion {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 100%;
 }
-
 </style>

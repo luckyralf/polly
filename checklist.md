@@ -19,3 +19,5 @@
 
 ## Generellt
 - [ ] Skapa en infoknapp som finns på varje sida och som förklarar hur sidan, som man är på när man trycker, fungerar
+- [Adam] Länka till nästa fråga när man klickar next question i Poll
+-
