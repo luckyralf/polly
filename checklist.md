@@ -9,3 +9,5 @@
 - [x] Submit knapp till svarssidan
 - [Marcus] Style design på "create poll"
 - [Elsa] Flaggor me språk framsida
+- [Adam] Länka till nästa fråga när man klickar next question i Poll
+-
