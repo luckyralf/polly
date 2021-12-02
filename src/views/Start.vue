@@ -62,11 +62,11 @@ export default {
     });
   },
   methods: {
-    switchLanguage: function () {
-      if (this.lang === "en") this.lang = "sv";
-      else this.lang = "en";
-      socket.emit("switchLanguage", this.lang);
-    },
+    // switchLanguage: function () {
+    //   if (this.lang === "en") this.lang = "sv";
+    //   else this.lang = "en";
+    //   socket.emit("switchLanguage", this.lang);
+    // },
     switchLanguageToEN: function () {
       this.lang = "en";
       socket.emit("switchLanguage", this.lang);
