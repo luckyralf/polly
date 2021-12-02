@@ -24,6 +24,7 @@ export default {
         a: [],
       },
       pollId: "inactive poll",
+      questionNumber: 1,
     };
   },
   created: function () {
@@ -36,10 +37,11 @@ export default {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
       //unnder detta försöker adam
-      console.log("before addidng ",typeof currentQuestion,currentQuestion)
-      var currentQuestion = this.currentQuestion+1;
-      console.log("after adding ",typeof currentQuestion,currentQuestion)
-      socket.emit("nextQuestion", {pollId: this.pollId, currentQuestion: currentQuestion});
+      socket.emit("nextQuestion", {pollId: this.pollId, questionNumber: this.questionNumber});
+      console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
+      this.questionNumber = this.questionNumber+1;
+      console.log("after adding ",typeof this.questionNumber,this.questionNumber)
+      
     },
     // goToNext: function () {
     //   let currentQuestion = this.currentQuestion+1;
