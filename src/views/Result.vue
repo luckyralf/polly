@@ -1,8 +1,17 @@
 <template>
+ <body class="Wrap">
+  <section>
+      <header>
+        <h1 class="resHeader"> Resultat</h1>
+      </header>
+  </section>
+
   <div>
     {{question}}
   </div>
   <Bars v-bind:data="data"/>
+
+ </body>
 </template>
 
 <script>
@@ -37,3 +46,20 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+
+.Wrap{
+  background: linear-gradient(to left, #0c2c63, #1941b2);
+
+  padding-top: 15px;
+  background: linear-gradient(to left, #0c2c63, #1941b2);
+
+  margin: 0;
+}
+
+.resHeader{
+  
+}
+
+</style>
