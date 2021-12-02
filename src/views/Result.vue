@@ -1,10 +1,9 @@
 <template>
  <body class="Wrap">
-  <section>
-      <header>
-        <h1 class="resHeader"> Resultat</h1>
-      </header>
-  </section>
+
+    <header>
+     <h1> Result </h1>
+    </header>
 
   <div>
     {{question}}
@@ -59,7 +58,7 @@ export default {
 }
 
 .resHeader{
-  
+
 }
 
 </style>
