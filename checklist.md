@@ -15,6 +15,7 @@
 - [ ] Göra så att skapade frågor kan tas bort
 - [ ] Göra så att svarsalternativ i skapade frågor kan ändras
 - [Lucky] snygga till formuläret där frågor skapas
+- [ ] Save knapp
 
 
 ## Generellt

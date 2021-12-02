@@ -1,11 +1,19 @@
 <template>
+
+  <header> 
+    <h1> Create Cat Poll </h1>
+  </header>
+
+
   {{ uiLabels.pollLink }}
   <input type="text" v-model="pollId" />
   <button v-on:click="createPoll">
     {{ uiLabels.createPoll }}
   </button>
   <div class="wrapper">
-    <div>
+    <section id="questSection">
+        <h4 id="showPollName"></h4>
+
       <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
         <button v-for="index in data.poll.questions.length" :key="index">
           {{ data.poll.questions[index - 1].q }}
@@ -17,60 +25,42 @@
         </button>
         <br />
       </div>
-    </div>
-    <div>
-      <div>
-        <div>
+    </section>
+    <section id="formSection">
+        
+        <fieldset>
           {{ uiLabels.question }}
           <input type="text" v-model="question" />
-          <div>
+
             {{ uiLabels.answerText }}
-            <input
-              v-for="(_, i) in answers"
-              v-model="answers[i]"
-              v-bind:key="'answer' + i"
-            />
+            <input  v-for="(_, i) in answers"
+                    v-model="answers[i]"
+                    v-bind:key="'answer' + i"/>
             <button v-on:click="addAnswer">
               {{ uiLabels.addAnswer }}
             </button>
             <button v-on:click="delAnswer">
               {{ uiLabels.delAnswer }}
             </button>
-            <div v-if="data.poll !== undefined">
-              {{ data.poll.questions[2].a }}
-            </div>
-          </div>
-        </div>
 
-        <input type="number" v-model="questionNumber" />
-        <div class="wrapper"></div>
-        <button v-on:click="runQuestion">
-          {{ uiLabels.runQuestion }}
-        </button>
+        </fieldset>
+        
+
+        
         <!-- {{ data}} data är poll objektet som returneras via data.js  -->
-        <router-link v-bind:to="'/result/' + pollId">{{
-          uiLabels.checkResultsText
-        }}</router-link>
-        <h4 id="showPollName"></h4>
-        <section id="QandA">
-          <!--vill ha en div med dataobjektens info, typ pollId, fråga etc som visas här -->
-          <div id="showQandA"></div>
-        </section>
-        <br />
-
-        <br />
-
-        <!-- <div  v-for="question in data.poll.questions" 
-            v-bind:key="question.q"
-            v-bind:question="question"> 
-
-      {{data.poll.questions}}
-      <div v-if="data.poll !== undefined">
-      </div>
-      
-      </div> -->
-      </div>
-    </div>
+        
+    </section>
+  </div>
+  <!-- Check Result Knapp -->
+  <div class="result">
+    <input id="questNrBox" type="number" v-model="questionNumber" />
+          <button v-on:click="runQuestion">
+            {{ uiLabels.runQuestion }}
+          </button>
+          <br>
+    <router-link v-bind:to="'/result/' + pollId">
+    {{uiLabels.checkResultsText}}
+    </router-link>
   </div>
 </template>
 
@@ -113,14 +103,7 @@ export default {
         q: this.question,
         a: this.answers,
       });
-      const questionInText = this.question;
-      const answerAlternatives = this.answers;
-      document.getElementById("showQandA").innerHTML =
-        this.uiLabels.question +
-        questionInText +
-        "<br />" +
-        this.uiLabels.answerText +
-        answerAlternatives;
+      
     },
     addAnswer: function () {
       this.answers.push("");
@@ -142,15 +125,45 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+
+h1{
+  font-family: "Monaco", monospace;
+  font-size: 4rem;
+}
 .wrapper {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 50% 50%;
 }
 
+#questSection{
+  padding: 1rem 3rem 1rem 3rem ;
+}
+
+#formSection{
+  margin: 3rem;
+  padding: 1rem;
+}
+
+#questNrBox{
+  width: fit-content;
+}
+
+
+fieldset{
+  border-radius: 5px;
+  width: 25%;
+}
+
 .buttonChooseQuestion {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 100%;
+}
+
+.result{
+  margin: 2rem;
 }
 </style>
