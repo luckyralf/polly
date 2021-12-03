@@ -46,7 +46,7 @@ Data.prototype.getQuestion = function (pollId, qId = null) { //tror att qId blir
     if (qId !== null) {
       poll.currentQuestion = qId;
     }
-    return poll.questions[poll.currentQuestion-1];
+    return poll.questions[poll.currentQuestion];
   }
   return [];
 };

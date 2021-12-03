@@ -23,7 +23,7 @@ export default {
         a: [],
       },
       pollId: "inactive poll",
-      questionNumber: 1,
+      questionNumber: 0,
     };
   },
   created: function () {

@@ -6,7 +6,7 @@
     </header>
 
     <div>
-      {{question}}
+     {{ questionNumber }} {{question}}
     </div>
     <Bars v-bind:data="data" />
 
@@ -63,8 +63,19 @@ export default {
   margin: 0;
 }
 
-.resHeader{
-
+h1{
+  font-family: "Monaco", monospace;
+  font-size: 4rem;
+  color: white;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 0 7px rgb(253, 117, 67),
+   0 0 10px #f0f,
+    0 0 21px #f0f,
+     0 0 42px #f0f,
+      0 0 82px #f0f;
 }
+
+
 
 </style>

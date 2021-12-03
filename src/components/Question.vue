@@ -38,11 +38,15 @@ export default {
         this.showAnswer = true;
         this.submittedAnswer = this.question.a[this.selectedAnswer];
         console.log(this.submittedAnswer);
+        this.answerSubmitted = true;
     },
     answer: function () {
-      if (this.answerSubmitted == false && this.submittedAnswer != null){
+      if (this.answerSubmitted == true && this.submittedAnswer != null){
         this.$emit("answer", this.submittedAnswer);
-        this.answerSubmitted = true;
+        this.selectedAnswer= null;
+        this.showAnswer= false;
+        this.answerSubmitted= false;
+        this.submittedAnswer= null;
         }
     },
     changeColor: function (i) {
