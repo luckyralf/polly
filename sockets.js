@@ -19,10 +19,10 @@ function sockets(io, socket, data) {
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
 
-  socket.on('joinPoll', function(pollId) {
-    socket.join(pollId);
-    socket.emit('newQuestion', data.getQuestion(pollId))
-    socket.emit('dataUpdate', data.getAnswers(pollId));
+  socket.on('joinPoll', function(d) { // d är objekt med pollId och questionNumber
+    socket.join(d.pollId);
+    socket.emit('newQuestion', data.getQuestion(d.pollId, d.questionNumber)) //la till andra inparametern
+    socket.emit('dataUpdate', data.getAnswers(d.pollId));
   });
 
   socket.on('runQuestion', function(d) { //d är objekt med pollId och questionNumber

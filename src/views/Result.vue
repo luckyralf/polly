@@ -1,8 +1,16 @@
 <template>
-  <div>
-    {{question}}
-  </div>
-  <Bars v-bind:data="data"/>
+  <body class="Wrap">
+
+    <header>
+      <h1> {{ uiLabels.pollResult }} </h1>
+    </header>
+
+    <div>
+      {{question}}
+    </div>
+    <Bars v-bind:data="data" />
+
+  </body>
 </template>
 
 <script>
@@ -18,12 +26,18 @@ export default {
   },
   data: function () {
     return {
+      uiLabels: {},
+      lang: "",
       question: "",
       data: {
       }
     }
   },
   created: function () {
+    this.lang = this.$route.params.lang;
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
@@ -33,7 +47,24 @@ export default {
     socket.on("newQuestion", update => {
       this.question = update.q;
       this.data = {};
-    })
+    });
   }
 }
 </script>
+
+<style scoped>
+
+.Wrap{
+  background: linear-gradient(to left, #0c2c63, #1941b2);
+
+  padding-top: 15px;
+  background: linear-gradient(to left, #0c2c63, #1941b2);
+
+  margin: 0;
+}
+
+.resHeader{
+
+}
+
+</style>

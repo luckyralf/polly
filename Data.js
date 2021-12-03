@@ -19,7 +19,6 @@ Data.prototype.getUILabels = function (lang = "en") {
 };
 
 Data.prototype.createPoll = function (pollId, lang = "en") {
-  console.log(typeof this.polls[pollId],this.polls[pollId])
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
     poll.lang = lang;
@@ -47,21 +46,10 @@ Data.prototype.getQuestion = function (pollId, qId = null) { //tror att qId blir
     if (qId !== null) {
       poll.currentQuestion = qId;
     }
-    return poll.questions[poll.currentQuestion];
+    return poll.questions[poll.currentQuestion-1];
   }
   return [];
 };
-
-// Data.prototype.getNextQuestion = function(pollId,qId) {
-//   const poll = this.polls[pollId];
-//   if(typeof poll !== "undefined") {
-//     if (qId !== null) {
-//       poll.currentQuestion = qId;
-//     }
-//     return poll.questions[poll.currentQuestion+1]; //+1 pga vi vill ha nästa fråga?
-//   }
-//   return [];
-// };
 
 Data.prototype.submitAnswer = function (pollId, answer) {
   const poll = this.polls[pollId];
