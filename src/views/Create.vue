@@ -1,9 +1,7 @@
 <template>
-
-  <header> 
-    <h1> Create Cat Poll </h1>
+  <header>
+    <h1>Create Cat Poll</h1>
   </header>
-
 
   {{ uiLabels.pollLink }}
   <input type="text" v-model="pollId" />
@@ -12,12 +10,13 @@
   </button>
   <div class="wrapper">
     <section id="questSection">
-        <h4 id="showPollName"></h4>
+      <h4 id="showPollName"></h4>
 
       <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
         <button v-for="index in data.poll.questions.length" :key="index">
           {{ data.poll.questions[index - 1].q }}
         </button>
+        {{ data.poll.questions[2] }}
       </div>
       <div>
         <button v-on:click="addQuestion">
@@ -27,39 +26,36 @@
       </div>
     </section>
     <section id="formSection">
-        
-        <fieldset>
-          {{ uiLabels.question }}
-          <input type="text" v-model="question" />
+      <fieldset>
+        {{ uiLabels.question }}
+        <input type="text" v-model="question" />
 
-            {{ uiLabels.answerText }}
-            <input  v-for="(_, i) in answers"
-                    v-model="answers[i]"
-                    v-bind:key="'answer' + i"/>
-            <button v-on:click="addAnswer">
-              {{ uiLabels.addAnswer }}
-            </button>
-            <button v-on:click="delAnswer">
-              {{ uiLabels.delAnswer }}
-            </button>
+        {{ uiLabels.answerText }}
+        <input
+          v-for="(_, i) in answers"
+          v-model="answers[i]"
+          v-bind:key="'answer' + i"
+        />
+        <button v-on:click="addAnswer">
+          {{ uiLabels.addAnswer }}
+        </button>
+        <button v-on:click="delAnswer">
+          {{ uiLabels.delAnswer }}
+        </button>
+      </fieldset>
 
-        </fieldset>
-        
-
-        
-        <!-- {{ data}} data är poll objektet som returneras via data.js  -->
-        
+      <!-- {{ data}} data är poll objektet som returneras via data.js  -->
     </section>
   </div>
   <!-- Check Result Knapp -->
   <div class="result">
     <input id="questNrBox" type="number" v-model="questionNumber" />
-          <button v-on:click="runQuestion">
-            {{ uiLabels.runQuestion }}
-          </button>
-          <br>
+    <button v-on:click="runQuestion">
+      {{ uiLabels.runQuestion }}
+    </button>
+    <br />
     <router-link v-bind:to="'/result/' + pollId">
-    {{uiLabels.checkResultsText}}
+      {{ uiLabels.checkResultsText }}
     </router-link>
   </div>
 </template>
@@ -103,7 +99,6 @@ export default {
         q: this.question,
         a: this.answers,
       });
-      
     },
     addAnswer: function () {
       this.answers.push("");
@@ -128,7 +123,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 
-h1{
+h1 {
   font-family: "Monaco", monospace;
   font-size: 4rem;
 }
@@ -138,21 +133,20 @@ h1{
   grid-template-columns: 50% 50%;
 }
 
-#questSection{
-  padding: 1rem 3rem 1rem 3rem ;
+#questSection {
+  padding: 1rem 3rem 1rem 3rem;
 }
 
-#formSection{
+#formSection {
   margin: 3rem;
   padding: 1rem;
 }
 
-#questNrBox{
+#questNrBox {
   width: fit-content;
 }
 
-
-fieldset{
+fieldset {
   border-radius: 5px;
   width: 25%;
 }
@@ -163,7 +157,7 @@ fieldset{
   grid-template-columns: 100%;
 }
 
-.result{
+.result {
   margin: 2rem;
 }
 </style>
