@@ -2,7 +2,7 @@
   <body class="Wrap">
 
     <header>
-      <h1> Result </h1>
+      <h1> {{ uiLabels.pollResult }} </h1>
     </header>
 
     <div>
@@ -26,12 +26,18 @@ export default {
   },
   data: function () {
     return {
+      uiLabels: {},
+      lang: "",
       question: "",
       data: {
       }
     }
   },
   created: function () {
+    this.lang = this.$route.params.lang;
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
     this.pollId = this.$route.params.id
     socket.emit('joinPoll', this.pollId)
     socket.on("dataUpdate", (update) => {
@@ -41,7 +47,7 @@ export default {
     socket.on("newQuestion", update => {
       this.question = update.q;
       this.data = {};
-    })
+    });
   }
 }
 </script>
