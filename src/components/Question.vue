@@ -50,7 +50,7 @@ export default {
         }
     },
     changeColor: function (i) {
-      if(this.selectedAnswer==null) {
+      if(this.selectedAnswer!=i) {
       this.selectedAnswer = i;
       }
       else {
