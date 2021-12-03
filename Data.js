@@ -19,12 +19,13 @@ Data.prototype.getUILabels = function (lang = "en") {
 };
 
 Data.prototype.createPoll = function (pollId, lang = "en") {
+  console.log(typeof this.polls[pollId],this.polls[pollId])
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
     poll.lang = lang;
     poll.questions = [];
     poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
-    poll.currentQuestion = 0; 
+    poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1? 
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
