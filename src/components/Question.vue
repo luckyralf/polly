@@ -26,10 +26,10 @@ export default {
   },
   data: function () {
     return {
-      selectedAnswer: null,
-      showAnswer: false,
-      answerSubmitted: false,
-      submittedAnswer: null,
+      selectedAnswer: null, //index som anger vilket alternativ som är valt 
+      submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
+      showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
+      answerSubmitted: false, //boolean som anger om man har skickat ett svar
     };
   },
   methods: {
@@ -38,15 +38,24 @@ export default {
         this.showAnswer = true;
         this.submittedAnswer = this.question.a[this.selectedAnswer];
         console.log(this.submittedAnswer);
+        this.answerSubmitted = true;
     },
     answer: function () {
-      if (this.answerSubmitted == false && this.submittedAnswer != null){
+      if (this.answerSubmitted == true && this.submittedAnswer != null){
         this.$emit("answer", this.submittedAnswer);
-        this.answerSubmitted = true;
+        this.selectedAnswer= null;
+        this.showAnswer= false;
+        this.answerSubmitted= false;
+        this.submittedAnswer= null;
         }
     },
     changeColor: function (i) {
+      if(this.selectedAnswer==null) {
       this.selectedAnswer = i;
+      }
+      else {
+        this.selectedAnswer = null;
+      }
     },
   },
 };

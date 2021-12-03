@@ -73,7 +73,7 @@ export default {
       pollId: "",
       question: "",
       answers: ["", ""],
-      questionNumber: 0,
+      questionNumber: 1,
       data: {},
       uiLabels: {},
     };
