@@ -1,16 +1,16 @@
 <template>
- <body class="Wrap">
+  <body class="Wrap">
 
     <header>
-     <h1> Result </h1>
+      <h1> Result </h1>
     </header>
 
-  <div>
-    {{question}}
-  </div>
-  <Bars v-bind:data="data"/>
+    <div>
+      {{question}}
+    </div>
+    <Bars v-bind:data="data" />
 
- </body>
+  </body>
 </template>
 
 <script>
