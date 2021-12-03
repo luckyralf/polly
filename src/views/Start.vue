@@ -46,6 +46,7 @@
 
 <script>
 import io from "socket.io-client";
+// import meow from "./public/sounds/meow.mp3";
 const socket = io();
 
 export default {
@@ -63,15 +64,10 @@ export default {
     });
   },
   methods: {
-    playSound: function() {
-      const audio = new Audio("./meow.mp3");
-      console.log(typeof audio,audio);
-      audio.play();
-    },
-    // switchLanguage: function () {
-    //   if (this.lang === "en") this.lang = "sv";
-    //   else this.lang = "en";
-    //   socket.emit("switchLanguage", this.lang);
+    // playSound: function() {
+    //   const audio = new Audio(meow);
+    //   console.log(typeof audio,audio);
+    //   audio.play();
     // },
     switchLanguageToEN: function () {
       this.lang = "en";
