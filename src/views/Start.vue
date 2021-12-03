@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     // playSound: function() {
-    //   const audio = new Audio(meow);
+    //   const audio = new Audio(require("./public/sounds/meow.mp3"));
     //   console.log(typeof audio,audio);
     //   audio.play();
     // },
