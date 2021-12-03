@@ -24,7 +24,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     poll.lang = lang;
     poll.questions = [];
     poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
-    poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1? 
+    poll.currentQuestion = 0; //kanske rimligt att denna börjar på 1? 
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -46,7 +46,7 @@ Data.prototype.getQuestion = function (pollId, qId = null) { //tror att qId blir
     if (qId !== null) {
       poll.currentQuestion = qId;
     }
-    return poll.questions[poll.currentQuestion-1];
+    return poll.questions[poll.currentQuestion];  //vad gör return? fråga mikael???
   }
   return [];
 };

@@ -46,7 +46,12 @@ export default {
         }
     },
     changeColor: function (i) {
+      if(this.selectedAnswer==null) {
       this.selectedAnswer = i;
+      }
+      else {
+        this.selectedAnswer = null;
+      }
     },
   },
 };
