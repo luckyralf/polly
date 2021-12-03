@@ -1,4 +1,5 @@
 <template>
+
   <p>{{ question.q }}</p>
   <button
     v-for="(a, index) in question.a"
@@ -18,6 +19,8 @@
     <button v-on:click="answer"> Next question </button>
   </div>
 </template>
+
+
 <script>
 export default {
   name: "Question",

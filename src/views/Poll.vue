@@ -1,8 +1,13 @@
 <template>
+<body>
+   <header> 
+    <h1> {{ pollId }} </h1>
+  </header>
   <div>
     {{ pollId }}
     <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
   </div>
+</body>
 </template>
 
 <script>
@@ -44,3 +49,4 @@ export default {
   },
 };
 </script>
+
