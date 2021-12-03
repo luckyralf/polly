@@ -1,62 +1,63 @@
 <template>
 <body>
   
-
   <header> 
     <h1> Create Cat Poll </h1>
   </header>
 
-  <div id="createPollId">
-    {{ uiLabels.pollLink }}
-    <input type="text" v-model="pollId" />
-    <button v-on:click="createPoll">
-      {{ uiLabels.createPoll }}
-    </button>
-  </div>
-  <div class="wrapper">
-    <section id="questSection">
-        <h4 id="showPollName"></h4>
+  <main>
+    <div id="createPollId">
+      <!-- {{ uiLabels.pollLink }} -->
+      <input type="text" placeholder="create poll link.." v-model="pollId" />
+      <button v-on:click="createPoll">
+        {{ uiLabels.createPoll }}
+      </button>
+    </div>
+    <div class="wrapper">
+      <section id="questSection">
+          <h4 id="showPollName"></h4>
 
-      <!-- Skriver ut frågorna som skapas -->
-      <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
-        <button v-for="index in data.poll.questions.length" :key="index">
-          {{ data.poll.questions[index - 1].q }}
-        </button>
-      </div>
-      <div>
-        <button v-on:click="addQuestion">
-          {{ uiLabels.addQuestion }}
-        </button>
-        <br>
-      </div>
-    </section>
+        <!-- Skriver ut frågorna som skapas -->
+        <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
+          <button v-for="index in data.poll.questions.length" :key="index">
+            {{ data.poll.questions[index - 1].q }}
+          </button>
+        </div>
+        <div>
+          <button id="addQuestBtn" v-on:click="addQuestion">
+            {{ uiLabels.addQuestion }}
+          </button>
+          <br>
+        </div>
+      </section>
 
-    <section id="formSection">
-          {{ uiLabels.question }}
-          <textarea type="text" v-model="question" />
+      <section id="formSection">
+            {{ uiLabels.question }}
+            <textarea type="text" v-model="question" />
 
-            {{ uiLabels.answerText }} <br>
-            <input  v-for="(_, i) in answers"
-                    v-model="answers[i]"
-                    v-bind:key="'answer' + i"/>
-            <br>
-            <button v-on:click="addAnswer"> + </button>
-            <button v-on:click="delAnswer"> - </button>
-    </section>
+              {{ uiLabels.answerText }} <br>
+              <input  v-for="(_, i) in answers"
+                      v-model="answers[i]"
+                      v-bind:key="'answer' + i"/>
+              <br>
+              <button v-on:click="addAnswer"> + </button>
+              <button v-on:click="delAnswer"> - </button>
+      </section>
 
-  </div>
-  <!-- Check Result Knapp -->
-  <div id="result">
-    <input id="questNrBox" type="number" v-model="questionNumber" />
+    </div>
+    <!-- Check Result Knapp -->
+    <div id="result">
+      <input id="questNrBox" type="number" v-model="questionNumber" />
 
-    <button v-on:click="runQuestion">
-    {{ uiLabels.runQuestion }}
-    </button>
+      <button v-on:click="runQuestion">
+      {{ uiLabels.runQuestion }}
+      </button>
 
-    <router-link id="routerLink" v-bind:to="'/result/' + pollId">
-    {{uiLabels.checkResultsText}}
-    </router-link>
-  </div>
+      <router-link id="routerLink" v-bind:to="'/result/' + pollId">
+      {{uiLabels.checkResultsText}}
+      </router-link>
+    </div>
+  </main>
 </body>
 </template>
 
@@ -72,7 +73,7 @@ export default {
       pollId: "",
       question: "",
       answers: ["", ""],
-      questionNumber: 0,
+      questionNumber: 1,
       data: {},
       uiLabels: {},
     };
@@ -124,6 +125,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
 
 
 
@@ -138,7 +140,9 @@ body{
   padding: 2rem 0 5rem 0;
 }
 
+
 header{
+  margin-bottom: 1rem;
   /* text-align: center;
   border: 7px solid white;
   border-radius: 30px;
@@ -155,7 +159,7 @@ header{
 }
 
 h1{
-  font-family: "Monaco", monospace;
+    font-family: 'Exo 2', sans-serif;
   font-size: 4rem;
   color: white;
   text-align: center;
@@ -167,8 +171,17 @@ h1{
       0 0 82px #f0f;
 }
 
-#createPollId{
-
+main{
+  font-family: "Outfit", sans-serif;
+  
+}
+#createPollId input[type=text]{
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #f0f ;
+  color: white;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
 }
 
 .wrapper {
@@ -177,35 +190,18 @@ h1{
   grid-template-columns: 50% 50%;
 }
 
-#questSection{
-  padding: 1rem 3rem 1rem 3rem ;
-}
-
-#formSection{
-  text-align: center;
-}
-
-#formSection, #result{
-  
-  width: min-content;
-  
-}
-
 #formSection, #result, #questSection{
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid 5px;
   border-radius: 20px;
   padding: 1rem;
   margin: 3rem;
-
 }
 
-#result{
-  margin-left: 38%;
-  display: grid;
-  grid-template-rows: auto auto;
-}
+#questSection {
+  /* padding: 1rem 3rem 1rem 3rem ; */
 
+}
 
 .buttonChooseQuestion {
   display: grid;
@@ -213,20 +209,45 @@ h1{
   grid-template-columns: 100%;
 }
 
+#formSection{
+  text-align: center;
+}
+
+#formSection, #result{
+  width: min-content;
+}
+
+
+#result{
+  margin-left: 38%;
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+#addQuestBtn{
+  margin-top: 1rem;
+}
+
+/* button{
+  font-size: 1rem;
+  margin-top: 5px;
+  width: fit-content;
+  align-self: center;
+} */
+
 #routerLink{
+  color: white;
   text-decoration: none;
   background: #20af19;
   border-radius: 6px;
   border: solid #229954;
   margin: 1rem 0;
   margin-top: 40px;
+  font-size: 1.5rem;
+  padding: 2px;
 }
 
 
 
-#result button{
-  margin-top: 5px;
-  width: fit-content;
-  align-self: center;
-}
+
 </style>
