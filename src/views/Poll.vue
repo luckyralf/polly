@@ -28,23 +28,18 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
-    socket.emit("joinPoll", this.pollId);
+    socket.emit("joinPoll", {pollId: this.pollId, questionNumber: this.questionNumber}); //la till andra inparametern mvh adam
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
   },
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
       //under här skickas man till nästa fråga, funkar okej mvh adam
-      socket.emit("nextQuestion", {pollId: this.pollId, questionNumber: this.questionNumber});
+      socket.emit("nextQuestion", {pollId: this.pollId, questionNumber: this.questionNumber+1});
       console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
       this.questionNumber = this.questionNumber+1;
       console.log("after adding ",typeof this.questionNumber,this.questionNumber)
-      
     },
-    // goToNext: function () {
-    //   let currentQuestion = this.currentQuestion+1;
-    //   socket.emit("nextQuestion", {pollId: this.pollId, currentQuestion: currentQuestion});
-    // },
   },
 };
 </script>
