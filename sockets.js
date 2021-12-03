@@ -9,6 +9,10 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang));
   });
 
+  socket.on('getSound',function() {
+    socket.emit('sound',data.getSound());
+  });
+
   socket.on('createPoll', function(d) {
     socket.emit('pollCreated', data.createPoll(d.pollId, d.lang));
   });
@@ -30,7 +34,7 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId)); //kanske ta bort io.to pga det skickar till alla?
   });
 
-  socket.on('submitAnswer', function(d) {
+  socket.on('submitAnswer', function(d) { //d = { pollId: this.pollId, answer: answer }
     data.submitAnswer(d.pollId, d.answer);
     io.to(d.pollId).emit('dataUpdate', data.getAnswers(d.pollId));
   });
@@ -40,7 +44,7 @@ function sockets(io, socket, data) {
     data.initializeData();
   });
 
-  socket.on('nextQuestion', function(d) { //ny test från Adam, d = {{pollId,questionNumber}}, vad ska göras här?
+  socket.on('nextQuestion', function(d) { //ny test från Adam, d = {{pollId,questionNumber}}
       socket.emit('newQuestion', data.getQuestion(d.pollId,d.questionNumber)); 
   })
  
