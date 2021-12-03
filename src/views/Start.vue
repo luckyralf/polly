@@ -10,6 +10,7 @@
       <div class="languangeButtonContainer">
         <button class="langButtonSV" v-on:click="switchLanguageToSV"></button>
         <button class="langButtonEN" v-on:click="switchLanguageToEN"></button>
+        <button v-on:click="playSound">meow</button>
       </div>
 
       <div class="writeAndParticipate">
@@ -62,6 +63,11 @@ export default {
     });
   },
   methods: {
+    playSound: function() {
+      const audio = new Audio("./meow.mp3");
+      console.log(typeof audio,audio);
+      audio.play();
+    },
     // switchLanguage: function () {
     //   if (this.lang === "en") this.lang = "sv";
     //   else this.lang = "en";

@@ -29,10 +29,10 @@ export default {
   },
   data: function () {
     return {
-      selectedAnswer: null,
-      showAnswer: false,
-      answerSubmitted: false,
-      submittedAnswer: null,
+      selectedAnswer: null, //index som anger vilket alternativ som är valt 
+      submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
+      showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
+      answerSubmitted: false, //boolean som anger om man har skickat ett svar
     };
   },
   methods: {
