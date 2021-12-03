@@ -8,15 +8,15 @@
   <main>
     <div id="createPollId">
       <!-- {{ uiLabels.pollLink }} -->
-      <input type="text" placeholder="create poll link.." v-model="pollId" />
+      <input type="text" placeholder="create poll link.." v-model="pollId"/>
       <button v-on:click="createPoll">
         {{ uiLabels.createPoll }}
       </button>
     </div>
     <div class="wrapper">
       <section id="questSection">
-          <h4 id="showPollName"></h4>
 
+          <h4>{{this.pollId}}</h4>
         <!-- Skriver ut frågorna som skapas -->
         <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
           <button v-for="index in data.poll.questions.length" :key="index">
@@ -91,8 +91,7 @@ export default {
   methods: {
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      document.getElementById("showPollName").innerHTML =
-        this.uiLabels.pollCreated + this.pollId;
+      
     },
     addQuestion: function () {
       socket.emit("addQuestion", {
@@ -130,14 +129,15 @@ export default {
 
 
 body{
-  display: grid;
-  grid-template-rows: auto  ;
+  /* display: grid;
+  grid-template-rows: auto auto  ; */
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   min-width: 100%;
   min-height: 100%;
   margin: 0;
   padding: 2rem 0 5rem 0;
+  align-content: center;
 }
 
 
@@ -199,11 +199,18 @@ main{
 }
 
 #questSection {
+  grid-column: 1;
   /* padding: 1rem 3rem 1rem 3rem ; */
+
+}
+#questSection h4{
+  margin: 0;
+  margin-bottom: 0.5em;
 
 }
 
 .buttonChooseQuestion {
+  height: fit-content;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 100%;
@@ -211,6 +218,7 @@ main{
 
 #formSection{
   text-align: center;
+  grid-column: 2;
 }
 
 #formSection, #result{
