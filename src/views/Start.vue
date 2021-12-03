@@ -10,7 +10,6 @@
       <div class="languangeButtonContainer">
         <button class="langButtonSV" v-on:click="switchLanguageToSV"></button>
         <button class="langButtonEN" v-on:click="switchLanguageToEN"></button>
-<<<<<<< HEAD
 
       <!--  <button class="infoButton"> INFO(dont press) </button>
         <div class = "modal">
@@ -35,10 +34,9 @@
             <div class = "infoTitle"> HELLO WORLD </div> 
           <button v-on:click="infoFunction()" class = "closeButton">X</button></div>
       <p><b> Information:</b> You will get your poll id from the person who made the poll.</p>
-=======
-        <button v-on:click="playSound">meow</button>
->>>>>>> 70c2e1bf84af97ae358f74277381e9e4aef12266
+        
       </div>
+      <button v-on:click="playSound">meow</button>
 
 </div>
       <div class="writeAndParticipate">
