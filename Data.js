@@ -24,7 +24,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     poll.lang = lang;
     poll.questions = [];
     poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
-    poll.currentQuestion = 0; 
+    poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1? 
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -46,21 +46,10 @@ Data.prototype.getQuestion = function (pollId, qId = null) { //tror att qId blir
     if (qId !== null) {
       poll.currentQuestion = qId;
     }
-    return poll.questions[poll.currentQuestion];
+    return poll.questions[poll.currentQuestion-1];
   }
   return [];
 };
-
-// Data.prototype.getNextQuestion = function(pollId,qId) {
-//   const poll = this.polls[pollId];
-//   if(typeof poll !== "undefined") {
-//     if (qId !== null) {
-//       poll.currentQuestion = qId;
-//     }
-//     return poll.questions[poll.currentQuestion+1]; //+1 pga vi vill ha nästa fråga?
-//   }
-//   return [];
-// };
 
 Data.prototype.submitAnswer = function (pollId, answer) {
   const poll = this.polls[pollId];

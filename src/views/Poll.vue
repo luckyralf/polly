@@ -2,7 +2,6 @@
   <div>
     {{ pollId }}
     <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
-    <!-- gotonext i rad 4 är adderad av adam  -->
   </div>
 </template>
 
@@ -24,27 +23,23 @@ export default {
         a: [],
       },
       pollId: "inactive poll",
+      questionNumber: 1,
     };
   },
   created: function () {
     this.pollId = this.$route.params.id;
-    this.currentQuestion = this.$route.params.currentQuestion; //adderad av adam
-    socket.emit("joinPoll", this.pollId);
+    socket.emit("joinPoll", {pollId: this.pollId, questionNumber: this.questionNumber}); //la till andra inparametern mvh adam
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
   },
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
-      //unnder detta försöker adam
-      console.log("before addidng ",typeof currentQuestion,currentQuestion)
-      var currentQuestion = this.currentQuestion+1;
-      console.log("after adding ",typeof currentQuestion,currentQuestion)
-      socket.emit("nextQuestion", {pollId: this.pollId, currentQuestion: currentQuestion});
+      //under här skickas man till nästa fråga, funkar okej mvh adam
+      socket.emit("nextQuestion", {pollId: this.pollId, questionNumber: this.questionNumber+1});
+      console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
+      this.questionNumber = this.questionNumber+1;
+      console.log("after adding ",typeof this.questionNumber,this.questionNumber)
     },
-    // goToNext: function () {
-    //   let currentQuestion = this.currentQuestion+1;
-    //   socket.emit("nextQuestion", {pollId: this.pollId, currentQuestion: currentQuestion});
-    // },
   },
 };
 </script>
