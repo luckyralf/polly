@@ -5,7 +5,7 @@
 - [x] Skapa en checklist
 - [x] Få så att alla skapade frågor syns samtidigt i Create
 - [x] Lägg till en knapp som tar bort svarsalternativ i Create
-- [Johanna] Styla framsida
+- [x] Styla framsida
 - [x] Submit knapp till svarssidan
 - [Marcus] Style design på "create poll"
 - [Elsa] Flaggor me språk framsida

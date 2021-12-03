@@ -10,6 +10,15 @@
       <div class="languangeButtonContainer">
         <button class="langButtonSV" v-on:click="switchLanguageToSV"></button>
         <button class="langButtonEN" v-on:click="switchLanguageToEN"></button>
+
+        <button class="infoButton"> INFO </button>
+        <div class = infoContainer>
+        <div class = infoHeader> HELLO WORLD </div>
+        <button class = closeButton>X</button>
+        <div class = infoBody> Lorem Impsum dolor sit amet consectetur adipisicing</div>
+        </div>
+
+        <div id = "infoOverlay"> </div>
       </div>
 
       <div class="writeAndParticipate">
@@ -145,6 +154,17 @@ export default {
   width: 35px;
   position: relative;
   left: 45.5%;
+}
+
+/**, *: :after, *: :before{
+  box-sizing: border-box;
+}*/
+
+.infoContainer{
+  position:fixed;
+  top: 50%;
+  left:70%;
+  transform: translate(-50%, -50%);
 }
 
 #headerText {
