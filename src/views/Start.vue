@@ -31,9 +31,11 @@
 
       <button v-on:click="infoFunction()" class = "infoButton2"></button>
       <div id="infoDIV"><div class = "infoHeader"> 
-            <div class = "infoTitle"> HELLO WORLD </div> 
+            <div class = "infoTitle"> Do you need help ~mjau~? </div> 
           <button v-on:click="infoFunction()" class = "closeButton">X</button></div>
-      <p><b> Information:</b> You will get your poll id from the person who made the poll.</p>
+      <p class = "infoText"><b> Information:</b> You can chose to either join a friends poll, or make your own! It doesn't
+      take very long, mjau...
+      You will get your poll id from the person who made the poll. </p>
         
       </div>
       <button v-on:click="playSound">meow</button>
@@ -116,9 +118,6 @@ export default {
 </script>
 
 
-
-
-
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
@@ -141,6 +140,12 @@ export default {
 
   
 }*/
+
+.infoText{
+  margin-left:5px;
+  margin-right:5px;
+}
+
 #infoDIV{
   position:fixed;
   top: 55%;
@@ -163,7 +168,6 @@ export default {
 
   .infoTitle{
   font-family: "Outfit", sans-serif;
-  padding: 10px 15px;
   display:flex;
   justify-content:space-between;
   align-items:center;
