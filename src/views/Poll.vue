@@ -2,7 +2,6 @@
   <div>
     {{ pollId }}
     <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
-    <!-- gotonext i rad 4 är adderad av adam  -->
   </div>
 </template>
 
@@ -29,14 +28,13 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
-    this.currentQuestion = this.$route.params.currentQuestion; //adderad av adam
     socket.emit("joinPoll", this.pollId);
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
   },
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
-      //unnder detta försöker adam
+      //under här skickas man till nästa fråga, funkar okej mvh adam
       socket.emit("nextQuestion", {pollId: this.pollId, questionNumber: this.questionNumber});
       console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
       this.questionNumber = this.questionNumber+1;
