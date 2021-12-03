@@ -36,6 +36,7 @@ export default {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
       //under här skickas man till nästa fråga, funkar okej mvh adam
       socket.emit("nextQuestion", {pollId: this.pollId, questionNumber: this.questionNumber+1}); //plus ett för att requesta nästa fråga
+
       //vet ej om det nedan ändrar för nästa iteration
       console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
       this.questionNumber = this.questionNumber+1;
