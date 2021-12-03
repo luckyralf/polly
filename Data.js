@@ -46,7 +46,11 @@ Data.prototype.getQuestion = function (pollId, qId = null) { //tror att qId blir
     if (qId !== null) {
       poll.currentQuestion = qId;
     }
+<<<<<<< HEAD
+    return poll.questions[poll.currentQuestion];
+=======
     return poll.questions[poll.currentQuestion];  //vad gör return? fråga mikael???
+>>>>>>> 4755f34cb622aa9747a80daaf083df6c5da33ccf
   }
   return [];
 };
