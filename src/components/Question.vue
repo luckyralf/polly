@@ -1,5 +1,9 @@
 <template>
-  <p>{{ question.q }}</p>
+
+ <div class = "questionWrap">
+  <p id = "question"> Question: {{ question.q }}</p>
+
+   
   <button
     v-for="(a, index) in question.a"
     v-bind:class="{ selected: index === selectedAnswer }"
@@ -17,7 +21,11 @@
   <div>
     <button v-on:click="answer"> Next question </button>
   </div>
+
+</div>
 </template>
+
+
 <script>
 export default {
   name: "Question",
@@ -50,7 +58,7 @@ export default {
         }
     },
     changeColor: function (i) {
-      if(this.selectedAnswer==null) {
+      if(this.selectedAnswer!=i) {
       this.selectedAnswer = i;
       }
       else {
@@ -75,5 +83,16 @@ export default {
 }
 .isClicked:active {
   background-color: #c73ee1;
+}
+
+#question {
+  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+  border: solid 5px;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-left: 1px;
+  margin: 3rem;
+  width: 500px;
+  position: center;
 }
 </style>
