@@ -69,7 +69,6 @@ export default {
   padding: 10px;
   margin-top: 10px;
 }
-
 .isClicked:hover {
   background-color: #d794e3;
   cursor: pointer;

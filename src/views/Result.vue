@@ -1,14 +1,16 @@
 <template>
   <body class="Wrap">
-
+      
     <header>
       <h1> {{ uiLabels.pollResult }} </h1>
     </header>
-
+    <main>hhhh</main>
+    jjj
     <div>
      {{ questionNumber }} {{question}}
     </div>
     <Bars v-bind:data="data" />
+    {{data}} 
 
   </body>
 </template>

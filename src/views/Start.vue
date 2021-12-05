@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     playSound: function() {
-      const audio = new Audio("mixkit-little-cat-pain-meow-87 (online-audio-converter.com).mp3");
+      var audio = new Audio("mixkit-little-cat-pain-meow-87 (online-audio-converter.com).mp3");
       console.log(typeof audio,audio);
       audio.play();
     },
