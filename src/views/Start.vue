@@ -93,10 +93,15 @@ export default {
     });
   },
   methods: {
-    // playSound: function() {
-    //   const audio = new Audio(require("./public/sounds/meow.mp3"));
-    //   console.log(typeof audio,audio);
-    //   audio.play();
+    playSound: function() {
+      var audio = new Audio("mixkit-little-cat-pain-meow-87 (online-audio-converter.com).mp3");
+      console.log(typeof audio,audio);
+      audio.play();
+    },
+    // switchLanguage: function () {
+    //   if (this.lang === "en") this.lang = "sv";
+    //   else this.lang = "en";
+    //   socket.emit("switchLanguage", this.lang);
     // },
   infoFunction: function() {
     var x = document.getElementById("infoDIV");
