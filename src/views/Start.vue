@@ -73,7 +73,7 @@
 
 <script>
 import io from "socket.io-client";
-import meow from '/Users/adams/polly/public/sounds/meow.mp3';
+// import meow from '/Users/adams/polly/public/sounds/meow.mp3';
 const socket = io();
 
 export default {
@@ -91,10 +91,10 @@ export default {
     });
   },
   methods: {
-    playSound: function() {
-      const audio = new Audio(meow);
-      audio.play();
-    },
+    // playSound: function() {
+    //   const audio = new Audio(meow);
+    //   audio.play();
+    // },
     // switchLanguage: function () {
     //   if (this.lang === "en") this.lang = "sv";
     //   else this.lang = "en";

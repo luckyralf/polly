@@ -5,7 +5,7 @@
   </header>
 
  <main>
-  <div class = "wrap">
+  <div>
     <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
   </div>
  </main>
@@ -87,10 +87,6 @@ body{
   align-content: center;
 }
 
-.wrapp {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 50% 50%;
-}
+
 
 </style>
