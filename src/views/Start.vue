@@ -38,7 +38,7 @@
       You will get your poll id from the person who made the poll. </p>
       </div>
 
-      
+
       <button v-on:click="playSound">meow</button>
 
 </div>
