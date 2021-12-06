@@ -8,10 +8,38 @@
 
     <div id="nav">
       <div class="languangeButtonContainer">
-        <button class="langButtonSV" v-on:click="switchLanguageToSV(); playSound()"></button>
-        <button class="langButtonEN" v-on:click="switchLanguageToEN(); playSound()"></button>
+        <button class="langButtonSV" v-on:click="switchLanguageToSV(); playSound();"></button>
+        <button class="langButtonEN" v-on:click="switchLanguageToEN(); playSound();"></button>
+
+      <!--  <button class="infoButton"> INFO(dont press) </button>
+        <div class = "modal">
+          <div class = "infoHeader"> 
+            <div class = "title"> HELLO WORLD </div> 
+          <button class = "closeButton">X</button></div>
+          <div class = "infoBody"> Lorem Impsum dolor sit amet consectetur adipisicing
+              lorem Impsum dolor sit amet consectetur adipisicing
+              Lorem Impsum dolor sit amet consectetur adipisicing
+                dolor sit amet consectetur adipisicing lorum 
+           </div>
+        </div>
+        
+
+        <div id = "infoOverlay"> </div>
+        -->
+      
+      
+
+      <button v-on:click="infoFunction()" class = "infoButton2"></button>
+      <div id="infoDIV"><div class = "infoHeader"> 
+            <div class = "infoTitle"> Do you need help ~mjau~? </div> 
+          <button v-on:click="infoFunction()" class = "closeButton">X</button></div>
+      <p class = "infoText"><b> Information:</b> You can chose to either join a friends poll, or make your own! It doesn't
+      take very long, mjau...
+      You will get your poll id from the person who made the poll. </p>
+        
       </div>
 
+</div>
       <div class="writeAndParticipate">
         <label id="pollIdText"
           >{{ uiLabels.writePollId }}
@@ -65,9 +93,21 @@ export default {
   methods: {
     playSound: function() {
       const audio = new Audio(meow);
-      console.log(typeof audio,audio);
       audio.play();
     },
+    // switchLanguage: function () {
+    //   if (this.lang === "en") this.lang = "sv";
+    //   else this.lang = "en";
+    //   socket.emit("switchLanguage", this.lang);
+    // },
+  infoFunction: function() {
+    var x = document.getElementById("infoDIV");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  },
     switchLanguageToEN: function () {
       this.lang = "en";
       socket.emit("switchLanguage", this.lang);
@@ -80,10 +120,62 @@ export default {
 };
 </script>
 
+
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
+
+/*#infoDIV {
+  font-family: "Outfit", sans-serif;
+  width: 600px;
+  
+  max-width:80%;
+  margin-left:500px;
+  padding: 5px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 10px;
+  border-radius:10px;
+  border: 1px solid black;
+  transition: 200ms ease-in-out;
+  display: none;
+
+  
+}*/
+
+.infoText{
+  margin-left:5px;
+  margin-right:5px;
+}
+
+#infoDIV{
+  position:fixed;
+  top: 55%;
+  left:82%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: 200ms ease-in-out;
+  border:1px solid black;
+  border-radius: 10px;
+  z-index:10;
+  background-color: white;
+  width:450px;
+  max-width:80%;
+  max-width:50%;
+  height:140px;
+  max-height:80%;
+  opacity:85%;
+  font-family: "Outfit", sans-serif;
+  display:none;
+  }
+
+  .infoTitle{
+  font-family: "Outfit", sans-serif;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  
+}
 
 #pollIdTextField {
  cursor: url(data:application/octet-stream;base64,AAACAAEAICAAAAcACACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABLAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABfAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAbAAAASwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAAzAAAAZwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAMwAAAGMAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABbAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAACHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGZmZv9mZmb/ZmZm/2ZmZv9mZmb/ZmZm/2ZmZv9mZmb/ZmZm/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAI2ZmZv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABDZmZm/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP9mZmb/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADMAAABnAAAA/2ZmZv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAArAAAAWwAAAP8AAAD/ZmZm/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB3AAAAOwAAABMAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAEsAAAD/AAAA/wAAAP9mZmb/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAjwAAAE8AAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAA7AAAA/wAAAP8AAAD/AAAA/2ZmZv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABvAAAAMwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAKwAAAF8AAAD/AAAA/wAAAP8AAAD/ZmZm/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAhwAAAEsAAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMAAABDAAAA/wAAAP8AAAD/AAAA/wAAAP9mZmb/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABfAAAAKwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAIwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/2ZmZv8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAdwAAADsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAA3AAAA/wAAAP8AAAD/AAAA/6GD//+hg///ZmZm/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAIcAAABLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAE8AAAD/oYP//wAAAP8AAAD/oYP//6GD//9mZmb/oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAWwAAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAAzAAAA/6GD//+hg///AAAA/6GD//+hg///oYP//2ZmZv+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAGcAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAEcAAAD/AAAA/wAAAP8AAAD/oYP//6GD//+hg///ZmZm/6GD//+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAA/wAAAP8AAAD/AAAA/2ZmZv9mZmb/ZmZm/2ZmZv9mZmb/ZmZm/2ZmZv9mZmb/ZmZm/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8AAAD/AAAA/6GD//+hg///AAAA/wAAAP+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAP8AAAD/oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAFsAAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAA/wAAAP+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABbAAAAMwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsAAAD/AAAA/6GD//8AAAD/AAAA/6GD//+hg///oYP//wAAAP+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAASwAAACsAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAP8AAAD/AAAA/wAAAP+hg///oYP//6GD//8AAAD/AAAA/6GD//8AAAD/AAAA/wAAAP8AAAD/AAAATwAAADMAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAXwAAADsAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAALAAAAGwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAEMAAAArAAAAEwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAACwAAABMAAAAbAAAAHwAAAB8AAAAfAAAAHwAAAB8AAAAbAAAAEwAAAAsAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP/+AAD//gAA//wAAP/4AAD/8AAA/+AAAP/gAAD+AAAA/4AAAP8AAAD+AAAA/AAAAPwAAAD4AAAB8AAAA/AAAAPwAAAH4AAAH+AAAD/AAAA/wAAAf8AAAP/AAAD/wAAA/8AAAP/AAAH/wAAD/8AAA//AAA//wAA///AAf/8=),auto;
@@ -103,9 +195,6 @@ export default {
 .createPoll {
   margin-top: 30px;
   margin-bottom: 20px;
-}
-
-#nav {
 }
 
 .langButtonSV:hover {
@@ -146,6 +235,64 @@ export default {
   width: 35px;
   position: relative;
   left: 45.5%;
+}
+
+
+.infoButton2{
+  left: 36.5%;
+  position: relative;
+  padding-top: 20px;
+  padding-right: -20px;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 100%;
+  height: 37px;
+  width: 37px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
+}
+.infoButton2:hover {
+  cursor: pointer;
+  color: black;
+  border: none;
+}
+
+
+.modal{
+  position:fixed;
+  top: 55%;
+  left:70%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border:1px solid black;
+  border-radius: 10px;
+  z-index:10;
+  background-color: white;
+  width:500px;
+  max-width:80%;
+  opacity:70%;
+  font-family: "Outfit", sans-serif;
+}
+
+.infoHeader{
+  padding: 10px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom: 1px solid black;
+  
+}
+.modal.active{
+  transform: translate(-50%, -50%) scale(1);
+
+}
+
+.infoHeader .closeButton{
+  cursor:pointer;
+  border:none;
+  outline:none;
+  background:none;
+  font-size: 1.24rem;
+  font-weight:bold;
 }
 
 #headerText {
