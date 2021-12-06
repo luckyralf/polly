@@ -8,7 +8,15 @@
   <div>
     <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
   </div>
+
+  <div id="result">
+   <router-link id="routLink" v-bind:to="'/result/' + this.pollId" >
+      Check result
+    </router-link>
+  </div>
+
  </main>
+
 
 </body>
 </template>
@@ -87,6 +95,23 @@ body{
   align-content: center;
 }
 
+#routLink{
+  color: white;
+  text-decoration: none;
+  background: #20af19;
+  border-radius: 6px;
+  border: solid #229954;
+  margin: 1rem 0;
+  margin-top: 40px;
+  font-size: 1.5rem;
+  padding: 2px;
+}
 
+#result{
+  margin-left: 38%;
+  width: 100px;
+  display: grid;
+  grid-template-rows: auto auto;
+}
 
 </style>
