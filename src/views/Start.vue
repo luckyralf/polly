@@ -8,8 +8,8 @@
 
     <div id="nav">
       <div class="languangeButtonContainer">
-        <button class="langButtonSV" v-on:click="switchLanguageToSV"></button>
-        <button class="langButtonEN" v-on:click="switchLanguageToEN"></button>
+        <button class="langButtonSV" v-on:click="switchLanguageToSV(); playSound();"></button>
+        <button class="langButtonEN" v-on:click="switchLanguageToEN(); playSound();"></button>
 
       <!--  <button class="infoButton"> INFO(dont press) </button>
         <div class = "modal">
@@ -37,9 +37,12 @@
       or make your own! It doesn't take very long, mjau...
       You will get your poll id from the person who made the poll. </p>
       </div>
+<<<<<<< HEAD
 
 
       <button v-on:click="playSound">meow</button>
+=======
+>>>>>>> 4826a29dba0cc9857a3f9f2c0b77a1fa7471ecf4
 
 </div>
       <div class="writeAndParticipate">
@@ -75,7 +78,7 @@
 
 <script>
 import io from "socket.io-client";
-// import meow from "./public/sounds/meow.mp3";
+// import meow from '/Users/adams/polly/public/sounds/meow.mp3';
 const socket = io();
 
 export default {
@@ -93,11 +96,10 @@ export default {
     });
   },
   methods: {
-    playSound: function() {
-      var audio = new Audio("mixkit-little-cat-pain-meow-87 (online-audio-converter.com).mp3");
-      console.log(typeof audio,audio);
-      audio.play();
-    },
+    // playSound: function() {
+    //   const audio = new Audio(meow);
+    //   audio.play();
+    // },
     // switchLanguage: function () {
     //   if (this.lang === "en") this.lang = "sv";
     //   else this.lang = "en";
