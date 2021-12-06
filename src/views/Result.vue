@@ -7,10 +7,12 @@
     <main>hhhh</main>
     jjj
     <div>
-     {{ questionNumber }} {{question}}
+     {{ questionNumber }} {{pollId}}
     </div>
+
     <Bars v-bind:data="data" />
     {{data}} 
+    {{question}}
 
   </body>
 </template>
@@ -32,7 +34,8 @@ export default {
       lang: "",
       question: "",
       data: {
-      }
+      },
+      questionNumber: 0, //denna styr just nu vad som är datavariabeln, ändrar man questionNumber kan man få ut vilken fråga som ska visas
     }
   },
   created: function () {
@@ -40,8 +43,8 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    this.pollId = this.$route.params.id
-    socket.emit('joinPoll', this.pollId)
+    this.pollId = this.$route.params.id;
+    socket.emit('joinPoll', {pollId: this.pollId, questionNumber: this.questionNumber})
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
       this.question = update.q;
