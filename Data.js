@@ -32,12 +32,13 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
   return this.polls[pollId];
 };
 
-Data.prototype.addQuestion = function (pollId, q) {
+Data.prototype.addQuestion = function (pollId, q, indexForAddedQuestion) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== "undefined") {
     poll.questions.push(q);
   }
+  poll.editQuestion = indexForAddedQuestion;
 };
 
 Data.prototype.editQuestion = function (pollId, index) {
