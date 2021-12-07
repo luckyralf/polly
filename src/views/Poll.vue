@@ -7,8 +7,11 @@
  <main>
   <div>
     <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
-    hej
+  
   </div>
+
+  You are on question number {{this.questionNumber+1}}
+
 
   <div id="result">
    <router-link id="routLink" v-bind:to="'/result/' + this.pollId" >
