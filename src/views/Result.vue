@@ -65,8 +65,9 @@ export default {
     // socket.emit('emitGetPoll', this.pollId)
     // socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
   },
+  methods: {
   selectQuestion: function() {
-    socket.emit('joinPoll', {pollId: this.pollId, questionNumber: this.questionNumber});
+    socket.emit('joinPoll', {pollId: this.pollId, questionNumber: this.questionNumber,});
     
   },
   // getThePoll: function() {
@@ -75,6 +76,7 @@ export default {
   //   socket.on('getPoll',incomingPoll => {this.thePoll = incomingPoll;});
 
   // }
+}
 }
 </script>
 
