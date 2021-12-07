@@ -30,7 +30,7 @@
 
        <!-- <button v-on:click="playSound">meow</button> -->
 
-</div>
+
         
       
       
@@ -64,7 +64,7 @@
           >{{ uiLabels.createPoll }}</router-link>
       </div>
     
-
+</div>
     <div id="Finalword">
       <hr />
       <footer>
