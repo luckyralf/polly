@@ -37,12 +37,6 @@
       or make your own! It doesn't take very long, mjau...
       You will get your poll id from the person who made the poll. </p>
       </div>
-<<<<<<< HEAD
-
-
-      <button v-on:click="playSound">meow</button>
-=======
->>>>>>> 4826a29dba0cc9857a3f9f2c0b77a1fa7471ecf4
 
 </div>
       <div class="writeAndParticipate">
