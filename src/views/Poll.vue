@@ -1,29 +1,24 @@
 <template>
-<body>
-   <header> 
-    <h1> {{ pollId }} </h1>
-  </header>
+  <body>
+    <header>
+      <h1>{{ pollId }}</h1>
+    </header>
 
- <main>
-  <div>
-    <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
-  
-  </div>
+    <main>
+      <div>
+        <Question v-bind:question="question" v-on:answer="submitAnswer" />
+      </div>
 
-  You are on question number {{this.questionNumber+1}}
-  {{data}}
+      You are on question number {{ this.questionNumber + 1 }}
+      {{ data }}
 
-
-  <div id="result">
-   <router-link id="routLink" v-bind:to="'/result/' + this.pollId" >
-      {{ uiLabels.seeResult }}
-    </router-link>
-  </div>
-
- </main>
-
-
-</body>
+      <div id="result">
+        <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+          {{ uiLabels.seeResult }}
+        </router-link>
+      </div>
+    </main>
+  </body>
 </template>
 
 <script>
@@ -56,7 +51,10 @@ export default {
       this.uiLabels = labels;
     });
     this.pollId = this.$route.params.id;
-    socket.emit("joinPoll", {pollId: this.pollId, questionNumber: this.questionNumber}); //la till andra inparametern mvh adam
+    socket.emit("joinPoll", {
+      pollId: this.pollId,
+      questionNumber: this.questionNumber,
+    }); //la till andra inparametern mvh adam
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
     socket.on("allQuestions", (data) => (this.data = data));
   },
@@ -64,39 +62,44 @@ export default {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
       //under här skickas man till nästa fråga, funkar okej mvh adam
-      socket.emit("nextQuestion", {pollId: this.pollId, questionNumber: this.questionNumber+1}); //plus ett för att requesta nästa fråga
+      socket.emit("nextQuestion", {
+        pollId: this.pollId,
+        questionNumber: this.questionNumber + 1,
+      }); //plus ett för att requesta nästa fråga
 
       //vet ej om det nedan ändrar för nästa iteration
-      console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
-      this.questionNumber = this.questionNumber+1;
-      console.log("after adding ",typeof this.questionNumber,this.questionNumber)
+      console.log(
+        "before addidng ",
+        typeof this.questionNumber,
+        this.questionNumber
+      );
+      this.questionNumber = this.questionNumber + 1;
+      console.log(
+        "after adding ",
+        typeof this.questionNumber,
+        this.questionNumber
+      );
     },
   },
 };
 </script>
 
 <style scoped>
-
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
 
-
-h1{
-    font-family: 'Exo 2', sans-serif;
+h1 {
+  font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
   text-align: center;
   margin: 0;
-  text-shadow: 0 0 7px rgb(253, 117, 67),
-   0 0 10px #f0f,
-    0 0 21px #f0f,
-     0 0 42px #f0f,
-      0 0 82px #f0f;
+  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
+    0 0 42px #f0f, 0 0 82px #f0f;
 }
 
-
-body{
+body {
   /* display: grid;
   grid-template-rows: auto auto  ; */
   color: white;
@@ -108,7 +111,7 @@ body{
   align-content: center;
 }
 
-#routLink{
+#routLink {
   color: white;
   text-decoration: none;
   background: #20af19;
@@ -120,11 +123,10 @@ body{
   padding: 2px;
 }
 
-#result{
+#result {
   margin-left: 38%;
   width: 100px;
   display: grid;
   grid-template-rows: auto auto;
 }
-
 </style>

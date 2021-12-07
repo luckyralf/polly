@@ -53,14 +53,34 @@ Data.prototype.saveEditedQuestion = function (pollId, q) {
   poll.questions[poll.editQuestion] = q;
 };
 
-// Data.prototype.deleteQuestion = function (pollId) {
-//   const poll = this.polls[pollId];
-//   const newQuestionArray = poll.questions;
-//   poll.questions = newQuestionArray
-//     .slice(0, poll.editQuestion)
-//     .concat(newQuestionArray.slice(poll.editQuestion + 1));
-//   console.log("The question with index", poll.editQuestion, "was deleted");
-// };
+Data.prototype.deleteQuestion = function (pollId) {
+  const poll = this.polls[pollId];
+  const newQuestionArray = poll.questions;
+  poll.questions = newQuestionArray
+    .slice(0, poll.editQuestion)
+    .concat(newQuestionArray.slice(poll.editQuestion + 1));
+  console.log("The question with index", poll.editQuestion, "was deleted");
+};
+
+Data.prototype.moveQuestion = function (pollId, direction) {
+  const poll = this.polls[pollId];
+  if (direction == "up") {
+    [poll.questions[poll.editQuestion - 1], poll.questions[poll.editQuestion]] =
+      [
+        poll.questions[poll.editQuestion],
+        poll.questions[poll.editQuestion - 1],
+      ];
+    poll.editQuestion -= 1;
+  }
+  if (direction == "down") {
+    [poll.questions[poll.editQuestion + 1], poll.questions[poll.editQuestion]] =
+      [
+        poll.questions[poll.editQuestion],
+        poll.questions[poll.editQuestion + 1],
+      ];
+    poll.editQuestion += 1;
+  }
+};
 
 Data.prototype.getQuestion = function (pollId, qId = null) {
   //tror att qId blir null endast om man inte ger ett värde mvh adam

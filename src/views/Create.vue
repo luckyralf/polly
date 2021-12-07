@@ -34,10 +34,29 @@
             </button>
             <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
+            <div
+              v-if="data.poll !== undefined && data.poll.questions.length > 0"
+            >
+              <button
+                v-if="data.poll.editQuestion !== 0"
+                v-on:click="moveQuestion('up')"
+              >
+                UP
+              </button>
+              <button
+                v-if="data.poll.editQuestion !== data.poll.questions.length - 1"
+                v-on:click="moveQuestion('down')"
+              >
+                DOWN
+              </button>
+            </div>
           </div>
         </section>
         <!-- Här börjar formuläret för högra rutan -->
-        <section id="formSection">
+        <section
+          id="formSection"
+          v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        >
           <!-- {{ data.poll.questions[this.currentlySelectedQuestion - 1].q }} -->
           <br />
 
@@ -119,25 +138,40 @@ export default {
         pollId: this.pollId,
         indexForChosenQuestion: indexForChosenQuestion,
       });
-      // this.question = this.data.poll.questions[indexForChosenQuestion].q;
-      // this.answers = this.data.poll.questions[indexForChosenQuestion].a;
+      this.question = this.data.poll.questions[indexForChosenQuestion].q;
+      this.answers = this.data.poll.questions[indexForChosenQuestion].a;
     },
-    // deleteQuestion: function () {
-    //   socket.emit("deleteQuestion", this.pollId);
-    // },
+    moveQuestion: function (direction) {
+      console.log("moveQuestion fungerar", direction);
+      socket.emit("moveQuestion", {
+        pollId: this.pollId,
+        direction: direction,
+      });
+      // this.question = this.data.poll.questions[this.data.poll.editQuestion].q;
+      // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;
+    },
+
+    deleteQuestion: function () {
+      socket.emit("deleteQuestion", this.pollId);
+      this.question =
+        this.data.poll.questions[this.data.poll.questions.length - 1].q;
+      this.answers =
+        this.data.poll.questions[this.data.poll.questions.length - 1].a;
+    },
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
     },
-    addQuestion: function () {
-      console.log("addquestion create funkar");
-      // socket.emit("addQuestion", {
-      //   pollId: this.pollId,
-      //   // q: this.question,
-      //   q: "EDIT ME",
-      //   // a: this.answers,
-      //   a: ["", ""],
-      //   indexForAddedQuestion,
-      // });
+    addQuestion: function (indexForAddedQuestion) {
+      socket.emit("addQuestion", {
+        pollId: this.pollId,
+        // q: this.question,
+        q: "EDIT ME",
+        // a: this.answers,
+        a: ["", ""],
+        indexForAddedQuestion,
+      });
+      this.question = "EDIT ME";
+      this.answers = ["", ""];
     },
     addAnswer: function () {
       this.answers.push("");
