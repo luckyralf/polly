@@ -39,22 +39,21 @@
         <div id = "infoOverlay"> </div>
         -->
 
-      <button
-        v-on:click="infoFunction()"
-        class="infoButton2 catPawCursor"
-      ></button>
-      <div id="infoDIV">
-        <div class="infoHeader">
-          <div class="infoTitle">Do you need help ~mjau~?</div>
-          <button v-on:click="infoFunction()" class="closeButton catPawCursor">
-            X
-          </button>
-        </div>
-        <p class="infoText">
-          <b> Information:</b> You can chose to either join a friends poll, or
-          make your own! It doesn't take very long, mjau... You will get your
-          poll id from the person who made the poll.
-        </p>
+
+       <!-- <button v-on:click="playSound">meow</button> -->
+
+
+        
+      
+      
+
+      <button v-on:click="infoFunction()" class = "infoButton2 catPawCursor"></button>
+      <div id="infoDIV"><div class = "infoHeader"> 
+            <div class = "infoTitle"> Do you need help ~mjau~? </div> 
+          <button v-on:click="infoFunction()" class = "closeButton catPawCursor">X</button></div>
+      <p class = "infoText"><b> Information:</b> You can chose to either join a friends poll, 
+      or make your own! It doesn't take very long, mjau...
+      You will get your poll id from the person who made the poll. </p>
       </div>
     </div>
     <div class="writeAndParticipate">
@@ -70,14 +69,25 @@
       >
     </div>
 
-    <div class="createOwn">
-      <p>{{ uiLabels.orMakeOwn }}</p>
-      <router-link
-        style="color: #fff"
-        className="link"
-        v-bind:to="'/create/' + lang"
-        >{{ uiLabels.createPoll }}</router-link
-      >
+</div>
+      <div class="writeAndParticipate">
+        <label class="catPawTextCursor"
+          >{{ uiLabels.writePollId }}
+          <input type="text" v-model="id" class="catPawTextCursor"/>
+        </label>
+        <router-link v-bind:to="'/poll/' + id" tag="button" class="catPawCursor">{{
+          uiLabels.participatePoll
+        }}</router-link>
+      </div>
+
+      <div class="createOwn">
+        <p>{{ uiLabels.orMakeOwn }}</p>
+        <router-link 
+          style="color: #fff"
+          className="link"
+          v-bind:to="'/create/' + lang"
+          >{{ uiLabels.createPoll }}</router-link>
+      </div>
     </div>
 
     <div id="Finalword">

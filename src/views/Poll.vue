@@ -68,6 +68,7 @@ export default {
         typeof this.questionNumber,
         this.questionNumber
       );
+      // console.log("antal frågor:", this.editQuestion)
     },
   },
 };
