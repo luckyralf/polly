@@ -63,8 +63,8 @@
           v-bind:to="'/create/' + lang"
           >{{ uiLabels.createPoll }}</router-link>
       </div>
-    
-</div>
+    </div>
+
     <div id="Finalword">
       <hr />
       <footer>
