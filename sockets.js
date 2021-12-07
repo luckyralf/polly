@@ -17,6 +17,10 @@ function sockets(io, socket, data) {
     data.socket.emit("sendQuestionIndex", index);
   });
 
+  socket.on("deleteQuestion", function (pollId) {
+    data.deleteQuestion(pollId);
+  });
+
   socket.on("chooseQuestion", function (d) {
     // console.log(d.indexForChosenQuestion);
     // console.log("ChooseQuestion i socket aktiveras");
@@ -27,6 +31,7 @@ function sockets(io, socket, data) {
 
   socket.on("addQuestion", function (d) {
     data.addQuestion(d.pollId, { q: d.q, a: d.a }, d.indexForAddedQuestion);
+    console.log("addquestion socket fungerar");
     socket.emit("allQuestions", data.getPoll(d.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });

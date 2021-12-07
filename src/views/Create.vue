@@ -16,7 +16,7 @@
       </div>
       <div class="wrapper">
         <section id="questSection">
-          <h4>{{this.pollId}}</h4>
+          <h4>{{ this.pollId }}</h4>
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
@@ -57,7 +57,7 @@
           <br />
           <br />
 
-          <button>Delete question</button>
+          <button v-on:click="deleteQuestion">Delete question</button>
         </section>
       </div>
       <!-- Check Result Knapp -->
@@ -119,20 +119,25 @@ export default {
         pollId: this.pollId,
         indexForChosenQuestion: indexForChosenQuestion,
       });
+      // this.question = this.data.poll.questions[indexForChosenQuestion].q;
+      // this.answers = this.data.poll.questions[indexForChosenQuestion].a;
     },
-    
+    // deleteQuestion: function () {
+    //   socket.emit("deleteQuestion", this.pollId);
+    // },
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
     },
-    addQuestion: function (indexForAddedQuestion) {
-      socket.emit("addQuestion", {
-        pollId: this.pollId,
-        // q: this.question,
-        q: "EDIT ME",
-        // a: this.answers,
-        a: ["", ""],
-        indexForAddedQuestion,
-      });
+    addQuestion: function () {
+      console.log("addquestion create funkar");
+      // socket.emit("addQuestion", {
+      //   pollId: this.pollId,
+      //   // q: this.question,
+      //   q: "EDIT ME",
+      //   // a: this.answers,
+      //   a: ["", ""],
+      //   indexForAddedQuestion,
+      // });
     },
     addAnswer: function () {
       this.answers.push("");
