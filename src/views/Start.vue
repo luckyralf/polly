@@ -72,7 +72,7 @@
 
 <script>
 import io from "socket.io-client";
-import meow from '/Users/adams/polly/public/sounds/meow.mp3';
+import meow from '/public/sounds/meow.mp3';
 const socket = io();
 
 export default {
