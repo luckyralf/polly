@@ -69,10 +69,9 @@
   </body>
 </template>
 
-
 <script>
 import io from "socket.io-client";
-import meow from '/public/sounds/meow.mp3';
+import meow from "/public/sounds/meow.mp3";
 const socket = io();
 
 export default {
@@ -90,23 +89,24 @@ export default {
     });
   },
   methods: {
-    playSound: function() {
+    playSound: function () {
       const audio = new Audio(meow);
       audio.play();
     },
+
     // switchLanguage: function () {
     //   if (this.lang === "en") this.lang = "sv";
     //   else this.lang = "en";
     //   socket.emit("switchLanguage", this.lang);
     // },
-  infoFunction: function() {
-    var x = document.getElementById("infoDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  },
+    infoFunction: function () {
+      var x = document.getElementById("infoDIV");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    },
     switchLanguageToEN: function () {
       this.lang = "en";
       socket.emit("switchLanguage", this.lang);
@@ -118,7 +118,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
@@ -143,37 +142,36 @@ export default {
   
 }*/
 
-.infoText{
-  margin-left:5px;
-  margin-right:5px;
+.infoText {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-#infoDIV{
-  position:fixed;
+#infoDIV {
+  position: fixed;
   top: 55%;
-  left:82%;
+  left: 82%;
   transform: translate(-50%, -50%) scale(1);
   transition: 200ms ease-in-out;
-  border:1px solid black;
+  border: 1px solid black;
   border-radius: 10px;
-  z-index:10;
+  z-index: 10;
   background-color: white;
-  width:450px;
-  max-width:80%;
-  max-width:50%;
-  height:140px;
-  max-height:80%;
-  opacity:85%;
+  width: 450px;
+  max-width: 80%;
+  max-width: 50%;
+  height: 140px;
+  max-height: 80%;
+  opacity: 85%;
   font-family: "Outfit", sans-serif;
-  display:none;
-  }
+  display: none;
+}
 
-  .infoTitle{
+.infoTitle {
   font-family: "Outfit", sans-serif;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .catCursor {
@@ -237,8 +235,7 @@ export default {
   left: 45.5%;
 }
 
-
-.infoButton2{
+.infoButton2 {
   left: 36.5%;
   position: relative;
   padding-top: 20px;
@@ -255,34 +252,31 @@ export default {
   border: none;
 }
 
-
-.modal{
-  position:fixed;
+.modal {
+  position: fixed;
   top: 55%;
-  left:70%;
+  left: 70%;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-  border:1px solid black;
+  border: 1px solid black;
   border-radius: 10px;
-  z-index:10;
+  z-index: 10;
   background-color: white;
-  width:500px;
-  max-width:80%;
-  opacity:70%;
+  width: 500px;
+  max-width: 80%;
+  opacity: 70%;
   font-family: "Outfit", sans-serif;
 }
 
-.infoHeader{
+.infoHeader {
   padding: 10px 15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid black;
-  
 }
-.modal.active{
+.modal.active {
   transform: translate(-50%, -50%) scale(1);
-
 }
 
 .infoHeader .closeButton{
@@ -290,7 +284,7 @@ export default {
   outline:none;
   background:none;
   font-size: 1.24rem;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 #headerText {
@@ -301,34 +295,29 @@ export default {
   padding-bottom: 75px;
   text-align: center;
   /*font-family: "Monaco", monospace;*/
-  font-family: 'Exo 2', sans-serif;
+  font-family: "Exo 2", sans-serif;
   overflow: hidden;
   text-shadow: 2px 2px 2px black;
   font-size: 30pt;
   border: 7px solid white;
-  box-shadow:
-    0 0 20px 7px #fff,  
-    0 0 37px 15px #f0f, 
-    0 0 40px 27px #0ff,
-    inset 0 0 20px 8px #fff,
-    inset 0 0 37px 18px #f0f,
-    inset 0 0 30px 27px #0ff;
+  box-shadow: 0 0 20px 7px #fff, 0 0 37px 15px #f0f, 0 0 40px 27px #0ff,
+    inset 0 0 20px 8px #fff, inset 0 0 37px 18px #f0f, inset 0 0 30px 27px #0ff;
 
-    /*0 0 30px 15px #fff,  
+  /*0 0 30px 15px #fff,  
     0 0 57px 35px #f0f, 
     0 0 45px 50px #0ff,
     inset 0 0 30px 15px #fff,
     inset 0 0 57px 20px #f0f,
     inset 0 0 45px 40px #0ff;*/
-    /*box-shadow:
+  /*box-shadow:
     0 0 30px 15px rgb(253, 117, 67),
     0 0 57px 35px rgb(247, 82, 22),
     0 0 21px #f40,
     0 0 42px #f40,
     inset 0 0 7px rgb(253, 117, 67),
     inset 0 0 10px rgb(247, 82, 22);*/
-    
-    /*box-shadow:
+
+  /*box-shadow:
             0 0 .5rem #fff,
             inset 0 0 .5rem #fff,
             0 0 2rem var(#08f),
@@ -342,11 +331,8 @@ export default {
   /*font-style: italic;*/
   color: #fff;
 
-  text-shadow: 0 0 7px rgb(253, 117, 67),
-   0 0 10px #f0f,
-    0 0 21px #f0f,
-     0 0 42px #f0f,
-      0 0 82px #f0f;
+  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
+    0 0 42px #f0f, 0 0 82px #f0f;
   border-radius: 0rem;
   margin-left: 20px;
   margin-right: 20px;
@@ -395,14 +381,13 @@ export default {
 }
 
 .Wrapped {
-  display:grid;
+  display: grid;
   background-color: #1941b2;
   /*background: linear-gradient(to left, #0c2c63, #1941b2);*/
   padding-top: 19px;
   overflow-x: hidden;
   margin: 0px 0px 0px;
 }
-
 
 #Finalword {
   font-family: "Monaco", monospace;
@@ -422,21 +407,20 @@ export default {
 }
 
 hr {
-    border: none;
-    border-top: 3px double #333;
-    color: black;
-    overflow: visible;
-    text-align: center;
-    height: 5px;
+  border: none;
+  border-top: 3px double #333;
+  color: black;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
 }
 
 hr:after {
-    background: #1941b2;
-    content: 'mjau';
-    font-family: "Monaco", monospace;
-    padding: 0 4px;
-    position: relative;
-    top: -13px;
+  background: #1941b2;
+  content: "mjau";
+  font-family: "Monaco", monospace;
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
 }
-
 </style>
