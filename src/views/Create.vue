@@ -16,7 +16,7 @@
       </div>
       <div class="wrapper">
         <section id="questSection">
-          <h4 id="showPollName"></h4>
+          <h4>{{this.pollId}}</h4>
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
@@ -120,6 +120,7 @@ export default {
         indexForChosenQuestion: indexForChosenQuestion,
       });
     },
+    
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
     },

@@ -18,7 +18,9 @@
     <div>
       {{thePoll}}
     </div>
-
+<br>
+<input type="number" v-model="questionNumber" />
+<button v-on:click="selectQuestion">Which question?</button>
   </body>
 </template>
 
@@ -59,9 +61,13 @@ export default {
       this.question = update.q;
       this.data = {};
     });
-    //försök att få hela pollen mvh adam
-    socket.emit('emitgetPoll', this.pollId)
-    socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
+    // //försök att få hela pollen mvh adam
+    // socket.emit('emitGetPoll', this.pollId)
+    // socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
+  },
+  selectQuestion: function() {
+    socket.emit('joinPoll', {pollId: this.pollId, questionNumber: this.questionNumber});
+    
   },
   // getThePoll: function() {
   //   this.pollId = this.$route.params.id;
