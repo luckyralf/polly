@@ -3,6 +3,8 @@
 </template>
 
 <style>
+
+/* klass för uri */
 #app {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

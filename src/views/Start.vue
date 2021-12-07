@@ -37,9 +37,12 @@
       or make your own! It doesn't take very long, mjau...
       You will get your poll id from the person who made the poll. </p>
       </div>
+<<<<<<< HEAD
 
 
       <button v-on:click="playSound">meow</button>
+=======
+>>>>>>> e9b03e1f6404b4dfc2e54f06ee724fea44679dcf
 
 </div>
       <div class="writeAndParticipate">
@@ -75,7 +78,7 @@
 
 <script>
 import io from "socket.io-client";
-// import meow from '/Users/adams/polly/public/sounds/meow.mp3';
+import meow from '/Users/adams/polly/public/sounds/meow.mp3';
 const socket = io();
 
 export default {
@@ -93,10 +96,10 @@ export default {
     });
   },
   methods: {
-    // playSound: function() {
-    //   const audio = new Audio(meow);
-    //   audio.play();
-    // },
+    playSound: function() {
+      const audio = new Audio(meow);
+      audio.play();
+    },
     // switchLanguage: function () {
     //   if (this.lang === "en") this.lang = "sv";
     //   else this.lang = "en";

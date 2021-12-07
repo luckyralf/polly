@@ -24,7 +24,13 @@
 - [x] Länka till nästa fråga när man klickar next question i Poll
 - [ ] Fixa så att frågans svarsalternativ och texten som berättar vad man valt återställs när man går till nästa fråga
 - [x] Liten tass som cursor
-- [ ] 
+- [x] Meow vid språkbyte
+
+## Results
+- [ ] Få in de valda svaren (logik)
+- [ ] Layout för svarsrepresentation
+- [ ]
+- [ ]
 
 
 
