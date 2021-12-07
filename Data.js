@@ -24,7 +24,8 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     poll.lang = lang;
     poll.questions = [];
     poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
-    poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1? 
+    poll.editQuestion = -1; //frågan som ska visas när man klickar på en
+    poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1?
     this.polls[pollId] = poll;
     console.log("poll created", pollId, poll);
   }
@@ -39,14 +40,27 @@ Data.prototype.addQuestion = function (pollId, q) {
   }
 };
 
-Data.prototype.getQuestion = function (pollId, qId = null) { //tror att qId blir null endast om man inte ger ett värde mvh adam
+Data.prototype.editQuestion = function (pollId, index) {
+  const poll = this.polls[pollId];
+  console.log("The currently selected question is", index);
+  poll.editQuestion = index;
+};
+
+Data.prototype.saveEditedQuestion = function (pollId, q) {
+  const poll = this.polls[pollId];
+  console.log("The question with index", poll.editQuestion, "was edited");
+  poll.questions[poll.editQuestion] = q;
+};
+
+Data.prototype.getQuestion = function (pollId, qId = null) {
+  //tror att qId blir null endast om man inte ger ett värde mvh adam
   const poll = this.polls[pollId];
   console.log("question requested for ", pollId, qId);
   if (typeof poll !== "undefined") {
     if (qId !== null) {
       poll.currentQuestion = qId;
     }
-    return poll.questions[poll.currentQuestion-1];
+    return poll.questions[poll.currentQuestion - 1];
   }
   return [];
 };
@@ -70,19 +84,19 @@ Data.prototype.getAnswers = function (pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== "undefined") {
     const answers = poll.answers[poll.currentQuestion];
-    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
+    if (typeof poll.questions[poll.currentQuestion] !== "undefined") {
       return { q: poll.questions[poll.currentQuestion].q, a: answers };
     }
   }
-  return {}
-}
+  return {};
+};
 //Försök att returnera hela pollen till Create-sidan, rad 18 i socket är ändrad
 Data.prototype.getPoll = function (pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== "undefined") {
-      return {poll};
+    return { poll };
   }
-  return{}
-}
+  return {};
+};
 
 module.exports = Data;
