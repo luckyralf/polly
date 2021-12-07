@@ -90,10 +90,10 @@ export default {
     });
   },
   methods: {
-    // playSound: function() {
-    //   const audio = new Audio(meow);
-    //   audio.play();
-    // },
+    playSound: function() {
+      const audio = new Audio(meow);
+      audio.play();
+    },
 
     // switchLanguage: function () {
     //   if (this.lang === "en") this.lang = "sv";
