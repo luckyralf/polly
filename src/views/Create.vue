@@ -1,64 +1,79 @@
 <template>
-<body>
-  
-  <header> 
-    <h1> Create Cat Poll </h1>
-  </header>
-
-  <main>
-    <div id="createPollId">
-      <!-- {{ uiLabels.pollLink }} -->
-      <input type="text" placeholder="create poll link.." v-model="pollId"/>
-      <button v-on:click="createPoll">
-        {{ uiLabels.createPoll }}
-      </button>
-    </div>
-    <div class="wrapper">
-      <section id="questSection">
-
+  <body>
+    <header>
+      <h1>Create Cat Poll</h1>
+    </header>
+    <main>
+      {{ data }}
+      <br />
+      <!-- {{ data.poll.editQuestion }} -->
+      <div id="createPollId">
+        <!-- {{ uiLabels.pollLink }} -->
+        <input type="text" placeholder="create poll link.." v-model="pollId" />
+        <button v-on:click="createPoll">
+          {{ uiLabels.createPoll }}
+        </button>
+      </div>
+      <div class="wrapper">
+        <section id="questSection">
           <h4>{{this.pollId}}</h4>
-        <!-- Skriver ut frågorna som skapas -->
-        <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
-          <button v-for="index in data.poll.questions.length" :key="index">
-            {{ data.poll.questions[index - 1].q }}
-          </button>
-        </div>
-        <div>
-          <button id="addQuestBtn" v-on:click="addQuestion">
-            {{ uiLabels.addQuestion }}
-          </button>
-          <br>
-        </div>
-      </section>
+          <!-- Skriver ut frågorna som skapas -->
+          <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
+            <div v-for="index in data.poll.questions.length" :key="index">
+              <button v-on:click="chooseQuestion(index - 1)">
+                {{ data.poll.questions[index - 1].q }}
+              </button>
+            </div>
+          </div>
+          <div>
+            <button
+              id="addQuestBtn"
+              v-on:click="addQuestion(data.poll.questions.length)"
+            >
+              {{ uiLabels.addQuestion }}
+            </button>
+            <!-- {{ datpoll.questions.findIndex(q1) }} -->
+            <br />
+          </div>
+        </section>
+        <!-- Här börjar formuläret för högra rutan -->
+        <section id="formSection">
+          <!-- {{ data.poll.questions[this.currentlySelectedQuestion - 1].q }} -->
+          <br />
 
-      <section id="formSection">
-            {{ uiLabels.question }}
-            <textarea type="text" v-model="question" />
+          {{ uiLabels.question }}
+          <textarea type="text" v-model="question" />
+          {{ uiLabels.answerText }} <br />
+          <input
+            v-for="(_, i) in answers"
+            v-model="answers[i]"
+            v-bind:key="'answer' + i"
+          />
+          <br />
+          <button v-on:click="addAnswer">+</button>
+          <button v-on:click="delAnswer">-</button>
+          <br />
+          <button v-on:click="saveEditedQuestion">Save</button>
+          <br />
+          <br />
 
-              {{ uiLabels.answerText }} <br>
-              <input  v-for="(_, i) in answers"
-                      v-model="answers[i]"
-                      v-bind:key="'answer' + i"/>
-              <br>
-              <button v-on:click="addAnswer"> + </button>
-              <button v-on:click="delAnswer"> - </button>
-      </section>
+          <button>Delete question</button>
+        </section>
+      </div>
+      <!-- Check Result Knapp -->
+      <div id="result">
+        <input id="questNrBox" type="number" v-model="questionNumber" />
 
-    </div>
-    <!-- Check Result Knapp -->
-    <div id="result">
-      <input id="questNrBox" type="number" v-model="questionNumber" />
+        <button v-on:click="runQuestion">
+          {{ uiLabels.runQuestion }}
+        </button>
 
-      <button v-on:click="runQuestion">
-      {{ uiLabels.runQuestion }}
-      </button>
-
-      <router-link id="routerLink" v-bind:to="'/result/' + pollId">
-      {{uiLabels.checkResultsText}}
-      </router-link>
-    </div>
-  </main>
-</body>
+        <router-link id="routerLink" v-bind:to="'/result/' + pollId">
+          {{ uiLabels.checkResultsText }}
+        </router-link>
+      </div>
+    </main>
+  </body>
 </template>
 
 <script>
@@ -87,29 +102,44 @@ export default {
     socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
     socket.on("allQuestions", (data) => (this.data = data));
+    // socket.on("updateChooseQuestion", (data) => (this.data = data));
   },
   methods: {
-    createPoll: function () {
-      socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      
-    },
-    addQuestion: function () {
-      socket.emit("addQuestion", {
+    saveEditedQuestion: function () {
+      socket.emit("saveEditedQuestion", {
         pollId: this.pollId,
+        // q: this.question,
         q: this.question,
+        // a: this.answers,
         a: this.answers,
       });
-
-      
+    },
+    chooseQuestion: function (indexForChosenQuestion) {
+      socket.emit("chooseQuestion", {
+        pollId: this.pollId,
+        indexForChosenQuestion: indexForChosenQuestion,
+      });
+    },
+    
+    createPoll: function () {
+      socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+    },
+    addQuestion: function (indexForAddedQuestion) {
+      socket.emit("addQuestion", {
+        pollId: this.pollId,
+        // q: this.question,
+        q: "EDIT ME",
+        // a: this.answers,
+        a: ["", ""],
+      });
+      this.currentlySelectedQuestion = indexForAddedQuestion;
     },
     addAnswer: function () {
       this.answers.push("");
     },
-
     delAnswer: function () {
       this.answers.pop();
     },
-
     runQuestion: function () {
       socket.emit("runQuestion", {
         pollId: this.pollId,
@@ -126,9 +156,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
 
-
-
-body{
+body {
   /* display: grid;
   grid-template-rows: auto auto  ; */
   color: white;
@@ -140,16 +168,15 @@ body{
   align-content: center;
 }
 
-
-header{
+header {
   margin-bottom: 1rem;
   /* text-align: center;
   border: 7px solid white;
   border-radius: 30px;
 
   box-shadow:
-    0 0 20px 7px #fff,  
-    0 0 37px 15px #f0f, 
+    0 0 20px 7px #fff,
+    0 0 37px 15px #f0f,
     0 0 40px 27px #0ff,
     inset 0 0 20px 8px #fff,
     inset 0 0 37px 18px #f0f,
@@ -158,27 +185,23 @@ header{
   padding: 1rem 0; */
 }
 
-h1{
-    font-family: 'Exo 2', sans-serif;
+h1 {
+  font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
   text-align: center;
   margin: 0;
-  text-shadow: 0 0 7px rgb(253, 117, 67),
-   0 0 10px #f0f,
-    0 0 21px #f0f,
-     0 0 42px #f0f,
-      0 0 82px #f0f;
+  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
+    0 0 42px #f0f, 0 0 82px #f0f;
 }
 
-main{
+main {
   font-family: "Outfit", sans-serif;
-  
 }
-#createPollId input[type=text]{
+#createPollId input[type="text"] {
   border: none;
   background-color: transparent;
-  border-bottom: 2px solid #f0f ;
+  border-bottom: 2px solid #f0f;
   color: white;
   margin: 0 0.5rem;
   font-size: 1.5rem;
@@ -190,7 +213,9 @@ main{
   grid-template-columns: 50% 50%;
 }
 
-#formSection, #result, #questSection{
+#formSection,
+#result,
+#questSection {
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid 5px;
   border-radius: 20px;
@@ -201,12 +226,10 @@ main{
 #questSection {
   grid-column: 1;
   /* padding: 1rem 3rem 1rem 3rem ; */
-
 }
-#questSection h4{
+#questSection h4 {
   margin: 0;
   margin-bottom: 0.5em;
-
 }
 
 .buttonChooseQuestion {
@@ -216,23 +239,23 @@ main{
   grid-template-columns: 100%;
 }
 
-#formSection{
+#formSection {
   text-align: center;
   grid-column: 2;
 }
 
-#formSection, #result{
+#formSection,
+#result {
   width: min-content;
 }
 
-
-#result{
+#result {
   margin-left: 38%;
   display: grid;
   grid-template-rows: auto auto;
 }
 
-#addQuestBtn{
+#addQuestBtn {
   margin-top: 1rem;
 }
 
@@ -243,7 +266,7 @@ main{
   align-self: center;
 } */
 
-#routerLink{
+#routerLink {
   color: white;
   text-decoration: none;
   background: #20af19;
@@ -254,8 +277,4 @@ main{
   font-size: 1.5rem;
   padding: 2px;
 }
-
-
-
-
 </style>
