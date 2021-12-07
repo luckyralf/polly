@@ -29,16 +29,16 @@
       
       
 
-      <button v-on:click="infoFunction()" class = "infoButton2"></button>
-      <div id="infoDIV"><div class = "infoHeader"> 
-            <div class = "infoTitle"> Do you need help ~mjau~? </div> 
-          <button v-on:click="infoFunction()" class = "closeButton">X</button></div>
-      <p class = "infoText"><b> Information:</b> You can chose to either join a friends poll, 
-      or make your own! It doesn't take very long, mjau...
-      You will get your poll id from the person who made the poll. </p>
-      </div>
+        <button v-on:click="infoFunction()" class = "infoButton2"></button>
+        <div id="infoDIV"><div class = "infoHeader"> 
+              <div class = "infoTitle"> Do you need help ~mjau~? </div> 
+            <button v-on:click="infoFunction()" class = "closeButton">X</button></div>
+        <p class = "infoText"><b> Information:</b> You can chose to either join a friends poll, 
+        or make your own! It doesn't take very long, mjau...
+        You will get your poll id from the person who made the poll. </p>
+        </div>
 
-</div>
+      </div>
       <div class="writeAndParticipate">
         <label id="pollIdText"
           >{{ uiLabels.writePollId }}
@@ -72,7 +72,7 @@
 
 <script>
 import io from "socket.io-client";
-import meow from '/Users/adams/polly/public/sounds/meow.mp3';
+// import meow from '././public/sounds/meow.mp3';
 const socket = io();
 
 export default {
@@ -90,10 +90,11 @@ export default {
     });
   },
   methods: {
-    playSound: function() {
-      const audio = new Audio(meow);
-      audio.play();
-    },
+    // playSound: function() {
+    //   const audio = new Audio(meow);
+    //   audio.play();
+    // },
+
     // switchLanguage: function () {
     //   if (this.lang === "en") this.lang = "sv";
     //   else this.lang = "en";
