@@ -39,7 +39,7 @@
       </div>
 
 </div>
-      <div class="writeAndParticipate catPawTextCursor">
+      <div class="writeAndParticipate">
         <label class="catPawTextCursor"
           >{{ uiLabels.writePollId }}
           <input type="text" v-model="id" class="catPawTextCursor"/>
