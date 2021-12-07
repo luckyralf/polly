@@ -43,7 +43,6 @@
             poll id from the person who made the poll.
           </p>
         </div>
-=======
       
       
 
