@@ -10,9 +10,14 @@
      {{ questionNumber }} {{pollId}}
     </div>
 
-    <Bars v-bind:data="data" />
-    {{data}} 
+    <Bars v-bind:data="data"/>
+    {{data}} <br>
     {{question}}
+    <br>
+
+    <div>
+      {{thePoll}}
+    </div>
 
   </body>
 </template>
@@ -36,6 +41,7 @@ export default {
       data: {
       },
       questionNumber: 0, //denna styr just nu vad som är datavariabeln, ändrar man questionNumber kan man få ut vilken fråga som ska visas
+      thePoll: {},
     }
   },
   created: function () {
@@ -44,7 +50,7 @@ export default {
       this.uiLabels = labels;
     });
     this.pollId = this.$route.params.id;
-    socket.emit('joinPoll', {pollId: this.pollId, questionNumber: this.questionNumber})
+    socket.emit('joinPoll', {pollId: this.pollId, questionNumber: this.questionNumber})//kan man loopa över alla questionnumbers och få hela pollen?
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
       this.question = update.q;
@@ -53,7 +59,16 @@ export default {
       this.question = update.q;
       this.data = {};
     });
-  }
+    //försök att få hela pollen mvh adam
+    socket.emit('emitgetPoll', this.pollId)
+    socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
+  },
+  // getThePoll: function() {
+  //   this.pollId = this.$route.params.id;
+  //   socket.emit('emitgetPoll', this.pollId)
+  //   socket.on('getPoll',incomingPoll => {this.thePoll = incomingPoll;});
+
+  // }
 }
 </script>
 
