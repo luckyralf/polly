@@ -72,18 +72,7 @@
       >
     </div>
 
-    <div class="writeAndParticipate">
-      <label class="catPawTextCursor"
-        >{{ uiLabels.writePollId }}
-        <input type="text" v-model="id" class="catPawTextCursor" />
-      </label>
-      <router-link
-        v-bind:to="'/poll/' + id"
-        tag="button"
-        class="catPawCursor"
-        >{{ uiLabels.participatePoll }}</router-link
-      >
-    </div>
+    
 
     <div class="createOwn">
       <p>{{ uiLabels.orMakeOwn }}</p>
