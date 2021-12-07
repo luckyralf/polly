@@ -26,6 +26,24 @@
 
         <div id = "infoOverlay"> </div>
         -->
+
+
+       <!-- <button v-on:click="playSound">meow</button> -->
+
+</div>
+        <button v-on:click="infoFunction()" class="infoButton2"></button>
+        <div id="infoDIV">
+          <div class="infoHeader">
+            <div class="infoTitle">Do you need help ~mjau~?</div>
+            <button v-on:click="infoFunction()" class="closeButton">X</button>
+          </div>
+          <p class="infoText">
+            <b> Information:</b> You can chose to either join a friends poll, or
+            make your own! It doesn't take very long, mjau... You will get your
+            poll id from the person who made the poll.
+          </p>
+        </div>
+=======
       
       
 
@@ -39,7 +57,7 @@
       </div>
 
 </div>
-      <div class="writeAndParticipate catPawTextCursor">
+      <div class="writeAndParticipate">
         <label class="catPawTextCursor"
           >{{ uiLabels.writePollId }}
           <input type="text" v-model="id" class="catPawTextCursor"/>
@@ -55,10 +73,9 @@
           style="color: #fff"
           className="link"
           v-bind:to="'/create/' + lang"
-          >{{ uiLabels.createPoll }}</router-link
-        >
+          >{{ uiLabels.createPoll }}</router-link>
       </div>
-    </div>
+    
 
     <div id="Finalword">
       <hr />
@@ -387,6 +404,7 @@ export default {
   padding-top: 19px;
   overflow-x: hidden;
   margin: 0px 0px 0px;
+  border:0;
 }
 
 #Finalword {
