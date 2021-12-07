@@ -131,8 +131,8 @@ export default {
         q: "EDIT ME",
         // a: this.answers,
         a: ["", ""],
+        indexForAddedQuestion,
       });
-      this.currentlySelectedQuestion = indexForAddedQuestion;
     },
     addAnswer: function () {
       this.answers.push("");
