@@ -1,7 +1,7 @@
 <template>
 
  <div class = "questionWrap">
-  <p id = "question"> Question: {{ question.q }}</p>
+  <p id = "question"> {{ uiLabels.question }} {{ question.q }}</p>
 
    
   <button
@@ -27,6 +27,9 @@
 
 
 <script>
+import io from "socket.io-client";
+const socket = io();
+
 export default {
   name: "Question",
   props: {
@@ -34,11 +37,19 @@ export default {
   },
   data: function () {
     return {
+      uiLabels: {},
+      lang: "",
       selectedAnswer: null, //index som anger vilket alternativ som är valt 
       submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
       showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
     };
+  },
+  created: function () {
+    this.lang = this.$route.params.lang;
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
   },
   methods: {
     submitAnswer: function () {
