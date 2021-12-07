@@ -7,15 +7,11 @@
  <main>
   <div>
     <Question v-bind:question="question" v-on:answer="submitAnswer" /> 
-  
   </div>
-
-  You are on question number {{this.questionNumber+1}}
-
 
   <div id="result">
    <router-link id="routLink" v-bind:to="'/result/' + this.pollId" >
-      {{ uiLabels.seeResult }}
+      Check result
     </router-link>
   </div>
 
@@ -38,8 +34,6 @@ export default {
   },
   data: function () {
     return {
-      uiLabels: {},
-      lang: "",
       question: {
         q: "",
         a: [],
@@ -49,10 +43,6 @@ export default {
     };
   },
   created: function () {
-    this.lang = this.$route.params.lang;
-    socket.on("init", (labels) => {
-      this.uiLabels = labels;
-    });
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {pollId: this.pollId, questionNumber: this.questionNumber}); //la till andra inparametern mvh adam
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
@@ -67,7 +57,7 @@ export default {
       console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
       this.questionNumber = this.questionNumber+1;
       console.log("after adding ",typeof this.questionNumber,this.questionNumber)
-      console.log("antal frågor:", this.editQuestion)
+      // console.log("antal frågor:", this.editQuestion)
     },
   },
 };
