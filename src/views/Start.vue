@@ -26,26 +26,7 @@
 
         <div id = "infoOverlay"> </div>
         -->
-<<<<<<< HEAD
-
-
-       <!-- <button v-on:click="playSound">meow</button> -->
-
-</div>
-        <button v-on:click="infoFunction()" class="infoButton2"></button>
-        <div id="infoDIV">
-          <div class="infoHeader">
-            <div class="infoTitle">Do you need help ~mjau~?</div>
-            <button v-on:click="infoFunction()" class="closeButton">X</button>
-          </div>
-          <p class="infoText">
-            <b> Information:</b> You can chose to either join a friends poll, or
-            make your own! It doesn't take very long, mjau... You will get your
-            poll id from the person who made the poll.
-          </p>
-        </div>
-=======
-      
+      </div>
       
 
       <button v-on:click="infoFunction()" class = "infoButton2 catPawCursor"></button>
@@ -55,7 +36,6 @@
       <p class = "infoText"><b> Information:</b> You can chose to either join a friends poll, 
       or make your own! It doesn't take very long, mjau...
       You will get your poll id from the person who made the poll. </p>
->>>>>>> 441f08b4f15c5ba0766c3cd4bf0f92a16b13298c
       </div>
 
 </div>
