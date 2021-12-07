@@ -11,6 +11,7 @@
   </div>
 
   You are on question number {{this.questionNumber+1}}
+  {{data}}
 
 
   <div id="result">
@@ -44,6 +45,7 @@ export default {
         q: "",
         a: [],
       },
+      data: {},
       pollId: "inactive poll",
       questionNumber: 0,
     };
@@ -56,6 +58,7 @@ export default {
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {pollId: this.pollId, questionNumber: this.questionNumber}); //la till andra inparametern mvh adam
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
+    socket.on("allQuestions", (data) => (this.data = data));
   },
   methods: {
     submitAnswer: function (answer) {
