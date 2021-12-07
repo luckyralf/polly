@@ -26,7 +26,7 @@
 
         <div id = "infoOverlay"> </div>
         -->
-      </div>
+      
       
 
       <button v-on:click="infoFunction()" class = "infoButton2 catPawCursor"></button>
@@ -58,7 +58,7 @@
           >{{ uiLabels.createPoll }}</router-link>
       </div>
     
-
+</div>
     <div id="Finalword">
       <hr />
       <footer>

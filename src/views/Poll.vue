@@ -57,6 +57,7 @@ export default {
       console.log("before addidng ",typeof this.questionNumber,this.questionNumber)
       this.questionNumber = this.questionNumber+1;
       console.log("after adding ",typeof this.questionNumber,this.questionNumber)
+      console.log("antal frågor:", this.editQuestion)
     },
   },
 };
