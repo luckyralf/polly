@@ -1,5 +1,9 @@
 <template>
-  <p>{{ question.q }}</p>
+
+ <div class = "questionWrap">
+  <p id = "question"> Question: {{ question.q }}</p>
+
+   
   <button
     v-for="(a, index) in question.a"
     v-bind:class="{ selected: index === selectedAnswer }"
@@ -17,7 +21,11 @@
   <div>
     <button v-on:click="answer"> Next question </button>
   </div>
+
+</div>
 </template>
+
+
 <script>
 export default {
   name: "Question",
@@ -26,10 +34,10 @@ export default {
   },
   data: function () {
     return {
-      selectedAnswer: null,
-      showAnswer: false,
-      answerSubmitted: false,
-      submittedAnswer: null,
+      selectedAnswer: null, //index som anger vilket alternativ som är valt 
+      submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
+      showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
+      answerSubmitted: false, //boolean som anger om man har skickat ett svar
     };
   },
   methods: {
@@ -38,15 +46,24 @@ export default {
         this.showAnswer = true;
         this.submittedAnswer = this.question.a[this.selectedAnswer];
         console.log(this.submittedAnswer);
+        this.answerSubmitted = true;
     },
     answer: function () {
-      if (this.answerSubmitted == false && this.submittedAnswer != null){
+      if (this.answerSubmitted == true && this.submittedAnswer != null){
         this.$emit("answer", this.submittedAnswer);
-        this.answerSubmitted = true;
+        this.selectedAnswer= null;
+        this.showAnswer= false;
+        this.answerSubmitted= false;
+        this.submittedAnswer= null;
         }
     },
     changeColor: function (i) {
+      if(this.selectedAnswer!=i) {
       this.selectedAnswer = i;
+      }
+      else {
+        this.selectedAnswer = null;
+      }
     },
   },
 };
@@ -60,12 +77,22 @@ export default {
   padding: 10px;
   margin-top: 10px;
 }
-
 .isClicked:hover {
   background-color: #d794e3;
   cursor: pointer;
 }
 .isClicked:active {
   background-color: #c73ee1;
+}
+
+#question {
+  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+  border: solid 5px;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-left: 1px;
+  margin: 3rem;
+  width: 500px;
+  position: center;
 }
 </style>

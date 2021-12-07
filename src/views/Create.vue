@@ -88,7 +88,7 @@ export default {
       pollId: "",
       question: "",
       answers: ["", ""],
-      questionNumber: 0,
+      questionNumber: 1,
       data: {},
       uiLabels: {},
     };
@@ -122,8 +122,6 @@ export default {
     },
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      document.getElementById("showPollName").innerHTML =
-        this.uiLabels.pollCreated + this.pollId;
     },
     addQuestion: function (indexForAddedQuestion) {
       socket.emit("addQuestion", {
@@ -158,14 +156,15 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
 
 body {
-  display: grid;
-  grid-template-rows: auto;
+  /* display: grid;
+  grid-template-rows: auto auto  ; */
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   min-width: 100%;
   min-height: 100%;
   margin: 0;
   padding: 2rem 0 5rem 0;
+  align-content: center;
 }
 
 header {
@@ -224,10 +223,16 @@ main {
 }
 
 #questSection {
+  grid-column: 1;
   /* padding: 1rem 3rem 1rem 3rem ; */
+}
+#questSection h4 {
+  margin: 0;
+  margin-bottom: 0.5em;
 }
 
 .buttonChooseQuestion {
+  height: fit-content;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 100%;
@@ -235,6 +240,7 @@ main {
 
 #formSection {
   text-align: center;
+  grid-column: 2;
 }
 
 #formSection,

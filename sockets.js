@@ -58,6 +58,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("submitAnswer", function (d) {
+    //d = { pollId: this.pollId, answer: answer }
     data.submitAnswer(d.pollId, d.answer);
     io.to(d.pollId).emit("dataUpdate", data.getAnswers(d.pollId));
   });
@@ -68,7 +69,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("nextQuestion", function (d) {
-    //ny test från Adam, d = {{pollId,questionNumber}}, vad ska göras här?
+    //ny test från Adam, d = {{pollId,questionNumber}}
     socket.emit("newQuestion", data.getQuestion(d.pollId, d.questionNumber));
   });
 }

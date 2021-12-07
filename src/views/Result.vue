@@ -1,14 +1,18 @@
 <template>
   <body class="Wrap">
-
+      
     <header>
       <h1> {{ uiLabels.pollResult }} </h1>
     </header>
-
+    <main>hhhh</main>
+    jjj
     <div>
-      {{question}}
+     {{ questionNumber }} {{pollId}}
     </div>
+
     <Bars v-bind:data="data" />
+    {{data}} 
+    {{question}}
 
   </body>
 </template>
@@ -30,7 +34,8 @@ export default {
       lang: "",
       question: "",
       data: {
-      }
+      },
+      questionNumber: 0, //denna styr just nu vad som är datavariabeln, ändrar man questionNumber kan man få ut vilken fråga som ska visas
     }
   },
   created: function () {
@@ -38,8 +43,8 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    this.pollId = this.$route.params.id
-    socket.emit('joinPoll', this.pollId)
+    this.pollId = this.$route.params.id;
+    socket.emit('joinPoll', {pollId: this.pollId, questionNumber: this.questionNumber})
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
       this.question = update.q;
@@ -63,8 +68,19 @@ export default {
   margin: 0;
 }
 
-.resHeader{
-
+h1{
+  font-family: "Monaco", monospace;
+  font-size: 4rem;
+  color: white;
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 0 7px rgb(253, 117, 67),
+   0 0 10px #f0f,
+    0 0 21px #f0f,
+     0 0 42px #f0f,
+      0 0 82px #f0f;
 }
+
+
 
 </style>
