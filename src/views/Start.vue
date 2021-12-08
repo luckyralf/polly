@@ -22,7 +22,7 @@
             playSound();
           "
         ></button>
-      </div>
+      
       <!--  <button class="infoButton"> INFO(dont press) </button>
         <div class = "modal">
           <div class = "infoHeader"> 
@@ -58,7 +58,10 @@
           poll id from the person who made the poll.
         </p>
       </div>
-    </div>
+      </div>
+    
+
+
     <div class="writeAndParticipate">
       <label class="catPawTextCursor"
         >{{ uiLabels.writePollId }}
@@ -80,9 +83,10 @@
         style="color: #fff"
         className="link"
         v-bind:to="'/create/' + lang"
-        >{{ uiLabels.createPoll }}</router-link
-      >
+        >{{ uiLabels.createPoll }}</router-link>
     </div>
+
+</div>
 
     <div id="Finalword">
       <hr />

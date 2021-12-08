@@ -16,7 +16,7 @@
       </div>
       <div class="wrapper">
         <section id="questSection">
-          <h4>{{this.pollId}}</h4>
+          <h4>{{ this.pollId }}</h4>
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
@@ -34,10 +34,29 @@
             </button>
             <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
+            <div
+              v-if="data.poll !== undefined && data.poll.questions.length > 0"
+            >
+              <button
+                v-if="data.poll.editQuestion !== 0"
+                v-on:click="moveQuestion('up')"
+              >
+                UP
+              </button>
+              <button
+                v-if="data.poll.editQuestion !== data.poll.questions.length - 1"
+                v-on:click="moveQuestion('down')"
+              >
+                DOWN
+              </button>
+            </div>
           </div>
         </section>
         <!-- Här börjar formuläret för högra rutan -->
-        <section id="formSection">
+        <section
+          id="formSection"
+          v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        >
           <!-- {{ data.poll.questions[this.currentlySelectedQuestion - 1].q }} -->
           <br />
 
@@ -57,7 +76,7 @@
           <br />
           <br />
 
-          <button>Delete question</button>
+          <button v-on:click="deleteQuestion">Delete question</button>
         </section>
       </div>
       <!-- Check Result Knapp -->
@@ -119,8 +138,26 @@ export default {
         pollId: this.pollId,
         indexForChosenQuestion: indexForChosenQuestion,
       });
+      this.question = this.data.poll.questions[indexForChosenQuestion].q;
+      this.answers = this.data.poll.questions[indexForChosenQuestion].a;
     },
-    
+    moveQuestion: function (direction) {
+      console.log("moveQuestion fungerar", direction);
+      socket.emit("moveQuestion", {
+        pollId: this.pollId,
+        direction: direction,
+      });
+      // this.question = this.data.poll.questions[this.data.poll.editQuestion].q;
+      // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;
+    },
+
+    deleteQuestion: function () {
+      socket.emit("deleteQuestion", this.pollId);
+      this.question =
+        this.data.poll.questions[this.data.poll.questions.length - 1].q;
+      this.answers =
+        this.data.poll.questions[this.data.poll.questions.length - 1].a;
+    },
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
     },
@@ -133,6 +170,8 @@ export default {
         a: ["", ""],
         indexForAddedQuestion,
       });
+      this.question = "EDIT ME";
+      this.answers = ["", ""];
     },
     addAnswer: function () {
       this.answers.push("");

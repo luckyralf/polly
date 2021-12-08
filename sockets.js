@@ -11,10 +11,22 @@ function sockets(io, socket, data) {
 
   socket.on("createPoll", function (d) {
     socket.emit("pollCreated", data.createPoll(d.pollId, d.lang));
+    socket.emit("allQuestions", data.getPoll(d.pollId));
   });
 
   socket.on("editQuestion", function (index) {
     data.socket.emit("sendQuestionIndex", index);
+  });
+
+  socket.on("deleteQuestion", function (pollId) {
+    data.deleteQuestion(pollId);
+    socket.emit("allQuestions", data.getPoll(pollId));
+  });
+
+  socket.on("moveQuestion", function (pollIdAndDirection) {
+    console.log("question was moved", pollIdAndDirection.direction);
+    data.moveQuestion(pollIdAndDirection.pollId, pollIdAndDirection.direction);
+    socket.emit("allQuestions", data.getPoll(pollIdAndDirection.pollId));
   });
 
   socket.on("chooseQuestion", function (d) {
@@ -27,7 +39,17 @@ function sockets(io, socket, data) {
 
   socket.on("addQuestion", function (d) {
     data.addQuestion(d.pollId, { q: d.q, a: d.a }, d.indexForAddedQuestion);
+    console.log("addquestion socket fungerar");
     socket.emit("allQuestions", data.getPoll(d.pollId));
+    // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
+  });
+
+  socket.on("saveEditedQuestion", function (questionData) {
+    data.saveEditedQuestion(questionData.pollId, {
+      q: questionData.q,
+      a: questionData.a,
+    });
+    socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
 
