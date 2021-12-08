@@ -22,7 +22,7 @@
             playSound();
           "
         ></button>
-      </div>
+      
       <!--  <button class="infoButton"> INFO(dont press) </button>
         <div class = "modal">
           <div class = "infoHeader"> 
@@ -73,15 +73,18 @@
       >
     </div>
 
+    
+
     <div class="createOwn">
       <p>{{ uiLabels.orMakeOwn }}</p>
       <router-link
         style="color: #fff"
         className="link"
         v-bind:to="'/create/' + lang"
-        >{{ uiLabels.createPoll }}</router-link
-      >
+        >{{ uiLabels.createPoll }}</router-link>
     </div>
+
+</div>
 
     <div id="Finalword">
       <hr />
