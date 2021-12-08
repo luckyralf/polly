@@ -13,7 +13,25 @@
         <button v-on:click="createPoll">
           {{ uiLabels.createPoll }}
         </button>
+        
+
+      <button v-on:click="infoFunction()" class="infoButton2 catPawCursor"></button>
+      <div id="infoDIV">
+        <div class="infoHeader">
+          <div class="infoTitle">Do you need help ~mjau~?</div>
+            <button v-on:click="infoFunction()" class="closeButton catPawCursor">
+            X </button>
+        </div>
+        <p class="infoText">
+          <b> Information:</b> You can chose to either join a friends poll, or
+          make your own! It doesn't take very long, mjau... You will get your
+          poll id from the person who made the poll.
+        </p>
       </div>
+    
+
+    </div>
+      
       <div class="wrapper">
         <section id="questSection">
           <h4>{{ this.pollId }}</h4>
@@ -133,6 +151,16 @@ export default {
         a: this.answers,
       });
     },
+
+infoFunction: function () {
+      var x = document.getElementById("infoDIV");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    },
+
     chooseQuestion: function (indexForChosenQuestion) {
       socket.emit("chooseQuestion", {
         pollId: this.pollId,
@@ -276,6 +304,68 @@ main {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 100%;
+}
+
+#infoDIV {
+  position: fixed;
+  top: 55%;
+  left: 82%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: white;
+  width: 450px;
+  max-width: 80%;
+  max-width: 50%;
+  height: 140px;
+  max-height: 80%;
+  opacity: 85%;
+  font-family: "Outfit", sans-serif;
+  display: none;
+}
+
+.infoTitle {
+  font-family: "Outfit", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.infoButton2 {
+  left: 20.5%;
+  position: relative;
+  padding-top: 20px;
+  padding-right: -20px;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 100%;
+  height: 37px;
+  width: 37px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
+}
+.infoButton2:hover {
+  color: black;
+  border: none;
+}
+.infoText {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.infoHeader {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+.infoHeader .closeButton {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.24rem;
+  font-weight: bold;
 }
 
 #formSection {
