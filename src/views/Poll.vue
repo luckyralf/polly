@@ -10,14 +10,10 @@
       </div>
 
       You are on question number {{ this.questionNumber + 1 }}
-      {{ data }}
-
-      <div id="result">
-        <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
-          {{ uiLabels.seeResult }}
-        </router-link>
-      </div>
+  
+     
     </main>
+
   </body>
 </template>
 
@@ -43,6 +39,8 @@ export default {
       data: {},
       pollId: "inactive poll",
       questionNumber: 0,
+      thePoll: {},
+      amountQuestions: 0,
     };
   },
   created: function () {
@@ -57,6 +55,9 @@ export default {
     }); //la till andra inparametern mvh adam
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
     socket.on("allQuestions", (data) => (this.data = data));
+    //försök att få hela pollen
+    socket.emit('emitGetPoll',this.pollId);
+    socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
   },
   methods: {
     submitAnswer: function (answer) {
@@ -80,6 +81,7 @@ export default {
         this.questionNumber
       );
     },
+  
   },
 };
 </script>
@@ -111,22 +113,4 @@ body {
   align-content: center;
 }
 
-#routLink {
-  color: white;
-  text-decoration: none;
-  background: #20af19;
-  border-radius: 6px;
-  border: solid #229954;
-  margin: 1rem 0;
-  margin-top: 40px;
-  font-size: 1.5rem;
-  padding: 2px;
-}
-
-#result {
-  margin-left: 38%;
-  width: 100px;
-  display: grid;
-  grid-template-rows: auto auto;
-}
 </style>
