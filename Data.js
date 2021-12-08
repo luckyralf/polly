@@ -130,4 +130,11 @@ Data.prototype.getPoll = function (pollId) {
   return {};
 };
 
+Data.prototype.createPollHead = function (pollId){
+  const poll = this.polls[pollId];
+  if (typeof poll !== "undefined") {
+    return pollId;
+  }
+}
+
 module.exports = Data;

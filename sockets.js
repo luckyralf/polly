@@ -12,6 +12,7 @@ function sockets(io, socket, data) {
   socket.on("createPoll", function (d) {
     socket.emit("pollCreated", data.createPoll(d.pollId, d.lang));
     socket.emit("allQuestions", data.getPoll(d.pollId));
+    socket.emit("pollHead", data.createPollHead(d.pollId));
   });
 
   socket.on("editQuestion", function (index) {
