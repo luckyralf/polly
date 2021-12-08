@@ -15,5 +15,10 @@
   "checkResultsText": "Check Results",
   "pollCreated": "Poll Created: ",
   "orMakeOwn": "Or you can make your own poll here: ",
-  "pollResult": "Poll result"
+  "pollResult": "Poll result",
+  "seeResult": "Check result",
+  "submittedAnswer": "Submitted answer",
+  "submitAnswer": "Submit answer",
+  "nextQuestion": "Next question"
+
 }

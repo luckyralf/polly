@@ -14,11 +14,15 @@
     {{question}}
     <br>
 
-    <div>
-      {{thePoll}} 
-    </div>
-    
+<br>
+<div>
+  <button type="number" v-bind="questionNumber" v-on:click="selectQuestion(0)">1</button>
+  <button type="number" v-bind="questionNumber" v-on:click="selectQuestion(1)">2</button>
+  <button type="number" v-bind="questionNumber" v-on:click="selectQuestion(2)">3</button>
+</div>
 
+<!-- <input type="number" v-model="questionNumber" />
+<button v-on:click="selectQuestion">Which question?</button> -->
   </body>
 </template>
 
@@ -41,7 +45,6 @@ export default {
       data: {
       },
       questionNumber: 0, //denna styr just nu vad som är datavariabeln, ändrar man questionNumber kan man få ut vilken fråga som ska visas
-      thePoll: {},
     }
   },
   created: function () {
@@ -64,12 +67,11 @@ export default {
     socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
     
   },
-  // getThePoll: function() {
-  //   this.pollId = this.$route.params.id;
-  //   socket.emit('emitgetPoll', this.pollId)
-  //   socket.on('getPoll',incomingPoll => {this.thePoll = incomingPoll;});
-
-  // }
+  methods: {
+  selectQuestion: function(questionNumber) {
+    socket.emit('joinPoll', {pollId: this.pollId, questionNumber});
+  },
+}
 }
 </script>
 

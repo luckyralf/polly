@@ -32,12 +32,13 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
   return this.polls[pollId];
 };
 
-Data.prototype.addQuestion = function (pollId, q) {
+Data.prototype.addQuestion = function (pollId, q, indexForAddedQuestion) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== "undefined") {
     poll.questions.push(q);
   }
+  poll.editQuestion = indexForAddedQuestion;
 };
 
 Data.prototype.editQuestion = function (pollId, index) {
@@ -50,6 +51,35 @@ Data.prototype.saveEditedQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
   console.log("The question with index", poll.editQuestion, "was edited");
   poll.questions[poll.editQuestion] = q;
+};
+
+Data.prototype.deleteQuestion = function (pollId) {
+  const poll = this.polls[pollId];
+  const newQuestionArray = poll.questions;
+  poll.questions = newQuestionArray
+    .slice(0, poll.editQuestion)
+    .concat(newQuestionArray.slice(poll.editQuestion + 1));
+  console.log("The question with index", poll.editQuestion, "was deleted");
+};
+
+Data.prototype.moveQuestion = function (pollId, direction) {
+  const poll = this.polls[pollId];
+  if (direction == "up") {
+    [poll.questions[poll.editQuestion - 1], poll.questions[poll.editQuestion]] =
+      [
+        poll.questions[poll.editQuestion],
+        poll.questions[poll.editQuestion - 1],
+      ];
+    poll.editQuestion -= 1;
+  }
+  if (direction == "down") {
+    [poll.questions[poll.editQuestion + 1], poll.questions[poll.editQuestion]] =
+      [
+        poll.questions[poll.editQuestion],
+        poll.questions[poll.editQuestion + 1],
+      ];
+    poll.editQuestion += 1;
+  }
 };
 
 Data.prototype.getQuestion = function (pollId, qId = null) {

@@ -18,6 +18,17 @@ function sockets(io, socket, data) {
     data.socket.emit("sendQuestionIndex", index);
   });
 
+  socket.on("deleteQuestion", function (pollId) {
+    data.deleteQuestion(pollId);
+    socket.emit("allQuestions", data.getPoll(pollId));
+  });
+
+  socket.on("moveQuestion", function (pollIdAndDirection) {
+    console.log("question was moved", pollIdAndDirection.direction);
+    data.moveQuestion(pollIdAndDirection.pollId, pollIdAndDirection.direction);
+    socket.emit("allQuestions", data.getPoll(pollIdAndDirection.pollId));
+  });
+
   socket.on("chooseQuestion", function (d) {
     // console.log(d.indexForChosenQuestion);
     // console.log("ChooseQuestion i socket aktiveras");
@@ -27,7 +38,8 @@ function sockets(io, socket, data) {
   });
 
   socket.on("addQuestion", function (d) {
-    data.addQuestion(d.pollId, { q: d.q, a: d.a });
+    data.addQuestion(d.pollId, { q: d.q, a: d.a }, d.indexForAddedQuestion);
+    console.log("addquestion socket fungerar");
     socket.emit("allQuestions", data.getPoll(d.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
@@ -71,6 +83,10 @@ function sockets(io, socket, data) {
   socket.on("nextQuestion", function (d) {
     //ny test från Adam, d = {{pollId,questionNumber}}
     socket.emit("newQuestion", data.getQuestion(d.pollId, d.questionNumber));
+  });
+
+  socket.on("emitGetPoll", function (ID) {
+    socket.emit("getPoll", data.getPoll(ID));
   });
 }
 
