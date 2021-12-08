@@ -4,8 +4,7 @@
     <header>
       <h1> {{ uiLabels.pollResult }} </h1>
     </header>
-    <main>hhhh</main>
-    jjj
+    
     <div>
      {{ questionNumber }} {{pollId}}
     </div>
@@ -16,8 +15,9 @@
     <br>
 
     <div>
-      {{thePoll}}
+      {{thePoll}} 
     </div>
+    
 
   </body>
 </template>
@@ -62,6 +62,7 @@ export default {
     //försök att få hela pollen mvh adam
     socket.emit('emitgetPoll', this.pollId)
     socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
+    
   },
   // getThePoll: function() {
   //   this.pollId = this.$route.params.id;
