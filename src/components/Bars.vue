@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
   <div class="bar" v-for="(item, key) in data" v-bind:key="key">
-    <div v-bind:style="{height: item + 'px'}">
+    <div v-bind:style="{height: 50*item + 'px'}">
       <span> {{item}} </span>
     </div>
     <div> 
@@ -26,6 +26,7 @@ export default {
   display: inline-block;
   width: 50px;
   vertical-align: bottom;
+  margin: 5px;
 }
 
 .bar span {
