@@ -4,10 +4,12 @@
     <header>
       <h1> {{ uiLabels.pollResult }} </h1>
     </header>
-    
-    <div>
-     {{ questionNumber }} {{pollId}}
-    </div>
+    <main>hhhh</main>
+    jjj
+    <button v-on:click="getPoll">
+      <br>
+     {{thePoll}}
+    </button>
 
     <Bars v-bind:data="data"/>
     {{data}} <br>
@@ -15,10 +17,8 @@
     <br>
 
 <br>
-<div>
-  <button type="number" v-bind="questionNumber" v-on:click="selectQuestion(0)">1</button>
-  <button type="number" v-bind="questionNumber" v-on:click="selectQuestion(1)">2</button>
-  <button type="number" v-bind="questionNumber" v-on:click="selectQuestion(2)">3</button>
+<div v-for="index in thePoll.poll.questions.length" :key="index">
+  <button  class="resultQuestions" type="number" v-bind="index" v-on:click="selectQuestion(index)">{{index}}</button>
 </div>
 
 <!-- <input type="number" v-model="questionNumber" />
@@ -45,6 +45,7 @@ export default {
       data: {
       },
       questionNumber: 0, //denna styr just nu vad som är datavariabeln, ändrar man questionNumber kan man få ut vilken fråga som ska visas
+      thePoll: {},
     }
   },
   created: function () {
@@ -62,20 +63,40 @@ export default {
       this.question = update.q;
       this.data = {};
     });
-    //försök att få hela pollen mvh adam
-    socket.emit('emitgetPoll', this.pollId)
-    socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
-    
+    //försök att få hela pollen
+    socket.emit('emitGetPoll',this.pollId);
+    socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
   },
   methods: {
   selectQuestion: function(questionNumber) {
     socket.emit('joinPoll', {pollId: this.pollId, questionNumber});
   },
+  // getPoll: function() {
+  //   socket.emit('emitGetPoll',this.pollId);
+  //   socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
+  // },
 }
 }
 </script>
 
 <style scoped>
+
+.resultQuestions {
+  background-color: #d794e3;
+  color: white;
+  border: 3px solid blueviolet;
+  border-radius: 5px;
+  padding: 10px 24px;
+  width: 30%; 
+  display: block;
+  margin: 2px;
+  font-size: 20px;
+}
+
+
+.resultQuestions:hover {
+  background-color: #c73ee1;
+}
 
 .Wrap{
   background: linear-gradient(to left, #0c2c63, #1941b2);
