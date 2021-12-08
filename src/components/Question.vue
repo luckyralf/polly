@@ -15,13 +15,22 @@
   </button>
   </div>
 
+      {{ thePoll }}
+
   <div>
     <button v-on:click="submitAnswer" id="submitAnswerButton">{{ uiLabels.submitAnswer }}  </button> <br>
     <div v-if="showAnswer"> {{ uiLabels.submittedAnswer }} : {{this.submittedAnswer}}</div>
   </div>
   <br>
-  <div>
-    <button v-on:click="answer"> {{ uiLabels.nextQuestion }} </button>
+
+  <div v-if="lastQuestion">
+    <button v-on:click="answer"> {{ uiLabels.nextQuestion }}</button>
+  </div>
+
+  <div  v-else id="result" >
+        <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+          {{ uiLabels.seeResult }}
+        </router-link>
   </div>
 
 </div>
@@ -41,10 +50,15 @@ export default {
     return {
       uiLabels: {},
       lang: "",
+      thePoll: {},
+      amountQuestions: 0,
+      pollId: "inactive poll",
+      questionNumber: 1,
       selectedAnswer: null, //index som anger vilket alternativ som är valt 
       submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
       showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
+      lastQuestion: true,
     };
   },
   created: function () {
@@ -53,6 +67,9 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
+    this.pollId = this.$route.params.id;
+    socket.emit('emitGetPoll',this.pollId);
+    socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
   },
   methods: {
     submitAnswer: function () {
@@ -61,6 +78,11 @@ export default {
         this.submittedAnswer = this.question.a[this.selectedAnswer];
         console.log(this.submittedAnswer);
         this.answerSubmitted = true;
+        this.questionNumber = this.questionNumber+1;
+        console.log(this.questionNumber)
+        console.log(this.thePoll.poll.questions.length)
+        
+
     },
     answer: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null){
@@ -69,6 +91,11 @@ export default {
         this.showAnswer= false;
         this.answerSubmitted= false;
         this.submittedAnswer= null;
+        }
+        console.log(this.questionNumber)
+        console.log(this.thePoll.poll.questions.length)
+      if (this.questionNumber === this.thePoll.poll.questions.length){
+          this.lastQuestion= false;
         }
     },
     changeColor: function (i) {
@@ -130,5 +157,24 @@ background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   font-size: 25px;
 }
 
+
+#routLink {
+  color: white;
+  text-decoration: none;
+  background: #20af19;
+  border-radius: 6px;
+  border: solid #229954;
+  margin: 1rem 0;
+  margin-top: 40px;
+  font-size: 1.5rem;
+  padding: 2px;
+}
+
+#result {
+  margin-left: 38%;
+  width: 100px;
+  display: grid;
+  grid-template-rows: auto auto;
+}
 
 </style>
