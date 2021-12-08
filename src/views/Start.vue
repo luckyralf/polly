@@ -168,6 +168,22 @@ export default {
   
 }*/
 
+.temp{
+width:100vw;
+overflow-x:hidden;
+height:100vh;
+overflow-y:hidden;
+margin-right:5px;;
+padding:none;
+border:none;
+margin-top: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+
+  
+}
+
 .infoText {
   margin-left: 5px;
   margin-right: 5px;
@@ -413,10 +429,15 @@ export default {
   display: grid;
   background-color: #1941b2;
   /*background: linear-gradient(to left, #0c2c63, #1941b2);*/
-  padding-top: 19px;
+  padding-top: 25px;
   overflow-x: hidden;
-  margin: 0px 0px 0px;
-  border: 0;
+  margin: 0px 0px;
+  border: none;
+  width:100vw;
+  
+  overflow-x: hidden;
+  height:100vh;
+  overflow-y:hidden;
 }
 
 #Finalword {
@@ -453,5 +474,14 @@ hr:after {
   padding: 0 4px;
   position: relative;
   top: -13px;
+}
+
+
+body{
+  display:block;
+  margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 </style>
