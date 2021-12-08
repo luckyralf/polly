@@ -21,7 +21,7 @@
   </div>
   <br>
   <div>
-    <button v-on:click="answer"> {{ uiLabels.nextQuestion }}</button>
+    <button v-on:click="answer"> {{ uiLabels.nextQuestion }} </button>
   </div>
 
 </div>
@@ -48,7 +48,8 @@ export default {
     };
   },
   created: function () {
-    this.lang = this.$route.params.lang;
+     this.lang = this.$route.params.lang;
+     
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });

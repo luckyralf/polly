@@ -18,7 +18,7 @@
       <button v-on:click="infoFunction()" class="infoButton2 catPawCursor"></button>
       <div id="infoDIV">
         <div class="infoHeader">
-          <div class="infoTitle">Do you need help ~mjau~?</div>
+          <div class="infoTitle">HELLO</div>
             <button v-on:click="infoFunction()" class="closeButton catPawCursor">
             X </button>
         </div>
