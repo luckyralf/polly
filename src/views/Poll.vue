@@ -40,7 +40,6 @@ export default {
       pollId: "inactive poll",
       questionNumber: 0,
       thePoll: {},
-      amountQuestions: 0,
     };
   },
   created: function () {
@@ -64,10 +63,14 @@ export default {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
       //under här skickas man till nästa fråga, funkar okej mvh adam
+      if (this.questionNumber !== this.thePoll.poll.questions.length-1){
       socket.emit("nextQuestion", {
         pollId: this.pollId,
         questionNumber: this.questionNumber + 1,
+      
       }); //plus ett för att requesta nästa fråga
+      console.log("HEJE"+ this.questionNumber)
+      }
 
       //vet ej om det nedan ändrar för nästa iteration
       console.log(

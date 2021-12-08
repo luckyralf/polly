@@ -28,7 +28,7 @@
   </div>
 
   <div  v-else id="result" >
-        <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+        <router-link id="routLink" v-bind:to="'/result/' + this.pollId" v-on:click="finishQuiz">
           {{ uiLabels.seeResult }}
         </router-link>
   </div>
@@ -79,8 +79,6 @@ export default {
         console.log(this.submittedAnswer);
         this.answerSubmitted = true;
         this.questionNumber = this.questionNumber+1;
-        console.log(this.questionNumber)
-        console.log(this.thePoll.poll.questions.length)
         
 
     },
@@ -98,6 +96,13 @@ export default {
           this.lastQuestion= false;
         }
     },
+
+    finishQuiz: function(){
+      if (this.answerSubmitted == true && this.submittedAnswer != null){
+        this.$emit("answer", this.submittedAnswer);
+      }
+    },
+
     changeColor: function (i) {
       if(this.selectedAnswer!=i) {
       this.selectedAnswer = i;
