@@ -4,7 +4,7 @@
       <h1>Create Cat Poll</h1>
     </header>
     <main>
-      {{ data }}
+      <!-- {{ data }} -->
       <br />
       <!-- {{ data.poll.editQuestion }} -->
       <div id="createPollId">
@@ -16,7 +16,7 @@
       </div>
       <div class="wrapper">
         <section id="questSection">
-          <h4>{{ this.pollId }}</h4>
+          <h4 v-if="pollHeadline !== '' ">{{uiLabels.pollCreated}} <span> {{pollHeadline}}</span></h4>
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
@@ -110,6 +110,7 @@ export default {
       questionNumber: 1,
       data: {},
       uiLabels: {},
+      pollHeadline: '',
     };
   },
   created: function () {
@@ -121,6 +122,7 @@ export default {
     socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("pollCreated", (data) => (this.data = data));
     socket.on("allQuestions", (data) => (this.data = data));
+    socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     // socket.on("updateChooseQuestion", (data) => (this.data = data));
   },
   methods: {
@@ -160,6 +162,7 @@ export default {
     },
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+      
     },
     addQuestion: function (indexForAddedQuestion) {
       socket.emit("addQuestion", {
@@ -244,6 +247,7 @@ main {
   color: white;
   margin: 0 0.5rem;
   font-size: 1.5rem;
+  text-align: center;
 }
 
 .wrapper {
@@ -269,6 +273,9 @@ main {
 #questSection h4 {
   margin: 0;
   margin-bottom: 0.5em;
+}
+h4 span{
+  font-size: 1.5rem;
 }
 
 .buttonChooseQuestion {
