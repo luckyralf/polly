@@ -58,9 +58,7 @@
           poll id from the person who made the poll.
         </p>
       </div>
-      </div>
-    
-
+    </div>
 
     <div class="writeAndParticipate">
       <label class="catPawTextCursor"

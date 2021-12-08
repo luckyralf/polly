@@ -4,8 +4,7 @@
     <header>
       <h1> {{ uiLabels.pollResult }} </h1>
     </header>
-    <main>hhhh</main>
-    jjj
+    
     <div>
      {{ questionNumber }} {{pollId}}
     </div>
@@ -63,6 +62,10 @@ export default {
       this.question = update.q;
       this.data = {};
     });
+    //försök att få hela pollen mvh adam
+    socket.emit('emitgetPoll', this.pollId)
+    socket.on('getPoll',(incomingPoll) => {this.thePoll = incomingPoll;});
+    
   },
   methods: {
   selectQuestion: function(questionNumber) {
