@@ -9,7 +9,7 @@
         <Question v-bind:question="question" v-on:answer="submitAnswer" />
       </div>
 
-      You are on question number {{ this.questionNumber + 1 }}
+      {{uiLabels.youareonQnumber}}{{ this.questionNumber + 1 }}
   
      
     </main>
@@ -44,7 +44,7 @@ export default {
   },
   created: function () {
     this.lang = this.$route.params.lang;
-    //socket.emit("pageLoaded", this.lang);
+    socket.emit("switchLanguage", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
