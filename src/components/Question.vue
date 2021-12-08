@@ -23,6 +23,7 @@
   </div>
   <br>
 
+   <div>
   <div v-if="lastQuestion">
     <button v-on:click="answer"> {{ uiLabels.nextQuestion }}</button>
   </div>
@@ -31,6 +32,7 @@
         <router-link id="routLink" v-bind:to="'/result/' + this.pollId" v-on:click="finishQuiz">
           {{ uiLabels.seeResult }}
         </router-link>
+  </div>
   </div>
 
 </div>

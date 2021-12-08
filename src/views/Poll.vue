@@ -69,7 +69,7 @@ export default {
         questionNumber: this.questionNumber + 1,
       
       }); //plus ett för att requesta nästa fråga
-      console.log("HEJE"+ this.questionNumber)
+      console.log("FRÅGA NUMMER"+ this.questionNumber)
       }
 
       //vet ej om det nedan ändrar för nästa iteration
