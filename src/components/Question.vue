@@ -62,7 +62,8 @@ export default {
     };
   },
   created: function () {
-    this.lang = this.$route.params.lang;
+     this.lang = this.$route.params.lang;
+     
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });

@@ -5,7 +5,11 @@
     </header>
     <main>
       <div class="questionAndBars">
-        <div v-for="index in thePoll.poll.questions.length" :key="index">
+        <div class="questions">
+        <div
+          v-for="index in thePoll.poll.questions.length"
+          :key="index"
+        >
           <button
             class="resultQuestions"
             type="number"
@@ -15,7 +19,10 @@
             Question {{ index }}: {{ thePoll.poll.questions[index - 1].q }}
           </button>
         </div>
-        <Bars v-bind:data="data" />
+        </div>
+        <div class="bars">
+          <Bars v-bind:data="data" />
+        </div>
       </div>
     </main>
 
@@ -71,18 +78,23 @@ export default {
     selectQuestion: function (questionNumber) {
       socket.emit("joinPoll", { pollId: this.pollId, questionNumber });
     },
-    // getPoll: function() {
-    //   socket.emit('emitGetPoll',this.pollId);
-    //   socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
-    // },
   },
 };
 </script>
 
 <style scoped>
-
 .questionsAndBars {
-  display: inline-block;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 50% 50%;
+}
+
+.questions {
+  grid-column: 1;
+}
+
+.bars {
+  grid-column: 2;
 }
 
 .resultQuestions {
