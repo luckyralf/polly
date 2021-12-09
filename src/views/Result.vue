@@ -3,21 +3,28 @@
     <header>
       <h1>{{ uiLabels.pollResult }}</h1>
     </header>
-    <main>
+  <main>
       <div class="questionAndBars">
-        <div v-for="index in thePoll.poll.questions.length" :key="index">
-          <button
-            class="resultQuestions"
-            type="number"
-            v-bind="index"
-            v-on:click="selectQuestion(index - 1)"
-          >
-            Question {{ index }}: {{ thePoll.poll.questions[index - 1].q }}
-          </button>
-        </div>
-        <Bars v-bind:data="data" />
+          <div class="questions">
+            <div v-for="index in thePoll.poll.questions.length" :key="index">
+              <button
+                class="resultQuestions"
+                type="number"
+                v-bind="index"
+                v-on:click="selectQuestion(index - 1)"
+                >
+                  Question {{ index }}: {{ thePoll.poll.questions[index - 1].q }}
+                
+                </button>
+                
+            </div>
+              
+            </div>
+            <div class="bars">
+              <Bars v-bind:data="data" />
+          </div>
       </div>
-    </main>
+  </main>
 
     <!-- <input type="number" v-model="questionNumber" />
 <button v-on:click="selectQuestion">Which question?</button> -->
@@ -81,9 +88,27 @@ export default {
 
 <style scoped>
 
-.questionsAndBars {
-  display: inline-block;
+
+
+.questionAndBars {
+  display: flex;
+
+  grid-gap: 300px;
+  /*grid-template-columns: 50% 50%;*/
 }
+
+
+.questions {
+  grid-column: 1;
+  margin-left:50px;
+  margin-top:40px;
+}
+
+/*
+.bars {
+  grid-column: 2;
+  background-color:blue;
+}*/
 
 .resultQuestions {
   background-color: #d794e3;
@@ -91,7 +116,7 @@ export default {
   border: 3px solid blueviolet;
   border-radius: 5px;
   padding: 10px 24px;
-  width: 30%;
+  width: 100%;
   display: block;
   margin: 2px;
   font-size: 20px;
@@ -106,7 +131,8 @@ export default {
 
   padding-top: 15px;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-
+  padding-bottom: 500px;
+  border:0;
   margin: 0;
 }
 
