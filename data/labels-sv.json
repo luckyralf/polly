@@ -16,8 +16,9 @@
   "pollCreated": "Poll skapad: ",
   "orMakeOwn": "Eller så skapar du din egna poll här:",
   "pollResult": "Poll resultat",
-  "seeResult": "Se resultat",
+  "finishQuiz": "Avsluta quiz",
   "submittedAnswer": "Inlämmnat svar",
   "submitAnswer": "Skicka in svar",
-  "nextQuestion": "Nästa fråga"
+  "nextQuestion": "Nästa fråga",
+  "seeResult":  "Se resultat,"
 }
