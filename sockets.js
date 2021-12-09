@@ -49,6 +49,7 @@ function sockets(io, socket, data) {
     data.saveEditedQuestion(questionData.pollId, {
       q: questionData.q,
       a: questionData.a,
+      t: questionData.t
     });
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
