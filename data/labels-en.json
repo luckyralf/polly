@@ -20,6 +20,7 @@
   "submittedAnswer": "Submitted answer",
   "submitAnswer": "Submit answer",
   "nextQuestion": "Next question",
-  "seeResult":  "See result,"
+  "seeResult":  "See result,",
+  "youareonQnumber": "You are on question number "
 
 }
