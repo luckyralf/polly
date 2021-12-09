@@ -14,8 +14,6 @@
      
     </main>
 
-    <div>{{uiLabels.youareonQnumber}}</div>
-
   </body>
 </template>
 
