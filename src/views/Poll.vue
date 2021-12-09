@@ -14,8 +14,6 @@
      
     </main>
 
-    <div>{{uiLabels.youareonQnumber}}</div>
-
   </body>
 </template>
 
@@ -46,7 +44,6 @@ export default {
     };
   },
   created: function () {
-
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {
       pollId: this.pollId,
