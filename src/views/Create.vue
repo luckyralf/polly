@@ -38,7 +38,7 @@
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
-              <button v-on:click="chooseQuestion(index - 1)">
+              <button class="questionButtons" v-on:click="chooseQuestion(index - 1)">
                 {{ data.poll.questions[index - 1].q }}
               </button>
             </div>
@@ -330,6 +330,26 @@ h4 span{
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 100%;
+}
+
+.questionButtons {
+  color: white;
+  padding: 10px;
+  background-color: hsl(202, 92%, 68%);
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.questionButtons:hover {
+  background-color: #d794e3;
+}
+
+.questionButtons:active {
+  background-color: #c73ee1;
+}
+
+.questionButtons:focus {
+  background-color: #c73ee1;
 }
 
 #infoDIV {
