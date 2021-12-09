@@ -130,6 +130,7 @@ export default {
   margin-top: 10px;
 }
 
+
 .isClicked{
   background-color: #88ddff;
   width: 500px;
@@ -143,8 +144,8 @@ export default {
   grid-template-rows: 300px 300px;
   margin-left: 220px;
   grid-row: questionNumber;
-
 }
+
 .isClicked:hover {
   background-color: #d794e3;
   cursor: pointer;
@@ -194,7 +195,6 @@ export default {
   width: 100px;
   display: grid;
   grid-template-rows: auto auto;
-  position: absolute;
 }
 
 </style>
