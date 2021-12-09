@@ -1,45 +1,49 @@
 <template>
+  <div class="questionWrap">
+    <p id="question">{{ uiLabels.question }} {{ question.q }}</p>
 
- <div class = "questionWrap">
-  <p id = "question"> {{ uiLabels.question }}  {{ question.q }}</p>
-
-  <div class = "answerAlt">
-  <button
-    v-for="(a, index) in question.a"
-    v-bind:id="{ selected: index === selectedAnswer }"
-    v-on:click="changeColor(index)"
-    v-bind:key="a"
-    class="isClicked"
-  >
-    {{ a }}
-  </button>
-  </div>
-
-  <div>
-    <button v-on:click="submitAnswer" id="submitAnswerButton">{{ uiLabels.submitAnswer }}  </button> <br>
-    <div v-if="showAnswer"> {{ uiLabels.submittedAnswer }} : {{this.submittedAnswer}}</div>
-  </div>
-  <br>
-
-   <div>
-  <div v-if="lastQuestion">
-    <button v-on:click="answer"> {{ uiLabels.nextQuestion }}</button>
-  </div>
-
-  <div  v-else id="result" >
-
-    <button v-on:click="finishQuiz"> {{ uiLabels.finishQuiz }}</button>
-
-    <div v-if="quizFinished">
-    <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
-       {{ uiLabels.seeResult }}
-    </router-link>
+    <div class="answerAlt">
+      <button
+        v-for="(a, index) in question.a"
+        v-bind:id="{ selected: index === selectedAnswer }"
+        v-on:click="changeColor(index)"
+        v-bind:key="a"
+        class="isClicked"
+      >
+        {{ a }}
+      </button>
+    </div>
+    <div class="timer">
+      {{ timer }}
     </div>
 
-  </div>
-  </div>
+    <div>
+      <button v-on:click="submitAnswer" id="submitAnswerButton">
+        {{ uiLabels.submitAnswer }}
+      </button>
+      <br />
+      <div v-if="showAnswer">
+        {{ uiLabels.submittedAnswer }} : {{ this.submittedAnswer }}
+      </div>
+    </div>
+    <br />
 
-</div>
+    <div>
+      <div v-if="lastQuestion">
+        <button v-on:click="answer">{{ uiLabels.nextQuestion }}</button>
+      </div>
+
+      <div v-else id="result">
+        <button v-on:click="finishQuiz">{{ uiLabels.finishQuiz }}</button>
+
+        <div v-if="quizFinished">
+          <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+            {{ uiLabels.seeResult }}
+          </router-link>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 
@@ -60,59 +64,68 @@ export default {
       amountQuestions: 0,
       pollId: "inactive poll",
       questionNumber: 1,
-      selectedAnswer: null, //index som anger vilket alternativ som är valt 
+      selectedAnswer: null, //index som anger vilket alternativ som är valt
       submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
       showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
+      timer: 30,
     };
   },
+  watch: {
+    timer: {
+      handler() {
+        setTimeout(() => {
+          this.timer--;
+        }, 1000);
+      },
+      immediate: true,
+    },
+  },
   created: function () {
-     
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
     this.pollId = this.$route.params.id;
-    socket.emit('emitGetPoll',this.pollId);
-    socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
+    socket.emit("emitGetPoll", this.pollId);
+    socket.on("getPoll", (thePoll) => (this.thePoll = thePoll));
   },
   methods: {
     submitAnswer: function () {
-        //skriv ut vad det valda alternativet är 
-        this.showAnswer = true;
-        this.submittedAnswer = this.question.a[this.selectedAnswer];
-        console.log(this.submittedAnswer);
-        this.answerSubmitted = true;
-        this.questionNumber = this.questionNumber+1;
+      //skriv ut vad det valda alternativet är
+      this.showAnswer = true;
+      this.submittedAnswer = this.question.a[this.selectedAnswer];
+      console.log(this.submittedAnswer);
+      this.answerSubmitted = true;
+      this.questionNumber = this.questionNumber + 1;
     },
     answer: function () {
-      if (this.answerSubmitted == true && this.submittedAnswer != null){
+      if (this.answerSubmitted == true && this.submittedAnswer != null) {
         this.$emit("answer", this.submittedAnswer);
-        this.selectedAnswer= null;
-        this.showAnswer= false;
-        this.answerSubmitted= false;
-        this.submittedAnswer= null;
-        }
-        console.log(this.questionNumber)
-        console.log(this.thePoll.poll.questions.length)
-      if (this.questionNumber === this.thePoll.poll.questions.length){
-          this.lastQuestion= false;
-        }
+        this.selectedAnswer = null;
+        this.showAnswer = false;
+        this.answerSubmitted = false;
+        this.submittedAnswer = null;
+      }
+      console.log(this.questionNumber);
+      console.log(this.thePoll.poll.questions.length);
+      if (this.questionNumber === this.thePoll.poll.questions.length) {
+        this.lastQuestion = false;
+      }
     },
 
-    finishQuiz: function(){
-      if (this.answerSubmitted == true && this.submittedAnswer != null){
+    finishQuiz: function () {
+      if (this.answerSubmitted == true && this.submittedAnswer != null) {
         this.$emit("answer", this.submittedAnswer);
         this.quizFinished = true;
       }
     },
 
     changeColor: function (i) {
-      if(this.selectedAnswer!=i) {
-      this.selectedAnswer = i;
-      }
-      else {
+      if (this.selectedAnswer != i) {
+        this.selectedAnswer = i;
+      } else {
         this.selectedAnswer = null;
       }
     },
@@ -120,7 +133,6 @@ export default {
 };
 </script>
 <style>
-
 #selected {
   background-color: #c73ee1;
 }
@@ -130,7 +142,7 @@ export default {
   margin-top: 10px;
 }
 
-.isClicked{
+.isClicked {
   background-color: #88ddff;
   width: 500px;
   height: 60px;
@@ -143,7 +155,6 @@ export default {
   grid-template-rows: 300px 300px;
   margin-left: 220px;
   grid-row: questionNumber;
-
 }
 .isClicked:hover {
   background-color: #d794e3;
@@ -164,15 +175,13 @@ export default {
   margin-right: 200px;
   position: center;
   font-size: 25px;
-  
 }
 
-
-.answerAlt{
+.answerAlt {
   font-size: 50px;
 }
 
-#question{
+#question {
   color: white;
   font-size: 40px;
 }
@@ -196,5 +205,4 @@ export default {
   grid-template-rows: auto auto;
   position: absolute;
 }
-
 </style>
