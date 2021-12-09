@@ -13,7 +13,7 @@
                 v-bind="index"
                 v-on:click="selectQuestion(index - 1)"
                 >
-                  Question {{ index }}: {{ thePoll.poll.questions[index - 1].q }}
+                  {{uiLabels.question}} {{ index }}: {{ thePoll.poll.questions[index - 1].q }}
                 
                 </button>
                 
@@ -53,10 +53,6 @@ export default {
     };
   },
   created: function () {
-    this.lang = this.$route.params.lang;
-    socket.on("init", (labels) => {
-      this.uiLabels = labels;
-    });
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {
       pollId: this.pollId,
@@ -72,7 +68,13 @@ export default {
     });
     //försök att få hela pollen
     socket.emit("emitGetPoll", this.pollId);
-    socket.on("getPoll", (thePoll) => (this.thePoll = thePoll));
+    socket.on('getPoll',(thePoll) => {
+      this.thePoll = thePoll;
+      socket.emit("pageLoaded", this.thePoll.poll.lang);
+      });
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
   },
   methods: {
     selectQuestion: function (questionNumber) {
