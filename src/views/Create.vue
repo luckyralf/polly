@@ -75,24 +75,23 @@
           <br />
 
           {{ uiLabels.question }}
-          <textarea type="text" v-model="question" />
+          <textarea v-on:input="saveEditedQuestion" type="text" v-model="question" />
           {{ uiLabels.answerText }} <br />
           <input
             v-for="(_, i) in answers"
             v-model="answers[i]"
             v-bind:key="'answer' + i"
+            v-on:input="saveEditedQuestion" 
           />
+          <button v-on:click="addAnswer(); saveEditedQuestion();">+</button>
+          <button v-on:click="delAnswer(); saveEditedQuestion();">-</button>
           <br />
-          <button v-on:click="addAnswer">+</button>
-          <button v-on:click="delAnswer">-</button>
-          <br />
-          <button v-on:click="saveEditedQuestion">Save</button>
           <br />
           {{uiLabels.timePerQuestion}} 
           <br>
           {{uiLabels.timeObject}}
-          <select name="questTime" id="questionTime" v-model="time" >
-              <option value="unlimited" selected >{{uiLabels.unlimited}}</option>
+          <select name="questTime" id="questionTime" v-model="time" v-on:change="saveEditedQuestion">
+              <option value="unlimited" v-on:click="saveEditedQuestion" selected >{{uiLabels.unlimited}}</option>
               <option value="10">10</option>
               <option value="30">30</option>
               <option value="60">60</option>
