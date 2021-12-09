@@ -6,7 +6,7 @@
   <div class = "answerAlt">
   <button
     v-for="(a, index) in question.a"
-    v-bind:class="{ selected: index === selectedAnswer }"
+    v-bind:id="{ selected: index === selectedAnswer }"
     v-on:click="changeColor(index)"
     v-bind:key="a"
     class="isClicked"
@@ -14,8 +14,6 @@
     {{ a }}
   </button>
   </div>
-
-      {{ thePoll }}
 
   <div>
     <button v-on:click="submitAnswer" id="submitAnswerButton">{{ uiLabels.submitAnswer }}  </button> <br>
@@ -71,7 +69,6 @@ export default {
     };
   },
   created: function () {
-     this.lang = this.$route.params.lang;
      
     socket.on("init", (labels) => {
       this.uiLabels = labels;
@@ -88,8 +85,6 @@ export default {
         console.log(this.submittedAnswer);
         this.answerSubmitted = true;
         this.questionNumber = this.questionNumber+1;
-        
-
     },
     answer: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null){
@@ -125,7 +120,7 @@ export default {
 };
 </script>
 <style>
-.selected {
+#selected {
   background-color: #c73ee1;
 }
 
@@ -135,10 +130,19 @@ export default {
 }
 
 .isClicked{
-  width: 100px;
-  height: 100px;
+  background-color: #88ddff;
+  width: 500px;
+  height: 60px;
   font-family: "Outfit", sans-serif;
-  font-size: 30px;
+  font-size: 25px;
+  border-radius: 3px;
+  color: white;
+  display: grid;
+  grid-gap: 100px;
+  grid-template-rows: 300px 300px;
+  margin-left: 220px;
+  grid-row: questionNumber;
+
 }
 .isClicked:hover {
   background-color: #d794e3;
@@ -148,30 +152,29 @@ export default {
   background-color: #c73ee1;
 }
 
-.answerAlt{
-background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
-  border: solid 5px;
-  border-radius: 20px;
-  padding: 1rem;
-  width: 500px;
-  margin-left: 500px;
-  margin: 3rem;
-  position: center;
-}
-
-#question {
+.questionWrap {
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid 5px;
   border-radius: 20px;
   padding: 1rem;
   margin-left: 1px;
   margin: 3rem;
-  width: 300px;
-  margin-left: 40px;
+  margin-left: 200px;
+  margin-right: 200px;
   position: center;
   font-size: 25px;
+  
 }
 
+
+.answerAlt{
+  font-size: 50px;
+}
+
+#question{
+  color: white;
+  font-size: 40px;
+}
 
 #routLink {
   color: white;
@@ -190,6 +193,7 @@ background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   width: 100px;
   display: grid;
   grid-template-rows: auto auto;
+  position: absolute;
 }
 
 </style>
