@@ -6,7 +6,10 @@
 
     <main>
       <div>
-        <Question v-bind:question="question" v-on:answer="submitAnswer" />
+        <Question v-bind:uiLabels="uiLabels" 
+                  v-bind:question="question" 
+                  v-bind:amountQuestion="thePoll.poll.questions.length"
+                  v-on:answer="submitAnswer" />
       </div>
 
       {{uiLabels.youareonQnumber}} {{ this.questionNumber + 1 }}
