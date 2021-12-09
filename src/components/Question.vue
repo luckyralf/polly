@@ -5,7 +5,7 @@
     <div class="answerAlt">
       <button
         v-for="(a, index) in question.a"
-        v-bind:id="{ selected: index === selectedAnswer }"
+        v-bind:class="{ selected: index === selectedAnswer }"
         v-on:click="changeColor(index)"
         v-bind:key="a"
         class="isClicked"
@@ -13,8 +13,9 @@
         {{ a }}
       </button>
     </div>
-    <div class="timer">
-      {{ timer }}
+
+    <div class="timer" v-on="startTimer(question.t)" >
+      <span v-if="timerOn">{{ timer }}</span>
     </div>
 
     <div>
@@ -48,20 +49,16 @@
 
 
 <script>
-import io from "socket.io-client";
-const socket = io();
 
 export default {
   name: "Question",
   props: {
     question: Object,
+    uiLabels: Object,
+    amountQuestion: Number,
   },
   data: function () {
     return {
-      uiLabels: {},
-      lang: "",
-      thePoll: {},
-      amountQuestions: 0,
       pollId: "inactive poll",
       questionNumber: 1,
       selectedAnswer: null, //index som anger vilket alternativ som är valt
@@ -71,6 +68,7 @@ export default {
       lastQuestion: true,
       quizFinished: false,
       timer: 30,
+      timerOn: true,
     };
   },
   watch: {
@@ -84,12 +82,7 @@ export default {
     },
   },
   created: function () {
-    socket.on("init", (labels) => {
-      this.uiLabels = labels;
-    });
     this.pollId = this.$route.params.id;
-    socket.emit("emitGetPoll", this.pollId);
-    socket.on("getPoll", (thePoll) => (this.thePoll = thePoll));
   },
   methods: {
     submitAnswer: function () {
@@ -108,9 +101,9 @@ export default {
         this.answerSubmitted = false;
         this.submittedAnswer = null;
       }
-      else{console.log("SUBMIT YOUR ANSWER"); }
-  
-      if (this.questionNumber === this.thePoll.poll.questions.length) {
+      console.log(this.questionNumber);
+      console.log(this.amountQuestion);
+      if (this.questionNumber === this.amountQuestion) {
         this.lastQuestion = false;
       }
     },
@@ -129,6 +122,14 @@ export default {
         this.selectedAnswer = null;
       }
     },
+    startTimer: function(t){
+      if (t === "unlimited"){
+        this.timerOn = false;
+        this.timer = 100;
+      }else{
+        this.timer = parseInt(t);
+      }
+    }
   },
 };
 </script>
