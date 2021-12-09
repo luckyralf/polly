@@ -29,9 +29,15 @@
   </div>
 
   <div  v-else id="result" >
-        <router-link id="routLink" v-bind:to="'/result/' + this.pollId" v-on:click="finishQuiz">
-          {{ uiLabels.seeResult }}
-        </router-link>
+
+    <button v-on:click="finishQuiz"> {{ uiLabels.finishQuiz }}</button>
+
+    <div v-if="quizFinished">
+    <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+       {{ uiLabels.seeResult }}
+    </router-link>
+    </div>
+
   </div>
   </div>
 
@@ -61,6 +67,7 @@ export default {
       showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
+      quizFinished: false,
     };
   },
   created: function () {
@@ -102,6 +109,7 @@ export default {
     finishQuiz: function(){
       if (this.answerSubmitted == true && this.submittedAnswer != null){
         this.$emit("answer", this.submittedAnswer);
+        this.quizFinished = true;
       }
     },
 

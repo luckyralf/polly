@@ -16,11 +16,13 @@
   "pollCreated": "Poll Created: ",
   "orMakeOwn": "Or you can make your own poll here: ",
   "pollResult": "Poll result",
-  "seeResult": "Check result",
+  "finishQuiz": "Finish Quiz",
   "submittedAnswer": "Submitted answer",
   "submitAnswer": "Submit answer",
   "nextQuestion": "Next question",
   "youareonQnumber": "You are on question number ",
   "timePerQuestion": "Select time for each question",
-  "unlimited": "Unlimited"
+  "unlimited": "Unlimited",
+  "seeResult":  "See result,"
+
 }
