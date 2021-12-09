@@ -9,10 +9,12 @@
         <Question v-bind:question="question" v-on:answer="submitAnswer" />
       </div>
 
-      You are on question number {{ this.questionNumber + 1 }}
+      {{uiLabels.youareonQnumber}} {{ this.questionNumber + 1 }}
   
      
     </main>
+
+    <div>{{uiLabels.youareonQnumber}}</div>
 
   </body>
 </template>
@@ -37,17 +39,13 @@ export default {
         a: [],
       },
       data: {},
-      pollId: "inactive poll",
+      pollId: "inactive poll",  
       questionNumber: 0,
       thePoll: {},
       amountQuestions: 0,
     };
   },
   created: function () {
-    
-    socket.on("init", (labels) => {
-      this.uiLabels = labels;
-    });
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {
       pollId: this.pollId,
@@ -57,7 +55,14 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     //försök att få hela pollen
     socket.emit('emitGetPoll',this.pollId);
-    socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
+    socket.on('getPoll',(thePoll) => {
+      this.thePoll = thePoll;
+      socket.emit("pageLoaded", this.thePoll.poll.lang);
+      });
+    
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
   },
   methods: {
     submitAnswer: function (answer) {

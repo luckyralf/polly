@@ -12,11 +12,12 @@
 
 ## Create
 
-- [ ] Göra så att skapade frågor kan tas bort
-- [ ] Göra så att svarsalternativ i skapade frågor kan ändras
-- [x] snygga till formuläret där frågor skapas
-- [ ] Save knapp
-- [ ] Ändra frågor som man redan har skrivit
+- [x] Göra så att skapade frågor kan tas bort
+- [x] Göra så att svarsalternativ i skapade frågor kan ändras
+- [ ] snygga till formuläret där frågor skapas
+- [x] Save knapp
+- [x] Ändra frågor som man redan har skrivit
+- [Lucky] Lägga till ett val av tidsbegränsning per fråga?
 
 ## Generellt
 

@@ -20,7 +20,9 @@
   "submittedAnswer": "Submitted answer",
   "submitAnswer": "Submit answer",
   "nextQuestion": "Next question",
-  "seeResult":  "See result,",
-  "youareonQnumber": "You are on question number "
+  "youareonQnumber": "You are on question number ",
+  "timePerQuestion": "Select time for each question",
+  "unlimited": "Unlimited",
+  "seeResult":  "See result,"
 
 }

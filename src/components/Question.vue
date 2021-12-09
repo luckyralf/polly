@@ -120,6 +120,7 @@ export default {
 };
 </script>
 <style>
+
 #selected {
   background-color: #c73ee1;
 }

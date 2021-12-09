@@ -20,6 +20,8 @@
   "submittedAnswer": "Inlämmnat svar",
   "submitAnswer": "Skicka in svar",
   "nextQuestion": "Nästa fråga",
-  "seeResult":  "Se resultat,",
-  "youareonQnumber": "Du är på fråga nummer "
+  "youareonQnumber": "Du är på fråga nummer ",
+  "timePerQuestion": "Välj tid per fråga",
+  "unlimited": "Obegränsat",
+  "seeResult":  "Se resultat,"
 }

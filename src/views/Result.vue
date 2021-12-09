@@ -126,6 +126,10 @@ export default {
   background-color: #c73ee1;
 }
 
+.resultQuestions:focus {
+  background-color: #c73ee1;
+}
+
 .Wrap {
   background: linear-gradient(to left, #0c2c63, #1941b2);
 
