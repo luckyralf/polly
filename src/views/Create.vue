@@ -1,7 +1,7 @@
 <template>
   <body>
     <header>
-      <h1>Create Cat Poll</h1>
+      <h1>{{uiLabels.createHeader}}</h1>
     </header>
     <main>
       <!-- {{ data }} -->
@@ -52,16 +52,18 @@
             <br />
             <div v-if="data.poll !== undefined && data.poll.questions.length > 0">
               <button
+                class="moveBtn"
                 v-if="data.poll.editQuestion !== 0"
                 v-on:click="moveQuestion('up')"
               >
-                UP
+                ↑
               </button>
               <button
+                class="moveBtn"
                 v-if="data.poll.editQuestion !== data.poll.questions.length - 1"
                 v-on:click="moveQuestion('down')"
               >
-                DOWN
+                ↓
               </button>
             </div>
           </div>
@@ -91,7 +93,7 @@
           <br>
           {{uiLabels.timeObject}}
           <select name="questTime" id="questionTime" v-model="time" v-on:change="saveEditedQuestion">
-              <option value="unlimited" v-on:click="saveEditedQuestion" selected >{{uiLabels.unlimited}}</option>
+              <option value="unlimited" selected> {{uiLabels.unlimited}} </option>
               <option value="10">10</option>
               <option value="30">30</option>
               <option value="60">60</option>
@@ -108,7 +110,7 @@
           
           <br>
 
-          <button v-on:click="deleteQuestion">Delete question</button>
+          <button id="deleteQuestBtn" v-on:click="deleteQuestion">Delete question</button>
 
         </section>
       </div>
@@ -432,8 +434,37 @@ h4 span{
 
 #addQuestBtn {
   margin-top: 1rem;
+  color: white;
+  background-color: #296ad3;
+  border-radius: 5px;
+  padding: 5px;
 }
 
+#addQuestBtn:hover {
+  background-color: #1e51a3;
+}
+
+#deleteQuestBtn {
+  margin-top: 1rem;
+  color: white;
+  background-color: #d32929;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#deleteQuestBtn:hover {
+  background-color: #a31e1e;
+}
+
+.moveBtn {
+  border-radius: 10px;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.moveBtn:hover {
+    background-color: #bfc7dd;
+}
 /* button{
   font-size: 1rem;
   margin-top: 5px;
