@@ -48,20 +48,16 @@
 
 
 <script>
-import io from "socket.io-client";
-const socket = io();
 
 export default {
   name: "Question",
   props: {
     question: Object,
+    uiLabels: Object,
+    amountQuestion: Number,
   },
   data: function () {
     return {
-      uiLabels: {},
-      lang: "",
-      thePoll: {},
-      amountQuestions: 0,
       pollId: "inactive poll",
       questionNumber: 1,
       selectedAnswer: null, //index som anger vilket alternativ som är valt
@@ -85,12 +81,7 @@ export default {
     },
   },
   created: function () {
-    socket.on("init", (labels) => {
-      this.uiLabels = labels;
-    });
     this.pollId = this.$route.params.id;
-    socket.emit("emitGetPoll", this.pollId);
-    socket.on("getPoll", (thePoll) => (this.thePoll = thePoll));
   },
   methods: {
     submitAnswer: function () {
@@ -110,8 +101,8 @@ export default {
         this.submittedAnswer = null;
       }
       console.log(this.questionNumber);
-      console.log(this.thePoll.poll.questions.length);
-      if (this.questionNumber === this.thePoll.poll.questions.length) {
+      console.log(this.amountQuestion);
+      if (this.questionNumber === this.amountQuestion) {
         this.lastQuestion = false;
       }
     },
@@ -213,6 +204,5 @@ export default {
   width: 100px;
   display: grid;
   grid-template-rows: auto auto;
-  position: absolute;
 }
 </style>
