@@ -16,9 +16,12 @@
   "pollCreated": "Poll skapad: ",
   "orMakeOwn": "Eller så skapar du din egna poll här:",
   "pollResult": "Poll resultat",
-  "seeResult": "Se resultat",
+  "finishQuiz": "Avsluta quiz",
   "submittedAnswer": "Inlämmnat svar",
   "submitAnswer": "Skicka in svar",
   "nextQuestion": "Nästa fråga",
-  "youareonQnumber": "Du är på fråga nummer "
+  "youareonQnumber": "Du är på fråga nummer ",
+  "timePerQuestion": "Välj tid per fråga",
+  "unlimited": "Obegränsat",
+  "seeResult":  "Se resultat,"
 }

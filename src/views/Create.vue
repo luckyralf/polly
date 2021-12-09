@@ -92,9 +92,20 @@
           <br />
           <button v-on:click="saveEditedQuestion">Save</button>
           <br />
-          <br />
+          {{uiLabels.timePerQuestion}} 
+          <br>
+          {{uiLabels.timeObject}}
+          <select name="questTime" id="questionTime" v-model="time">
+              <option value="unlimited" selected>{{uiLabels.unlimited}}</option>
+              <option value="10">10</option>
+              <option value="30">30</option>
+              <option value="60">60</option>
+              <option value="90">90</option>
+          </select>
+          <br>
 
           <button v-on:click="deleteQuestion">Delete question</button>
+
         </section>
       </div>
       <!-- Check Result Knapp -->
@@ -129,6 +140,7 @@ export default {
       data: {},
       uiLabels: {},
       pollHeadline: '',
+      time: '',
     };
   },
   created: function () {
@@ -215,7 +227,7 @@ infoFunction: function () {
         pollId: this.pollId,
         questionNumber: this.questionNumber,
       });
-      console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
+      // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
   },
 };

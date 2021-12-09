@@ -73,6 +73,7 @@ export default {
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       timer: 20,
+      quizFinished: false,
     };
   },
 
@@ -125,6 +126,7 @@ watch: {
     finishQuiz: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null) {
         this.$emit("answer", this.submittedAnswer);
+        this.quizFinished = true;
       }
     },
 
