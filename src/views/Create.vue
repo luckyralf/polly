@@ -44,17 +44,13 @@
             </div>
           </div>
           <div>
-            <button
-              id="addQuestBtn"
-              v-on:click="addQuestion(data.poll.questions.length)"
-            >
+            <button id="addQuestBtn"
+                    v-on:click="addQuestion(data.poll.questions.length)">
               {{ uiLabels.addQuestion }}
             </button>
             <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
-            <div
-              v-if="data.poll !== undefined && data.poll.questions.length > 0"
-            >
+            <div v-if="data.poll !== undefined && data.poll.questions.length > 0">
               <button
                 v-if="data.poll.editQuestion !== 0"
                 v-on:click="moveQuestion('up')"
@@ -95,26 +91,36 @@
           {{uiLabels.timePerQuestion}} 
           <br>
           {{uiLabels.timeObject}}
-          <select name="questTime" id="questionTime" v-model="time">
-              <option value="unlimited" selected>{{uiLabels.unlimited}}</option>
+          <select name="questTime" id="questionTime" v-model="time" >
+              <option value="unlimited" selected >{{uiLabels.unlimited}}</option>
               <option value="10">10</option>
               <option value="30">30</option>
               <option value="60">60</option>
               <option value="90">90</option>
           </select>
+
+          <!-- <option v-for="(_, i) in uiLabels.timeArray" 
+                      v-bind:key="i" 
+                      v-model="uiLabels.timeArray[i]"/>
+
+          <option v-for="(_, i) in uiLabels.timeArray" v-bind:key="i" > 
+                {{uiLabels.timeArray[i]}}
+          </option> -->
+          
           <br>
 
           <button v-on:click="deleteQuestion">Delete question</button>
 
         </section>
       </div>
+      {{data}}
       <!-- Check Result Knapp -->
       <div id="result">
-        <input id="questNrBox" type="number" v-model="questionNumber" />
+        <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
 
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
-        </button>
+        </button> -->
 
         <router-link id="routerLink" v-bind:to="'/result/' + pollId">
           {{ uiLabels.checkResultsText }}
@@ -163,6 +169,7 @@ export default {
         q: this.question,
         // a: this.answers,
         a: this.answers,
+        t: this.time
       });
     },
 
@@ -182,6 +189,7 @@ infoFunction: function () {
       });
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
+      this.time = this.data.poll.questions[indexForChosenQuestion].t;
     },
     moveQuestion: function (direction) {
       console.log("moveQuestion fungerar", direction);
