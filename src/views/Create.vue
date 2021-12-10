@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="wrapper">
+      <div v-if="data.poll !== undefined" class="wrapper">
         <section id="questSection">
           <h4 v-if="pollHeadline !== ''">
             {{ uiLabels.pollCreated }} <span> {{ pollHeadline }}</span>
@@ -153,7 +153,10 @@
       </div>
       {{ data }}
       <!-- Check Result Knapp -->
-      <div id="result">
+      <div
+        v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        id="result"
+      >
         <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
 
         <button v-on:click="runQuestion">
