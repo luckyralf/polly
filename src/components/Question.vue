@@ -135,9 +135,7 @@ export default {
 </script>
 <style>
 
-.selected {
-  background-color: #c73ee1;
-}
+
 
 #submitAnswerButton {
   padding: 10px;
@@ -170,8 +168,7 @@ export default {
 }
 
 .isClicked {
-  
-  background-color:  #3ac7ff;
+  background-color:#3ac7ff;
   border: outset 3px white;
   width: 500px;
   height: 60px;
@@ -187,6 +184,9 @@ export default {
   cursor: pointer;
 }
 .isClicked:active {
+  background-color: #c73ee1;
+}
+.selected, .selected:hover {
   background-color: #c73ee1;
 }
 

@@ -3,6 +3,11 @@
     <header>
       <h1>{{ pollId }}</h1>
     </header>
+    
+     <div class="bars">
+           <div class="answered" v-bind:style="{width: 700/thePoll.poll.questions.length*questionNumber + 'px'}">
+            </div>
+     </div>
 
     <main>
       <div>
@@ -21,13 +26,10 @@
               <div
                 class="numberOfQuestions"
                 type="number"
-                v-bind="index"
-                v-on:click="selectQuestion(index - 1)"
-                >
+                v-bind="index">
                   {{uiLabels.question}} {{ index }}
                 
-                </div>
-                
+                </div>   
     </div>
 
   </body>
@@ -130,6 +132,22 @@ body {
   margin: 0;
   padding: 2rem 0 5rem 0;
   align-content: center;
+}
+
+.bars {
+  height: 50px;
+  width: 700px;
+  margin-left: 350px;
+  margin-top: 50px;
+  background-color: #d794e3;
+  border: solid 2px white;
+}
+.answered {
+  background-image: url(https://wallpaperbat.com/img/262866-cute-pink-cat-wallpaper-cute-cat-wallpaper.png);
+  background-position: bottom; 
+  background-size: 460px;
+  height: 100%;
+  width: 0%;
 }
 
 </style>
