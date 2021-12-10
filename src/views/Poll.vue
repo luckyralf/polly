@@ -17,6 +17,19 @@
      
     </main>
 
+    <div v-for="index in thePoll.poll.questions.length" :key="index">
+              <div
+                class="numberOfQuestions"
+                type="number"
+                v-bind="index"
+                v-on:click="selectQuestion(index - 1)"
+                >
+                  {{uiLabels.question}} {{ index }}
+                
+                </div>
+                
+    </div>
+
   </body>
 </template>
 

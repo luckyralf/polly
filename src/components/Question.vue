@@ -2,7 +2,6 @@
   <div class="questionWrap">
     <p id="question">{{ uiLabels.question }} {{ question.q }}</p>
 
-    <div class="answerAlt">
       <button
         v-for="(a, index) in question.a"
         v-bind:class="{ selected: index === selectedAnswer }"
@@ -10,12 +9,12 @@
         v-bind:key="a"
         class="isClicked"
       >
-        {{ a }}
-      </button>
-    </div>
 
-    <div class="timer" v-on="startTimer(question.t)" >
-      <span v-if="timerOn">{{ timer }}</span>
+       <span id= "a" > {{ a }}</span>
+      </button>
+
+    <div class="timer" >
+      <span >{{ timer }}</span>
     </div>
 
     <div>
@@ -122,51 +121,65 @@ export default {
         this.selectedAnswer = null;
       }
     },
-    startTimer: function(t){
+    setTimer: function(t){
       if (t === "unlimited"){
         this.timerOn = false;
         this.timer = 100;
       }else{
         this.timer = parseInt(t);
       }
+      
     }
   },
 };
 </script>
 <style>
 
-#selected {
+.selected {
   background-color: #c73ee1;
 }
 
 #submitAnswerButton {
   padding: 10px;
   margin-top: 10px;
+  background-color: #d794e3 ;
+  color: white;
+  border: 3px solid #ffffce;
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
 }
 
 #finishQuizButton {
+  background-color: #d794e3;
+  color: white;
+  border: 3px solid #ffffce;
   padding: 10px;
-  margin-left: 75px
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
+  margin-bottom: 30px;
 }
 
 #nextQuestionButton {
+  background-color: #1313ad;
+  color: white;
+  border: 3px solid #ffffce;
   padding: 10px;
   margin-top: 10px;
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
 }
 
 .isClicked {
-  background-color: #88ddff;
+  
+  background-color:  #3ac7ff;
+  border: outset 3px white;
   width: 500px;
   height: 60px;
   font-family: "Outfit", sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   border-radius: 3px;
   color: white;
-  display: grid;
-  grid-gap: 100px;
-  grid-template-rows: 300px 300px;
-  margin-left: 220px;
-  grid-row: questionNumber;
+  margin-top: 5px;
 }
 
 .isClicked:hover {
@@ -177,8 +190,12 @@ export default {
   background-color: #c73ee1;
 }
 
+#a{
+  
+}
+
 .questionWrap {
-  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+  background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
   border: solid 5px;
   border-radius: 20px;
   padding: 1rem;
@@ -187,12 +204,10 @@ export default {
   margin-left: 200px;
   margin-right: 200px;
   position: center;
-  font-size: 25px;
+  font-size: 20px;
+  padding-bottom: 50px
 }
 
-.answerAlt {
-  font-size: 50px;
-}
 
 #question {
   color: white;
@@ -205,16 +220,11 @@ export default {
   background: #20af19;
   border-radius: 6px;
   border: solid #229954;
-  margin: 1rem 0;
-  margin-top: 40px;
-  font-size: 1.5rem;
-  padding: 2px;
+  font-size: 2rem;
+  padding: 20px;
+
 }
 
 #result {
-  margin-left: 38%;
-  width: 100px;
-  display: grid;
-  grid-template-rows: auto auto;
 }
 </style>
