@@ -1,7 +1,9 @@
 {
   "sales-pitch": "Simply. Great. Polling.",
+  "createHeader": "Create Cat Poll",
   "invite": "Invite participants with this link:",
   "createPoll": "Create poll",
+  "pollLinkname": "Write the name of your poll here",
   "participatePoll": "Participate in poll",
   "question": "Question: ",
   "changeLanguage": "Svenska",
@@ -23,7 +25,9 @@
   "youareonQnumber": "You are on question number ",
   "timePerQuestion": "Select time for each question",
   "unlimited": "Unlimited",
-  "seeResult": "See result,",
-  "initialQuestionName": "Edit me",
-  "deleteQuestion": "Delete question"
+  "seeResult":  "See result",
+  "startpageInfoHeader": "Do you need help?",
+  "startpageInfoContent": "You can chose to either join a friends poll, or make your own! It doesn't take very long, mjau... You will get your poll id from the person who made the poll.",
+  "createpageInfoHeader": "Need help?",
+  "createpageInfoContent": "To create your own poll, simply write a poll id name in the text field and press the green button, then follow the guide!"
 }

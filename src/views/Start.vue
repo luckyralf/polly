@@ -47,15 +47,13 @@
       ></button>
       <div id="infoDIV">
         <div class="infoHeader">
-          <div class="infoTitle">Do you need help ~mjau~?</div>
+          <div class="infoTitle">{{ uiLabels.startpageInfoHeader }}</div>
           <button v-on:click="infoFunction()" class="closeButton catPawCursor">
             X
           </button>
         </div>
         <p class="infoText">
-          <b> Information:</b> You can chose to either join a friends poll, or
-          make your own! It doesn't take very long, mjau... You will get your
-          poll id from the person who made the poll.
+          <b> Information:</b> {{ uiLabels.startpageInfoContent }}
         </p>
       </div>
     </div>

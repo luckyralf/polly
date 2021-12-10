@@ -1,7 +1,9 @@
 {
   "sales-pitch": "Svar. Helt. Enkelt.",
+  "createHeader": "Skapa Cat Poll",
   "invite": "Bjud in deltagare med den här länken:",
   "createPoll": "Skapa röstning",
+  "pollLinkname": "Skriv vad din poll ska heta här",
   "participatePoll": "Delta i röstning",
   "question": "Fråga: ",
   "changeLanguage": "English",
@@ -23,7 +25,9 @@
   "youareonQnumber": "Du är på fråga nummer ",
   "timePerQuestion": "Välj tid per fråga",
   "unlimited": "Obegränsat",
-  "seeResult": "Se resultat,",
-  "initialQuestionName": "Ändra mig",
-  "deleteQuestion": "Ta bort fråga"
+  "seeResult":  "Se resultat",
+  "startpageInfoHeader": "Behöver du hjälp?",
+  "startpageInfoContent": "Du kan välja att delta i en väns poll, eller skapa din egen! Det tar inte lång tid, mjau... Du kommer få pollkoden av personen som gjort pollen.",
+  "createpageInfoHeader": "Behöver du hjälp?",
+  "createpageInfoContent": "För att göra din egna poll behöver du bara skriva in ett pollnamn och trycka på den gröna knappen och sedan följ tipsen!"
 }

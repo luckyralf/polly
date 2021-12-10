@@ -13,8 +13,8 @@
         {{ a }}
       </button>
     </div>
-    <div class="timer" >
-      <span >{{ timer }}</span>
+    <div class="timer" v-on="startTimer(question.t)" >
+      <span v-if="timerOn">{{ timer }}</span>
     </div>
 
     <div>
@@ -121,14 +121,14 @@ export default {
         this.selectedAnswer = null;
       }
     },
-    setTimer: function(t){
+    startTimer: function(t){
       if (t === "unlimited"){
         this.timerOn = false;
         this.timer = 100;
       }else{
         this.timer = parseInt(t);
       }
-      
+
     }
   },
 };
