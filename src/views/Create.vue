@@ -13,28 +13,34 @@
         <button v-on:click="createPoll">
           {{ uiLabels.createPoll }}
         </button>
-        
 
-      <button v-on:click="infoFunction()" class="infoButton2 catPawCursor"></button>
-      <div id="infoDIV">
-        <div class="infoHeader">
-          <div class="infoTitle">HELLO</div>
-            <button v-on:click="infoFunction()" class="closeButton catPawCursor">
-            X </button>
+        <button
+          v-on:click="infoFunction()"
+          class="infoButton2 catPawCursor"
+        ></button>
+        <div id="infoDIV">
+          <div class="infoHeader">
+            <div class="infoTitle">HELLO</div>
+            <button
+              v-on:click="infoFunction()"
+              class="closeButton catPawCursor"
+            >
+              X
+            </button>
+          </div>
+          <p class="infoText">
+            <b> Information:</b> You can chose to either join a friends poll, or
+            make your own! It doesn't take very long, mjau... You will get your
+            poll id from the person who made the poll.
+          </p>
         </div>
-        <p class="infoText">
-          <b> Information:</b> You can chose to either join a friends poll, or
-          make your own! It doesn't take very long, mjau... You will get your
-          poll id from the person who made the poll.
-        </p>
       </div>
-    
 
-    </div>
-      
       <div class="wrapper">
         <section id="questSection">
-          <h4 v-if="pollHeadline !== '' ">{{uiLabels.pollCreated}} <span> {{pollHeadline}}</span></h4>
+          <h4 v-if="pollHeadline !== ''">
+            {{ uiLabels.pollCreated }} <span> {{ pollHeadline }}</span>
+          </h4>
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
@@ -44,13 +50,17 @@
             </div>
           </div>
           <div>
-            <button id="addQuestBtn"
-                    v-on:click="addQuestion(data.poll.questions.length)">
+            <button
+              id="addQuestBtn"
+              v-on:click="addQuestion(data.poll.questions.length)"
+            >
               {{ uiLabels.addQuestion }}
             </button>
             <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
-            <div v-if="data.poll !== undefined && data.poll.questions.length > 0">
+            <div
+              v-if="data.poll !== undefined && data.poll.questions.length > 0"
+            >
               <button
                 v-if="data.poll.editQuestion !== 0"
                 v-on:click="moveQuestion('up')"
@@ -88,15 +98,15 @@
           <br />
           <button v-on:click="saveEditedQuestion">Save</button>
           <br />
-          {{uiLabels.timePerQuestion}} 
-          <br>
-          {{uiLabels.timeObject}}
-          <select name="questTime" id="questionTime" v-model="time" >
-              <option value="unlimited" selected >{{uiLabels.unlimited}}</option>
-              <option value="10">10</option>
-              <option value="30">30</option>
-              <option value="60">60</option>
-              <option value="90">90</option>
+          {{ uiLabels.timePerQuestion }}
+          <br />
+          {{ uiLabels.timeObject }}
+          <select name="questTime" id="questionTime" v-model="time">
+            <option value="unlimited" selected>{{ uiLabels.unlimited }}</option>
+            <option value="10">10</option>
+            <option value="30">30</option>
+            <option value="60">60</option>
+            <option value="90">90</option>
           </select>
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
@@ -106,14 +116,13 @@
           <option v-for="(_, i) in uiLabels.timeArray" v-bind:key="i" > 
                 {{uiLabels.timeArray[i]}}
           </option> -->
-          
-          <br>
+
+          <br />
 
           <button v-on:click="deleteQuestion">Delete question</button>
-
         </section>
       </div>
-      {{data}}
+      {{ data }}
       <!-- Check Result Knapp -->
       <div id="result">
         <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
@@ -145,8 +154,8 @@ export default {
       questionNumber: 1,
       data: {},
       uiLabels: {},
-      pollHeadline: '',
-      time: '',
+      pollHeadline: "",
+      time: "",
     };
   },
   created: function () {
@@ -169,11 +178,11 @@ export default {
         q: this.question,
         // a: this.answers,
         a: this.answers,
-        t: this.time
+        t: this.time,
       });
     },
 
-infoFunction: function () {
+    infoFunction: function () {
       var x = document.getElementById("infoDIV");
       if (x.style.display === "none") {
         x.style.display = "block";
@@ -210,7 +219,6 @@ infoFunction: function () {
     },
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      
     },
     addQuestion: function (indexForAddedQuestion) {
       socket.emit("addQuestion", {
@@ -322,7 +330,7 @@ main {
   margin: 0;
   margin-bottom: 0.5em;
 }
-h4 span{
+h4 span {
   font-size: 1.5rem;
 }
 

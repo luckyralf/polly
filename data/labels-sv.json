@@ -23,5 +23,6 @@
   "youareonQnumber": "Du är på fråga nummer ",
   "timePerQuestion": "Välj tid per fråga",
   "unlimited": "Obegränsat",
-  "seeResult":  "Se resultat,"
+  "seeResult": "Se resultat,",
+  "initialQuestionName": "Ändra mig"
 }

@@ -23,6 +23,6 @@
   "youareonQnumber": "You are on question number ",
   "timePerQuestion": "Select time for each question",
   "unlimited": "Unlimited",
-  "seeResult":  "See result,"
-
+  "seeResult": "See result,",
+  "initialQuestionName": "Edit me"
 }
