@@ -29,5 +29,6 @@
   "startpageInfoHeader": "Behöver du hjälp?",
   "startpageInfoContent": "Du kan välja att delta i en väns poll, eller skapa din egen! Det tar inte lång tid, mjau... Du kommer få pollkoden av personen som gjort pollen.",
   "createpageInfoHeader": "Behöver du hjälp?",
-  "createpageInfoContent": "För att göra din egna poll behöver du bara skriva in ett pollnamn och trycka på den gröna knappen och sedan följ tipsen!"
+  "createpageInfoContent": "För att göra din egna poll behöver du bara skriva in ett pollnamn, exempelvis Min Poll, och trycka på den gröna knappen och sedan följ tipsen!",
+  "createpageDeleteQuestion": "Radera denna fråga"
 }
