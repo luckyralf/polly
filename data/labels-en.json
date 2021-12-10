@@ -24,5 +24,6 @@
   "timePerQuestion": "Select time for each question",
   "unlimited": "Unlimited",
   "seeResult": "See result,",
-  "initialQuestionName": "Edit me"
+  "initialQuestionName": "Edit me",
+  "deleteQuestion": "Delete question"
 }

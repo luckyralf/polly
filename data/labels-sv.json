@@ -24,5 +24,6 @@
   "timePerQuestion": "Välj tid per fråga",
   "unlimited": "Obegränsat",
   "seeResult": "Se resultat,",
-  "initialQuestionName": "Ändra mig"
+  "initialQuestionName": "Ändra mig",
+  "deleteQuestion": "Ta bort fråga"
 }

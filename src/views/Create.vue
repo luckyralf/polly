@@ -1,7 +1,7 @@
 <template>
   <body>
     <header>
-      <h1>Create Cat Poll</h1>
+      <h1>{{ uiLabels.createHeader }}</h1>
     </header>
     <main>
       <!-- {{ data }} -->
@@ -44,7 +44,10 @@
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
-              <button v-on:click="chooseQuestion(index - 1)">
+              <button
+                class="questionButtons"
+                v-on:click="chooseQuestion(index - 1)"
+              >
                 {{ data.poll.questions[index - 1].q }}
               </button>
             </div>
@@ -62,16 +65,18 @@
               v-if="data.poll !== undefined && data.poll.questions.length > 0"
             >
               <button
+                class="moveBtn"
                 v-if="data.poll.editQuestion !== 0"
                 v-on:click="moveQuestion('up')"
               >
-                UP
+                ↑
               </button>
               <button
+                class="moveBtn"
                 v-if="data.poll.editQuestion !== data.poll.questions.length - 1"
                 v-on:click="moveQuestion('down')"
               >
-                DOWN
+                ↓
               </button>
             </div>
           </div>
@@ -85,23 +90,45 @@
           <br />
 
           {{ uiLabels.question }}
-          <textarea type="text" v-model="question" />
+          <textarea
+            v-on:input="saveEditedQuestion"
+            type="text"
+            v-model="question"
+          />
           {{ uiLabels.answerText }} <br />
           <input
             v-for="(_, i) in answers"
             v-model="answers[i]"
             v-bind:key="'answer' + i"
+            v-on:input="saveEditedQuestion"
           />
+          <button
+            v-on:click="
+              addAnswer();
+              saveEditedQuestion();
+            "
+          >
+            +
+          </button>
+          <button
+            v-on:click="
+              delAnswer();
+              saveEditedQuestion();
+            "
+          >
+            -
+          </button>
           <br />
-          <button v-on:click="addAnswer">+</button>
-          <button v-on:click="delAnswer">-</button>
-          <br />
-          <button v-on:click="saveEditedQuestion">Save</button>
           <br />
           {{ uiLabels.timePerQuestion }}
           <br />
           {{ uiLabels.timeObject }}
-          <select name="questTime" id="questionTime" v-model="time">
+          <select
+            name="questTime"
+            id="questionTime"
+            v-model="time"
+            v-on:change="saveEditedQuestion"
+          >
             <option value="unlimited" selected>{{ uiLabels.unlimited }}</option>
             <option value="10">10</option>
             <option value="30">30</option>
@@ -119,7 +146,9 @@
 
           <br />
 
-          <button v-on:click="deleteQuestion">Delete question</button>
+          <button id="deleteQuestBtn" v-on:click="deleteQuestion">
+            {{ uiLabels.deleteQuestion }}
+          </button>
         </section>
       </div>
       {{ data }}
@@ -341,6 +370,26 @@ h4 span {
   grid-template-columns: 100%;
 }
 
+.questionButtons {
+  color: white;
+  padding: 10px;
+  background-color: hsl(202, 92%, 68%);
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.questionButtons:hover {
+  background-color: #d794e3;
+}
+
+.questionButtons:active {
+  background-color: #c73ee1;
+}
+
+.questionButtons:focus {
+  background-color: #c73ee1;
+}
+
 #infoDIV {
   position: fixed;
   top: 55%;
@@ -421,8 +470,37 @@ h4 span {
 
 #addQuestBtn {
   margin-top: 1rem;
+  color: white;
+  background-color: #296ad3;
+  border-radius: 5px;
+  padding: 5px;
 }
 
+#addQuestBtn:hover {
+  background-color: #1e51a3;
+}
+
+#deleteQuestBtn {
+  margin-top: 1rem;
+  color: white;
+  background-color: #d32929;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#deleteQuestBtn:hover {
+  background-color: #a31e1e;
+}
+
+.moveBtn {
+  border-radius: 10px;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.moveBtn:hover {
+  background-color: #bfc7dd;
+}
 /* button{
   font-size: 1rem;
   margin-top: 5px;
