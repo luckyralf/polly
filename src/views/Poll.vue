@@ -148,6 +148,7 @@ body {
   background-size: 460px;
   height: 100%;
   width: 0%;
+  max-width: 100%;
 }
 
 </style>

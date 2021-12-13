@@ -1,6 +1,6 @@
 <template>
   <div class="questionWrap">
-    <p id="question">{{ uiLabels.question }} {{ question.q }}</p>
+    <p id="question">{{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}</p>
 
       <button
         v-for="(a, index) in question.a"
@@ -28,7 +28,7 @@
     </div>
     <br />
 
-    <div>
+    <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button id="nextQuestionButton" v-on:click="answer">{{ uiLabels.nextQuestion }}</button>
       </div>
