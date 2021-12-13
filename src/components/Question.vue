@@ -1,7 +1,6 @@
 <template>
   <div class="questionWrap">
     <p id="question">{{ uiLabels.question }} {{ question.q }}</p>
-
       <button
         v-for="(a, index) in question.a"
         v-bind:class="{ selected: index === selectedAnswer }"
