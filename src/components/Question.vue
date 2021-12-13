@@ -1,6 +1,7 @@
 <template>
   <div class="questionWrap">
     <p id="question">{{ uiLabels.question }} {{ question.q }}</p>
+    <p> av totalt antal {{ amountQuestion }} frågor</p>
       <button
         v-for="(a, index) in question.a"
         v-bind:class="{ selected: index === selectedAnswer }"
