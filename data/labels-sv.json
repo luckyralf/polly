@@ -9,7 +9,7 @@
   "changeLanguage": "English",
   "pollLink": "Poll länk: ",
   "writePollId": "Skriv poll id:",
-  "answerText": "Svar: ",
+  "answerText": "Svarsalternativ: ",
   "addAnswer": "Lägg till svarsalternativ",
   "addQuestion": "Lägg till fråga",
   "delAnswer": "Ta bort svarsalternativ",
