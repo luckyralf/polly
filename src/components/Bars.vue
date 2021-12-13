@@ -24,9 +24,17 @@ export default {
 <style scoped>
 .bar {
   display: inline-block;
-  width: 50px;
+  width: 60px;
   vertical-align: bottom;
-  margin: 5px;
+  margin: 7px;
+  font-family:"Exo 2", sans-serif;
+  color:white;
+  text-shadow: 
+      0 0 10px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa;
 }
 
 .bar span {
@@ -34,19 +42,19 @@ export default {
   top: -1.2em;
 }
 .bar:nth-child(1) div:nth-child(1) {
-  background-color:red;
+  background-color:#EACBD2;
 }
 .bar:nth-child(2) div:nth-child(1) {
-  background-color:blue;
+  background-color:#DFAEB4;
 }
 .bar:nth-child(3) div:nth-child(1) {
-  background-color:teal;
+  background-color:#DD9AC2;
 }
 .bar:nth-child(4) div:nth-child(1) {
-  background-color:purple;
+  background-color:#B486AB;
 }
 .bar:nth-child(5) div:nth-child(1) {
-  background-color:yellow;
+  background-color:#82667F;
 }
 
 .wrapper {

@@ -5,7 +5,7 @@
   "createPoll": "Create poll",
   "pollLinkname": "Write the name of your poll here",
   "participatePoll": "Participate in poll",
-  "question": "Question: ",
+  "question": "Question ",
   "changeLanguage": "Svenska",
   "pollLink": "Poll link: ",
   "writePollId": "Write poll id:",
@@ -30,5 +30,6 @@
   "startpageInfoContent": "You can chose to either join a friends poll, or make your own! It doesn't take very long, mjau... You will get your poll id from the person who made the poll.",
   "createpageInfoHeader": "Need help?",
   "createpageInfoContent": "To create your own poll, simply write a poll id name in the text field, for example My Poll, and press the green button, then follow the guide!",
-  "createpageDeleteQuestion": "Delete this question"
+  "createpageDeleteQuestion": "Delete this question",
+  "totalAmountofQuestions": "Total number of questions: "
 }
