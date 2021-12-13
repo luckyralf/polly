@@ -17,7 +17,7 @@
 - [ ] snygga till formuläret där frågor skapas
 - [x] Save knapp
 - [x] Ändra frågor som man redan har skrivit
-- [Lucky] Lägga till ett val av tidsbegränsning per fråga
+- [Lucky] Lägga till ett val av tidsbegränsning per fråga?
 
 ## Generellt
 
@@ -27,10 +27,11 @@
 - [x] Liten tass som cursor
 - [x] Meow vid språkbyte
 - [ ] Tillbaka-knapp på typ alla sidor
+- [ ] uiLabels på infoknappar
 
 ## Results
 
-- [ ] Få in de valda svaren (logik)
+- [x] Få in de valda svaren (logik)
 - [ ] Layout för svarsrepresentation
 - [ ]
 - [ ]

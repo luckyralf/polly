@@ -120,14 +120,14 @@ export default {
         this.selectedAnswer = null;
       }
     },
-    setTimer: function(t){
+    startTimer: function(t){
       if (t === "unlimited"){
         this.timerOn = false;
         this.timer = 100;
       }else{
         this.timer = parseInt(t);
       }
-      
+
     }
   },
 };
