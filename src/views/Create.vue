@@ -9,7 +9,12 @@
       <!-- {{ data.poll.editQuestion }} -->
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
-        <input type="text" placeholder= "Write the name of your poll" v-model="pollId" class="catPawTextCursor" />
+        <input
+          type="text"
+          placeholder="Write the name of your poll"
+          v-model="pollId"
+          class="catPawTextCursor"
+        />
         <button class="createPollBtn catPawCursor" v-on:click="createPoll">
           {{ uiLabels.createPoll }}
         </button>
@@ -29,7 +34,7 @@
             </button>
           </div>
           <p class="infoText">
-            <b> Information:</b> {{uiLabels.createpageInfoContent}}
+            <b> Information:</b> {{ uiLabels.createpageInfoContent }}
           </p>
         </div>
       </div>
@@ -37,7 +42,8 @@
       <div v-if="data.poll !== undefined" class="wrapper">
         <section id="questSection">
           <h4 v-if="pollHeadline !== ''">
-            {{ uiLabels.pollCreated }} <span id="pollHeadLine"> {{ pollHeadline }}</span>
+            {{ uiLabels.pollCreated }}
+            <span id="pollHeadLine"> {{ pollHeadline }}</span>
           </h4>
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
@@ -369,7 +375,7 @@ main {
 }
 
 .createPollBtn:hover {
-    background-color: #188513;
+  background-color: #188513;
 }
 
 #formSection,
