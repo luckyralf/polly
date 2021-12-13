@@ -1,7 +1,8 @@
 <template>
   <div class="questionWrap">
-    <p id="question">{{ uiLabels.question }} {{ question.q }}</p>
-
+    
+    <p id="question">{{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}</p>
+    <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p>
       <button
         v-for="(a, index) in question.a"
         v-bind:class="{ selected: index === selectedAnswer }"
@@ -28,7 +29,7 @@
     </div>
     <br />
 
-    <div>
+    <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button id="nextQuestionButton" v-on:click="answer">{{ uiLabels.nextQuestion }}</button>
       </div>
@@ -90,7 +91,7 @@ export default {
       this.submittedAnswer = this.question.a[this.selectedAnswer];
       console.log(this.submittedAnswer);
       this.answerSubmitted = true;
-      this.questionNumber = this.questionNumber + 1;
+      //this.questionNumber = this.questionNumber + 1;
     },
     answer: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null) {
@@ -102,6 +103,7 @@ export default {
       }
       console.log(this.questionNumber);
       console.log(this.amountQuestion);
+      this.questionNumber = this.questionNumber + 1;
       if (this.questionNumber === this.amountQuestion) {
         this.lastQuestion = false;
       }
@@ -148,7 +150,7 @@ export default {
 }
 
 #finishQuizButton {
-  background-color: #d794e3;
+  background-color: #1313ad;;
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
