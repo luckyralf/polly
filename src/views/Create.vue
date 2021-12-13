@@ -92,6 +92,7 @@
             v-on:input="saveEditedQuestion"
             type="text"
             v-model="question"
+            class = "inputQuestion"
           />
           {{ uiLabels.answerText }} <br />
           <input
@@ -99,6 +100,7 @@
             v-model="answers[i]"
             v-bind:key="'answer' + i"
             v-on:input="saveEditedQuestion"
+            class = "inputAnswers"
           />
           <button
             v-on:click="
@@ -488,17 +490,37 @@ h4 span {
 #formSection {
   text-align: center;
   grid-column: 2;
+  width:400px;
+  margin-left:120px;
 }
 
-#formSection,
+/*#formSection,*/
 #result {
   width: min-content;
 }
 
+.inputQuestion{
+  max-width:400px;
+  max-height:70px;
+  min-height:60px;
+  min-width:350px;
+  font-family: "Outfit", sans-serif;
+  font-size:19px;
+}
+
+.inputAnswers{
+  font-family: "Outfit", sans-serif;
+  display:grid;
+  grid-template-rows:auto auto;
+  margin-left:120px;
+  background:#d794e3;
+  font-size:15px;
+}
 #result {
   margin-left: 38%;
   display: grid;
   grid-template-rows: auto auto;
+  
 }
 
 #pollHeadLine {
