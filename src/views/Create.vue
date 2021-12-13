@@ -277,12 +277,12 @@ export default {
       socket.emit("addQuestion", {
         pollId: this.pollId,
         // q: this.question,
-        q: "EDIT ME",
+        q: this.uiLabels.editMe,
         // a: this.answers,
         a: ["", ""],
         indexForAddedQuestion,
       });
-      this.question = "EDIT ME";
+      this.question = this.uiLabels.editMe;
       this.answers = ["", ""];
     },
     addAnswer: function () {

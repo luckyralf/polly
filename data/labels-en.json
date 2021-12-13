@@ -33,5 +33,6 @@
   "createpageInfoContent": "To create your own poll, simply write a poll id name in the text field, for example My Poll, and press the green button, then follow the guide!",
   "createpageDeleteQuestion": "Delete this question",
   "totalAmountofQuestions": "Total number of questions: ",
-  "confirmDeletePoll": "Are you sure you want to delete the poll?"
+  "confirmDeletePoll": "Are you sure you want to delete the poll?",
+  "editMe": "Edit me"
 }
