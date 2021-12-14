@@ -176,7 +176,7 @@ export default {
   height: 60px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
   color: white;
   margin-top: 5px;
 }
@@ -214,6 +214,7 @@ export default {
 #question {
   color: white;
   font-size: 40px;
+  font-family: "Outfit", sans-serif;
 }
 
 #routLink {

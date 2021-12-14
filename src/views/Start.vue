@@ -23,24 +23,6 @@
           "
         ></button>
 
-        <!--  <button class="infoButton"> INFO(dont press) </button>
-        <div class = "modal">
-          <div class = "infoHeader"> 
-            <div class = "title"> HELLO WORLD </div> 
-          <button class = "closeButton">X</button></div>
-          <div class = "infoBody"> Lorem Impsum dolor sit amet consectetur adipisicing
-              lorem Impsum dolor sit amet consectetur adipisicing
-              Lorem Impsum dolor sit amet consectetur adipisicing
-                dolor sit amet consectetur adipisicing lorum 
-           </div>
-        </div>
-        
-
-        <div id = "infoOverlay"> </div>
-        -->
-
-        <!-- <button v-on:click="playSound">meow</button> -->
-
         <button
           v-on:click="infoFunction()"
           class="infoButton2 catPawCursor"
@@ -55,9 +37,6 @@
               X
             </button>
           </div>
-          <p class="infoText">
-            <b> Information:</b> {{ uiLabels.startpageInfoContent }}
-          </p>
         </div>
       </div>
 
