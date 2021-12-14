@@ -23,7 +23,7 @@
         </div>
         <div>
           <!-- här kommer pie -->
-          <Pie v-model:data="data" />
+          <Pie v-bind:data="data" />
         </div>
       </div>
     </main>

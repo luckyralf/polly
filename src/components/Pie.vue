@@ -1,6 +1,6 @@
 <template>
   <div class="pie">
-      {{this.percentageArray}}
+      {{data}}
   </div>
 </template>
 
@@ -13,8 +13,8 @@ export default {
   data: function () {
     return {
       percentageArray: [],
+      colorArray: [],
       totalQanswered: 0,
-      randomColor: '',
     };
   },
   created: function () {
@@ -27,15 +27,18 @@ export default {
       //percentage funkar
         let percentage = (value / this.totalQanswered)*100;
         this.percentageArray[key] = percentage;
+        let randomColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
+        this.colorArray.push(randomColor)
     }
     console.log(this.percentageArray);
-    // return percentageArray;
-    this.randomColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
-    console.log(this.randomColor)
-
-    //this.randomcolor och this.percentageArray {a1: 50, a2: 50} funkar
-    
+    console.log(this.colorArray);    
   },
+  // methods: {
+  //   changePie: function(data) {
+
+  //       document.getElementsByClassName("pie").style.background = conic-gradient()
+  //   },
+  // }
 
 };
 </script>
