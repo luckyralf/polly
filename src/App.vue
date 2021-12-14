@@ -1,17 +1,22 @@
 <template>
   <Sidebar />
-  <div>
+  <div :style="{ 'margin-left': sidebarWidth }">
     <router-view />
   </div>
 </template>
 
 <script>
-import { defineComponent } from "@vue/composition-api";
-import Sidebar from "@components/sidebar/Sidebar";
+// import { defineComponent } from "@vue/composition-api";
+import Sidebar from "@/components/sidebar/Sidebar";
+import { sidebarWidth } from "@/components/sidebar/state";
 
-export default defineComponent({
-  setup() {},
-});
+export default {
+  props: {},
+  setup() {
+    return { sidebarWidth };
+  },
+  components: { Sidebar },
+};
 </script>
 
 <style>
@@ -39,30 +44,4 @@ export default defineComponent({
 }
 
 /* Klass för menyn */
-
-:root {
-  --sidebar-bg-color: blue;
-  --sidebar-item-hover: red;
-  --sidebar-item-active: yellow;
-}
-</style>
-
-<style scoped>
-.sidebar {
-  color: white;
-  background-color: var(--sidebar-bg-color);
-
-  float: left;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  padding: 0.5em;
-
-  transition: 0.3s ease;
-
-  display: flex;
-  flex-direction: column;
-}
 </style>
