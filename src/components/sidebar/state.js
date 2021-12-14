@@ -1,5 +1,5 @@
 import { ref, computed } from "vue";
-import "@fortawesome/fontawesome-free/js/all";
+// import "@fortawesome/fontawesome-free/js/all";
 
 export const collapsed = ref(false);
 export const toggleSidebar = () => (collapsed.value = !collapsed.value);
