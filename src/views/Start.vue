@@ -91,6 +91,7 @@ export default {
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels;
+      console.log("fuck you");
     });
   },
   methods: {
