@@ -15,6 +15,12 @@ function sockets(io, socket, data) {
     socket.emit("pollHead", data.createPollHead(d.pollId));
   });
 
+  socket.on("deletePoll", function (d) {
+    data.deletePoll(d.pollId);
+    socket.emit("allQuestions", data.getPoll(d.pollId));
+    socket.emit("pollHead", data.createPollHead(d.pollId));
+  });
+
   socket.on("editQuestion", function (index) {
     data.socket.emit("sendQuestionIndex", index);
   });
@@ -49,7 +55,7 @@ function sockets(io, socket, data) {
     data.saveEditedQuestion(questionData.pollId, {
       q: questionData.q,
       a: questionData.a,
-      t: questionData.t
+      t: questionData.t,
     });
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
