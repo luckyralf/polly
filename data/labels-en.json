@@ -34,5 +34,7 @@
   "createpageDeleteQuestion": "Delete this question",
   "totalAmountofQuestions": "Total number of questions: ",
   "confirmDeletePoll": "Are you sure you want to delete the poll?",
-  "editMe": "Edit me"
+  "editMe": "Edit me",
+  "editYourPoll": "Edit your poll here",
+  "runPoll": "Run poll"
 }
