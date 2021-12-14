@@ -44,7 +44,7 @@ export default {
   name: "Result",
   components: {
     Bars,
-    Pie
+    Pie,
   },
   data: function () {
     return {
@@ -52,7 +52,7 @@ export default {
       lang: "",
       question: "",
       data: {},
-      questionNumber: 0, 
+      questionNumber: 0,
       thePoll: {},
     };
   },
