@@ -374,7 +374,15 @@ main {
     background-color: #188513;
 }
 
-#formSection,
+#formSection{
+background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+  border: solid 5px;
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 3rem;
+}
+
+
 #result,
 #questSection {
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
@@ -425,7 +433,7 @@ h4 span {
 
 #infoDIV {
   position: fixed;
-  top: 55%;
+  top: 35%;
   left: 82%;
   transform: translate(-50%, -50%) scale(1);
   transition: 200ms ease-in-out;
@@ -513,7 +521,6 @@ h4 span {
   display:grid;
   grid-template-rows:auto auto;
   margin-left:120px;
-  background:#d794e3;
   font-size:15px;
 }
 #result {
