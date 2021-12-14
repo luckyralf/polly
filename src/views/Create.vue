@@ -83,7 +83,6 @@
               >
                 ↓
               </button>
-
             </div>
           </div>
         </section>
@@ -103,14 +102,14 @@
             class="inputQuestion"
           />
           {{ uiLabels.answerText }} <br />
-          <div class = "johanna">
-          <input
-            v-for="(_, i) in answers"
-            v-model="answers[i]"
-            v-bind:key="'answer' + i"
-            v-on:input="saveEditedQuestion"
-            class="inputAnswers"
-          />
+          <div class="johanna">
+            <input
+              v-for="(_, i) in answers"
+              v-model="answers[i]"
+              v-bind:key="'answer' + i"
+              v-on:input="saveEditedQuestion"
+              class="inputAnswers"
+            />
           </div>
           <button
             v-on:click="
@@ -177,7 +176,7 @@
           {{ uiLabels.checkResultsText }}
         </router-link>
       </div>
-                    <button class = "runPollButton"> {{ uiLabels.runPoll}} </button>
+      <button class="runPollButton">{{ uiLabels.runPoll }}</button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         class="deletePollBtn catPawCursor"
@@ -410,14 +409,13 @@ main {
   background-color: #188513;
 }
 
-#formSection{
-background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+#formSection {
+  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid 5px;
   border-radius: 20px;
   padding: 1rem;
   margin: 3rem;
 }
-
 
 #result,
 #questSection {
@@ -446,7 +444,6 @@ h4 span {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 100%;
-  
 }
 
 .questionButtons {
@@ -457,7 +454,6 @@ h4 span {
   border-radius: 5px;
   border: solid 3px #124c75;
   font-size: 19px;
-  
 }
 
 .questionButtons:hover {
@@ -630,7 +626,6 @@ h4 span {
   padding: 2px;
 }
 
-
 .runPollButton {
   color: white;
   background: green;
@@ -640,13 +635,10 @@ h4 span {
     auto;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
-  margin-right:40px;
+  margin-right: 40px;
 }
 
-.runPollButton:hover{
+.runPollButton:hover {
   background: #2c640f;
 }
-
-
-
 </style>
