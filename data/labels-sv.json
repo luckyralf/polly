@@ -33,5 +33,6 @@
   "createpageInfoContent": "För att göra din egna poll behöver du bara skriva in ett pollnamn, exempelvis Min Poll, och trycka på den gröna knappen och sedan följ tipsen!",
   "createpageDeleteQuestion": "Radera denna fråga",
   "totalAmountofQuestions": "Totalt antal frågor: ",
-  "confirmDeletePoll": "Är du säker på att du vill ta bort röstningen?"
+  "confirmDeletePoll": "Är du säker på att du vill ta bort röstningen?",
+  "editMe": "Redigera mig"
 }

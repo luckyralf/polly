@@ -277,12 +277,12 @@ export default {
       socket.emit("addQuestion", {
         pollId: this.pollId,
         // q: this.question,
-        q: "EDIT ME",
+        q: this.uiLabels.editMe,
         // a: this.answers,
         a: ["", ""],
         indexForAddedQuestion,
       });
-      this.question = "EDIT ME";
+      this.question = this.uiLabels.editMe;
       this.answers = ["", ""];
     },
     addAnswer: function () {
@@ -406,7 +406,15 @@ main {
   background-color: #188513;
 }
 
-#formSection,
+#formSection{
+background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+  border: solid 5px;
+  border-radius: 20px;
+  padding: 1rem;
+  margin: 3rem;
+}
+
+
 #result,
 #questSection {
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
@@ -457,7 +465,7 @@ h4 span {
 
 #infoDIV {
   position: fixed;
-  top: 55%;
+  top: 35%;
   left: 82%;
   transform: translate(-50%, -50%) scale(1);
   transition: 200ms ease-in-out;
