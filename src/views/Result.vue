@@ -44,7 +44,7 @@ export default {
   name: "Result",
   components: {
     Bars,
-    Pie
+    Pie,
   },
   data: function () {
     return {
@@ -52,10 +52,12 @@ export default {
       lang: "",
       question: "",
       data: {},
-      questionNumber: 0, 
+      questionNumber: 0,
       thePoll: {},
+      colorArray: ["red", "blue", "green", "yellow"],
     };
   },
+
   created: function () {
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {
@@ -64,6 +66,13 @@ export default {
     }); //kan man loopa över alla questionnumbers och få hela pollen?
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
+      let keys = Object.keys(this.data);
+      // console.log("keys ska va här", keys);
+      for (let i = 0; i < keys.length; i++) {
+        // console.log("data i dataupdate", this.data[keys[i]]);
+        this.data[keys[i]] = {count: this.data[keys[i]],color:this.colorArray[i]}
+      }
+      // console.log("data i dataupdate", this.data);
       this.question = update.q;
     });
     socket.on("newQuestion", (update) => {

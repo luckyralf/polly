@@ -1,53 +1,66 @@
 <template>
-  <div class="pie">
-      {{data}}
-  </div>
+  <div class="thePie" :style="{background: getStyle()}"></div>
 </template>
 
 <script>
 export default {
   name: "Pie",
   props: {
-    data: Object,
+    data: Object, 
   },
   data: function () {
     return {
-      percentageArray: [],
-      colorArray: [],
       totalQanswered: 0,
+      dataArray: [],
     };
   },
-  created: function () {
-    this.totalQanswered = Object.keys(this.$props.data).reduce((sum, key) => sum + parseFloat(this.$props.data[key] || 0),0);
-      console.log(this.$props.data);
-    //   console.log(this.totalQanswered);
-    //   let percentageArray = [];
-    for (const [key, value] of Object.entries(this.$props.data)) {
-      // console.log(`${key}: ${value}`);
-      //percentage funkar
-        let percentage = (value / this.totalQanswered)*100;
-        this.percentageArray[key] = percentage;
-        let randomColor = '#'+Math.floor(Math.random() * 16777215).toString(16);
-        this.colorArray.push(randomColor)
+  // data ser ut som : { "a1": { "count": 1, "color": "red" }, "a2": { "count": 1, "color": "blue" } }
+  // vill ha data: [{"a1": { "count": 1, "color": "red" }}, {"a2": { "count": 1, "color": "blue"}}]
+  // data["a1"] = {"count": 1, "color": "red" }
+  methods: {
+    getStyle: function () {
+    let keys = Object.keys(this.data);
+    console.log(keys)
+    for (let i = 0; i < keys.length; i++) {
+      if (this.dataArray.length<keys.length){
+      this.dataArray.push(this.data[keys[i]]);
+      this.totalQanswered += this.dataArray[i].count
+      }
     }
-    console.log(this.percentageArray);
-    console.log(this.colorArray);    
+    console.log("totaltsvarade", this.totalQanswered);
+    console.log("dataArrayen är: ", this.dataArray);
+    let sum = 0;
+    let styles = this.dataArray.map(
+        (piePart) => `${piePart.color} 0 ${(sum += piePart.count/this.totalQanswered*100)}%`
+      );
+    this.totalQanswered = 0;
+    this.dataArray = [];
+    console.log(styles)
+    return 'conic-gradient('+ styles.join(",") +')';
   },
-  // methods: {
-  //   changePie: function(data) {
-
-  //       document.getElementsByClassName("pie").style.background = conic-gradient()
+  }
+  // computed: {
+  //   pieStyle() {
+  //     let keys = Object.keys(this.data);
+  //     for (let i = 0; i < keys.length; i++) {
+  //       this.dataArray.push(this.data[keys[i]]);
+  //       this.totalQanswered += this.dataArray[i].count;
+  //     }
+  //     let sum = 0;
+  //     let styles = this.dataArray.map(
+  //       (piePart) => `${piePart.color} 0 ${(sum += piePart.count/this.totalQanswered*100)}`
+  //     );
+  //     return { background: 'conic-gradient('+ styles.join(",") +')' };
   //   },
-  // }
-
+  // },
 };
 </script>
 
 <style scoped>
-.pie {
+.thePie {
   height: 100px;
   width: 100px;
   border-radius: 50%;
-  background: conic-gradient(green 0% 50%, red 50% 100%);
+  /* background: conic-gradient(red 0 50%,blue 0 100%); */
 }
 </style>
