@@ -36,6 +36,10 @@ data: function () {
     pollId: "inactive poll",
     };
 },
+
+created: function () {
+this.pollId = this.$route.params.id;
+}
 }
 
 
