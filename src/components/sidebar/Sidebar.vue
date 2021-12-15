@@ -14,12 +14,17 @@
       <span v-else> Cat Poll Menu </span>
     </h1>
 
-    <SidebarLink to="/" icon="fas fa-cat">
+    <SidebarLink to="/">
       {{ uiLabels.createHeader }}
     </SidebarLink>
-    <SidebarLink to="/create/en" icon="fas fa-tools">Create Poll</SidebarLink>
-    <SidebarLink to="/poll" icon="fas fa-play">Fill Out Poll</SidebarLink>
-    <SidebarLink to="/result" icon="fas fa-poll">See Poll Results</SidebarLink>
+    <SidebarLink to="/create/en">Create Poll</SidebarLink>
+    <br />
+    <br />
+    <br />
+    <label>Poll ID: </label>
+    <input type="text" v-model="id" class="catPawTextCursor" />
+    <SidebarLink to="/poll/ + id">Fill Out Poll</SidebarLink>
+    <SidebarLink to="'/poll/' + id">See Poll Results</SidebarLink>
 
     <span
       class="collapse-icon"
@@ -54,6 +59,9 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
+  },
+  methods: {
+    pollId: function () {},
   },
 };
 </script>
