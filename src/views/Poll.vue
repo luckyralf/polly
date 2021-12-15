@@ -26,13 +26,13 @@
           <h1>Övning: Konfetti</h1>
         </div>
         <div class="flex-row flex-center">
-          <button id="confettiButton">Skjut konfetti!</button>
+          <button v-on:click="confettiButton">Skjut konfetti!</button>
         </div>
       </div>
     </div>
-  <component v-bind:is="script" src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" async></component>
+  <!--<component v-bind:is="script" src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" async></component>
   <component v-bind:is="script" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" async></component>
-  <component v-bind:is="script" src="/confetti-creator.js" async></component>
+  <component v-bind:is="script" src="/confetti-creator.js" async></component> -->
   
   </body>
 </template>
@@ -45,7 +45,7 @@
 import Question from "@/components/Question.vue";
 // import Lodash from "https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js";
 // import gsap from "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js";
-// import Confetti from "@/confetti-creator.js"
+import {confetti} from "/public/confetti-creator.js"
 import io from "socket.io-client";
 const socket = io();
 
@@ -110,6 +110,9 @@ export default {
         typeof this.questionNumber,
         this.questionNumber
       );
+    },
+    confettiButton: function(){
+      confetti();
     },
   
   },

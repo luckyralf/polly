@@ -18,14 +18,14 @@
                     </div>
 
 
-                <p class = "participants"> Participants:</p> <p class="participants amount"> </p>
+                <p class = "participants"> Participants:</p> <div class="participants amount"> </div>
                 
             </div>
 
             <div >
                 <router-link class = "startPoll"
                 v-bind:to="'/poll/' + pollId"
-                >Här är en länk till poll, ska egentligen köras automatiskt mha lyssnare
+                >KÖR POLLJÄVELN
                 </router-link>
             </div>
 
@@ -72,10 +72,10 @@ this.pollId = this.$route.params.id;
 .loading {
 
   background-color: transparent;
-  overflow: hidden;
+  overflow:hidden;
   width: 500px;
   height: 100px;
-  position: fixed;
+  position: absolute;
   top: 25%; left: 40%;
   display: flex;
   align-items: center;
