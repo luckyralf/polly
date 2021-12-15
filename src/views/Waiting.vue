@@ -5,10 +5,19 @@
 
             <h1 class="waitingRoom">WATING ROOM</h1>
         </header>
-        <!--<main> -->
         
+        <!--<main> -->
+                
             <div>
                 <p class = "waitingForHost"> Waiting for host to start poll... </p>
+
+                    <div class="loading">
+                        <span class="loader__prick"></span>
+                        <span class="loader__prick"></span>
+                        <span class="loader__prick"></span>
+                    </div>
+
+
                 <p class = "participants"> Participants:</p> <p class="participants amount"> </p>
                 
             </div>
@@ -55,6 +64,49 @@ this.pollId = this.$route.params.id;
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
+
+
+
+
+
+.loading {
+
+  background-color: transparent;
+  overflow: hidden;
+  width: 500px;
+  height: 100px;
+  position: fixed;
+  top: 25%; left: 40%;
+  display: flex;
+  align-items: center;
+  align-content: center; 
+  justify-content: center;  
+  z-index: 100000;
+
+}
+
+.loader__prick {
+  border-radius: 100%;
+  border: 5px solid yellow;
+  margin: 10px;
+}
+
+.loader__prick:nth-child(1) {
+  animation: preloader .6s ease-in-out alternate infinite;
+}
+.loader__prick:nth-child(2) {
+  animation: preloader .6s ease-in-out alternate .2s infinite;
+}
+
+.loader__prick:nth-child(3) {
+  animation: preloader .6s ease-in-out alternate .4s infinite;
+}
+
+@keyframes preloader {
+  100% { transform: scale(2); }
+}
+
+
 #temp{
     background:black;
 }
@@ -114,7 +166,11 @@ body{
     height:300px;
 }
 .startPoll{
-    font-size:20px;
+    font-size:25px;
+    background:yellow;
+    padding:5px 5px 5px;
+    border-radius:4px;
+
 }
 
 </style>
