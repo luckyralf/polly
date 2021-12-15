@@ -34,5 +34,7 @@
   "createpageDeleteQuestion": "Radera denna fråga",
   "totalAmountofQuestions": "Totalt antal frågor: ",
   "confirmDeletePoll": "Är du säker på att du vill ta bort röstningen?",
-  "editMe": "Redigera mig"
+  "editMe": "Redigera mig",
+  "editYourPoll": "Redigera din poll här!",
+  "runPoll": "Kör Poll"
 }

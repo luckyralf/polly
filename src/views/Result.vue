@@ -143,7 +143,6 @@ export default {
 
 .Wrap {
   background: linear-gradient(to left, #0c2c63, #1941b2);
-
   padding-top: 15px;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   padding-bottom: 500px;

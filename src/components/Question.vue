@@ -69,6 +69,7 @@ export default {
       quizFinished: false,
       timer: 30,
       timerOn: true,
+      
     };
   },
   watch: {
@@ -83,6 +84,7 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    
   },
   methods: {
     submitAnswer: function () {
@@ -104,6 +106,7 @@ export default {
       console.log(this.questionNumber);
       console.log(this.amountQuestion);
       this.questionNumber = this.questionNumber + 1;
+      
       if (this.questionNumber === this.amountQuestion) {
         this.lastQuestion = false;
       }
@@ -176,7 +179,7 @@ export default {
   height: 60px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
   color: white;
   margin-top: 5px;
 }
@@ -214,6 +217,7 @@ export default {
 #question {
   color: white;
   font-size: 40px;
+  font-family: "Outfit", sans-serif;
 }
 
 #routLink {
