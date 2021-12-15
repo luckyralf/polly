@@ -24,8 +24,7 @@
 
             <div >
                 <router-link class = "startPoll"
-                
-                v-bind:to="'/poll/' + this.pollId"
+                v-bind:to="'/poll/' + pollId"
                 >Här är en länk till poll, ska egentligen köras automatiskt mha lyssnare
                 </router-link>
             </div>
@@ -53,6 +52,10 @@ data: function () {
     pollId: "inactive poll",
     };
 },
+
+created: function () {
+this.pollId = this.$route.params.id;
+}
 }
 
 
