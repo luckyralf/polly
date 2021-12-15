@@ -26,6 +26,8 @@
 - [ ] Fixa så att frågans svarsalternativ och texten som berättar vad man valt återställs när man går till nästa fråga
 - [x] Liten tass som cursor
 - [x] Meow vid språkbyte
+- [x] Meny
+- [ ] Fixa så eny fungerar helt och hållet
 - [ ] Tillbaka-knapp på typ alla sidor
 - [ ] uiLabels på infoknappar
 

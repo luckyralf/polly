@@ -22,67 +22,47 @@
             playSound();
           "
         ></button>
-      
-      <!--  <button class="infoButton"> INFO(dont press) </button>
-        <div class = "modal">
-          <div class = "infoHeader"> 
-            <div class = "title"> HELLO WORLD </div> 
-          <button class = "closeButton">X</button></div>
-          <div class = "infoBody"> Lorem Impsum dolor sit amet consectetur adipisicing
-              lorem Impsum dolor sit amet consectetur adipisicing
-              Lorem Impsum dolor sit amet consectetur adipisicing
-                dolor sit amet consectetur adipisicing lorum 
-           </div>
+
+        <button
+          v-on:click="infoFunction()"
+          class="infoButton2 catPawCursor"
+        ></button>
+        <div id="infoDIV" v-show="showInfoDiv">
+          <div class="infoHeader">
+            <div class="infoTitle">{{ uiLabels.startpageInfoHeader }}</div>
+            <button
+              v-on:click="infoFunction()"
+              class="closeButton catPawCursor"
+            >
+              X
+            </button>
+          </div>
         </div>
-        
+      </div>
 
-        <div id = "infoOverlay"> </div>
-        -->
+      <div class="writeAndParticipate">
+        <label class="catPawTextCursor"
+          >{{ uiLabels.writePollId }}
+          <input type="text" v-model="id" class="catPawTextCursor" />
+        </label>
+        <router-link
+          v-bind:to="'/poll/' + id"
+          tag="button"
+          class="catPawCursor"
+          >{{ uiLabels.participatePoll }}</router-link
+        >
+      </div>
 
-      <!-- <button v-on:click="playSound">meow</button> -->
-
-      <button
-        v-on:click="infoFunction()"
-        class="infoButton2 catPawCursor"
-      ></button>
-      <div id="infoDIV" v-show="showInfoDiv">
-        <div class="infoHeader">
-          <div class="infoTitle">{{ uiLabels.startpageInfoHeader }}</div>
-          <button v-on:click="infoFunction()" class="closeButton catPawCursor">
-            X
-          </button>
-        </div>
-        <p class="infoText">
-          <b> Information:</b> {{ uiLabels.startpageInfoContent }}
-        </p>
+      <div class="createOwn">
+        <p>{{ uiLabels.orMakeOwn }}</p>
+        <router-link
+          style="color: #fff"
+          className="link"
+          v-bind:to="'/create/' + lang"
+          >{{ uiLabels.createPoll }}</router-link
+        >
       </div>
     </div>
-
-    <div class="writeAndParticipate">
-      <label class="catPawTextCursor"
-        >{{ uiLabels.writePollId }}
-        <input type="text" v-model="id" class="catPawTextCursor" />
-      </label>
-      <router-link
-        v-bind:to="'/poll/' + id"
-        tag="button"
-        class="catPawCursor"
-        >{{ uiLabels.participatePoll }}</router-link
-      >
-    </div>
-
-    
-
-    <div class="createOwn">
-      <p>{{ uiLabels.orMakeOwn }}</p>
-      <router-link
-        style="color: #fff"
-        className="link"
-        v-bind:to="'/create/' + lang"
-        >{{ uiLabels.createPoll }}</router-link>
-    </div>
-
-</div>
 
     <div id="Finalword">
       <hr />
@@ -108,8 +88,10 @@ export default {
     };
   },
   created: function () {
+    socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels;
+      console.log("fuck you");
     });
   },
   methods: {
@@ -166,20 +148,18 @@ export default {
   
 }*/
 
-.temp{
-width:100vw;
-overflow-x:hidden;
-height:100vh;
-overflow-y:hidden;
-margin-right:5px;;
-padding:none;
-border:none;
-margin-top: 8px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    margin-left: 8px;
-
-  
+.temp {
+  width: 100vw;
+  overflow-x: hidden;
+  height: 100vh;
+  overflow-y: hidden;
+  margin-right: 5px;
+  padding: none;
+  border: none;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  margin-left: 8px;
 }
 
 .infoText {
@@ -431,11 +411,11 @@ margin-top: 8px;
   overflow-x: hidden;
   margin: 0px 0px;
   border: none;
-  width:100vw;
-  
+  width: 100vw;
+
   overflow-x: hidden;
-  height:100vh;
-  overflow-y:hidden;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 #Finalword {
@@ -474,12 +454,11 @@ hr:after {
   top: -13px;
 }
 
-
-body{
-  display:block;
+body {
+  display: block;
   margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
 }
 </style>

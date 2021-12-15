@@ -32,6 +32,10 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
   return this.polls[pollId];
 };
 
+Data.prototype.deletePoll = function (pollId) {
+  this.polls[pollId] = undefined;
+};
+
 Data.prototype.addQuestion = function (pollId, q, indexForAddedQuestion) {
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
@@ -130,11 +134,11 @@ Data.prototype.getPoll = function (pollId) {
   return {};
 };
 
-Data.prototype.createPollHead = function (pollId){
+Data.prototype.createPollHead = function (pollId) {
   const poll = this.polls[pollId];
   if (typeof poll !== "undefined") {
     return pollId;
   }
-}
+};
 
 module.exports = Data;
