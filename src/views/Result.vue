@@ -54,7 +54,7 @@ export default {
       data: {},
       questionNumber: 0,
       thePoll: {},
-      colorArray: ["red", "blue", "green", "yellow"],
+      colorArray: ["#f46036","#1b998b","#c5d86d","#d7263d","#bfebf8","#fccc7a","#f6b4c5","#ff0000","#D85D55"],
     };
   },
 
@@ -63,16 +63,14 @@ export default {
     socket.emit("joinPoll", {
       pollId: this.pollId,
       questionNumber: this.questionNumber,
-    }); //kan man loopa över alla questionnumbers och få hela pollen?
+    }); 
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
       let keys = Object.keys(this.data);
-      // console.log("keys ska va här", keys);
       for (let i = 0; i < keys.length; i++) {
-        // console.log("data i dataupdate", this.data[keys[i]]);
         this.data[keys[i]] = {count: this.data[keys[i]],color:this.colorArray[i]}
+        // this.colorArray.push("#" + Math.floor(Math.random() * 16777215).toString(16))
       }
-      // console.log("data i dataupdate", this.data);
       this.question = update.q;
     });
     socket.on("newQuestion", (update) => {
