@@ -23,7 +23,7 @@
     <br />
     <label>Poll ID: </label>
     <input type="text" v-model="id" class="catPawTextCursor" />
-    <SidebarLink to="/poll/ + id">Fill Out Poll</SidebarLink>
+    <SidebarLink to="{{id}}">Fill Out Poll</SidebarLink>
     <SidebarLink to="'/poll/' + id">See Poll Results</SidebarLink>
 
     <span
@@ -97,8 +97,8 @@ export default {
   position: absolute;
   bottom: 0;
   padding: 0.75em;
-
-  color: white;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRePHReV06JeC-Kproe_MQ-CscA9N1gAjCdBA&usqp=CAU);
+  background-size: cover;
 }
 
 .rotate-180 {
