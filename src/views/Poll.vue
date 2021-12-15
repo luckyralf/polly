@@ -7,7 +7,7 @@
     
      <div class="bars">
            <div class="answered" v-bind:style="{width: 700/thePoll.poll.questions.length*questionNumber + 'px'}">
-            </div>
+          </div>
      </div>
 
     <main>
