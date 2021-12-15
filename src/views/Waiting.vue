@@ -1,23 +1,28 @@
 <template id = "temp">
     <!--<body> -->
+    <section class = "jjj">
         <header>
             <h1 class="waitingRoom">WATING ROOM</h1>
         </header>
         <!--<main> -->
-
+        
             <div>
                 <p class = "waitingForHost"> Waiting for host to start poll... </p>
                 <p class = "participants"> Participants: </p>
+                
             </div>
 
-            <div class = "wrapperAll">
+            <div class = "startPoll">
                 <router-link
                 v-bind:to="'/poll/' + id"
                 tag="button"
-                class="catPawCursor"
-                >{{ uiLabels.participatePoll }}
+                >START POLL
                 </router-link>
             </div>
+
+            <div class= "animering"></div>
+
+        </section>
         <!--</main>
     </body> -->
 </template>
@@ -36,6 +41,10 @@
 }
 body{
     background:yellow;
+}
+
+.jjj{
+    background:pink;
 }
 
 .waitingRoom{
@@ -74,8 +83,13 @@ body{
 .participants{
     font-size:50px;
 }
-.wrapperAll{
-    background-color:green;
+
+.animering{
+    background:pink;
+    height:300px;
+}
+.startPoll{
+    font-size:20px;
 }
 
 </style>
