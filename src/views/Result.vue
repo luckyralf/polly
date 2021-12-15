@@ -4,6 +4,7 @@
       <h1>{{ uiLabels.pollResult }}</h1>
     </header>
     <main>
+      <button v-on:click="switchComponent()">switchComponent</button>
       <div class="questionAndBars">
         <div class="questions">
           <div v-for="index in thePoll.poll.questions.length" :key="index">
@@ -18,12 +19,13 @@
             </button>
           </div>
         </div>
-        <div class="bars">
-          <Bars v-bind:data="data" />
-        </div>
-        <div>
-          <!-- här kommer pie -->
-          <Pie v-bind:data="data" />
+        <div id="componentContaner">
+          <div id="bars" v-if="this.dataRepresentation === 'Bars'">
+            <Bars v-bind:data="data" />
+          </div>
+          <div id="pie" v-if="this.dataRepresentation === 'Pie'">
+            <Pie v-bind:data="data" />
+          </div>
         </div>
       </div>
     </main>
@@ -54,7 +56,18 @@ export default {
       data: {},
       questionNumber: 0,
       thePoll: {},
-      colorArray: ["#f46036","#1b998b","#c5d86d","#d7263d","#bfebf8","#fccc7a","#f6b4c5","#ff0000","#D85D55"],
+      colorArray: [
+        "#f46036",
+        "#1b998b",
+        "#c5d86d",
+        "#d7263d",
+        "#bfebf8",
+        "#fccc7a",
+        "#f6b4c5",
+        "#ff0000",
+        "#D85D55",
+      ],
+      dataRepresentation: 'Bars',
     };
   },
 
@@ -63,12 +76,15 @@ export default {
     socket.emit("joinPoll", {
       pollId: this.pollId,
       questionNumber: this.questionNumber,
-    }); 
+    });
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
       let keys = Object.keys(this.data);
       for (let i = 0; i < keys.length; i++) {
-        this.data[keys[i]] = {count: this.data[keys[i]],color:this.colorArray[i]}
+        this.data[keys[i]] = {
+          count: this.data[keys[i]],
+          color: this.colorArray[i],
+        };
         // this.colorArray.push("#" + Math.floor(Math.random() * 16777215).toString(16))
       }
       this.question = update.q;
@@ -90,6 +106,13 @@ export default {
   methods: {
     selectQuestion: function (questionNumber) {
       socket.emit("joinPoll", { pollId: this.pollId, questionNumber });
+    },
+    switchComponent: function () {
+      if (this.dataRepresentation === 'Bars') {
+        this.dataRepresentation = 'Pie';
+      } else {
+        this.dataRepresentation = 'Bars';
+      }
     },
     // getPoll: function() {
     //   socket.emit('emitGetPoll',this.pollId);
