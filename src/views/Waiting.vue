@@ -3,7 +3,7 @@
     <section class = "jjj">
         <header>
 
-            <h1 class="waitingRoom">WATING ROOM</h1>
+            <h1 class="waitingRoom">WAITING ROOM</h1>
         </header>
         
         <!--<main> -->
@@ -18,13 +18,14 @@
                     </div>
 
 
-                <p class = "participants"> Participants:</p> <div class="participants amount"> </div>
+                <p class = "participants"> Participants:</p> <div class="amount"> </div>
                 
             </div>
 
             <div >
                 <router-link class = "startPoll"
                 v-bind:to="'/poll/' + pollId"
+                
                 >KÖR POLLJÄVELN
                 </router-link>
             </div>
@@ -50,12 +51,18 @@ export default {
 data: function () {
     return {
     pollId: "inactive poll",
+    amountParticipants: ""
     };
 },
 
 created: function () {
 this.pollId = this.$route.params.id;
-}
+},
+
+// socket.on("amountParticipants"), (update) => {
+//     this.data = update.
+
+// }
 }
 
 
@@ -87,7 +94,7 @@ this.pollId = this.$route.params.id;
 
 .loader__prick {
   border-radius: 100%;
-  border: 5px solid yellow;
+  border: 5px solid #FFEF78;
   margin: 10px;
 }
 
@@ -120,15 +127,14 @@ body{
 
 .waitingRoom{
 
-    background-color:green;
+    background-color:transparent;
     height: 175px;
   width: 600px;
-  padding-left: 200px;
+  padding-left: 160px;
   padding-right: 200px;
   padding-bottom: 75px;
   padding-top:40px;
   text-align: center;
-  /*font-family: "Monaco", monospace;*/
   color:white;
   font-family: "Exo 2", sans-serif;
   overflow: hidden;
@@ -150,12 +156,19 @@ body{
 
 }
 .waitingForHost{
-    background:yellow;
+    background:#FFEF78;
+    margin-left:0px;
+    margin-right:0px;
+    margin-top:-50px;
     font-family: "Exo 2", sans-serif;
+    font-size:20px;
     font-weight:bold;
+    border-bottom:solid 2px yellow;
+    border-top:solid 3px yellow;
 }
 
 .participants{
+    color:#fff;
     font-size:50px;
     font-family: "Exo 2", sans-serif;
     font-weight:bold;
@@ -167,9 +180,15 @@ body{
 }
 .startPoll{
     font-size:25px;
-    background:yellow;
     padding:5px 5px 5px;
-    border-radius:4px;
+    font-family: "Exo 2", sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #20af19;
+    border-radius: 5px;
+    border: solid #229954;
+    text-decoration: none;
+    font-weight:bold;
 
 }
 

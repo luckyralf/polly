@@ -176,7 +176,7 @@
           {{ uiLabels.checkResultsText }}
         </router-link>
       </div>
-      <button class="runPollButton">{{ uiLabels.runPoll }}</button>
+      <button class="runPollButton" v-on:click="runPollFunction">{{ uiLabels.runPoll }}</button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         class="deletePollBtn catPawCursor"
@@ -238,6 +238,11 @@ export default {
       } else {
         x.style.display = "none";
       }
+    },
+
+    runPollFunction: function () {
+      socket.emit("runPoll", {
+        pollId: this.pollId})
     },
 
     chooseQuestion: function (indexForChosenQuestion) {

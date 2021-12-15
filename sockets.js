@@ -77,6 +77,15 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit("dataUpdate", data.getAnswers(d.pollId)); //kanske ta bort io.to pga det skickar till alla?
   });
 
+
+  socket.on("runPoll", function (d) {
+    io.to(d.pollId).emit(
+      "runPoll",
+      data.getQuestion(d.pollId)
+    );
+  });
+
+
   socket.on("submitAnswer", function (d) {
     //d = { pollId: this.pollId, answer: answer }
     data.submitAnswer(d.pollId, d.answer);
