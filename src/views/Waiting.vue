@@ -15,7 +15,7 @@
 
             <div >
                 <router-link class = "startPoll"
-                v-bind:to="'/poll/' + id"
+                v-bind:to="'/poll/' + pollId"
                 >Här är en länk till poll, ska egentligen köras automatiskt mha lyssnare
                 </router-link>
             </div>
