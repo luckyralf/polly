@@ -17,7 +17,8 @@
 - [ ] snygga till formuläret där frågor skapas
 - [x] Save knapp
 - [x] Ändra frågor som man redan har skrivit
-- [Lucky] Lägga till ett val av tidsbegränsning per fråga?
+- [x] Lägga till ett val av tidsbegränsning per fråga?
+- [ ] Det går bara att lägga till en fråga i en poll
 
 ## Generellt
 

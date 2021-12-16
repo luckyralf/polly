@@ -69,14 +69,8 @@ export default {
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
-<<<<<<< HEAD
       timerFunction: null,
       timer: 0,
-=======
-      timer: 30,
-      timerOn: true,
-      
->>>>>>> 32bd78dc3be10ee65cc9d5eb4e97ae788b6d0ec0
     };
   },
   computed: {
