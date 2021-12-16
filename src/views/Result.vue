@@ -4,7 +4,9 @@
       <h1>{{ uiLabels.pollResult }}</h1>
     </header>
     <main>
-      <button v-on:click="switchComponent()">switchComponent</button>
+      <br>
+      <button id="switchComponentBtn" v-on:click="switchComponent()"> {{uiLabels.showPie}} </button>
+      <br>
       <div class="questionAndBars">
         <div class="questions">
           <div v-for="index in thePoll.poll.questions.length" :key="index">
@@ -110,8 +112,11 @@ export default {
     switchComponent: function () {
       if (this.dataRepresentation === 'Bars') {
         this.dataRepresentation = 'Pie';
+        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showBars;
       } else {
         this.dataRepresentation = 'Bars';
+        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showPie;
+
       }
     },
     // getPoll: function() {
@@ -136,11 +141,15 @@ export default {
   margin-top: 40px;
 }
 
-/*
-.bars {
-  grid-column: 2;
-  background-color:blue;
-}*/
+#switchComponentBtn {
+  font-family: "Outfit", sans-serif;
+  margin-top: 1rem;
+  color: white;
+  background-color: #296ad3;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
 
 .resultQuestions {
   background-color: #d794e3;

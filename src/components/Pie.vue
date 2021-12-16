@@ -78,15 +78,11 @@ export default {
   width: 200px;
   border: 2px solid white;
   border-radius: 50%;
-  animation: show 1s ease-in-out;
-  /* background: conic-gradient(red 0 50%,blue 0 100%); */
+  animation-name: pieAni;
+  animation-duration: 1s;
 }
-@keyframes show {
-  0% {
-    transform: scale(0) rotate(270deg);
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
+@keyframes pieAni {
+  0% {transform: scale(0) rotate(180deg);}
+  100% {transform: scale(1) rotate(0deg);}
 }
 </style>
