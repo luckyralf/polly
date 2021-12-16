@@ -36,5 +36,7 @@
   "confirmDeletePoll": "Är du säker på att du vill ta bort röstningen?",
   "editMe": "Redigera mig",
   "editYourPoll": "Redigera din poll här!",
-  "runPoll": "Kör Poll"
+  "runPoll": "Kör Poll",
+  "showPie": "Visa cirkeldiagram",
+  "showBars": "Visa stapeldiagram"
 }

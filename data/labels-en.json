@@ -36,5 +36,7 @@
   "confirmDeletePoll": "Are you sure you want to delete the poll?",
   "editMe": "Edit me",
   "editYourPoll": "Edit your poll here",
-  "runPoll": "Run poll"
+  "runPoll": "Run poll",
+  "showPie": "Show pie chart",
+  "showBars": "Show bar graph"
 }
