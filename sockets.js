@@ -15,6 +15,12 @@ function sockets(io, socket, data) {
     socket.emit("pollHead", data.createPollHead(d.pollId));
   });
 
+  socket.on("deletePoll", function (d) {
+    data.deletePoll(d.pollId);
+    socket.emit("allQuestions", data.getPoll(d.pollId));
+    socket.emit("pollHead", data.createPollHead(d.pollId));
+  });
+
   socket.on("editQuestion", function (index) {
     data.socket.emit("sendQuestionIndex", index);
   });
@@ -71,6 +77,15 @@ function sockets(io, socket, data) {
     ); //kanske ta bort io.to pga det skickar till alla?
     io.to(d.pollId).emit("dataUpdate", data.getAnswers(d.pollId)); //kanske ta bort io.to pga det skickar till alla?
   });
+
+
+  socket.on("runPoll", function (d) {
+    io.to(d.pollId).emit(
+      "runPoll",
+      data.getQuestion(d.pollId)
+    );
+  });
+
 
   socket.on("submitAnswer", function (d) {
     //d = { pollId: this.pollId, answer: answer }

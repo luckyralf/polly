@@ -3,28 +3,34 @@
     <header>
       <h1>{{ uiLabels.pollResult }}</h1>
     </header>
-  <main>
+    <main>
+      <br>
+      <button id="switchComponentBtn" v-on:click="switchComponent()"> {{uiLabels.showPie}} </button>
+      <br>
       <div class="questionAndBars">
-          <div class="questions">
-            <div v-for="index in thePoll.poll.questions.length" :key="index">
-              <button
-                class="resultQuestions"
-                type="number"
-                v-bind="index"
-                v-on:click="selectQuestion(index - 1)"
-                >
-                  {{uiLabels.question}} {{ index }}: {{ thePoll.poll.questions[index - 1].q }}
-                
-                </button>
-                
-            </div>
-              
-            </div>
-            <div class="bars">
-              <Bars v-bind:data="data" />
+        <div class="questions">
+          <div v-for="index in thePoll.poll.questions.length" :key="index">
+            <button
+              class="resultQuestions"
+              type="number"
+              v-bind="index"
+              v-on:click="selectQuestion(index - 1)"
+            >
+              {{ uiLabels.question }} {{ index }}:
+              {{ thePoll.poll.questions[index - 1].q }}
+            </button>
           </div>
+        </div>
+        <div id="componentContaner">
+          <div id="bars" v-if="this.dataRepresentation === 'Bars'">
+            <Bars v-bind:data="data" />
+          </div>
+          <div id="pie" v-if="this.dataRepresentation === 'Pie'">
+            <Pie v-bind:data="data" />
+          </div>
+        </div>
       </div>
-  </main>
+    </main>
 
     <!-- <input type="number" v-model="questionNumber" />
 <button v-on:click="selectQuestion">Which question?</button> -->
@@ -34,6 +40,7 @@
 <script>
 // @ is an alias to /src
 import Bars from "@/components/Bars.vue";
+import Pie from "@/components/Pie.vue";
 import io from "socket.io-client";
 const socket = io();
 
@@ -41,6 +48,7 @@ export default {
   name: "Result",
   components: {
     Bars,
+    Pie,
   },
   data: function () {
     return {
@@ -48,18 +56,39 @@ export default {
       lang: "",
       question: "",
       data: {},
-      questionNumber: 0, //denna styr just nu vad som är datavariabeln, ändrar man questionNumber kan man få ut vilken fråga som ska visas
+      questionNumber: 0,
       thePoll: {},
+      colorArray: [
+        "#f46036",
+        "#1b998b",
+        "#c5d86d",
+        "#d7263d",
+        "#bfebf8",
+        "#fccc7a",
+        "#f6b4c5",
+        "#ff0000",
+        "#D85D55",
+      ],
+      dataRepresentation: 'Bars',
     };
   },
+
   created: function () {
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {
       pollId: this.pollId,
       questionNumber: this.questionNumber,
-    }); //kan man loopa över alla questionnumbers och få hela pollen?
+    });
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
+      let keys = Object.keys(this.data);
+      for (let i = 0; i < keys.length; i++) {
+        this.data[keys[i]] = {
+          count: this.data[keys[i]],
+          color: this.colorArray[i],
+        };
+        // this.colorArray.push("#" + Math.floor(Math.random() * 16777215).toString(16))
+      }
       this.question = update.q;
     });
     socket.on("newQuestion", (update) => {
@@ -68,10 +97,10 @@ export default {
     });
     //försök att få hela pollen
     socket.emit("emitGetPoll", this.pollId);
-    socket.on('getPoll',(thePoll) => {
+    socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
       socket.emit("pageLoaded", this.thePoll.poll.lang);
-      });
+    });
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
@@ -79,6 +108,16 @@ export default {
   methods: {
     selectQuestion: function (questionNumber) {
       socket.emit("joinPoll", { pollId: this.pollId, questionNumber });
+    },
+    switchComponent: function () {
+      if (this.dataRepresentation === 'Bars') {
+        this.dataRepresentation = 'Pie';
+        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showBars;
+      } else {
+        this.dataRepresentation = 'Bars';
+        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showPie;
+
+      }
     },
     // getPoll: function() {
     //   socket.emit('emitGetPoll',this.pollId);
@@ -89,9 +128,6 @@ export default {
 </script>
 
 <style scoped>
-
-
-
 .questionAndBars {
   display: flex;
 
@@ -99,18 +135,21 @@ export default {
   /*grid-template-columns: 50% 50%;*/
 }
 
-
 .questions {
   grid-column: 1;
-  margin-left:50px;
-  margin-top:40px;
+  margin-left: 50px;
+  margin-top: 40px;
 }
 
-/*
-.bars {
-  grid-column: 2;
-  background-color:blue;
-}*/
+#switchComponentBtn {
+  font-family: "Outfit", sans-serif;
+  margin-top: 1rem;
+  color: white;
+  background-color: #296ad3;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
 
 .resultQuestions {
   background-color: #d794e3;
@@ -134,11 +173,10 @@ export default {
 
 .Wrap {
   background: linear-gradient(to left, #0c2c63, #1941b2);
-
   padding-top: 15px;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   padding-bottom: 500px;
-  border:0;
+  border: 0;
   margin: 0;
 }
 

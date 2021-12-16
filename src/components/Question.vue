@@ -1,7 +1,8 @@
 <template>
   <div class="questionWrap">
+    
     <p id="question">{{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}</p>
-
+    <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p>
       <button
         v-for="(a, index) in question.a"
         v-bind:class="{ selected: index === selectedAnswer }"
@@ -68,8 +69,14 @@ export default {
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
+<<<<<<< HEAD
       timerFunction: null,
       timer: 0,
+=======
+      timer: 30,
+      timerOn: true,
+      
+>>>>>>> 32bd78dc3be10ee65cc9d5eb4e97ae788b6d0ec0
     };
   },
   computed: {
@@ -95,6 +102,7 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    
   },
 
   methods: {
@@ -119,6 +127,7 @@ export default {
       console.log(this.questionNumber);
       console.log(this.amountQuestion);
       this.questionNumber = this.questionNumber + 1;
+      
       if (this.questionNumber === this.amountQuestion) {
         this.lastQuestion = false;
       }
@@ -184,7 +193,7 @@ export default {
   height: 60px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
-  border-radius: 3px;
+  border-radius: 5px;
   color: white;
   margin-top: 5px;
 }
@@ -222,6 +231,7 @@ export default {
 #question {
   color: white;
   font-size: 40px;
+  font-family: "Outfit", sans-serif;
 }
 
 #routLink {
