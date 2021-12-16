@@ -127,7 +127,7 @@
             v-model="time"
             v-on:change="saveEditedQuestion"
           >
-            <option value="unlimited" selected>{{ uiLabels.unlimited }}</option>
+            <option value="0" selected>{{ uiLabels.unlimited }}</option>
             <option value="10">10</option>
             <option value="30">30</option>
             <option value="60">60</option>

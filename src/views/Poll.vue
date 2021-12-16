@@ -19,7 +19,6 @@
 
       {{uiLabels.youareonQnumber}} {{ this.questionNumber + 1 }}
   
-     
     </main>
 
     <div v-for="index in thePoll.poll.questions.length" :key="index">
@@ -27,9 +26,8 @@
                 class="numberOfQuestions"
                 type="number"
                 v-bind="index">
-                  {{uiLabels.question}} {{ index }}
-                
-                </div>   
+                {{uiLabels.question}} {{ index }}
+              </div>   
     </div>
 
   </body>
@@ -53,6 +51,8 @@ export default {
       question: {
         q: "",
         a: [],
+        time: Number,
+        timeOn: Boolean,
       },
       data: {},
       pollId: "inactive poll",  
