@@ -1,3 +1,4 @@
+
 <template>
   <body>
     <header>
@@ -6,7 +7,7 @@
     
      <div class="bars">
            <div class="answered" v-bind:style="{width: 700/thePoll.poll.questions.length*questionNumber + 'px'}">
-            </div>
+          </div>
      </div>
 
     <main>
@@ -16,30 +17,38 @@
                   v-bind:amountQuestion="thePoll.poll.questions.length"
                   v-on:answer="submitAnswer" />
       </div>
-
-      {{uiLabels.youareonQnumber}} {{ this.questionNumber + 1 }}
-  
      
-    </main>
+    </main>  
 
-    <div v-for="index in thePoll.poll.questions.length" :key="index">
-              <div
-                class="numberOfQuestions"
-                type="number"
-                v-bind="index">
-                  {{uiLabels.question}} {{ index }}
-                
-                </div>   
+    <div class="container flex-center">
+      <div class="wrapper">
+        <div class="title-row flex-center">
+          <h1>Övning: Konfetti</h1>
+        </div>
+        <div class="flex-row flex-center">
+          <button v-on:click="confettiButton">Skjut konfetti!</button>
+        </div>
+      </div>
     </div>
-
+  <!--<component v-bind:is="script" src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" async></component>
+  <component v-bind:is="script" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" async></component>
+  <component v-bind:is="script" src="/confetti-creator.js" async></component> -->
+  
   </body>
 </template>
+
+
+
 
 <script>
 // @ is an alias to /src
 import Question from "@/components/Question.vue";
+// import Lodash from "https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js";
+// import gsap from "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js";
+import {confetti} from "/public/confetti-creator.js"
 import io from "socket.io-client";
 const socket = io();
+
 
 export default {
   name: "Poll",
@@ -102,6 +111,9 @@ export default {
         this.questionNumber
       );
     },
+    confettiButton: function(){
+      confetti();
+    },
   
   },
 };
@@ -111,6 +123,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
 h1 {
   font-family: "Exo 2", sans-serif;
@@ -151,5 +164,37 @@ body {
   width: 0%;
   max-width:700px;
 }
+
+.container {
+  height: 100vh;
+}
+
+.wrapper {
+  width: 400px;
+}
+
+#confettiButton{
+  padding: 12px;
+  color: #fff;
+  background-color: #00d773;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  min-width: 140px;
+  user-select: none;
+  outline:none;
+}
+
+.flex-row {
+  flex-basis: 100%;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 </style>

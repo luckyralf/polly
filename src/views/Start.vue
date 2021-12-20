@@ -5,7 +5,7 @@
         <h1 class="CATPOLL">CAT POLL</h1>
       </header>
     </section>
-
+  
     <div id="nav">
       <div class="languangeButtonContainer">
         <button
@@ -45,8 +45,9 @@
           >{{ uiLabels.writePollId }}
           <input type="text" v-model="id" class="catPawTextCursor" />
         </label>
+        
         <router-link
-          v-bind:to="'/poll/' + id"
+          v-bind:to="'/waiting/' + id"
           tag="button"
           class="catPawCursor"
           >{{ uiLabels.participatePoll }}</router-link
@@ -62,6 +63,12 @@
           >{{ uiLabels.createPoll }}</router-link
         >
       </div>
+
+     <!-- <router-link
+          style="color: #fff"
+          className="link"
+          v-bind:to="'/waiting/' + id"
+          > testtest </router-link> -->
     </div>
 
     <div id="Finalword">

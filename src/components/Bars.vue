@@ -1,8 +1,8 @@
 <template>
 <div class="wrapper">
   <div class="bar" v-for="(item, key) in data" v-bind:key="key">
-    <div v-bind:style="{height: 50*item + 'px'}">
-      <span> {{item}} </span>
+    <div v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]">
+      <span> {{item.count}} </span>
     </div>
     <div> 
       {{key}}
