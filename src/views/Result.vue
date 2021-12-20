@@ -4,6 +4,9 @@
       <h1>{{ uiLabels.pollResult }}</h1>
     </header>
     <main>
+      <br>
+      <button id="switchComponentBtn" v-on:click="switchComponent()"> {{uiLabels.showPie}} </button>
+      <br>
       <div class="questionAndBars">
         <div class="questions">
           <div v-for="index in thePoll.poll.questions.length" :key="index">
@@ -18,12 +21,13 @@
             </button>
           </div>
         </div>
-        <div class="bars">
-          <Bars v-bind:data="data" />
-        </div>
-        <div>
-          <!-- här kommer pie -->
-          <Pie v-bind:data="data" />
+        <div id="componentContaner">
+          <div id="bars" v-if="this.dataRepresentation === 'Bars'">
+            <Bars v-bind:data="data" />
+          </div>
+          <div id="pie" v-if="this.dataRepresentation === 'Pie'">
+            <Pie v-bind:data="data" />
+          </div>
         </div>
       </div>
     </main>
@@ -54,7 +58,18 @@ export default {
       data: {},
       questionNumber: 0,
       thePoll: {},
-      colorArray: ["red", "blue", "green", "yellow"],
+      colorArray: [
+        "#f46036",
+        "#1b998b",
+        "#c5d86d",
+        "#d7263d",
+        "#bfebf8",
+        "#fccc7a",
+        "#f6b4c5",
+        "#ff0000",
+        "#D85D55",
+      ],
+      dataRepresentation: 'Bars',
     };
   },
 
@@ -63,16 +78,17 @@ export default {
     socket.emit("joinPoll", {
       pollId: this.pollId,
       questionNumber: this.questionNumber,
-    }); //kan man loopa över alla questionnumbers och få hela pollen?
+    });
     socket.on("dataUpdate", (update) => {
       this.data = update.a;
       let keys = Object.keys(this.data);
-      // console.log("keys ska va här", keys);
       for (let i = 0; i < keys.length; i++) {
-        // console.log("data i dataupdate", this.data[keys[i]]);
-        this.data[keys[i]] = {count: this.data[keys[i]],color:this.colorArray[i]}
+        this.data[keys[i]] = {
+          count: this.data[keys[i]],
+          color: this.colorArray[i],
+        };
+        // this.colorArray.push("#" + Math.floor(Math.random() * 16777215).toString(16))
       }
-      // console.log("data i dataupdate", this.data);
       this.question = update.q;
     });
     socket.on("newQuestion", (update) => {
@@ -92,6 +108,16 @@ export default {
   methods: {
     selectQuestion: function (questionNumber) {
       socket.emit("joinPoll", { pollId: this.pollId, questionNumber });
+    },
+    switchComponent: function () {
+      if (this.dataRepresentation === 'Bars') {
+        this.dataRepresentation = 'Pie';
+        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showBars;
+      } else {
+        this.dataRepresentation = 'Bars';
+        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showPie;
+
+      }
     },
     // getPoll: function() {
     //   socket.emit('emitGetPoll',this.pollId);
@@ -115,11 +141,15 @@ export default {
   margin-top: 40px;
 }
 
-/*
-.bars {
-  grid-column: 2;
-  background-color:blue;
-}*/
+#switchComponentBtn {
+  font-family: "Outfit", sans-serif;
+  margin-top: 1rem;
+  color: white;
+  background-color: #296ad3;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
 
 .resultQuestions {
   background-color: #d794e3;
