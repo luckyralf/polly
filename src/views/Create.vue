@@ -3,7 +3,7 @@
     <header>
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
-    <main>
+    <main class="mainWrapped">
       <!-- {{ data }} -->
       <br />
       <!-- {{ data.poll.editQuestion }} -->
@@ -102,31 +102,37 @@
             class="inputQuestion"
           />
           {{ uiLabels.answerText }} <br />
-          <div class="johanna">
+          <div
+            class="answersAndDelete"
+            v-for="(_, i) in answers"
+            v-bind:key="'answer' + i"
+          >
             <input
-              v-for="(_, i) in answers"
               v-model="answers[i]"
-              v-bind:key="'answer' + i"
               v-on:input="saveEditedQuestion"
               class="inputAnswers"
             />
+            <button
+              class="delAnsBtn"
+              v-on:click="
+                delAnswer(i);
+                saveEditedQuestion();
+              "
+            >
+             <div id="cross">X</div> 
+              <span class="deleteInfo">Remove</span>
+            </button>
           </div>
           <button
+            class="addAnsBtn"
             v-on:click="
               addAnswer();
               saveEditedQuestion();
             "
           >
-            +
+            + Add another alternative
           </button>
-          <button
-            v-on:click="
-              delAnswer();
-              saveEditedQuestion();
-            "
-          >
-            -
-          </button>
+
           <br />
           <br />
           {{ uiLabels.timePerQuestion }}
@@ -176,7 +182,9 @@
           {{ uiLabels.checkResultsText }}
         </router-link>
       </div>
-      <button class="runPollButton" v-on:click="runPollFunction">{{ uiLabels.runPoll }}</button>
+      <button class="runPollButton" v-on:click="runPollFunction">
+        {{ uiLabels.runPoll }}
+      </button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         class="deletePollBtn catPawCursor"
@@ -242,7 +250,8 @@ export default {
 
     runPollFunction: function () {
       socket.emit("runPoll", {
-        pollId: this.pollId})
+        pollId: this.pollId,
+      });
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -296,8 +305,8 @@ export default {
     addAnswer: function () {
       this.answers.push("");
     },
-    delAnswer: function () {
-      this.answers.pop();
+    delAnswer: function (index) {
+      this.answers.splice(index, 1);
     },
     runQuestion: function () {
       socket.emit("runQuestion", {
@@ -486,7 +495,7 @@ h4 span {
   width: 450px;
   max-width: 80%;
   max-width: 50%;
-  height: 140px;
+  height: auto;
   max-height: 80%;
   opacity: 85%;
   font-family: "Outfit", sans-serif;
@@ -558,15 +567,59 @@ h4 span {
   font-size: 20px;
 }
 
-.inputAnswers {
+.answersAndDelete {
   font-family: "Outfit", sans-serif;
-  display: grid;
-  grid-template-rows: auto auto;
+  grid-template-columns: 90% 10%;
+}
 
-  margin-left: 110px;
+.inputAnswers {
   background: #fff;
   font-size: 15px;
 }
+
+.delAnsBtn {
+  position: relative;
+  margin-left: 3px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#cross {
+  font-size: 120%;
+  color: #c2c7ce;
+}
+
+#cross:hover {
+    color: #9a9fa5;
+}
+
+.delAnsBtn .deleteInfo {
+  visibility: hidden;
+  font-size: 100%;
+  background-color: rgb(58, 57, 57);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  margin-left: 3px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.delAnsBtn:hover .deleteInfo {
+  visibility: visible;
+    font-size: 100%;
+
+}
+
+.addAnsBtn {
+  margin-top: 5px;
+  width: 200px;
+}
+
 #result {
   margin-left: 38%;
   display: grid;

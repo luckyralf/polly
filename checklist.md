@@ -9,6 +9,8 @@
 - [x] Submit knapp till svarssidan
 - [Marcus] Style design på "create poll"
 - [Elsa] Flaggor me språk framsida
+- [ ] Snyggare knapp på participate in poll på Start
+- [ ] Centrera header och de andra rutorna i Start
 
 ## Create
 
@@ -35,6 +37,9 @@
 ## Results
 
 - [x] Få in de valda svaren (logik)
-- [ ] Layout för svarsrepresentation
+- [x] Layout för svarsrepresentation
 - [ ]
 - [ ]
+
+## Sidebar
+- [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
