@@ -16,7 +16,7 @@
 
 - [x] Göra så att skapade frågor kan tas bort
 - [x] Göra så att svarsalternativ i skapade frågor kan ändras
-- [ ] snygga till formuläret där frågor skapas
+- [x] snygga till formuläret där frågor skapas, tycker det ser rätt bra ut nu mvh adam
 - [x] Save knapp
 - [x] Ändra frågor som man redan har skrivit
 - [x] Lägga till ett val av tidsbegränsning per fråga?

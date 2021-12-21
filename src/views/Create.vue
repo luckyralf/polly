@@ -120,7 +120,7 @@
               "
             >
              <div id="cross">X</div> 
-              <span class="deleteInfo">Remove</span>
+              <span class="deleteInfo">{{uiLabels.remove}}</span>
             </button>
           </div>
           <button
@@ -130,7 +130,7 @@
               saveEditedQuestion();
             "
           >
-            + Add another alternative
+            + {{uiLabels.addAnsBtn}}
           </button>
 
           <br />
@@ -618,6 +618,9 @@ h4 span {
 .addAnsBtn {
   margin-top: 5px;
   width: 200px;
+  border-radius: 5px;
+  color: white;
+  background-color: #296ad3;
 }
 
 #result {

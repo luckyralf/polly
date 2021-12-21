@@ -38,5 +38,7 @@
   "editYourPoll": "Redigera din poll här!",
   "runPoll": "Kör Poll",
   "showPie": "Visa cirkeldiagram",
-  "showBars": "Visa stapeldiagram"
+  "showBars": "Visa stapeldiagram",
+  "addAnsBtn": "Lägg till svarsalternativ",
+  "remove": "Ta bort"
 }
