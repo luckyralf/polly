@@ -5,7 +5,7 @@
         <h1 class="CATPOLL">CAT POLL</h1>
       </header>
     </section>
-  
+
     <div id="nav">
       <div class="languangeButtonContainer">
         <button
@@ -45,7 +45,7 @@
           >{{ uiLabels.writePollId }}
           <input type="text" v-model="id" class="catPawTextCursor" />
         </label>
-        
+
         <router-link
           v-bind:to="'/waiting/' + id"
           tag="button"
@@ -64,7 +64,7 @@
         >
       </div>
 
-     <!-- <router-link
+      <!-- <router-link
           style="color: #fff"
           className="link"
           v-bind:to="'/waiting/' + id"
@@ -98,7 +98,6 @@ export default {
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels;
-      console.log("fuck you");
     });
   },
   methods: {
