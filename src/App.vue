@@ -1,38 +1,14 @@
 <template>
-  <Sidebar />
-  <div :style="{ 'margin-left': sidebarWidth }">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
-// import { defineComponent } from "@vue/composition-api";
-import Sidebar from "@/components/sidebar/Sidebar";
-import { sidebarWidth } from "@/components/sidebar/state";
-import meow from "/public/sounds/meow.mp3";
-import io from "socket.io-client";
-const socket = io();
-
 export default {
   props: {},
   setup() {
-    return { sidebarWidth };
+    return {};
   },
-  components: { Sidebar },
-  methods: {
-    switchLanguageToEN: function () {
-      this.lang = "en";
-      socket.emit("switchLanguage", this.lang);
-    },
-    switchLanguageToSV: function () {
-      this.lang = "sv";
-      socket.emit("switchLanguage", this.lang);
-    },
-    playSound: function () {
-      const audio = new Audio(meow);
-      audio.play();
-    },
-  },
+  components: {},
 };
 </script>
 

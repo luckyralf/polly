@@ -45,7 +45,7 @@
           >{{ uiLabels.writePollId }}
           <input type="text" v-model="id" class="catPawTextCursor" />
         </label>
-
+        <br />
         <router-link
           v-bind:to="'/waiting/' + id"
           tag="button"
@@ -369,7 +369,6 @@ export default {
   border-radius: 30px;
   margin-left: 200px;
   margin-right: 20px;
-
   text-transform: uppercase;
 }
 .CATPOLL:hover {
@@ -388,7 +387,6 @@ export default {
   font-style: bold;
   border: solid 5px;
   border-radius: 20px;
-  /*background-color:#88ddff;*/
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   margin-left: 200px;
   margin-right: 200px;
@@ -417,10 +415,10 @@ export default {
   overflow-x: hidden;
   margin: 0px 0px;
   border: none;
-  width: 100vw;
+  width: 100%;
 
   overflow-x: hidden;
-  height: 100vh;
+  height: auto;
   overflow-y: hidden;
 }
 

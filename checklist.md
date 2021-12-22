@@ -9,12 +9,14 @@
 - [x] Submit knapp till svarssidan
 - [Marcus] Style design på "create poll"
 - [Elsa] Flaggor me språk framsida
+- [ ] Snyggare knapp på participate in poll på Start
+- [ ] Centrera header och de andra rutorna i Start
 
 ## Create
 
 - [x] Göra så att skapade frågor kan tas bort
 - [x] Göra så att svarsalternativ i skapade frågor kan ändras
-- [ ] snygga till formuläret där frågor skapas
+- [x] snygga till formuläret där frågor skapas, tycker det ser rätt bra ut nu mvh adam
 - [x] Save knapp
 - [x] Ändra frågor som man redan har skrivit
 - [x] Lägga till ett val av tidsbegränsning per fråga?
@@ -35,6 +37,9 @@
 ## Results
 
 - [x] Få in de valda svaren (logik)
-- [ ] Layout för svarsrepresentation
+- [x] Layout för svarsrepresentation
 - [ ]
 - [ ]
+
+## Sidebar
+- [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
