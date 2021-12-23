@@ -1,36 +1,36 @@
-
 <template>
   <body>
     <header>
       <h1>{{ pollId }}</h1>
     </header>
-    
-     <div class="bars">
-           <div class="answered" v-bind:style="{width: 700/thePoll.poll.questions.length*questionNumber + 'px'}">
-          </div>
-     </div>
+
+    <div class="bars">
+      <div
+        class="answered"
+        v-bind:style="{
+          width: (700 / thePoll.poll.questions.length) * questionNumber + 'px',
+        }"
+      ></div>
+    </div>
 
     <main>
       <div>
-        <Question v-bind:uiLabels="uiLabels" 
-                  v-bind:question="question" 
-                  v-bind:amountQuestion="thePoll.poll.questions.length"
-                  v-on:answer="submitAnswer" />
+        <Question
+          v-bind:uiLabels="uiLabels"
+          v-bind:question="question"
+          v-bind:amountQuestion="thePoll.poll.questions.length"
+          v-on:answer="submitAnswer"
+        />
       </div>
 
-      {{uiLabels.youareonQnumber}} {{ this.questionNumber + 1 }}
-  
+      {{ uiLabels.youareonQnumber }} {{ this.questionNumber + 1 }}
     </main>
 
     <div v-for="index in thePoll.poll.questions.length" :key="index">
-              <div
-                class="numberOfQuestions"
-                type="number"
-                v-bind="index">
-                {{uiLabels.question}} {{ index }}
-              </div>   
+      <div class="numberOfQuestions" type="number" v-bind="index">
+        {{ uiLabels.question }} {{ index }}
+      </div>
     </div>
-     
 
     <div class="container flex-center">
       <div class="wrapper">
@@ -42,25 +42,20 @@
         </div>
       </div>
     </div>
-  <!--<component v-bind:is="script" src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" async></component>
+    <!--<component v-bind:is="script" src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" async></component>
   <component v-bind:is="script" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" async></component>
   <component v-bind:is="script" src="/confetti-creator.js" async></component> -->
-  
   </body>
 </template>
-
-
-
 
 <script>
 // @ is an alias to /src
 import Question from "@/components/Question.vue";
 // import Lodash from "https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js";
 // import gsap from "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js";
-import {confetti} from "/public/confetti-creator.js"
+import { confetti } from "/public/confetti-creator.js";
 import io from "socket.io-client";
 const socket = io();
-
 
 export default {
   name: "Poll",
@@ -78,7 +73,7 @@ export default {
         timeOn: Boolean,
       },
       data: {},
-      pollId: "inactive poll",  
+      pollId: "inactive poll",
       questionNumber: 0,
       thePoll: {},
       amountQuestions: 0,
@@ -93,12 +88,12 @@ export default {
     socket.on("newQuestion", (q) => (this.question = q)); //Poll lyssnar på nya frågor
     socket.on("allQuestions", (data) => (this.data = data));
     //försök att få hela pollen
-    socket.emit('emitGetPoll',this.pollId);
-    socket.on('getPoll',(thePoll) => {
+    socket.emit("emitGetPoll", this.pollId);
+    socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
       socket.emit("pageLoaded", this.thePoll.poll.lang);
-      });
-    
+    });
+
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
@@ -125,10 +120,19 @@ export default {
         this.questionNumber
       );
     },
-    confettiButton: function(){
+    beforeRouteLeave(to, from, next) {
+      const answer = window.confirm(
+        "Do you really want to leave? you have unsaved changes!"
+      );
+      if (answer) {
+        next();
+      } else {
+        next(false);
+      }
+    },
+    confettiButton: function () {
       confetti();
     },
-  
   },
 };
 </script>
@@ -137,7 +141,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
 @import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
 
 h1 {
   font-family: "Exo 2", sans-serif;
@@ -172,11 +176,11 @@ body {
 }
 .answered {
   background-image: url(https://wallpaperbat.com/img/262866-cute-pink-cat-wallpaper-cute-cat-wallpaper.png);
-  background-position: bottom; 
+  background-position: bottom;
   background-size: 460px;
   height: 100%;
   width: 0%;
-  max-width:700px;
+  max-width: 700px;
 }
 
 .container {
@@ -187,7 +191,7 @@ body {
   width: 400px;
 }
 
-#confettiButton{
+#confettiButton {
   padding: 12px;
   color: #fff;
   background-color: #00d773;
@@ -197,7 +201,7 @@ body {
   font-weight: 500;
   min-width: 140px;
   user-select: none;
-  outline:none;
+  outline: none;
 }
 
 .flex-row {
@@ -209,6 +213,4 @@ body {
   justify-content: center;
   align-items: center;
 }
-
-
 </style>

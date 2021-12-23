@@ -48,6 +48,7 @@
         <br />
         <router-link
           v-bind:to="'/waiting/' + id"
+          v-if="checkPollExist()"
           tag="button"
           class="catPawCursor"
           >{{ uiLabels.participatePoll }}</router-link
@@ -126,6 +127,15 @@ export default {
     switchLanguageToSV: function () {
       this.lang = "sv";
       socket.emit("switchLanguage", this.lang);
+    },
+    checkPollExist: function () {
+      socket.emit("emitGetPoll", this.id);
+      socket.on("getPoll", (idOfPoll) => {
+        if (typeof idOfPoll == undefined) {
+          // var pollExists = false;
+        }
+      });
+      return this.lang == "en";
     },
   },
 };
