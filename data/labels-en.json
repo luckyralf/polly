@@ -10,7 +10,7 @@
   "changeLanguage": "Svenska",
   "pollLink": "Poll link: ",
   "writePollId": "Write poll id:",
-  "answerText": "Answers: ",
+  "answerText": "Answer alternatives: ",
   "addAnswer": "Add answer alternative",
   "addQuestion": "Add question",
   "delAnswer": "Delete answer alternative",
@@ -30,11 +30,15 @@
   "startpageInfoHeader": "Do you need help?",
   "startpageInfoContent": "You can chose to either join a friends poll, or make your own! It doesn't take very long, mjau... You will get your poll id from the person who made the poll.",
   "createpageInfoHeader": "Need help?",
-  "createpageInfoContent": "To create your own poll, simply write a poll id name in the text field, for example My Poll, and press the green button, then follow the guide!",
+  "createpageInfoContent": "To create your own poll, simply write a poll name in the text field, for example Mikaels Poll, and press the green button to start making the poll! When you are done with your questions and answer alternatives, your can invite your participators right away with the poll name.",
   "createpageDeleteQuestion": "Delete this question",
   "totalAmountofQuestions": "Total number of questions: ",
   "confirmDeletePoll": "Are you sure you want to delete the poll?",
   "editMe": "Edit me",
   "editYourPoll": "Edit your poll here",
-  "runPoll": "Run poll"
+  "runPoll": "Run poll",
+  "showPie": "Show pie chart",
+  "showBars": "Show bar graph",
+  "addAnsBtn": "Add another alternative",
+  "remove": "Remove"
 }

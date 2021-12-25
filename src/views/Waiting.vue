@@ -12,9 +12,9 @@
                 <p class = "waitingForHost"> Waiting for host to start poll... </p>
 
                     <div class="loading">
-                        <span class="loader__prick"></span>
-                        <span class="loader__prick"></span>
-                        <span class="loader__prick"></span>
+                        <span class="loaderPrick"></span>
+                        <span class="loaderPrick"></span>
+                        <span class="loaderPrick"></span>
                     </div>
 
 
@@ -72,45 +72,36 @@ this.pollId = this.$route.params.id;
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
 
-
-
-
-
 .loading {
-
-  background-color: transparent;
-  overflow:hidden;
   width: 500px;
   height: 100px;
   position: absolute;
-  top: 25%; left: 40%;
+  top: 25%; 
+  left: 40%;
   display: flex;
   align-items: center;
   align-content: center; 
   justify-content: center;  
-  z-index: 100000;
-
 }
 
-.loader__prick {
+.loaderPrick {
   border-radius: 100%;
   border: 5px solid #FFEF78;
   margin: 10px;
 }
 
-.loader__prick:nth-child(1) {
+.loaderPrick:nth-child(1) {
   animation: preloader .6s ease-in-out alternate infinite;
 }
-.loader__prick:nth-child(2) {
-  animation: preloader .6s ease-in-out alternate .2s infinite;
+.loaderPrick:nth-child(2) {
+  animation: preloader .6s ease-in-out alternate 300ms infinite;
 }
-
-.loader__prick:nth-child(3) {
-  animation: preloader .6s ease-in-out alternate .4s infinite;
+.loaderPrick:nth-child(3) {
+  animation: preloader .6s ease-in-out alternate 400ms infinite;
 }
 
 @keyframes preloader {
-  100% { transform: scale(2); }
+  100% { transform: scale(2.3); }
 }
 
 

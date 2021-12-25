@@ -18,8 +18,20 @@
                   v-bind:amountQuestion="thePoll.poll.questions.length"
                   v-on:answer="submitAnswer" />
       </div>
+
+      {{uiLabels.youareonQnumber}} {{ this.questionNumber + 1 }}
+  
+    </main>
+
+    <div v-for="index in thePoll.poll.questions.length" :key="index">
+              <div
+                class="numberOfQuestions"
+                type="number"
+                v-bind="index">
+                {{uiLabels.question}} {{ index }}
+              </div>   
+    </div>
      
-    </main>  
 
     
     <div class="flex-row flex-center">
@@ -58,6 +70,8 @@ export default {
       question: {
         q: "",
         a: [],
+        time: Number,
+        timeOn: Boolean,
       },
       data: {},
       pollId: "inactive poll",  
