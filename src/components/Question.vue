@@ -19,7 +19,7 @@
     </div>
 
     <div>
-      <button v-on:click="submitAnswer" id="submitAnswerButton">
+      <button v-on:click="submitAnswer"  id="submitAnswerButton">
         {{ uiLabels.submitAnswer }}
       </button>
       <br />
@@ -35,7 +35,7 @@
       </div>
 
       <div v-else id="result">
-        <button id="finishQuizButton" v-on:click="finishQuiz">{{ uiLabels.finishQuiz }}</button>
+        <button id="finishQuizButton" v-on:click="finishQuiz(); confettin();">{{ uiLabels.finishQuiz }}</button>
 
         <div v-if="quizFinished">
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
@@ -56,7 +56,10 @@ export default {
     question: Object,
     uiLabels: Object,
     amountQuestion: Number,
+    method: { type: Function }, //HÄR kommer konfettin in från sin parent som en props mvh Elsa
+
   },
+  
   data: function () {
     return {
       pollId: "inactive poll",
@@ -133,9 +136,12 @@ export default {
       }else{
         this.timer = parseInt(t);
       }
-
-    }
+    },
+    confettin: function () {
+      this.method();
+      }
   },
+
 };
 </script>
 <style>
