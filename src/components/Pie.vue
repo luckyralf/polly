@@ -1,5 +1,5 @@
 <template>
-  <div class="thePie" :style="{ background: getPie() }"></div>
+  <div v-bind:class="thePie" :style="{ background: getPie() }"></div>
   <br />
   <div
     class="legends"
@@ -21,7 +21,14 @@ export default {
     return {
       totalQanswered: 0,
       dataArray: [],
+      thePie: "thePie",
     };
+  },
+  watch: {
+    data: function () {
+      this.thePie = "";
+      setTimeout( () => {this.thePie = "thePie"},5);
+    }
   },
   // data ser ut som : { "a1": { "count": 1, "color": "red" }, "a2": { "count": 1, "color": "blue" } }
   // vill ha data: [{"a1": { "count": 1, "color": "red" }}, {"a2": { "count": 1, "color": "blue"}}]
