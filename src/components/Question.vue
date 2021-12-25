@@ -8,14 +8,13 @@
         v-bind:class="{ selected: index === selectedAnswer }"
         v-on:click="changeColor(index)"
         v-bind:key="a"
-        class="isClicked"
-      >
+        class="isClicked">
 
        <span id= "a" > {{ a }}</span>
       </button>
 
-    <div class="timer" >
-      <span >{{ timer }}</span>
+    <div class="timer" v-if="question.timeOn == true && timer > -1">
+      {{ timer }}
     </div>
 
     <div>
@@ -45,6 +44,9 @@
       </div>
     </div>
   </div>
+  {{question}} <br>
+  {{question.time}} <br>
+  {{question.timeOn}}
 </template>
 
 
@@ -67,17 +69,27 @@ export default {
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
-      timer: 30,
-      timerOn: true,
-      
+      timerFunction: null,
+      timer: 0,
     };
   },
+  computed: {
+    
+    thisTimeOn: function(){
+      return this.question.timeOn
+    }
+  },
+
   watch: {
-    timer: {
+    question: {
       handler() {
-        setTimeout(() => {
-          this.timer--;
-        }, 1000);
+        this.timer = this.question.time;
+        clearInterval(this.timerFunction) 
+        if (this.thisTimeOn) {
+          this.timerFunction = setInterval(() => {
+            this.timer--;
+          }, 1000);
+        }
       },
       immediate: true,
     },
@@ -86,6 +98,7 @@ export default {
     this.pollId = this.$route.params.id;
     
   },
+
   methods: {
     submitAnswer: function () {
       //skriv ut vad det valda alternativet är
@@ -102,6 +115,8 @@ export default {
         this.showAnswer = false;
         this.answerSubmitted = false;
         this.submittedAnswer = null;
+        this.timer = this.$props.question.time;
+        this.timeOn = this.$props.question.timeOn;
       }
       console.log(this.questionNumber);
       console.log(this.amountQuestion);
@@ -126,15 +141,8 @@ export default {
         this.selectedAnswer = null;
       }
     },
-    startTimer: function(t){
-      if (t === "unlimited"){
-        this.timerOn = false;
-        this.timer = 100;
-      }else{
-        this.timer = parseInt(t);
-      }
-
-    }
+    
+    
   },
 };
 </script>
