@@ -4,17 +4,19 @@
       <h1>{{ uiLabels.pollResult }}</h1>
     </header>
     <main>
-      <br>
-      <button id="switchComponentBtn" v-on:click="switchComponent()"> {{uiLabels.showPie}} </button>
-      <br>
+      <br />
+      <button id="switchComponentBtn" v-on:click="switchComponent()">
+        {{ uiLabels.showPie }}
+      </button>
+      <br />
       <div class="questionAndBars">
         <div class="questions">
           <div v-for="index in thePoll.poll.questions.length" :key="index">
             <button
               class="resultQuestions"
               type="number"
-              v-bind="index"
-              v-on:click="selectQuestion(index - 1)"
+              v-on:click="selectQuestion(index - 1); changeColor(index-1);"
+              v-bind:class="{ selectedQuestionBtn: (index-1) === selectedQuestion }"
             >
               {{ uiLabels.question }} {{ index }}:
               {{ thePoll.poll.questions[index - 1].q }}
@@ -69,7 +71,8 @@ export default {
         "#ff0000",
         "#D85D55",
       ],
-      dataRepresentation: 'Bars',
+      dataRepresentation: "Bars",
+      selectedQuestion: 0, //anvnds bara för färgändring när man valt en fråga man vill se svaren på
     };
   },
 
@@ -110,19 +113,23 @@ export default {
       socket.emit("joinPoll", { pollId: this.pollId, questionNumber });
     },
     switchComponent: function () {
-      if (this.dataRepresentation === 'Bars') {
-        this.dataRepresentation = 'Pie';
-        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showBars;
+      if (this.dataRepresentation === "Bars") {
+        this.dataRepresentation = "Pie";
+        document.getElementById("switchComponentBtn").innerHTML =
+          this.uiLabels.showBars;
       } else {
-        this.dataRepresentation = 'Bars';
-        document.getElementById("switchComponentBtn").innerHTML = this.uiLabels.showPie;
-
+        this.dataRepresentation = "Bars";
+        document.getElementById("switchComponentBtn").innerHTML =
+          this.uiLabels.showPie;
       }
     },
-    // getPoll: function() {
-    //   socket.emit('emitGetPoll',this.pollId);
-    //   socket.on('getPoll',(thePoll) => (this.thePoll = thePoll));
-    // },
+    changeColor: function (i) {
+      if (this.selectedQuestion != i) {
+        this.selectedQuestion = i;
+      } else {
+        this.selectedQuestion = null;
+      }
+    },
   },
 };
 </script>
@@ -130,9 +137,7 @@ export default {
 <style scoped>
 .questionAndBars {
   display: flex;
-
   grid-gap: 300px;
-  /*grid-template-columns: 50% 50%;*/
 }
 
 .questions {
@@ -167,7 +172,7 @@ export default {
   background-color: #c73ee1;
 }
 
-.resultQuestions:focus {
+.selectedQuestionBtn {
   background-color: #c73ee1;
 }
 
