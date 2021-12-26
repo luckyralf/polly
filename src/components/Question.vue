@@ -201,10 +201,6 @@ export default {
   background-color: #c73ee1;
 }
 
-#a{
-  
-}
-
 .questionWrap {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
   border: solid 5px;

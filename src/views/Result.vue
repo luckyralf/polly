@@ -181,7 +181,7 @@ export default {
 }
 
 h1 {
-  font-family: "Monaco", monospace;
+  font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
   text-align: center;

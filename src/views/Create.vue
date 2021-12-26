@@ -617,6 +617,7 @@ h4 span {
 
 .addAnsBtn {
   margin-top: 5px;
+  margin-right: 20px;
   width: 200px;
   border-radius: 5px;
   color: white;
