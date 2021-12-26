@@ -126,8 +126,6 @@ export default {
     changeColor: function (i) {
       if (this.selectedQuestion != i) {
         this.selectedQuestion = i;
-      } else {
-        this.selectedQuestion = null;
       }
     },
   },
