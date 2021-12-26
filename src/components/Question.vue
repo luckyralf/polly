@@ -8,17 +8,18 @@
         v-bind:class="{ selected: index === selectedAnswer }"
         v-on:click="changeColor(index)"
         v-bind:key="a"
-        class="isClicked">
+        class="isClicked"
+      >
 
        <span id= "a" > {{ a }}</span>
       </button>
 
-    <div class="timer" v-if="question.timeOn == true && timer > -1">
-      {{ timer }}
+    <div class="timer" >
+      <span >{{ timer }}</span>
     </div>
 
     <div>
-      <button v-on:click="submitAnswer" id="submitAnswerButton">
+      <button v-on:click="submitAnswer"  id="submitAnswerButton">
         {{ uiLabels.submitAnswer }}
       </button>
       <br />
@@ -34,7 +35,7 @@
       </div>
 
       <div v-else id="result">
-        <button id="finishQuizButton" v-on:click="finishQuiz">{{ uiLabels.finishQuiz }}</button>
+        <button id="finishQuizButton" v-on:click="finishQuiz(); confettin()">{{ uiLabels.finishQuiz }}</button>
 
         <div v-if="quizFinished">
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
@@ -44,9 +45,6 @@
       </div>
     </div>
   </div>
-  {{question}} <br>
-  {{question.time}} <br>
-  {{question.timeOn}}
 </template>
 
 
@@ -58,7 +56,10 @@ export default {
     question: Object,
     uiLabels: Object,
     amountQuestion: Number,
+    method: { type: Function }, //HÄR kommer konfettin in från sin parent som en props mvh Elsa
+
   },
+  
   data: function () {
     return {
       pollId: "inactive poll",
@@ -69,27 +70,17 @@ export default {
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
-      timerFunction: null,
-      timer: 0,
+      timer: 30,
+      timerOn: true,
+      
     };
   },
-  computed: {
-    
-    thisTimeOn: function(){
-      return this.question.timeOn
-    }
-  },
-
   watch: {
-    question: {
+    timer: {
       handler() {
-        this.timer = this.question.time;
-        clearInterval(this.timerFunction) 
-        if (this.thisTimeOn) {
-          this.timerFunction = setInterval(() => {
-            this.timer--;
-          }, 1000);
-        }
+        setTimeout(() => {
+          this.timer--;
+        }, 1000);
       },
       immediate: true,
     },
@@ -98,7 +89,6 @@ export default {
     this.pollId = this.$route.params.id;
     
   },
-
   methods: {
     submitAnswer: function () {
       //skriv ut vad det valda alternativet är
@@ -115,8 +105,6 @@ export default {
         this.showAnswer = false;
         this.answerSubmitted = false;
         this.submittedAnswer = null;
-        this.timer = this.$props.question.time;
-        this.timeOn = this.$props.question.timeOn;
       }
       console.log(this.questionNumber);
       console.log(this.amountQuestion);
@@ -141,9 +129,19 @@ export default {
         this.selectedAnswer = null;
       }
     },
-    
-    
+    startTimer: function(t){
+      if (t === "unlimited"){
+        this.timerOn = false;
+        this.timer = 100;
+      }else{
+        this.timer = parseInt(t);
+      }
+    },
+    confettin: function () {
+      this.method();
+      }
   },
+
 };
 </script>
 <style>
@@ -201,10 +199,6 @@ export default {
 }
 .selected, .selected:hover {
   background-color: #c73ee1;
-}
-
-#a{
-  
 }
 
 .questionWrap {
