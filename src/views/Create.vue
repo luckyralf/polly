@@ -50,8 +50,9 @@
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
               <button
+                v-on:click="chooseQuestion(index - 1); changeColor(index -1);"
+                v-bind:class="{ selectedQuestionBtn: (index-1) == selectedAnswer }"
                 class="questionButtons"
-                v-on:click="chooseQuestion(index - 1)"
               >
                 {{ data.poll.questions[index - 1].q }}
               </button>
@@ -213,6 +214,7 @@ export default {
       uiLabels: {},
       pollHeadline: "",
       time: "",
+      selectedAnswer: 0, //används bara för färgbyte på frågeknapparna
     };
   },
   created: function () {
@@ -252,6 +254,14 @@ export default {
       socket.emit("runPoll", {
         pollId: this.pollId,
       });
+    },
+
+    changeColor: function (i) {
+      if (this.selectedAnswer != i) {
+        this.selectedAnswer = i;
+      } else {
+        this.selectedAnswer = null;
+      }
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -301,6 +311,7 @@ export default {
       });
       this.question = this.uiLabels.editMe;
       this.answers = ["", ""];
+      this.selectedAnswer = indexForAddedQuestion;
     },
     addAnswer: function () {
       this.answers.push("");
@@ -478,8 +489,8 @@ h4 span {
   background-color: #c73ee1;
 }
 
-.questionButtons:focus {
-  background-color: #c73ee1;
+.selectedQuestionBtn {
+    background-color: #c73ee1;
 }
 
 #infoDIV {
