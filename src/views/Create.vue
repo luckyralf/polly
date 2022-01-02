@@ -172,7 +172,6 @@
           </button>
         </section>
       </div>
-      {{ data }}
       <!-- Check Result Knapp -->
       <div
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
