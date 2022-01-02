@@ -40,5 +40,6 @@
   "showPie": "Visa cirkeldiagram",
   "showBars": "Visa stapeldiagram",
   "addAnsBtn": "Lägg till svarsalternativ",
-  "remove": "Ta bort"
+  "remove": "Ta bort",
+  "waitingRoom": "VÄNTERUM"
 }
