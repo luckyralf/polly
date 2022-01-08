@@ -1,5 +1,13 @@
 # Checklist
 
+
+## Kvar att göra 
+- [ ] Räkna antalet deltagare
+- [ ] Ladda upp på servern
+- [ ] Slå ihop "submit" och "next question"
+- [ ] Vad händer när timern går ut? 
+- [ ] 
+
 ## skriv in saker som behöver göras och bocka av när det är klart
 
 - [x] Skapa en checklist
