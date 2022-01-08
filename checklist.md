@@ -29,6 +29,8 @@
 - [x] Ändra frågor som man redan har skrivit
 - [x] Lägga till ett val av tidsbegränsning per fråga?
 - [ ] Det går bara att lägga till en fråga i en poll
+- [ ] Flytta CHECK RESULT till ett snyggare ställe
+- [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts 
 
 ## Generellt
 
