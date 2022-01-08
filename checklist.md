@@ -51,5 +51,3 @@
 - [ ]
 - [ ]
 
-## Sidebar
-- [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
