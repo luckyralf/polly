@@ -2,16 +2,22 @@
 
 
 ## Kvar att göra 
-- [ ] Räkna antalet deltagare
 - [ ] Ladda upp på servern
-- [ ] Slå ihop "submit" och "next question"
-- [ ] Vad händer när timern går ut? 
-- [ ] Gör konfettin mer "egen"
 - [ ] Kolla uiLabels överallt
-- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
-
 
 ## Poll
+- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+- [ ] Gör konfettin mer "egen"
+- [ ] Slå ihop "submit" och "next question"
+- [ ] OM det bara är en fråga fuckas det upp vad händer. 
+- [ ] Vad händer när timern går ut? 
+
+
+## Väntrum
+- [ ] Räkna antalet deltagare
+- [ ] Sätt igång pollen vid rätt tillfälle
+
+## Startsida
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
