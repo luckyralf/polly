@@ -46,7 +46,7 @@
 - [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts 
 - [ ] Förtydliga designen, mer användarvänlig
 - [ ] Inte kunna göra en poll utan namn
-- [ ] Begränsning på frågor?
+- [ ] Begränsning på antal frågor?
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
 - [ ] Något sätt att se tidigare skapta polls
 - [ ] 
