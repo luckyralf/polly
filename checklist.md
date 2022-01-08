@@ -42,6 +42,7 @@
 - [x] Det går bara att lägga till en fråga i en poll
 - [ ] Flytta CHECK RESULT till ett snyggare ställe
 - [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts 
+- [ ] Förtydliga designen 
 
 ## Generellt
 
