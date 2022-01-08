@@ -6,7 +6,8 @@
 - [ ] Ladda upp på servern
 - [ ] Slå ihop "submit" och "next question"
 - [ ] Vad händer när timern går ut? 
-- [ ] 
+- [ ] Gör konfettin mer "egen"
+- [ ] Kolla uiLabels överallt
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
