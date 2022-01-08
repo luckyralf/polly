@@ -1,8 +1,7 @@
 <template>
+  <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p> <!--ska denna va me?/Elsa-->
   <div class="questionWrap">
-    
     <p id="question">{{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}</p>
-    <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p>
       <button
         v-for="(a, index) in question.a"
         v-bind:class="{ selected: index === selectedAnswer }"
@@ -24,7 +23,7 @@
       </button>
       <br />
       <div v-if="showAnswer">
-        {{ uiLabels.submittedAnswer }} : {{ this.submittedAnswer }}
+        {{ uiLabels.submittedAnswer }} : {{ this.submittedAnswer }} <!--ska denna va me?/Elsa-->
       </div>
     </div>
     <br />
@@ -173,7 +172,7 @@ export default {
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
-  margin-top: 10px;
+
   font-family: "Outfit", sans-serif;
   font-size: 20px;
 }
@@ -209,9 +208,8 @@ export default {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
   border: solid 5px;
   border-radius: 20px;
-  padding: 1rem;
   margin-left: 1px;
-  margin: 3rem;
+  
   margin-left: 200px;
   margin-right: 200px;
   position: center;
@@ -222,7 +220,7 @@ export default {
 
 #question {
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   font-family: "Outfit", sans-serif;
 }
 
