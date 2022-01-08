@@ -8,6 +8,10 @@
 - [ ] Vad händer när timern går ut? 
 - [ ] Gör konfettin mer "egen"
 - [ ] Kolla uiLabels överallt
+- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+
+
+## Poll
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
