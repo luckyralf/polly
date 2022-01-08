@@ -49,7 +49,7 @@
 - [ ] Begränsning på antal frågor?
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
 - [ ] Något sätt att se tidigare skapta polls
-- [ ] 
+- [ ] SE vilken fråga man är på
 
 ## Generellt
 
