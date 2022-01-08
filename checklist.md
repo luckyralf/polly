@@ -4,6 +4,7 @@
 ## Kvar att göra 
 - [ ] Ladda upp på servern
 - [ ] Kolla uiLabels överallt
+- [ ] Home knapp på alla sidor förutom start.
 
 ## Poll
 - [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
@@ -11,6 +12,7 @@
 - [ ] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer. 
 - [ ] Vad händer när timern går ut? 
+- [ ] Sekunder på tider
 
 
 ## Väntrum
@@ -43,6 +45,11 @@
 - [ ] Flytta CHECK RESULT till ett snyggare ställe
 - [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts 
 - [ ] Förtydliga designen, mer användarvänlig
+- [ ] Inte kunna göra en poll utan namn
+- [ ] Begränsning på frågor?
+- [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
+- [ ] Något sätt att se tidigare skapta polls
+- [ ] 
 
 ## Generellt
 
