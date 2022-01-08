@@ -12,7 +12,8 @@
 - [ ] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer. 
 - [ ] Vad händer när timern går ut? 
-- [ ] Sekunder på tider
+- [ ] Sekunder på timer
+- [ ] Timer stanna när man tryckt submit
 
 
 ## Väntrum
