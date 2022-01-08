@@ -101,7 +101,7 @@ this.pollId = this.$route.params.id;
 }
 
 @keyframes preloader {
-  100% { transform: scale(2.3); }
+  100% { transform: scale(2.5); }
 }
 
 
