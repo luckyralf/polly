@@ -5,6 +5,7 @@
 - [ ] Ladda upp på servern
 - [ ] Kolla uiLabels överallt
 - [ ] Home knapp på alla sidor förutom start.
+- [ ] Cursors kvar på waitingroom och results, väntar på att kunna komma vidare mvh adam
 
 ## Poll
 
