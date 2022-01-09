@@ -80,10 +80,11 @@ function sockets(io, socket, data) {
 
 
   socket.on("runPoll", function (d) {
-    io.to(d.pollId).emit(
-      "runPoll",
-      data.getQuestion(d.pollId)
-    );
+    socket.emit("runPolls", d);
+    // io.to(d).emit(
+    //   "runPolls", d
+    //   //data.getQuestion(d.pollId)
+    // );
   });
 // elsa och johanna run q i create 
 

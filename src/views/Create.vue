@@ -13,18 +13,21 @@
       <!-- {{ data }} -->
       <br />
       <!-- {{ data.poll.editQuestion }} -->
+
+        Här kan du skapa din omröstning. 
+        Börja med att bestämma ett namn/pollID för att göra det möjligt att deltagare att gå med i omröstningen. 
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
         <input
           type="text"
           placeholder="Write the name of your poll"
           v-model="pollId"
-          class="catPawTextCursor"
-        />
+          class="catPawTextCursor" required >
 
-        <button class="createPollBtn catPawCursor" v-on:click="createPoll">
+        <button  type="submit" class="createPollBtn catPawCursor" v-on:click="createPoll">
           {{ uiLabels.createPoll }}
         </button>
+        
 
         <button
           v-on:click="infoFunction()"
@@ -262,9 +265,11 @@ export default {
     },
 
     runPollFunction: function () {
+      console.log(this.pollId)
       socket.emit("runPoll", {
-        pollId: this.pollId,
+         pollId: this.pollId,
       });
+      //VARFÖR FUNKAR DE INTE
     },
 
     changeColor: function (i) {
