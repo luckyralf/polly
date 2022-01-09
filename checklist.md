@@ -13,9 +13,9 @@
 - [ ] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer.
-- [ ] Vad händer när timern går ut?
-- [ ] Sekunder på timer
-- [ ] Timer stanna när man tryckt submit
+- [x] Vad händer när timern går ut?
+- [x] Sekunder på timer
+- [x] Timer stanna när man tryckt submit
 
 ## Väntrum
 
@@ -35,7 +35,7 @@
 - [x] Submit knapp till svarssidan
 - [Marcus] Style design på "create poll"
 - [Elsa] Flaggor me språk framsida
-- [ ] Snyggare knapp på participate in poll på Start
+- [x] Snyggare knapp på participate in poll på Start
 - [ ] Centrera header och de andra rutorna i Start
 
 ## Create
