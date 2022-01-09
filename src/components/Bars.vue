@@ -1,11 +1,13 @@
 <template>
 <div class="wrapper">
-  <div class="bar" v-for="(item, key) in data" v-bind:key="key">
-    <div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]">
-      <span> {{item.count}} </span>
-    </div>
-    <div> 
-      {{key}}
+  <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
+    <div v-if="key != ''">
+      <div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]">
+        <span> {{item.count}} </span>
+      </div>
+      <div> 
+        {{key}} 
+      </div>
     </div>
   </div>
 </div>
