@@ -1,44 +1,55 @@
 <template>
   <div class="questionWrap">
-    
-    <p id="question">{{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}</p>
-    <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p>
-    
-    <div class="answerAlternatives" v-if="timer > -1">
-      <button
-        v-for="(a, index) in question.a"
-        v-bind:class="{ selected: index === selectedAnswer }"
-        v-on:click="changeColor(index)"
-        v-bind:key="a"
-        class="isClicked" >
+    <p id="question">
+      {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
+    </p>
+    <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
 
-        <span id= "a" > {{ a }}</span>
-      </button>
-    
-      <div class="timer" v-if="question.timeOn == true">
-        {{ timer }}
-      </div>
-    </div> 
+    <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
 
-      <div>
-        <button v-on:click="submitAnswer"  id="submitAnswerButton">
-          {{ uiLabels.submitAnswer }}
+        <button
+          v-for="(a, index) in question.a"
+          v-bind:class="{ selected: index === selectedAnswer }"
+          v-on:click="
+            changeColor(index);
+            submitAnswer();
+          "
+          v-bind:key="a"
+          class="isClicked"
+        >
+          <span id="a"> {{ a }}</span>
         </button>
-        <br />
-        <div v-if="showAnswer">
-          {{ uiLabels.submittedAnswer }} : {{ this.submittedAnswer }}
-        </div>
-      </div>
-      <br />
-    
 
+        <div class="timer" v-if="question.timeOn == true">
+          {{ timer }}
+        </div>
+
+    </div>
+    
+    <br />
+    <div v-if="timer < 0 && question.timeOn == true" >
+      <button id="nextQuestionButton" v-on:click="emptyAnswer">
+          {{ uiLabels.nextQuestion }}
+        </button>
+
+    </div>
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
-        <button id="nextQuestionButton" v-on:click="answer">{{ uiLabels.nextQuestion }}</button>
+        <button id="nextQuestionButton" v-on:click="answer">
+          {{ uiLabels.nextQuestion }}
+        </button>
       </div>
 
       <div v-else id="result">
-        <button id="finishQuizButton" v-on:click="finishQuiz(); confettin()">{{ uiLabels.finishQuiz }}</button>
+        <button
+          id="finishQuizButton"
+          v-on:click="
+            finishQuiz();
+            confettin();
+          "
+        >
+          {{ uiLabels.finishQuiz }}
+        </button>
 
         <div v-if="quizFinished">
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
@@ -52,7 +63,6 @@
 
 
 <script>
-
 export default {
   name: "Question",
   props: {
@@ -60,9 +70,8 @@ export default {
     uiLabels: Object,
     amountQuestion: Number,
     method: { type: Function }, //HÄR kommer konfettin in från sin parent som en props mvh Elsa
-
   },
-  
+
   data: function () {
     return {
       pollId: "inactive poll",
@@ -79,16 +88,16 @@ export default {
   },
 
   computed: {
-    thisTimeOn: function(){
-      return this.question.timeOn
-    }
+    thisTimeOn: function () {
+      return this.question.timeOn;
+    },
   },
 
   watch: {
     question: {
       handler() {
         this.timer = this.question.time;
-        clearInterval(this.timerFunction) 
+        clearInterval(this.timerFunction);
         if (this.thisTimeOn) {
           this.timerFunction = setInterval(() => {
             this.timer--;
@@ -100,9 +109,14 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
-    
   },
   methods: {
+    emptyAnswer: function(){
+      this.answerSubmitted = true;
+      this.submittedAnswer = '';
+      this.answer();
+    },
+
     submitAnswer: function () {
       //skriv ut vad det valda alternativet är
       this.showAnswer = true;
@@ -122,7 +136,7 @@ export default {
       console.log(this.questionNumber);
       console.log(this.amountQuestion);
       this.questionNumber = this.questionNumber + 1;
-      
+
       if (this.questionNumber === this.amountQuestion) {
         this.lastQuestion = false;
       }
@@ -142,29 +156,25 @@ export default {
         this.selectedAnswer = null;
       }
     },
-    startTimer: function(t){
-      if (t === "unlimited"){
+    startTimer: function (t) {
+      if (t === "unlimited") {
         this.timerOn = false;
         this.timer = 100;
-      }else{
+      } else {
         this.timer = parseInt(t);
       }
     },
     confettin: function () {
       this.method();
-      }
+    },
   },
-
 };
 </script>
 <style>
-
-
-
 #submitAnswerButton {
   padding: 10px;
   margin-top: 10px;
-  background-color: #d794e3 ;
+  background-color: #d794e3;
   color: white;
   border: 3px solid #ffffce;
   font-family: "Outfit", sans-serif;
@@ -172,7 +182,7 @@ export default {
 }
 
 #finishQuizButton {
-  background-color: #1313ad;;
+  background-color: #1313ad;
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
@@ -192,7 +202,7 @@ export default {
 }
 
 .isClicked {
-  background-color:#3ac7ff;
+  background-color: #3ac7ff;
   border: outset 3px white;
   width: 500px;
   height: 60px;
@@ -210,7 +220,8 @@ export default {
 .isClicked:active {
   background-color: #c73ee1;
 }
-.selected, .selected:hover {
+.selected,
+.selected:hover {
   background-color: #c73ee1;
 }
 
@@ -225,9 +236,8 @@ export default {
   margin-right: 200px;
   position: center;
   font-size: 20px;
-  padding-bottom: 50px
+  padding-bottom: 50px;
 }
-
 
 #question {
   color: white;
@@ -243,7 +253,6 @@ export default {
   border: solid #229954;
   font-size: 2rem;
   padding: 20px;
-
 }
 
 #result {
