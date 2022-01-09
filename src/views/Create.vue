@@ -3,6 +3,9 @@
     <header>
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
+    <router-link v-bind:to="/#/" class="link" tag="button">{{
+      uiLabels.participatePoll
+    }}</router-link>
     <main class="mainWrapped">
       <!-- {{ data }} -->
       <br />
@@ -151,10 +154,10 @@
             v-on:change="saveEditedQuestion"
           >
             <option value="0" selected>{{ uiLabels.unlimited }}</option>
-            <option value="10">10</option>
-            <option value="30">30</option>
-            <option value="60">60</option>
-            <option value="90">90</option>
+            <option value="10">10s</option>
+            <option value="30">30s</option>
+            <option value="60">60s</option>
+            <option value="90">90s</option>
           </select>
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
@@ -172,6 +175,7 @@
           </button>
         </section>
       </div>
+      {{ data }}
       <!-- Check Result Knapp -->
       <div
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
@@ -187,11 +191,7 @@
           {{ uiLabels.checkResultsText }}
         </router-link>
       </div>
-      <button
-        class="runPollButton"
-        v-on:click="runPollFunction"
-        v-if="data.poll !== undefined && data.poll.questions.length > 0"
-      >
+      <button class="runPollButton" v-on:click="runPollFunction">
         {{ uiLabels.runPoll }}
       </button>
       <button
@@ -268,7 +268,6 @@ export default {
       if (this.selectedAnswer != i) {
         this.selectedAnswer = i;
       }
-      console.log(this.selectedAnswer);
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -289,8 +288,8 @@ export default {
       if (direction == "up") {
         this.changeColor(editQuestion - 1);
       }
-      if (direction == "down") {
-        this.changeColor(editQuestion + 1);
+      if (direction == 'down') {
+        this.changeColor(editQuestion+1)
       }
       // this.question = this.data.poll.questions[this.data.poll.editQuestion].q;
       // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;

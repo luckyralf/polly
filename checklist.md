@@ -1,12 +1,29 @@
 # Checklist
 
+## Kvar att göra
 
-## Kvar att göra 
-- [ ] Räkna antalet deltagare
 - [ ] Ladda upp på servern
+- [ ] Kolla uiLabels överallt
+- [ ] Home knapp på alla sidor förutom start.
+
+## Poll
+
+- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+- [ ] Gör konfettin mer "egen"
 - [ ] Slå ihop "submit" och "next question"
-- [ ] Vad händer när timern går ut? 
-- [ ] 
+- [ ] OM det bara är en fråga fuckas det upp vad händer.
+- [ ] Vad händer när timern går ut?
+- [ ] Sekunder på timer
+- [ ] Timer stanna när man tryckt submit
+
+## Väntrum
+
+- [ ] Räkna antalet deltagare
+- [ ] Sätt igång pollen vid rätt tillfälle
+
+## Startsida
+
+- [ ] Stå omröstning istället för röstning-
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
@@ -30,7 +47,13 @@
 - [x] Lägga till ett val av tidsbegränsning per fråga?
 - [x] Det går bara att lägga till en fråga i en poll
 - [ ] Flytta CHECK RESULT till ett snyggare ställe
-- [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts 
+- [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts
+- [ ] Förtydliga designen, mer användarvänlig
+- [ ] Inte kunna göra en poll utan namn
+- [ ] Begränsning på antal frågor?
+- [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
+- [ ] Något sätt att se tidigare skapta polls
+- [ ] SE vilken fråga man är på
 
 ## Generellt
 
@@ -49,5 +72,15 @@
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
 - [ ]
-- [ ]
 
+## Poll
+
+- [] Vad ska hända om man inte svarar? En till stapel med "obesvarat"
+- [] Fixa bugg när man klickar på submit utan att ha svarat
+
+<<<<<<< HEAD
+=======
+## Sidebar
+
+- [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
+>>>>>>> 8d15b83371109f576395c3695985b4d7855e3036

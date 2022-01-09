@@ -148,7 +148,7 @@ export default {
 /*#infoDIV {
   font-family: "Outfit", sans-serif;
   width: 600px;
-  
+
   max-width:80%;
   margin-left:500px;
   padding: 5px 0;
@@ -160,8 +160,16 @@ export default {
   transition: 200ms ease-in-out;
   display: none;
 
-  
+
 }*/
+
+body {
+  /* display: block; */
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
 
 .temp {
   width: 100vw;
@@ -341,8 +349,8 @@ export default {
   box-shadow: 0 0 20px 7px #fff, 0 0 37px 15px #f0f, 0 0 40px 27px #0ff,
     inset 0 0 20px 8px #fff, inset 0 0 37px 18px #f0f, inset 0 0 30px 27px #0ff;
 
-  /*0 0 30px 15px #fff,  
-    0 0 57px 35px #f0f, 
+  /*0 0 30px 15px #fff,
+    0 0 57px 35px #f0f,
     0 0 45px 50px #0ff,
     inset 0 0 30px 15px #fff,
     inset 0 0 57px 20px #f0f,
@@ -421,12 +429,11 @@ export default {
   background-color: #1941b2;
   /*background: linear-gradient(to left, #0c2c63, #1941b2);*/
   padding-top: 25px;
-  overflow-x: hidden;
   margin: 0px 0px;
   border: none;
   width: 100%;
 
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   height: auto;
   overflow-y: hidden;
 }
@@ -469,13 +476,5 @@ hr:after {
   padding: 0 4px;
   position: relative;
   top: -13px;
-}
-
-body {
-  display: block;
-  margin-top: 0px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-left: 0px;
 }
 </style>
