@@ -8,7 +8,7 @@
 
 ## Poll
 
-- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske    göra allt lite mindre
 - [ ] Gör konfettin mer "egen"
 - [ ] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer.
@@ -63,10 +63,7 @@
 - [x] Liten tass som cursor
 - [x] Meow vid språkbyte
 - [x] Meny
-<<<<<<< HEAD
-=======
 - [x] Fixa så eny fungerar helt och hållet
->>>>>>> 6b532a01a9a7357d8cdbcbb0f6256018fca243db
 - [ ] Tillbaka-knapp på typ alla sidor
 - [ ] uiLabels på infoknappar
 
@@ -81,9 +78,6 @@
 - [] Vad ska hända om man inte svarar? En till stapel med "obesvarat"
 - [] Fixa bugg när man klickar på submit utan att ha svarat
 
-<<<<<<< HEAD
-=======
 ## Sidebar
 
 - [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
->>>>>>> 8d15b83371109f576395c3695985b4d7855e3036

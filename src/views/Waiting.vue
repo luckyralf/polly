@@ -21,7 +21,7 @@
     </div>
     
     <div>
-      <router-link class="startPoll" v-bind:to="'/poll/' + pollId"  v-if= "data.runPoll"
+      <router-link class="startPoll" v-bind:to="'/poll/' + pollId"  >
         >KÖR POLLJÄVELN
       </router-link>
     </div>

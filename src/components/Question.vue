@@ -26,29 +26,50 @@
         </div>
 
     </div>
+    <div id="timesUp" v-if="timer < 0 ">
+      {{uiLabels.timesUp}}
+    </div>
     
     <br />
-    <!-- <div v-if="timer < 0 && question.timeOn == true" >
-      <button id="nextQuestionButton" v-on:click="emptyAnswer">
-          {{ uiLabels.nextQuestion }}
-        </button>
+<!-- Frågor som submittas UTAN svar-->
 
-    </div> -->
-    <div v-if="answerSubmitted || (timer < 0 && question.timeOn == true)">
+    <div v-if="timer < 0 && question.timeOn == true" >
+      <div v-if="lastQuestion">
+        <button id="nextQuestionButton" v-on:click="emptyAnswer">
+            {{ uiLabels.nextQuestion }}
+        </button>
+      </div>
+      <div v-else class="result">
+        <button
+          id="finishQuizButton"
+          v-on:click="
+            finishQuizEmpty();
+            confettin();">
+
+          {{ uiLabels.finishQuiz }}
+        </button>
+      </div>
+      <div v-if="quizFinished">
+          <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+            {{ uiLabels.seeResult }}
+          </router-link>
+        </div>
+    </div>
+<!-- Frågor som submittas med svar-->
+    <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button id="nextQuestionButton" v-on:click="answer">
           {{ uiLabels.nextQuestion }}
         </button>
       </div>
 
-      <div v-else id="result">
+      <div v-else class="result">
         <button
           id="finishQuizButton"
           v-on:click="
             finishQuiz();
-            confettin();
-          "
-        >
+            confettin();">
+
           {{ uiLabels.finishQuiz }}
         </button>
 
@@ -59,6 +80,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -102,7 +124,9 @@ export default {
           this.timerFunction = setInterval(() => {
             this.timer--;
           }, 1000);
+          
         }
+        
       },
       immediate: true,
     },
@@ -115,6 +139,13 @@ export default {
       this.answerSubmitted = true;
       this.submittedAnswer = '';
       this.answer();
+    },
+    finishQuizEmpty: function(){
+      this.answerSubmitted = true;
+      this.submittedAnswer = '';
+      this.finishQuiz();
+      this.answerSubmitted = false;
+
     },
 
     submitAnswer: function () {
@@ -242,6 +273,6 @@ export default {
   padding: 20px;
 }
 
-#result {
+.result {
 }
 </style>
