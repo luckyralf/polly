@@ -38,6 +38,7 @@ Data.prototype.deletePoll = function (pollId) {
 };
 
 Data.prototype.addQuestion = function (pollId, q, indexForAddedQuestion) {
+  console.log(indexForAddedQuestion);
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== "undefined") {
