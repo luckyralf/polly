@@ -27,6 +27,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     poll.editQuestion = -1; //frågan som ska visas när man klickar på en
     poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1?
     this.polls[pollId] = poll;
+    poll.saveMode = false;
     console.log("poll created", pollId, poll);
   }
   return this.polls[pollId];
@@ -141,12 +142,26 @@ Data.prototype.createPollHead = function (pollId) {
   }
 };
 
-Data.prototype.saveTime = function (t){
-  if(parseInt(t) === 0){
-    return {timeOn: false, time: 0}
-  } else{
-    return {timeOn: true, time: parseInt(t)}
+Data.prototype.saveTime = function (t) {
+  if (parseInt(t) === 0) {
+    return { timeOn: false, time: 0 };
+  } else {
+    return { timeOn: true, time: parseInt(t) };
   }
-}
+};
+
+Data.prototype.editOrSavePoll = function (mode, pollId) {
+  if (mode == "savemode") {
+    this.polls[pollId].saveMode = true;
+  }
+  if (mode == "editmode") {
+    this.polls[pollId].saveMode = false;
+  }
+};
+
+Data.prototype.getAllPolls = function () {
+  return this.polls;
+  console.log("data getallpolls");
+};
 
 module.exports = Data;
