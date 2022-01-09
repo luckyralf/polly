@@ -1,13 +1,13 @@
 <template>
-  <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p> <!--ska denna va me?/Elsa-->
+<!-- hej Johanna -->
   <div class="questionWrap">
     <p id="question">
       {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
     </p>
-    <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
 
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
-
+      <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
+      
         <button
           v-for="(a, index) in question.a"
           v-bind:class="{ selected: index === selectedAnswer }"
@@ -35,13 +35,13 @@
 
     <div v-if="timer < 0 && question.timeOn == true" >
       <div v-if="lastQuestion">
-        <button id="nextQuestionButton" v-on:click="emptyAnswer">
+        <button class="nextQuestionButton catPawCursor" v-on:click="emptyAnswer">
             {{ uiLabels.nextQuestion }}
         </button>
       </div>
       <div v-else class="result">
         <button
-          id="finishQuizButton"
+          class="finishQuizButton catPawCursor"
           v-on:click="
             finishQuizEmpty();
             confettin();">
@@ -263,6 +263,7 @@ export default {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
   border: solid 5px;
   border-radius: 20px;
+  margin-top: 2rem;
   margin-left: 1px;
   
   margin-left: 200px;
@@ -286,6 +287,13 @@ export default {
   border: solid #229954;
   font-size: 2rem;
   padding: 20px;
+}
+.timer{
+  font-size: 2.5rem;
+}
+
+#timesUp{
+  font-size: 3rem;
 }
 
 .result {
