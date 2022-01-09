@@ -1,5 +1,5 @@
 <template>
-  <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p> <!--ska denna va me?/Elsa-->
+<!-- hej Johanna -->
   <div class="questionWrap">
     <p id="question">
       {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
@@ -263,6 +263,7 @@ export default {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
   border: solid 5px;
   border-radius: 20px;
+  margin-top: 2rem;
   margin-left: 1px;
   
   margin-left: 200px;
@@ -287,10 +288,12 @@ export default {
   font-size: 2rem;
   padding: 20px;
 }
+.timer{
+  font-size: 2.5rem;
+}
 
 #timesUp{
   font-size: 3rem;
-  
 }
 
 .result {
