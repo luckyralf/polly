@@ -21,8 +21,6 @@
       {{ timer }}
     </div>
 
-    <br />
-
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button id="nextQuestionButton" v-on:click="answer">
@@ -155,15 +153,6 @@ export default {
 };
 </script>
 <style>
-#submitAnswerButton {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #d794e3;
-  color: white;
-  border: 3px solid #ffffce;
-  font-family: "Outfit", sans-serif;
-  font-size: 20px;
-}
 
 #finishQuizButton {
   background-color: #1313ad;
@@ -172,6 +161,7 @@ export default {
   padding: 10px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -180,7 +170,7 @@ export default {
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
 }
