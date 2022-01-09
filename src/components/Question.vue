@@ -6,7 +6,6 @@
     </p>
     <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
 
-<<<<<<< HEAD
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
 
         <button
@@ -29,15 +28,13 @@
     </div>
     
     <br />
-    <div v-if="timer < 0 && question.timeOn == true" >
+    <!-- <div v-if="timer < 0 && question.timeOn == true" >
       <button id="nextQuestionButton" v-on:click="emptyAnswer">
           {{ uiLabels.nextQuestion }}
         </button>
 
-    </div>
-=======
->>>>>>> 973952b668f4e6938bf99c742682b8377545d61c
-    <div v-if="answerSubmitted">
+    </div> -->
+    <div v-if="answerSubmitted || (timer < 0 && question.timeOn == true)">
       <div v-if="lastQuestion">
         <button id="nextQuestionButton" v-on:click="answer">
           {{ uiLabels.nextQuestion }}
