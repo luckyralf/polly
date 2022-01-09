@@ -1,15 +1,15 @@
 <template>
   <body>
 
-   <router-link  to="/" class="homeButton" tag="button"> Home </router-link>
-    <header>
+   <router-link  to="/" class="homeButton catPawCursor" tag="button"> Home </router-link>
+    <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
     <router-link v-bind:to="/#/" class="link" tag="button">{{
       uiLabels.participatePoll
     }}</router-link>
     
-    <main class="mainWrapped">
+    <main class="mainWrapped catCursor">
       <!-- {{ data }} -->
       <br />
       <!-- {{ data.poll.editQuestion }} -->

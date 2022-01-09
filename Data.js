@@ -143,7 +143,7 @@ Data.prototype.createPollHead = function (pollId) {
 
 Data.prototype.saveTime = function (t){
   if(parseInt(t) === 0){
-    return {timeOn: false, time: 0}
+    return {timeOn: false, time: 1}
   } else{
     return {timeOn: true, time: parseInt(t)}
   }
