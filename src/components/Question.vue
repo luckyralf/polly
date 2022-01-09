@@ -1,10 +1,12 @@
 <template>
+  <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p> <!--ska denna va me?/Elsa-->
   <div class="questionWrap">
     <p id="question">
       {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
     </p>
     <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
 
+<<<<<<< HEAD
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
 
         <button
@@ -33,6 +35,8 @@
         </button>
 
     </div>
+=======
+>>>>>>> 973952b668f4e6938bf99c742682b8377545d61c
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button id="nextQuestionButton" v-on:click="answer">
@@ -78,7 +82,6 @@ export default {
       questionNumber: 1,
       selectedAnswer: null, //index som anger vilket alternativ som är valt
       submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
-      showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
@@ -118,18 +121,14 @@ export default {
     },
 
     submitAnswer: function () {
-      //skriv ut vad det valda alternativet är
-      this.showAnswer = true;
       this.submittedAnswer = this.question.a[this.selectedAnswer];
       console.log(this.submittedAnswer);
       this.answerSubmitted = true;
-      //this.questionNumber = this.questionNumber + 1;
     },
     answer: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null) {
         this.$emit("answer", this.submittedAnswer);
         this.selectedAnswer = null;
-        this.showAnswer = false;
         this.answerSubmitted = false;
         this.submittedAnswer = null;
       }
@@ -171,15 +170,6 @@ export default {
 };
 </script>
 <style>
-#submitAnswerButton {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #d794e3;
-  color: white;
-  border: 3px solid #ffffce;
-  font-family: "Outfit", sans-serif;
-  font-size: 20px;
-}
 
 #finishQuizButton {
   background-color: #1313ad;
@@ -188,6 +178,7 @@ export default {
   padding: 10px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -196,7 +187,7 @@ export default {
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
 }
@@ -229,9 +220,8 @@ export default {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
   border: solid 5px;
   border-radius: 20px;
-  padding: 1rem;
   margin-left: 1px;
-  margin: 3rem;
+  
   margin-left: 200px;
   margin-right: 200px;
   position: center;
@@ -241,7 +231,7 @@ export default {
 
 #question {
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   font-family: "Outfit", sans-serif;
 }
 
