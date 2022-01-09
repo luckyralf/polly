@@ -10,7 +10,7 @@
 
 - [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
 - [ ] Gör konfettin mer "egen"
-- [ ] Slå ihop "submit" och "next question"
+- [x] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer.
 - [ ] Vad händer när timern går ut?
 - [ ] Sekunder på timer
@@ -63,7 +63,10 @@
 - [x] Liten tass som cursor
 - [x] Meow vid språkbyte
 - [x] Meny
+<<<<<<< HEAD
+=======
 - [x] Fixa så eny fungerar helt och hållet
+>>>>>>> 6b532a01a9a7357d8cdbcbb0f6256018fca243db
 - [ ] Tillbaka-knapp på typ alla sidor
 - [ ] uiLabels på infoknappar
 

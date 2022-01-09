@@ -1,27 +1,40 @@
 <template>
+  <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p> <!--ska denna va me?/Elsa-->
   <div class="questionWrap">
     <p id="question">
       {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
     </p>
     <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
-    <button
-      v-for="(a, index) in question.a"
-      v-bind:class="{ selected: index === selectedAnswer }"
-      v-on:click="
-        changeColor(index);
-        submitAnswer();
-      "
-      v-bind:key="a"
-      class="isClicked"
-    >
-      <span id="a"> {{ a }}</span>
-    </button>
 
-    <div class="timer" v-if="question.timeOn == true && timer > -1">
-      {{ timer }}
+    <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
+
+        <button
+          v-for="(a, index) in question.a"
+          v-bind:class="{ selected: index === selectedAnswer }"
+          v-on:click="
+            changeColor(index);
+            submitAnswer();
+          "
+          v-bind:key="a"
+          class="isClicked"
+        >
+          <span id="a"> {{ a }}</span>
+        </button>
+
+        <div class="timer" v-if="question.timeOn == true">
+          {{ timer }}
+        </div>
+
     </div>
+    
+    <br />
+    <!-- <div v-if="timer < 0 && question.timeOn == true" >
+      <button id="nextQuestionButton" v-on:click="emptyAnswer">
+          {{ uiLabels.nextQuestion }}
+        </button>
 
-    <div v-if="answerSubmitted">
+    </div> -->
+    <div v-if="answerSubmitted || (timer < 0 && question.timeOn == true)">
       <div v-if="lastQuestion">
         <button id="nextQuestionButton" v-on:click="answer">
           {{ uiLabels.nextQuestion }}
@@ -98,6 +111,12 @@ export default {
     this.pollId = this.$route.params.id;
   },
   methods: {
+    emptyAnswer: function(){
+      this.answerSubmitted = true;
+      this.submittedAnswer = '';
+      this.answer();
+    },
+
     submitAnswer: function () {
       this.submittedAnswer = this.question.a[this.selectedAnswer];
       console.log(this.submittedAnswer);
@@ -198,9 +217,8 @@ export default {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
   border: solid 5px;
   border-radius: 20px;
-  padding: 1rem;
   margin-left: 1px;
-  margin: 3rem;
+  
   margin-left: 200px;
   margin-right: 200px;
   position: center;
@@ -210,7 +228,7 @@ export default {
 
 #question {
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   font-family: "Outfit", sans-serif;
 }
 
