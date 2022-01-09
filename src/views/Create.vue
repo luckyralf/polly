@@ -50,8 +50,14 @@
           <div class="buttonChooseQuestion" v-if="data.poll !== undefined">
             <div v-for="index in data.poll.questions.length" :key="index">
               <button
+                v-on:click="
+                  chooseQuestion(index - 1);
+                  changeColor(index - 1);
+                "
+                v-bind:class="{
+                  selectedQuestionBtn: index - 1 == selectedAnswer,
+                }"
                 class="questionButtons"
-                v-on:click="chooseQuestion(index - 1)"
               >
                 {{ data.poll.questions[index - 1].q }}
               </button>
@@ -72,14 +78,14 @@
               <button
                 class="moveBtn"
                 v-if="data.poll.editQuestion !== 0"
-                v-on:click="moveQuestion('up')"
+                v-on:click="moveQuestion('up', data.poll.editQuestion)"
               >
                 ↑
               </button>
               <button
                 class="moveBtn"
                 v-if="data.poll.editQuestion !== data.poll.questions.length - 1"
-                v-on:click="moveQuestion('down')"
+                v-on:click="moveQuestion('down', data.poll.editQuestion)"
               >
                 ↓
               </button>
@@ -119,8 +125,8 @@
                 saveEditedQuestion();
               "
             >
-             <div id="cross">X</div> 
-              <span class="deleteInfo">{{uiLabels.remove}}</span>
+              <div id="cross">X</div>
+              <span class="deleteInfo">{{ uiLabels.remove }}</span>
             </button>
           </div>
           <button
@@ -130,7 +136,7 @@
               saveEditedQuestion();
             "
           >
-            + {{uiLabels.addAnsBtn}}
+            + {{ uiLabels.addAnsBtn }}
           </button>
 
           <br />
@@ -166,7 +172,6 @@
           </button>
         </section>
       </div>
-      {{ data }}
       <!-- Check Result Knapp -->
       <div
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
@@ -182,7 +187,11 @@
           {{ uiLabels.checkResultsText }}
         </router-link>
       </div>
-      <button class="runPollButton" v-on:click="runPollFunction">
+      <button
+        class="runPollButton"
+        v-on:click="runPollFunction"
+        v-if="data.poll !== undefined && data.poll.questions.length > 0"
+      >
         {{ uiLabels.runPoll }}
       </button>
       <button
@@ -213,6 +222,7 @@ export default {
       uiLabels: {},
       pollHeadline: "",
       time: "",
+      selectedAnswer: 0, //används bara för färgbyte på frågeknapparna
     };
   },
   created: function () {
@@ -254,6 +264,13 @@ export default {
       });
     },
 
+    changeColor: function (i) {
+      if (this.selectedAnswer != i) {
+        this.selectedAnswer = i;
+      }
+      console.log(this.selectedAnswer);
+    },
+
     chooseQuestion: function (indexForChosenQuestion) {
       socket.emit("chooseQuestion", {
         pollId: this.pollId,
@@ -263,12 +280,18 @@ export default {
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
       this.time = this.data.poll.questions[indexForChosenQuestion].t;
     },
-    moveQuestion: function (direction) {
+    moveQuestion: function (direction, editQuestion) {
       console.log("moveQuestion fungerar", direction);
       socket.emit("moveQuestion", {
         pollId: this.pollId,
         direction: direction,
       });
+      if (direction == "up") {
+        this.changeColor(editQuestion - 1);
+      }
+      if (direction == "down") {
+        this.changeColor(editQuestion + 1);
+      }
       // this.question = this.data.poll.questions[this.data.poll.editQuestion].q;
       // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;
     },
@@ -301,6 +324,7 @@ export default {
       });
       this.question = this.uiLabels.editMe;
       this.answers = ["", ""];
+      this.selectedAnswer = indexForAddedQuestion;
     },
     addAnswer: function () {
       this.answers.push("");
@@ -478,7 +502,7 @@ h4 span {
   background-color: #c73ee1;
 }
 
-.questionButtons:focus {
+.selectedQuestionBtn {
   background-color: #c73ee1;
 }
 
@@ -590,7 +614,7 @@ h4 span {
 }
 
 #cross:hover {
-    color: #9a9fa5;
+  color: #9a9fa5;
 }
 
 .delAnsBtn .deleteInfo {
@@ -611,12 +635,12 @@ h4 span {
 
 .delAnsBtn:hover .deleteInfo {
   visibility: visible;
-    font-size: 100%;
-
+  font-size: 100%;
 }
 
 .addAnsBtn {
   margin-top: 5px;
+  margin-right: 20px;
   width: 200px;
   border-radius: 5px;
   color: white;

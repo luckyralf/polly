@@ -13,8 +13,8 @@
        <span id= "a" > {{ a }}</span>
       </button>
 
-    <div class="timer" >
-      <span >{{ timer }}</span>
+    <div class="timer" v-if="question.timeOn == true && timer > -1">
+      {{ timer }}
     </div>
 
     <div>
@@ -69,17 +69,29 @@ export default {
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
-      timer: 30,
-      timerOn: true,
+      timerFunction: null,
+      timer: 0,
       
     };
   },
+
+  computed: {
+    
+    thisTimeOn: function(){
+      return this.question.timeOn
+    }
+  },
+
   watch: {
-    timer: {
+    question: {
       handler() {
-        setTimeout(() => {
-          this.timer--;
-        }, 1000);
+        this.timer = this.question.time;
+        clearInterval(this.timerFunction) 
+        if (this.thisTimeOn) {
+          this.timerFunction = setInterval(() => {
+            this.timer--;
+          }, 1000);
+        }
       },
       immediate: true,
     },
@@ -198,10 +210,6 @@ export default {
 }
 .selected, .selected:hover {
   background-color: #c73ee1;
-}
-
-#a{
-  
 }
 
 .questionWrap {

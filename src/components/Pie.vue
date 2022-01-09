@@ -1,13 +1,15 @@
 <template>
   <div v-bind:class="thePie" :style="{ background: getPie() }"></div>
   <br />
-  <div
-    class="legends"
-    v-for="(item, key) in data"
-    v-bind:key="key"
-    v-bind:style="{ color: item.color }"
-  >
-    {{ key }}
+  <div class="boxesAndLegends">
+    <div
+      class="legends"
+      v-for="(item, key) in data"
+      v-bind:key="key"
+    >
+      <div class="colorBox" v-bind:style="{ 'background-color': item.color }"></div>
+      {{ key }}
+    </div>
   </div>
 </template>
 
@@ -27,8 +29,10 @@ export default {
   watch: {
     data: function () {
       this.thePie = "";
-      setTimeout( () => {this.thePie = "thePie"},5);
-    }
+      setTimeout(() => {
+        this.thePie = "thePie";
+      }, 5);
+    },
   },
   // data ser ut som : { "a1": { "count": 1, "color": "red" }, "a2": { "count": 1, "color": "blue" } }
   // vill ha data: [{"a1": { "count": 1, "color": "red" }}, {"a2": { "count": 1, "color": "blue"}}]
@@ -57,27 +61,32 @@ export default {
       return "conic-gradient(" + styles.join(",") + ")";
     },
   },
-  // computed: {
-  //   pieStyle() {
-  //     let keys = Object.keys(this.data);
-  //     for (let i = 0; i < keys.length; i++) {
-  //       this.dataArray.push(this.data[keys[i]]);
-  //       this.totalQanswered += this.dataArray[i].count;
-  //     }
-  //     let sum = 0;
-  //     let styles = this.dataArray.map(
-  //       (piePart) => `${piePart.color} 0 ${(sum += piePart.count/this.totalQanswered*100)}`
-  //     );
-  //     return { background: 'conic-gradient('+ styles.join(",") +')' };
-  //   },
-  // },
 };
 </script>
 
 <style scoped>
+.boxesAndLegends {
+  display: flex;
+}
+
 .legends {
-  display: inline;
+  display: flex;
   padding: 5px;
+  font-family:"Exo 2", sans-serif;
+  color: white;
+  text-shadow: 
+      0 0 10px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px #0fa,
+    0 0 82px #0fa;
+}
+
+.colorBox {
+  margin-right: 5px;
+  height: 17px;
+  width: 17px;
+  border: 1px solid white;
 }
 
 .thePie {
@@ -89,7 +98,11 @@ export default {
   animation-duration: 1s;
 }
 @keyframes pieAni {
-  0% {transform: scale(0) rotate(180deg);}
-  100% {transform: scale(1) rotate(0deg);}
+  0% {
+    transform: scale(0) rotate(180deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 </style>

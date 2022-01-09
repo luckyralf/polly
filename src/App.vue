@@ -1,21 +1,14 @@
 <template>
-  <Sidebar />
-  <div :style="{ 'margin-left': sidebarWidth }">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <script>
-// import { defineComponent } from "@vue/composition-api";
-import Sidebar from "@/components/sidebar/Sidebar";
-import { sidebarWidth } from "@/components/sidebar/state";
-
 export default {
   props: {},
   setup() {
-    return { sidebarWidth };
+    return {};
   },
-  components: { Sidebar },
+  components: {},
 };
 </script>
 
