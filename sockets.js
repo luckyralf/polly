@@ -5,6 +5,11 @@ function sockets(io, socket, data) {
     socket.emit("init", data.getUILabels(lang));
   });
 
+  socket.on("getAllPolls", function () {
+    socket.emit("getAllPolls", data.getAllPolls());
+    console.log("socket getallpolls");
+  });
+
   socket.on("switchLanguage", function (lang) {
     socket.emit("init", data.getUILabels(lang));
   });
@@ -56,7 +61,7 @@ function sockets(io, socket, data) {
       q: questionData.q,
       a: questionData.a,
       time: data.saveTime(questionData.t).time,
-      timeOn: data.saveTime(questionData.t).timeOn
+      timeOn: data.saveTime(questionData.t).timeOn,
     });
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
@@ -78,14 +83,10 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit("dataUpdate", data.getAnswers(d.pollId)); //kanske ta bort io.to pga det skickar till alla?
   });
 
-
   socket.on("runPoll", function (d) {
-    io.to(d.pollId).emit(
-      "runPoll",
-      data.getQuestion(d.pollId)
-    );
+    io.to(d.pollId).emit("runPoll", data.getQuestion(d.pollId));
   });
-// elsa och johanna run q i create 
+  // elsa och johanna run q i create
 
   socket.on("submitAnswer", function (d) {
     //d = { pollId: this.pollId, answer: answer }
@@ -105,6 +106,11 @@ function sockets(io, socket, data) {
 
   socket.on("emitGetPoll", function (ID) {
     socket.emit("getPoll", data.getPoll(ID));
+  });
+
+  socket.on("editOrSavePoll", function (d) {
+    data.editOrSavePoll(d.mode, d.pollId);
+    socket.emit("allQuestions", data.getPoll(d.pollId));
   });
 }
 
