@@ -289,8 +289,8 @@ export default {
       if (direction == "up") {
         this.changeColor(editQuestion - 1);
       }
-      if (direction == 'down') {
-        this.changeColor(editQuestion+1)
+      if (direction == "down") {
+        this.changeColor(editQuestion + 1);
       }
       // this.question = this.data.poll.questions[this.data.poll.editQuestion].q;
       // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;
