@@ -16,7 +16,7 @@
             submitAnswer();
           "
           v-bind:key="a"
-          class="isClicked"
+          class="isClicked catPawCursor"
         >
           <span id="a"> {{ a }}</span>
         </button>
@@ -36,14 +36,14 @@
     </div> -->
     <div v-if="answerSubmitted || (timer < 0 && question.timeOn == true)">
       <div v-if="lastQuestion">
-        <button id="nextQuestionButton" v-on:click="answer">
+        <button id="nextQuestionButton catPawCursor" v-on:click="answer">
           {{ uiLabels.nextQuestion }}
         </button>
       </div>
 
       <div v-else id="result">
         <button
-          id="finishQuizButton"
+          class="finishQuizButton catPawCursor"
           v-on:click="
             finishQuiz();
             confettin();
@@ -168,7 +168,7 @@ export default {
 </script>
 <style>
 
-#finishQuizButton {
+.finishQuizButton {
   background-color: #1313ad;
   color: white;
   border: 3px solid #ffffce;
