@@ -13,6 +13,36 @@
       <!-- {{ data }} -->
       <br />
       <!-- {{ data.poll.editQuestion }} -->
+
+      <div v-for="index in Object.keys(polls).length" :key="index">
+        <button
+          v-on:click="
+            chooseQuestion(index - 1);
+            changeColor(index - 1);
+          "
+          v-bind:class="{
+            selectedQuestionBtn: index - 1 == selectedAnswer,
+          }"
+          class="questionButtons"
+        >
+          {{ Object.keys(polls)[index - 1] }}
+        </button>
+      </div>
+      <!-- <div v-for="i in Object.keys(polls)" :key="i">
+        <button
+          v-on:click="
+            chooseQuestion(index - 1);
+            changeColor(index - 1);
+          "
+          v-bind:class="{
+            selectedQuestionBtn: index - 1 == selectedAnswer,
+          }"
+          class="questionButtons"
+        >
+          {{ data.poll.questions[i - 1].q }}
+        </button>
+      </div> -->
+
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
         <input
@@ -46,7 +76,10 @@
         </div>
       </div>
 
-      <div v-if="data.poll !== undefined" class="wrapper">
+      <div
+        v-if="data.poll !== undefined && !data.poll.saveMode"
+        class="wrapper"
+      >
         <section id="questSection">
           <h4 v-if="pollHeadline !== ''">
             {{ uiLabels.pollCreated }}
@@ -179,32 +212,59 @@
           </button>
         </section>
       </div>
-      {{ data }}
+
       <!-- Check Result Knapp -->
-      <div
+      <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
-        id="result"
+        v-on:click="editOrSavePoll('savemode')"
       >
-        <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
+        Save poll
+      </button>
+      <button
+        v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        v-on:click="editOrSavePoll('editmode')"
+      >
+        Edit poll
+      </button>
+      {{ Object.keys(polls) }}
+      <br />
+      <br />
+      {{ data }}
+      <div
+        id="result"
+        v-if="
+          data.poll !== undefined &&
+          data.poll.questions.length > 0 &&
+          data.poll.saveMode
+        "
+      >
+        <h2>Control panel</h2>
+        <div v-if="data.poll !== undefined && data.poll.questions.length > 0">
+          <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
 
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
         </button> -->
 
-        <router-link id="routerLink" v-bind:to="'/result/' + pollId">
-          {{ uiLabels.checkResultsText }}
-        </router-link>
+          <router-link id="routerLink" v-bind:to="'/result/' + pollId">
+            {{ uiLabels.checkResultsText }}
+          </router-link>
+        </div>
+        <button
+          class="runPollButton"
+          v-on:click="runPollFunction"
+          v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        >
+          {{ uiLabels.runPoll }}
+        </button>
+        <button
+          v-if="data.poll !== undefined && data.poll.questions.length > 0"
+          class="deletePollBtn catPawCursor"
+          v-on:click="deletePoll"
+        >
+          {{ uiLabels.deletePoll }}
+        </button>
       </div>
-      <button class="runPollButton" v-on:click="runPollFunction">
-        {{ uiLabels.runPoll }}
-      </button>
-      <button
-        v-if="data.poll !== undefined && data.poll.questions.length > 0"
-        class="deletePollBtn catPawCursor"
-        v-on:click="deletePoll"
-      >
-        {{ uiLabels.deletePoll }}
-      </button>
     </main>
   </body>
 </template>
@@ -227,11 +287,14 @@ export default {
       pollHeadline: "",
       time: "",
       selectedAnswer: 0, //används bara för färgbyte på frågeknapparna
+      editActivated: false,
+      polls: [],
     };
   },
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
+    socket.emit("getAllPolls");
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
@@ -239,6 +302,8 @@ export default {
     socket.on("pollCreated", (data) => (this.data = data));
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
+    socket.on("getAllPolls", (data) => (this.polls = data));
+
     // socket.on("updateChooseQuestion", (data) => (this.data = data));
   },
   methods: {
@@ -308,12 +373,14 @@ export default {
     },
     createPoll: function () {
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+      socket.emit("getAllPolls");
     },
     deletePoll: function () {
       if (confirm(this.uiLabels.confirmDeletePoll)) {
         socket.emit("deletePoll", { pollId: this.pollId });
         this.pollHeadline = this.uiLabels.createHeader;
         this.pollId = "";
+        socket.emit("getAllPolls");
       }
     },
     addQuestion: function (indexForAddedQuestion) {
@@ -341,6 +408,9 @@ export default {
         questionNumber: this.questionNumber,
       });
       // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
+    },
+    editOrSavePoll: function (mode) {
+      socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
     },
   },
 };
