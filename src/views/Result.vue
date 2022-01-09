@@ -210,12 +210,22 @@ export default {
 }
 
 h1 {
+  margin-left:550px;
+  margin-right:550px;
   font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
   text-align: center;
-  margin: 0;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
     0 0 42px #f0f, 0 0 82px #f0f;
+    
+}
+h1:hover{
+  color: #fff;
+  
+  text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
+    0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
+    0 0 82px rgb(130, 252, 16);
+
 }
 </style>
