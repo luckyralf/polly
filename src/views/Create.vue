@@ -6,7 +6,7 @@
 
     <button
       v-on:click="infoFunction()"
-      class="infoButton2 catPawCursor"
+      class="infoButton3 catPawCursor"
     ></button>
     <div id="infoDIV" v-show="showInfoDiv">
       <div class="infoHeader">
@@ -71,24 +71,7 @@
             >You need to write a poll name</span
           >
         </div>
-        <button
-          v-on:click="infoFunction()"
-          class="infoButton2 catPawCursor"
-        ></button>
-        <div id="infoDIV" v-show="showInfoDiv">
-          <div class="infoHeader">
-            <div class="infoTitle">{{ uiLabels.createpageInfoHeader }}</div>
-            <button
-              v-on:click="infoFunction()"
-              class="closeButton catPawCursor"
-            >
-              X
-            </button>
-          </div>
-          <p class="infoText">
-            <b> Information:</b> {{ uiLabels.createpageInfoContent }}
-          </p>
-        </div>
+        
       </div>
 
       <div
@@ -709,6 +692,20 @@ h4 span {
   width: 37px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
 }
+.infoButton3 {
+  right: 90%;
+  position: relative;
+  padding-top: 20px;
+  padding-right: 20px;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 100%;
+  border:none;
+  height: 37px;
+  width: 37px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
+}
+
 .infoButton2:hover {
   color: black;
   border: none;
