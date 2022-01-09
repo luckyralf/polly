@@ -15,7 +15,7 @@
         <span id= "a" > {{ a }}</span>
       </button>
     
-      <div class="timer" v-if="question.timeOn == true && timer > -1">
+      <div class="timer" v-if="question.timeOn == true">
         {{ timer }}
       </div>
     </div> 

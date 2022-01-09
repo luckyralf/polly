@@ -154,10 +154,10 @@
             v-on:change="saveEditedQuestion"
           >
             <option value="0" selected>{{ uiLabels.unlimited }}</option>
-            <option value="10">10s</option>
-            <option value="30">30s</option>
-            <option value="60">60s</option>
-            <option value="90">90s</option>
+            <option value="10">10 s</option>
+            <option value="30">30 s</option>
+            <option value="60">60 s</option>
+            <option value="90">90 s</option>
           </select>
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
