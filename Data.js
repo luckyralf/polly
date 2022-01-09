@@ -142,19 +142,11 @@ Data.prototype.createPollHead = function (pollId) {
   }
 };
 
-<<<<<<< HEAD
 Data.prototype.saveTime = function (t) {
   if (parseInt(t) === 0) {
-    return { timeOn: false, time: 0 };
+    return { timeOn: false, time: 1 };
   } else {
     return { timeOn: true, time: parseInt(t) };
-=======
-Data.prototype.saveTime = function (t){
-  if(parseInt(t) === 0){
-    return {timeOn: false, time: 1}
-  } else{
-    return {timeOn: true, time: parseInt(t)}
->>>>>>> fb39a4bf501d3434f85594d8c5936aab389d828d
   }
 };
 
