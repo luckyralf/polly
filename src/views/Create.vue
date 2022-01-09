@@ -63,7 +63,7 @@
                 v-bind:class="{
                   selectedQuestionBtn: index - 1 == selectedAnswer,
                 }"
-                class="questionButtons"
+                class="questionButtons catPawCursor"
               >
                 {{ data.poll.questions[index - 1].q }}
               </button>
@@ -71,7 +71,7 @@
           </div>
           <div>
             <button
-              id="addQuestBtn"
+              class="addQuestBtn catPawCursor"
               v-on:click="addQuestion(data.poll.questions.length)"
             >
               {{ uiLabels.addQuestion }}
@@ -82,14 +82,14 @@
               v-if="data.poll !== undefined && data.poll.questions.length > 0"
             >
               <button
-                class="moveBtn"
+                class="moveBtn catPawCursor"
                 v-if="data.poll.editQuestion !== 0"
                 v-on:click="moveQuestion('up', data.poll.editQuestion)"
               >
                 ↑
               </button>
               <button
-                class="moveBtn"
+                class="moveBtn catPawCursor"
                 v-if="data.poll.editQuestion !== data.poll.questions.length - 1"
                 v-on:click="moveQuestion('down', data.poll.editQuestion)"
               >
@@ -111,7 +111,7 @@
             v-on:input="saveEditedQuestion"
             type="text"
             v-model="question"
-            class="inputQuestion"
+            class="inputQuestion catPawTextCursor"
           />
           {{ uiLabels.answerText }} <br />
           <div
@@ -122,21 +122,21 @@
             <input
               v-model="answers[i]"
               v-on:input="saveEditedQuestion"
-              class="inputAnswers"
+              class="inputAnswers catPawTextCursor"
             />
             <button
-              class="delAnsBtn"
+              class="delAnsBtn catPawCursor"
               v-on:click="
                 delAnswer(i);
                 saveEditedQuestion();
               "
             >
-              <div id="cross">X</div>
+              <div class="cross catPawCursor">X</div>
               <span class="deleteInfo">{{ uiLabels.remove }}</span>
             </button>
           </div>
           <button
-            class="addAnsBtn"
+            class="addAnsBtn catPawCursor"
             v-on:click="
               addAnswer();
               saveEditedQuestion();
@@ -151,6 +151,7 @@
           <br />
           {{ uiLabels.timeObject }}
           <select
+            class="catPawCursor"
             name="questTime"
             id="questionTime"
             v-model="time"
@@ -173,7 +174,7 @@
 
           <br />
 
-          <button id="deleteQuestBtn" v-on:click="deleteQuestion">
+          <button class="deleteQuestBtn catPawCursor" v-on:click="deleteQuestion">
             {{ uiLabels.createpageDeleteQuestion }}
           </button>
         </section>
@@ -622,12 +623,12 @@ h4 span {
   border-color: transparent;
 }
 
-#cross {
+.cross {
   font-size: 120%;
   color: #c2c7ce;
 }
 
-#cross:hover {
+.cross:hover {
   color: #9a9fa5;
 }
 
@@ -671,7 +672,7 @@ h4 span {
   font-size: 18px;
 }
 
-#addQuestBtn {
+.addQuestBtn {
   font-family: "Outfit", sans-serif;
   margin-top: 1rem;
   color: white;
@@ -680,11 +681,11 @@ h4 span {
   padding: 5px;
 }
 
-#addQuestBtn:hover {
+.addQuestBtn:hover {
   background-color: #1e51a3;
 }
 
-#deleteQuestBtn {
+.deleteQuestBtn {
   margin-top: 1rem;
   color: white;
   background-color: #d32929;
@@ -693,7 +694,7 @@ h4 span {
   font-family: "Outfit", sans-serif;
 }
 
-#deleteQuestBtn:hover {
+.deleteQuestBtn:hover {
   background-color: #a31e1e;
 }
 
