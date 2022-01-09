@@ -43,6 +43,10 @@
   "remove": "Ta bort",
   "timesUp": "Tiden har gått ut!",
   "pollIdInfo": "Du måste ange ett pollnamn för att kunna delta i en poll",
-  "createStartInfo": "Här kan du skapa din CatPoll. Börja med att bestämma ett namn för att göra det möjligt för deltagare att gå med i omröstningen!"
+  "createStartInfo": "Här kan du skapa din CatPoll. Börja med att bestämma ett namn för att göra det möjligt för deltagare att gå med i omröstningen!",
+  "needWritePollName": "Du behöver skriva in ett namn",
+  "pollExists": "Denna poll finns redan",
+  "savePoll": "Spara poll",
+  "editPoll": "Redigera poll"
 
 }

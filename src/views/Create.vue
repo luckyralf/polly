@@ -71,13 +71,13 @@
               { noIdProvided: pollId === '' },
               { idProvided: pollId !== '' },
             ]"
-            >You need to write a poll name</span
+            >{{uiLabels.needWritePollName}}</span
           >
           <span
             v-bind:class="{
               noIdProvided: typeof polls[pollId] !== 'undefined',
             }"
-            >Poll already exists</span
+            >{{uiLabels.pollExists}}</span
           >
         </div>
       </div>
@@ -227,13 +227,13 @@
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('savemode')"
       >
-        Save poll
+       {{uiLabels.savePoll}}
       </button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('editmode')"
       >
-        Edit poll
+        {{uiLabels.editPoll}}
       </button>
       {{ Object.keys(polls) }}
       <br />
@@ -318,7 +318,6 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     socket.on("getAllPolls", (data) => (this.polls = data));
-    // socket.on("updateChooseQuestion", (data) => (this.data = data));
   },
   methods: {
     saveEditedQuestion: function () {
