@@ -27,9 +27,9 @@
     <main class="mainWrapped catCursor">
       <!-- {{ data }} -->
       <br />
-      {{uiLabels.createStartInfo}}
-      <br>
-      <br>
+      {{ uiLabels.createStartInfo }}
+      <br />
+      <br />
       <div v-for="index in Object.keys(polls).length" :key="index">
         <button
           v-on:click="
@@ -70,7 +70,6 @@
             >You need to write a poll name</span
           >
         </div>
-        
       </div>
 
       <div
@@ -257,6 +256,13 @@
           {{ uiLabels.runPoll }}
         </button>
         <button
+          lass="deletePollBtn catPawCursor"
+          v-on:click="runPollFunction"
+          v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        >
+          Abort poll uilabel
+        </button>
+        <button
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
           class="deletePollBtn catPawCursor"
           v-on:click="deletePoll"
@@ -383,6 +389,7 @@ export default {
         this.data.poll.questions[this.data.poll.questions.length - 1].a;
     },
     createPoll: function () {
+      this.addQuestion(1);
       socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
       socket.emit("getAllPolls");
     },
@@ -447,7 +454,7 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 2rem 0 5rem 0;
-  padding-bottom:500px;
+  padding-bottom: 500px;
   align-content: center;
 }
 
@@ -700,7 +707,7 @@ h4 span {
   background-size: cover;
   background-position: 50%;
   border-radius: 100%;
-  border:none;
+  border: none;
   height: 37px;
   width: 37px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
