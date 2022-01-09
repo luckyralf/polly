@@ -10,7 +10,7 @@
 ## Poll
 
 - [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
-- [ ] Gör konfettin mer "egen"
+- [x] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer.
 - [x] Vad händer när timern går ut?
@@ -37,7 +37,7 @@
 - [Marcus] Style design på "create poll"
 - [Elsa] Flaggor me språk framsida
 - [x] Snyggare knapp på participate in poll på Start
-- [ ] Centrera header och de andra rutorna i Start
+- [x] Centrera header och de andra rutorna i Start
 
 ## Create CSS
 
@@ -89,8 +89,5 @@
 ## Poll
 
 - [] Vad ska hända om man inte svarar? En till stapel med "obesvarat"
-- [] Fixa bugg när man klickar på submit utan att ha svarat
 
-## Sidebar
 
-- [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
