@@ -1,13 +1,8 @@
 <template>
   <body>
-    <router-link to="/" class="homeButton catPawCursor" tag="button">
-      Home
-    </router-link>
-
     <router-link to="/">
       <button class="linkHome"></button>
     </router-link>
-
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
@@ -36,20 +31,6 @@
           {{ Object.keys(polls)[index - 1] }}
         </button>
       </div>
-      <!-- <div v-for="i in Object.keys(polls)" :key="i">
-        <button
-          v-on:click="
-            chooseQuestion(index - 1);
-            changeColor(index - 1);
-          "
-          v-bind:class="{
-            selectedQuestionBtn: index - 1 == selectedAnswer,
-          }"
-          class="questionButtons"
-        >
-          {{ data.poll.questions[i - 1].q }}
-        </button>
-      </div> -->
 
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
