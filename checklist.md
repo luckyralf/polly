@@ -25,6 +25,7 @@
 ## Startsida
 
 - [x] Stå omröstning istället för röstning-
+- [] Man ska inte kunna gå in på poll som inte existerar
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
@@ -40,26 +41,26 @@
 
 ## Create CSS
 
-- [x] Göra så att skapade frågor kan tas bort
-- [x] Göra så att svarsalternativ i skapade frågor kan ändras
 - [x] snygga till formuläret där frågor skapas, tycker det ser rätt bra ut nu mvh adam
-- [x] Save knapp
-- [x] Ändra frågor som man redan har skrivit
-- [x] Lägga till ett val av tidsbegränsning per fråga?
-- [x] Det går bara att lägga till en fråga i en poll
 - [ ] Flytta CHECK RESULT till ett snyggare ställe
 - [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts
 - [ ] Förtydliga designen, mer användarvänlig
 - [ ] Snygg lista för sparade polls
 - [ ] Snygga till kontrollpanel
-- [ ] Inte kunna göra en poll utan namn
-- [ ] Begränsning på antal frågor?
 
 ## Create funktiongrejer
 
+- [x] Save knapp
+- [x] Ändra frågor som man redan har skrivit
+- [x] Lägga till ett val av tidsbegränsning per fråga?
+- [x] Det går bara att lägga till en fråga i en poll
+- [x] Göra så att skapade frågor kan tas bort
+- [x] Göra så att svarsalternativ i skapade frågor kan ändras
 - [x] Något sätt att se tidigare skapta polls
-- [ ] SE vilken fråga man är på
+- [x] SE vilken fråga man är på
+- [x] Inte kunna göra en poll utan namn
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
+- [ ] Begränsning på antal frågor?
 
 ## Generellt
 
@@ -77,7 +78,6 @@
 
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
-- [ ]
 
 ## Poll
 
