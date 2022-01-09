@@ -5,6 +5,26 @@
    <button class="linkHome" >
    </button>
    </router-link>
+
+   <button
+          v-on:click="infoFunction()"
+          class="infoButton2 catPawCursor"
+        ></button>
+        <div id="infoDIV" v-show="showInfoDiv">
+          <div class="infoHeader">
+            <div class="infoTitle">{{ uiLabels.createpageInfoHeader }}</div>
+            <button
+              v-on:click="infoFunction()"
+              class="closeButton catPawCursor"
+            >
+              X
+            </button>
+          </div>
+          <p class="infoText">
+            <b> Information:</b> {{ uiLabels.createpageInfoContent }}
+          </p>
+        </div>
+
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
@@ -682,7 +702,7 @@ h4 span {
   align-items: center;
 }
 .infoButton2 {
-  left: 20.5%;
+  left:40%;
   position: relative;
   padding-top: 20px;
   padding-right: -20px;
