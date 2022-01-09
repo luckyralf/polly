@@ -63,7 +63,7 @@
 - [x] SE vilken fråga man är på
 - [x] Inte kunna göra en poll utan namn
 - [ ] Begränsning på antal frågor?
-- [ ] Allt ska komma upp på en gång, en fråga skapas från början
+- [x] Allt ska komma upp på en gång, en fråga skapas från början
 - [ ] När man klickar på en poll kommer man till dess första fråga
 - [ ] Ge run poll funktion
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"

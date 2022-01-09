@@ -58,7 +58,10 @@
           <button
             class="createPollBtnActive catPawCursor"
             v-on:click="createPoll"
-            v-bind:class="{ createPollBtnInActive: pollId === '' }"
+            v-bind:class="{
+              createPollBtnInActive:
+                pollId === '' || typeof polls[pollId] !== 'undefined',
+            }"
           >
             {{ uiLabels.createPoll }}
           </button>
@@ -68,6 +71,12 @@
               { idProvided: pollId !== '' },
             ]"
             >You need to write a poll name</span
+          >
+          <span
+            v-bind:class="{
+              noIdProvided: typeof polls[pollId] !== 'undefined',
+            }"
+            >Poll already exists</span
           >
         </div>
       </div>
@@ -389,9 +398,11 @@ export default {
         this.data.poll.questions[this.data.poll.questions.length - 1].a;
     },
     createPoll: function () {
-      this.addQuestion(1);
-      socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      socket.emit("getAllPolls");
+      if (typeof this.polls[this.pollId] === "undefined") {
+        socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+        socket.emit("getAllPolls");
+        this.addQuestion(1);
+      }
     },
     selectPoll: function (pollId) {
       socket.emit("createPoll", { pollId: pollId });
