@@ -7,8 +7,10 @@
       v-for="(item, key) in data"
       v-bind:key="key"
     >
+    <div v-if="key != ''">
       <div class="colorBox" v-bind:style="{ 'background-color': item.color }"></div>
       {{ key }}
+    </div>
     </div>
   </div>
 </template>
