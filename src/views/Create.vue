@@ -637,9 +637,9 @@ h4 span {
   font-family: "Outfit", sans-serif;
   color: white;
   padding: 10px;
-  background-color: hsl(202, 92%, 68%);
+  background-color: #3ac7ff;
   border-radius: 5px;
-  border: solid 3px #124c75;
+  border: outset 3px white;
   font-size: 19px;
 }
 
