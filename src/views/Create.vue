@@ -47,9 +47,10 @@
 
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
+                  <!-- placeholder -->
         <input
           type="text"
-          placeholder="Write the name of your poll"
+          placeholder="Write poll name here"
           v-model="pollId"
           class="catPawTextCursor"
           required
@@ -318,7 +319,6 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     socket.on("getAllPolls", (data) => (this.polls = data));
-
     // socket.on("updateChooseQuestion", (data) => (this.data = data));
   },
   methods: {
