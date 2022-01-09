@@ -50,7 +50,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("addQuestion", function (d) {
-    data.addQuestion(d.pollId, { q: d.q, a: d.a }, d.indexForAddedQuestion);
+    data.addQuestion(d.pollId, { q: d.q, a: d.a, t: d.t }, d.indexForAddedQuestion);
     console.log("addquestion socket fungerar");
     socket.emit("allQuestions", data.getPoll(d.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
@@ -84,7 +84,11 @@ function sockets(io, socket, data) {
   });
 
   socket.on("runPoll", function (d) {
-    io.to(d.pollId).emit("runPoll", data.getQuestion(d.pollId));
+    socket.emit("runPolls", d);
+    // io.to(d).emit(
+    //   "runPolls", d
+    //   //data.getQuestion(d.pollId)
+    // );
   });
   // elsa och johanna run q i create
 

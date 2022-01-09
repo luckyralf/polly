@@ -23,19 +23,24 @@
           v-on:answer="submitAnswer"
         />
       </div>
+       </main>
 
+  <!--
       {{ uiLabels.youareonQnumber }} {{ this.questionNumber + 1 }}
-    </main>
+   
 
     <div v-for="index in thePoll.poll.questions.length" :key="index">
       <div class="numberOfQuestions" type="number" v-bind="index">
         {{ uiLabels.question }} {{ index }}
       </div>
     </div>
+    -->
 
+    <!--
     <div class="flex-row flex-center">
       <button v-on:click="confettiButton" class="catPawCursor">Skjut konfetti!</button>
     </div>
+    -->
 
     <!--<component v-bind:is="script" src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js" async></component>
   <component v-bind:is="script" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" async></component>
@@ -177,20 +182,33 @@ body {
 }
 
 .bars {
-  height: 50px;
+  height: 40px;
   width: 700px;
   margin-left: 350px;
   margin-top: 50px;
   background-color: #d794e3;
   border: solid 2px white;
 }
+
 .answered {
-  background-image: url(https://wallpaperbat.com/img/262866-cute-pink-cat-wallpaper-cute-cat-wallpaper.png);
+  background-color: #b909d9;
   background-position: bottom;
   background-size: 460px;
   height: 100%;
   width: 0%;
   max-width: 700px;
+  animation-name: ansAni;
+  animation-duration: 4s;
+  transform-origin: left;
+}
+@keyframes ansAni {
+  0% {transform:scaleX(0%);}
+  100% {transform:scaleX(100%);}
+}
+
+.answered span {
+  position: relative;
+  top: -1.2em;
 }
 
 .container {
