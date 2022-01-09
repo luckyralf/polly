@@ -47,6 +47,9 @@
 - [ ] Förtydliga designen, mer användarvänlig
 - [ ] Snygg lista för sparade polls
 - [ ] Snygga till kontrollpanel
+- [ ] Större tydligare pilknappar
+- [ ] Förklaring till alla funktioner i kontrollpanel
+- [ ] Labels till allt
 
 ## Create funktiongrejer
 
@@ -61,6 +64,10 @@
 - [x] Inte kunna göra en poll utan namn
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
 - [ ] Begränsning på antal frågor?
+- [ ] Abort poll knapp
+- [] Edit poll ger: frågeruta, abort poll
+- [ ] Allt ska komma upp på en gång
+- [ ] När man klickar på en poll kommer man till dess första fråga
 
 ## Generellt
 
