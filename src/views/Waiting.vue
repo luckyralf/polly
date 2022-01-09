@@ -26,6 +26,10 @@
       </router-link>
     </div>
 
+    <div v-if="this.pollActivated">
+    POLL KÖRS
+    </div>
+
     <div class="animering"></div>
   </section>
   <!--</main>
@@ -34,8 +38,8 @@
 
 
 <script>
-// import io from "socket.io-client";
-// const socket = io();
+import io from "socket.io-client";
+const socket = io();
 
 export default {
   name: "Poll",
@@ -44,11 +48,16 @@ export default {
     return {
       pollId: "inactive poll",
       amountParticipants: "",
+      pollActivated: false,
     };
   },
 
   created: function () {
-    this.pollId = this.$route.params.id;
+   this.pollId = this.$route.params.id;
+   socket.on("runPolls", (pollId) => { 
+    //    this.pollId = pollId;
+       console.log(pollId,"här kommer pollid")
+    });
   },
 
   // socket.on("amountParticipants"), (update) => {

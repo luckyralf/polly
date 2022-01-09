@@ -3,7 +3,8 @@
   <div class="questionWrap">
     <p id="question">
       {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
-    </p>
+    </p>                  
+                
 
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
       <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
@@ -21,9 +22,13 @@
           <span id="a"> {{ a }}</span>
         </button>
 
-        <div class="timer" v-if="question.timeOn == true">
-          {{ timer }}
-        </div>
+                  <div class ="timerFix">
+                    
+
+                      <div class="timer" v-if="question.timeOn == true" >
+                        {{ timer }}
+                      </div>
+                    </div>
 
     </div>
     <div id="timesUp" v-if="timer < 0 ">
@@ -288,8 +293,18 @@ export default {
   font-size: 2rem;
   padding: 20px;
 }
+
+
 .timer{
   font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
+    0 0 42px #f0f, 0 0 82px #f0f;
+  
+  margin-left:465px;
+  margin-right:465px;
+  
+  
 }
 
 #timesUp{
