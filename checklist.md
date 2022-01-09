@@ -9,7 +9,7 @@
 
 ## Poll
 
-- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske    göra allt lite mindre
+- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
 - [ ] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer.
@@ -38,7 +38,7 @@
 - [x] Snyggare knapp på participate in poll på Start
 - [ ] Centrera header och de andra rutorna i Start
 
-## Create
+## Create CSS
 
 - [x] Göra så att skapade frågor kan tas bort
 - [x] Göra så att svarsalternativ i skapade frågor kan ändras
@@ -50,11 +50,16 @@
 - [ ] Flytta CHECK RESULT till ett snyggare ställe
 - [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts
 - [ ] Förtydliga designen, mer användarvänlig
+- [ ] Snygg lista för sparade polls
+- [ ] Snygga till kontrollpanel
 - [ ] Inte kunna göra en poll utan namn
 - [ ] Begränsning på antal frågor?
-- [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
-- [ ] Något sätt att se tidigare skapta polls
+
+## Create funktiongrejer
+
+- [x] Något sätt att se tidigare skapta polls
 - [ ] SE vilken fråga man är på
+- [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
 
 ## Generellt
 
