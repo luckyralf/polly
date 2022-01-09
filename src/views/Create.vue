@@ -448,6 +448,7 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 2rem 0 5rem 0;
+  padding-bottom:500px;
   align-content: center;
 }
 
