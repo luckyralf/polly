@@ -21,7 +21,7 @@
 - [x] Ändra frågor som man redan har skrivit
 - [x] Lägga till ett val av tidsbegränsning per fråga?
 - [ ] Det går bara att lägga till en fråga i en poll
-- [] Liten label bredvid pilknapparna för att förtydliga?
+- [ ] Liten label bredvid pilknapparna för att förtydliga?
 
 ## Generellt
 
