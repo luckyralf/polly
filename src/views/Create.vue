@@ -32,10 +32,9 @@
     <main class="mainWrapped catCursor">
       <!-- {{ data }} -->
       <br />
-      <!-- {{ data.poll.editQuestion }} -->
-
-      Här kan du skapa din omröstning. Börja med att bestämma ett namn/pollID
-      för att göra det möjligt att deltagare att gå med i omröstningen.
+      {{uiLabels.createStartInfo}}
+      <br>
+      <br>
       <div v-for="index in Object.keys(polls).length" :key="index">
         <button
           v-on:click="

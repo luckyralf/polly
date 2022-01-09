@@ -9,7 +9,7 @@
   "question": "Question ",
   "changeLanguage": "Svenska",
   "pollLink": "Poll link: ",
-  "writePollId": "Write poll id:",
+  "writePollId": "Write poll name:",
   "answerText": "Answer alternatives: ",
   "addAnswer": "Add answer alternative",
   "addQuestion": "Add question",
@@ -41,6 +41,8 @@
   "showBars": "Show bar graph",
   "addAnsBtn": "Add another alternative",
   "remove": "Remove",
-  "timesUp": "Time's up!"
+  "timesUp": "Time's up!",
+  "pollIdInfo": "You have to enter a poll name to participate in a poll",
+  "createStartInfo": "You can create your CatPoll here. Start by choosing a name for your poll to make your participants able to join your poll!"
   
 }
