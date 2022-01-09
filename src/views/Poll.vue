@@ -4,6 +4,7 @@
       <h1>{{ pollId }}</h1>
     </header>
 
+    <p>{{ uiLabels.totalAmountofQuestions }} {{ thePoll.poll.questions.length }}</p>
     <div class="bars">
       <div
         class="answered"
@@ -182,10 +183,11 @@ body {
 }
 
 .bars {
+  
   height: 40px;
   width: 700px;
   margin-left: 350px;
-  margin-top: 50px;
+  margin-top: 5px;
   background-color: #d794e3;
   border: solid 2px white;
 }

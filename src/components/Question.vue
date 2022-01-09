@@ -6,7 +6,7 @@
     </p>
 
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
-      <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
+      
       
         <button
           v-for="(a, index) in question.a"
