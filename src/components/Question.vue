@@ -3,31 +3,34 @@
     
     <p id="question">{{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}</p>
     <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p>
+    
+    <div class="answerAlternatives" v-if="timer > -1">
       <button
         v-for="(a, index) in question.a"
         v-bind:class="{ selected: index === selectedAnswer }"
         v-on:click="changeColor(index)"
         v-bind:key="a"
-        class="isClicked"
-      >
+        class="isClicked" >
 
-       <span id= "a" > {{ a }}</span>
+        <span id= "a" > {{ a }}</span>
       </button>
-
-    <div class="timer" v-if="question.timeOn == true && timer > -1">
-      {{ timer }}
-    </div>
-
-    <div>
-      <button v-on:click="submitAnswer"  id="submitAnswerButton">
-        {{ uiLabels.submitAnswer }}
-      </button>
-      <br />
-      <div v-if="showAnswer">
-        {{ uiLabels.submittedAnswer }} : {{ this.submittedAnswer }}
+    
+      <div class="timer" v-if="question.timeOn == true && timer > -1">
+        {{ timer }}
       </div>
-    </div>
-    <br />
+    </div> 
+
+      <div>
+        <button v-on:click="submitAnswer"  id="submitAnswerButton">
+          {{ uiLabels.submitAnswer }}
+        </button>
+        <br />
+        <div v-if="showAnswer">
+          {{ uiLabels.submittedAnswer }} : {{ this.submittedAnswer }}
+        </div>
+      </div>
+      <br />
+    
 
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
@@ -72,12 +75,10 @@ export default {
       quizFinished: false,
       timerFunction: null,
       timer: 0,
-      
     };
   },
 
   computed: {
-    
     thisTimeOn: function(){
       return this.question.timeOn
     }
