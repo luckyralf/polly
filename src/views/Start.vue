@@ -48,9 +48,10 @@
         </label>
         <br />
         <br />
-        <router-link v-bind:to="'/waiting/' + id" class="link" tag="button">{{
+        <router-link v-bind:to="'/waiting/' + id" class="link" tag="button" style="color: #fff">{{
           uiLabels.participatePoll
-        }}</router-link>
+        }}
+        </router-link>
       </div>
 
       <div class="createOwn">

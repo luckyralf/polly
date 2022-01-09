@@ -1,6 +1,6 @@
 <template>
   <router-view />
-
+  <!-- <router-link to="/">Home </router-link> -->
   <!-- <button v-on:click="infoFunction()" class="infoButton2 catPawCursor"></button> -->
 </template>
 
