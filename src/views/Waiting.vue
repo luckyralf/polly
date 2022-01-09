@@ -15,11 +15,11 @@
         <span class="loaderPrick"></span>
         <span class="loaderPrick"></span>
       </div>
-
+    
       <p class="participants">Participants:</p>
       <div class="amount"></div>
     </div>
-
+    
     <div>
       <router-link class="startPoll" v-bind:to="'/poll/' + pollId"
         >KÖR POLLJÄVELN

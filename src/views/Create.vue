@@ -3,9 +3,6 @@
     <header>
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
-    <router-link v-bind:to="/#/" class="link" tag="button">{{
-      uiLabels.participatePoll
-    }}</router-link>
     <main class="mainWrapped">
       <!-- {{ data }} -->
       <br />
@@ -288,8 +285,8 @@ export default {
       if (direction == "up") {
         this.changeColor(editQuestion - 1);
       }
-      if (direction == 'down') {
-        this.changeColor(editQuestion+1)
+      if (direction == "down") {
+        this.changeColor(editQuestion + 1);
       }
       // this.question = this.data.poll.questions[this.data.poll.editQuestion].q;
       // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;

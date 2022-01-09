@@ -63,7 +63,6 @@
 - [x] Liten tass som cursor
 - [x] Meow vid språkbyte
 - [x] Meny
-- [ ] Fixa så eny fungerar helt och hållet
 - [ ] Tillbaka-knapp på typ alla sidor
 - [ ] uiLabels på infoknappar
 
