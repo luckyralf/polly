@@ -1,12 +1,16 @@
 <template class="temp">
   <body class="Wrapped catCursor">
-    <section id="headerText">
+
+  
+    <section id="headerText" >
       <header>
-        <h1 class="CATPOLL">CAT POLL</h1>
+        <h1 class="CATPOLL"  >CAT POLL </h1>
+        
       </header>
+        
     </section>
 
-    <div id="nav">
+    
       <div class="languangeButtonContainer">
         <button
           class="langButtonSV catPawCursor"
@@ -69,7 +73,7 @@
           className="link"
           v-bind:to="'/waiting/' + id"
           > testtest </router-link> -->
-    </div>
+    
 
     <div id="Finalword">
       <hr />
@@ -190,9 +194,12 @@ body {
   margin-right: 5px;
 }
 
+#nav{
+}
+
 #infoDIV {
   position: fixed;
-  top: 55%;
+  top: 22%;
   left: 82%;
   transform: translate(-50%, -50%) scale(1);
   transition: 200ms ease-in-out;
@@ -264,7 +271,8 @@ body {
   height: 35px;
   width: 35px;
   position: relative;
-  left: 45%;
+  top:-280px;
+  left: 47.0%;
 }
 
 .langButtonEN {
@@ -278,11 +286,13 @@ body {
   height: 35px;
   width: 35px;
   position: relative;
-  left: 45.5%;
+  top:-280px;
+  left: 47.5%;
 }
 
 .infoButton2 {
-  left: 36.5%;
+  top:-280px;
+  left: 39%;
   position: relative;
   padding-top: 20px;
   padding-right: -20px;
@@ -321,6 +331,7 @@ body {
   align-items: center;
   border-bottom: 1px solid black;
 }
+
 .modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
@@ -349,27 +360,7 @@ body {
   box-shadow: 0 0 20px 7px #fff, 0 0 37px 15px #f0f, 0 0 40px 27px #0ff,
     inset 0 0 20px 8px #fff, inset 0 0 37px 18px #f0f, inset 0 0 30px 27px #0ff;
 
-  /*0 0 30px 15px #fff,
-    0 0 57px 35px #f0f,
-    0 0 45px 50px #0ff,
-    inset 0 0 30px 15px #fff,
-    inset 0 0 57px 20px #f0f,
-    inset 0 0 45px 40px #0ff;*/
-  /*box-shadow:
-    0 0 30px 15px rgb(253, 117, 67),
-    0 0 57px 35px rgb(247, 82, 22),
-    0 0 21px #f40,
-    0 0 42px #f40,
-    inset 0 0 7px rgb(253, 117, 67),
-    inset 0 0 10px rgb(247, 82, 22);*/
-
-  /*box-shadow:
-            0 0 .5rem #fff,
-            inset 0 0 .5rem #fff,
-            0 0 2rem var(#08f),
-            inset 0 0 2rem var(#08f),
-            0 0 4rem var(#08f),
-            inset 0 0 4rem var(#08f);*/
+ 
 
   margin-top: 5px;
   font-size: 44pt;
@@ -380,8 +371,6 @@ body {
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
     0 0 42px #f0f, 0 0 82px #f0f;
   border-radius: 0rem;
-  margin-left: 20px;
-  margin-right: 20px;
   margin-top: 5px;
   border-radius: 30px;
   margin-left: 200px;
@@ -389,10 +378,14 @@ body {
   text-transform: uppercase;
 }
 .CATPOLL:hover {
+  
   color: #fff;
   text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
     0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
     0 0 82px rgb(130, 252, 16);
+}
+
+.CATPOLL{
 }
 
 .writeAndParticipate {
@@ -407,7 +400,8 @@ body {
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   margin-left: 200px;
   margin-right: 200px;
-  margin-top: 20px;
+  margin-top: 0px;
+  overflow: hidden;
 }
 
 .createOwn {
@@ -422,6 +416,7 @@ body {
   margin-left: 200px;
   margin-right: 200px;
   margin-top: 20px;
+  overflow: hidden;
 }
 
 .Wrapped {
@@ -462,6 +457,7 @@ body {
 
 hr {
   border: none;
+  margin-top:30px;
   border-top: 3px double #333;
   color: black;
   overflow: visible;
