@@ -21,6 +21,7 @@
 - [ ] Sätt igång pollen vid rätt tillfälle
 
 ## Startsida
+- [ ] Stå omröstning istället för röstning-
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
