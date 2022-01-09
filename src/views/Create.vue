@@ -3,6 +3,9 @@
     <header>
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
+    <router-link v-bind:to="/#/" class="link" tag="button">{{
+      uiLabels.participatePoll
+    }}</router-link>
     <main class="mainWrapped">
       <!-- {{ data }} -->
       <br />
@@ -151,10 +154,10 @@
             v-on:change="saveEditedQuestion"
           >
             <option value="0" selected>{{ uiLabels.unlimited }}</option>
-            <option value="10">10</option>
-            <option value="30">30</option>
-            <option value="60">60</option>
-            <option value="90">90</option>
+            <option value="10">10s</option>
+            <option value="30">30s</option>
+            <option value="60">60s</option>
+            <option value="90">90s</option>
           </select>
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
