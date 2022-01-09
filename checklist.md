@@ -1,5 +1,30 @@
 # Checklist
 
+## Kvar att göra
+
+- [ ] Ladda upp på servern
+- [ ] Kolla uiLabels överallt
+- [ ] Home knapp på alla sidor förutom start.
+
+## Poll
+
+- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+- [ ] Gör konfettin mer "egen"
+- [ ] Slå ihop "submit" och "next question"
+- [ ] OM det bara är en fråga fuckas det upp vad händer.
+- [ ] Vad händer när timern går ut?
+- [ ] Sekunder på timer
+- [ ] Timer stanna när man tryckt submit
+
+## Väntrum
+
+- [ ] Räkna antalet deltagare
+- [ ] Sätt igång pollen vid rätt tillfälle
+
+## Startsida
+
+- [ ] Stå omröstning istället för röstning-
+
 ## skriv in saker som behöver göras och bocka av när det är klart
 
 - [x] Skapa en checklist
@@ -20,8 +45,15 @@
 - [x] Save knapp
 - [x] Ändra frågor som man redan har skrivit
 - [x] Lägga till ett val av tidsbegränsning per fråga?
-- [ ] Det går bara att lägga till en fråga i en poll
-- [ ] Liten label bredvid pilknapparna för att förtydliga?
+- [x] Det går bara att lägga till en fråga i en poll
+- [ ] Flytta CHECK RESULT till ett snyggare ställe
+- [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts
+- [ ] Förtydliga designen, mer användarvänlig
+- [ ] Inte kunna göra en poll utan namn
+- [ ] Begränsning på antal frågor?
+- [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
+- [ ] Något sätt att se tidigare skapta polls
+- [ ] SE vilken fråga man är på
 
 ## Generellt
 

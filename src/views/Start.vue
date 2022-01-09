@@ -37,6 +37,7 @@
               X
             </button>
           </div>
+          {{ uiLabels.startpageInfoContent }}
         </div>
       </div>
 

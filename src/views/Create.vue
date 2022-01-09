@@ -191,11 +191,7 @@
           {{ uiLabels.checkResultsText }}
         </router-link>
       </div>
-      <button
-        class="runPollButton"
-        v-on:click="runPollFunction"
-        v-if="data.poll !== undefined && data.poll.questions.length > 0"
-      >
+      <button class="runPollButton" v-on:click="runPollFunction">
         {{ uiLabels.runPoll }}
       </button>
       <button
@@ -272,7 +268,6 @@ export default {
       if (this.selectedAnswer != i) {
         this.selectedAnswer = i;
       }
-      console.log(this.selectedAnswer);
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -293,8 +288,8 @@ export default {
       if (direction == "up") {
         this.changeColor(editQuestion - 1);
       }
-      if (direction == "down") {
-        this.changeColor(editQuestion + 1);
+      if (direction == 'down') {
+        this.changeColor(editQuestion+1)
       }
       // this.question = this.data.poll.questions[this.data.poll.editQuestion].q;
       // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;
