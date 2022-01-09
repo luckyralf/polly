@@ -1,80 +1,77 @@
 <template class="temp">
   <body class="Wrapped catCursor">
-
-  
-    <section id="headerText" >
+    <section id="headerText">
       <header>
-        <h1 class="CATPOLL"  >CAT POLL </h1>
-        
+        <h1 class="CATPOLL">CAT POLL</h1>
       </header>
-        
     </section>
 
-    
-      <div class="languangeButtonContainer">
-        <button
-          class="langButtonSV catPawCursor"
-          v-on:click="
-            switchLanguageToSV();
-            playSound();
-          "
-        ></button>
-        <button
-          class="langButtonEN catPawCursor"
-          v-on:click="
-            switchLanguageToEN();
-            playSound();
-          "
-        ></button>
+    <div class="languangeButtonContainer">
+      <button
+        class="langButtonSV catPawCursor"
+        v-on:click="
+          switchLanguageToSV();
+          playSound();
+        "
+      ></button>
+      <button
+        class="langButtonEN catPawCursor"
+        v-on:click="
+          switchLanguageToEN();
+          playSound();
+        "
+      ></button>
 
-        <button
-          v-on:click="infoFunction()"
-          class="infoButton2 catPawCursor"
-        ></button>
-        <div id="infoDIV" v-show="showInfoDiv">
-          <div class="infoHeader">
-            <div class="infoTitle">{{ uiLabels.startpageInfoHeader }}</div>
-            <button
-              v-on:click="infoFunction()"
-              class="closeButton catPawCursor"
-            >
-              X
-            </button>
-          </div>
-          {{ uiLabels.startpageInfoContent }}
+      <button
+        v-on:click="infoFunction()"
+        class="infoButton2 catPawCursor"
+      ></button>
+      <div id="infoDIV" v-show="showInfoDiv">
+        <div class="infoHeader">
+          <div class="infoTitle">{{ uiLabels.startpageInfoHeader }}</div>
+          <button v-on:click="infoFunction()" class="closeButton catPawCursor">
+            X
+          </button>
         </div>
+        {{ uiLabels.startpageInfoContent }}
       </div>
+    </div>
 
-      <div class="writeAndParticipate">
-        <label class="catPawTextCursor"
-          >{{ uiLabels.writePollId }}
-          <input type="text" v-model="id" class="catPawTextCursor" />
-        </label>
-        <br />
-        <br />
-        <router-link v-bind:to="'/waiting/' + id" class="activeLink" tag="button" style="color: #fff" 
-                    v-bind:class="{ inactiveLink: id === ''}">{{
-          uiLabels.participatePoll
-        }}
-        </router-link>
-      </div>
-
-      <div class="createOwn">
-        <p>{{ uiLabels.orMakeOwn }}</p>
+    <div class="writeAndParticipate">
+      <label class="catPawTextCursor"
+        >{{ uiLabels.writePollId }}
+        <input type="text" v-model="id" class="catPawTextCursor" />
+      </label>
+      <br />
+      <br />
+      <div class="linkToPoll">
         <router-link
+          v-bind:to="'/waiting/' + id"
+          class="activeLink"
+          tag="button"
           style="color: #fff"
-          className="activeLink"
-          v-bind:to="'/create/' + lang"
-          >{{ uiLabels.createPoll }}</router-link
-        >
+          v-bind:class="{ inactiveLink: id === '' }"
+          >{{ uiLabels.participatePoll }}
+        </router-link>
+        <span v-bind:class="[{noIdProvided: id==='' },{idProvided: id!==''}]">You have to enter a poll ID participate in a poll</span>
       </div>
+    </div>
 
-      <!-- <router-link
+    <div class="createOwn">
+      <p>{{ uiLabels.orMakeOwn }}</p>
+      <router-link
+        style="color: #fff"
+        className="activeLink"
+        v-bind:to="'/create/' + lang"
+        >{{ uiLabels.createPoll }}</router-link
+      >
+    </div>
+
+    <!-- <router-link
           style="color: #fff"
           className="link"
           v-bind:to="'/waiting/' + id"
           > testtest </router-link> -->
-    
 
     <div id="Finalword">
       <hr />
@@ -195,7 +192,7 @@ body {
   margin-right: 5px;
 }
 
-#nav{
+#nav {
 }
 
 #infoDIV {
@@ -272,8 +269,8 @@ body {
   height: 35px;
   width: 35px;
   position: relative;
-  top:-280px;
-  left: 47.0%;
+  top: -280px;
+  left: 47%;
 }
 
 .langButtonEN {
@@ -287,12 +284,12 @@ body {
   height: 35px;
   width: 35px;
   position: relative;
-  top:-280px;
+  top: -280px;
   left: 47.5%;
 }
 
 .infoButton2 {
-  top:-280px;
+  top: -280px;
   left: 39%;
   position: relative;
   padding-top: 20px;
@@ -361,8 +358,6 @@ body {
   box-shadow: 0 0 20px 7px #fff, 0 0 37px 15px #f0f, 0 0 40px 27px #0ff,
     inset 0 0 20px 8px #fff, inset 0 0 37px 18px #f0f, inset 0 0 30px 27px #0ff;
 
- 
-
   margin-top: 5px;
   font-size: 44pt;
   font-weight: 200;
@@ -379,14 +374,13 @@ body {
   text-transform: uppercase;
 }
 .CATPOLL:hover {
-  
   color: #fff;
   text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
     0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
     0 0 82px rgb(130, 252, 16);
 }
 
-.CATPOLL{
+.CATPOLL {
 }
 
 .writeAndParticipate {
@@ -442,8 +436,12 @@ body {
   padding-left: 4px;
 }
 
+/* .hide {
+  visibility: hidden;
+} */
+
 .inactiveLink {
-    color: white;
+  color: white;
   background: #20af19;
   border-radius: 4%;
   border: solid #229954;
@@ -468,9 +466,30 @@ body {
   background: #198513;
 }
 
+.idProvided {
+  visibility: hidden;
+  position: absolute;
+}
+
+.noIdProvided  {
+  visibility: hidden;
+  font-size: 75%;
+  background-color: rgb(58, 57, 57);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  margin-left: 3px;
+  position: absolute;
+}
+
+.linkToPoll:hover .noIdProvided {
+  visibility: visible;
+}
+
 hr {
   border: none;
-  margin-top:30px;
+  margin-top: 30px;
   border-top: 3px double #333;
   color: black;
   overflow: visible;
