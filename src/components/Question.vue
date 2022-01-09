@@ -1,41 +1,43 @@
 <template>
   <div class="questionWrap">
-    
-    <p id="question">{{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}</p>
-    <p> {{ uiLabels.totalAmountofQuestions}} {{ amountQuestion }} </p>
-      <button
-        v-for="(a, index) in question.a"
-        v-bind:class="{ selected: index === selectedAnswer }"
-        v-on:click="changeColor(index)"
-        v-bind:key="a"
-        class="isClicked"
-      >
-
-       <span id= "a" > {{ a }}</span>
-      </button>
+    <p id="question">
+      {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
+    </p>
+    <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
+    <button
+      v-for="(a, index) in question.a"
+      v-bind:class="{ selected: index === selectedAnswer }"
+      v-on:click="
+        changeColor(index);
+        submitAnswer();
+      "
+      v-bind:key="a"
+      class="isClicked"
+    >
+      <span id="a"> {{ a }}</span>
+    </button>
 
     <div class="timer" v-if="question.timeOn == true && timer > -1">
       {{ timer }}
     </div>
 
-    <div>
-      <button v-on:click="submitAnswer"  id="submitAnswerButton">
-        {{ uiLabels.submitAnswer }}
-      </button>
-      <br />
-      <div v-if="showAnswer">
-        {{ uiLabels.submittedAnswer }} : {{ this.submittedAnswer }}
-      </div>
-    </div>
-    <br />
-
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
-        <button id="nextQuestionButton" v-on:click="answer">{{ uiLabels.nextQuestion }}</button>
+        <button id="nextQuestionButton" v-on:click="answer">
+          {{ uiLabels.nextQuestion }}
+        </button>
       </div>
 
       <div v-else id="result">
-        <button id="finishQuizButton" v-on:click="finishQuiz(); confettin()">{{ uiLabels.finishQuiz }}</button>
+        <button
+          id="finishQuizButton"
+          v-on:click="
+            finishQuiz();
+            confettin();
+          "
+        >
+          {{ uiLabels.finishQuiz }}
+        </button>
 
         <div v-if="quizFinished">
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
@@ -49,7 +51,6 @@
 
 
 <script>
-
 export default {
   name: "Question",
   props: {
@@ -57,37 +58,33 @@ export default {
     uiLabels: Object,
     amountQuestion: Number,
     method: { type: Function }, //HÄR kommer konfettin in från sin parent som en props mvh Elsa
-
   },
-  
+
   data: function () {
     return {
       pollId: "inactive poll",
       questionNumber: 1,
       selectedAnswer: null, //index som anger vilket alternativ som är valt
       submittedAnswer: null, //index som anger vilket svarsalternativ som har skickats
-      showAnswer: false, //boolean som anger om ett svar har angetts för att visa "selected answer is:"
       answerSubmitted: false, //boolean som anger om man har skickat ett svar
       lastQuestion: true,
       quizFinished: false,
       timerFunction: null,
       timer: 0,
-      
     };
   },
 
   computed: {
-    
-    thisTimeOn: function(){
-      return this.question.timeOn
-    }
+    thisTimeOn: function () {
+      return this.question.timeOn;
+    },
   },
 
   watch: {
     question: {
       handler() {
         this.timer = this.question.time;
-        clearInterval(this.timerFunction) 
+        clearInterval(this.timerFunction);
         if (this.thisTimeOn) {
           this.timerFunction = setInterval(() => {
             this.timer--;
@@ -99,29 +96,24 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
-    
   },
   methods: {
     submitAnswer: function () {
-      //skriv ut vad det valda alternativet är
-      this.showAnswer = true;
       this.submittedAnswer = this.question.a[this.selectedAnswer];
       console.log(this.submittedAnswer);
       this.answerSubmitted = true;
-      //this.questionNumber = this.questionNumber + 1;
     },
     answer: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null) {
         this.$emit("answer", this.submittedAnswer);
         this.selectedAnswer = null;
-        this.showAnswer = false;
         this.answerSubmitted = false;
         this.submittedAnswer = null;
       }
       console.log(this.questionNumber);
       console.log(this.amountQuestion);
       this.questionNumber = this.questionNumber + 1;
-      
+
       if (this.questionNumber === this.amountQuestion) {
         this.lastQuestion = false;
       }
@@ -141,42 +133,30 @@ export default {
         this.selectedAnswer = null;
       }
     },
-    startTimer: function(t){
-      if (t === "unlimited"){
+    startTimer: function (t) {
+      if (t === "unlimited") {
         this.timerOn = false;
         this.timer = 100;
-      }else{
+      } else {
         this.timer = parseInt(t);
       }
     },
     confettin: function () {
       this.method();
-      }
+    },
   },
-
 };
 </script>
 <style>
 
-
-
-#submitAnswerButton {
-  padding: 10px;
-  margin-top: 10px;
-  background-color: #d794e3 ;
-  color: white;
-  border: 3px solid #ffffce;
-  font-family: "Outfit", sans-serif;
-  font-size: 20px;
-}
-
 #finishQuizButton {
-  background-color: #1313ad;;
+  background-color: #1313ad;
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -185,13 +165,13 @@ export default {
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: 30px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
 }
 
 .isClicked {
-  background-color:#3ac7ff;
+  background-color: #3ac7ff;
   border: outset 3px white;
   width: 500px;
   height: 60px;
@@ -209,7 +189,8 @@ export default {
 .isClicked:active {
   background-color: #c73ee1;
 }
-.selected, .selected:hover {
+.selected,
+.selected:hover {
   background-color: #c73ee1;
 }
 
@@ -224,9 +205,8 @@ export default {
   margin-right: 200px;
   position: center;
   font-size: 20px;
-  padding-bottom: 50px
+  padding-bottom: 50px;
 }
-
 
 #question {
   color: white;
@@ -242,7 +222,6 @@ export default {
   border: solid #229954;
   font-size: 2rem;
   padding: 20px;
-
 }
 
 #result {
