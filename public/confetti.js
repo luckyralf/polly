@@ -10,8 +10,8 @@
 // så kan det istället bli en blandning av färger.
 const chooseParticleColor = (groupName) => {
     console.log(groupName);
-    let colores = ['gold','blue','lightgreen','silver','white','pink','red','gray'];
-    return colores[Math.floor(Math.random() * 9)]
+    let colores = ['gold','blue','lightgreen','silver','white','pink','red'];
+    return colores[Math.floor(Math.random() * 8)]
   }
   
   
@@ -34,8 +34,8 @@ const chooseParticleColor = (groupName) => {
       yPosition: 50,      // Position i procent av skärmens höjd, 0 är längst ner och 100 högst upp
       xVelocity: 0,       // Hastighet i sidled, positiva värden åker åt höger och negativa åt vänster
       yVelocity: 3.5,       // Hastighet i höjdled, positiva värden åker uppåt och negativa värden nedåt
-      xSpread: 140,        //90// Slumpmässig spridning på partikelns hastighet i sidled
-      ySpread: 30        //30 // Slumpmässig spridning på partikelns hastighet i höjdled
+      xSpread: 150,        //90// Slumpmässig spridning på partikelns hastighet i sidled
+      ySpread: 60        //30 // Slumpmässig spridning på partikelns hastighet i höjdled
     })
   }
   
