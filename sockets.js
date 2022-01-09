@@ -85,7 +85,7 @@ function sockets(io, socket, data) {
       data.getQuestion(d.pollId)
     );
   });
-
+// elsa och johanna run q i create 
 
   socket.on("submitAnswer", function (d) {
     //d = { pollId: this.pollId, answer: answer }
