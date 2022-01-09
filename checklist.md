@@ -24,7 +24,7 @@
 
 ## Startsida
 
-- [ ] Stå omröstning istället för röstning-
+- [x] Stå omröstning istället för röstning-
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
