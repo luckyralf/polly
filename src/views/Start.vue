@@ -1,5 +1,7 @@
 <template class="temp">
   <body class="Wrapped catCursor">
+
+  
     <section id="headerText" >
       <header>
         <h1 class="CATPOLL"  >CAT POLL </h1>
@@ -197,7 +199,7 @@ body {
 
 #infoDIV {
   position: fixed;
-  top: 55%;
+  top: 22%;
   left: 82%;
   transform: translate(-50%, -50%) scale(1);
   transition: 200ms ease-in-out;
@@ -399,6 +401,7 @@ body {
   margin-left: 200px;
   margin-right: 200px;
   margin-top: 0px;
+  overflow: hidden;
 }
 
 .createOwn {
@@ -413,6 +416,7 @@ body {
   margin-left: 200px;
   margin-right: 200px;
   margin-top: 20px;
+  overflow: hidden;
 }
 
 .Wrapped {
