@@ -73,9 +73,10 @@
             >You need to write a poll name</span
           >
           <span
-            v-bind:class="{
-              noIdProvided: typeof polls[pollId] !== 'undefined',
-            }"
+            v-bind:class="[
+              { noIdProvided: typeof polls[pollId] !== 'undefined' },
+              { idProvided: typeof polls[pollId] === 'undefined' },
+            ]"
             >Poll already exists</span
           >
         </div>
