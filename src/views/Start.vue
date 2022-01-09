@@ -44,15 +44,17 @@
       </label>
       <br />
       <br />
-      <router-link
-        v-bind:to="'/waiting/' + id"
-        class="activeLink"
-        tag="button"
-        style="color: #fff"
-        v-bind:class="{ inactiveLink: id === '' }"
-        >{{ uiLabels.participatePoll }}
-        <!-- <span v-bind:class="{ noIdProvided: id === '' }">You have to enter a poll ID participate in a poll</span> -->
-      </router-link>
+      <div class="linkToPoll">
+        <router-link
+          v-bind:to="'/waiting/' + id"
+          class="activeLink"
+          tag="button"
+          style="color: #fff"
+          v-bind:class="{ inactiveLink: id === '' }"
+          >{{ uiLabels.participatePoll }}
+        </router-link>
+        <span v-bind:class="[{noIdProvided: id==='' },{idProvided: id!==''}]">You have to enter a poll ID participate in a poll</span>
+      </div>
     </div>
 
     <div class="createOwn">
@@ -434,6 +436,10 @@ body {
   padding-left: 4px;
 }
 
+/* .hide {
+  visibility: hidden;
+} */
+
 .inactiveLink {
   color: white;
   background: #20af19;
@@ -460,9 +466,14 @@ body {
   background: #198513;
 }
 
-/* .inactiveLink .noIdProvided {
+.idProvided {
   visibility: hidden;
-  font-size: 100%;
+  position: absolute;
+}
+
+.noIdProvided  {
+  visibility: hidden;
+  font-size: 75%;
   background-color: rgb(58, 57, 57);
   color: #fff;
   text-align: center;
@@ -470,15 +481,11 @@ body {
   padding: 5px;
   margin-left: 3px;
   position: absolute;
-  z-index: 1;
-  top: -5px;
-  left: 105%;
 }
 
-.inactiveLink.hover .noIdProvided {
+.linkToPoll:hover .noIdProvided {
   visibility: visible;
-  font-size: 100%;
-} */
+}
 
 hr {
   border: none;
