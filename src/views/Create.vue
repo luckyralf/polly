@@ -3,6 +3,9 @@
     <header>
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
+    <router-link v-bind:to="/#/" class="link" tag="button">{{
+      uiLabels.participatePoll
+    }}</router-link>
     <main class="mainWrapped">
       <!-- {{ data }} -->
       <br />

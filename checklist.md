@@ -21,6 +21,7 @@
 - [x] Ändra frågor som man redan har skrivit
 - [x] Lägga till ett val av tidsbegränsning per fråga?
 - [ ] Det går bara att lägga till en fråga i en poll
+- [] Liten label bredvid pilknapparna för att förtydliga?
 
 ## Generellt
 
@@ -39,7 +40,12 @@
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
 - [ ]
-- [ ]
+
+## Poll
+
+- [] Vad ska hända om man inte svarar? En till stapel med "obesvarat"
+- [] Fixa bugg när man klickar på submit utan att ha svarat
 
 ## Sidebar
+
 - [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
