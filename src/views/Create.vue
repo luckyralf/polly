@@ -1,15 +1,15 @@
 <template>
   <body>
 
-   <router-link  to="/" class="homeButton" tag="button"> Home </router-link>
-    <header>
+   <router-link  to="/" class="homeButton catPawCursor" tag="button"> Home </router-link>
+    <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
     <router-link v-bind:to="/#/" class="link" tag="button">{{
       uiLabels.participatePoll
     }}</router-link>
     
-    <main class="mainWrapped">
+    <main class="mainWrapped catCursor">
       <!-- {{ data }} -->
       <br />
       <!-- {{ data.poll.editQuestion }} -->
@@ -415,6 +415,14 @@ h1 {
   margin: 0;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
     0 0 42px #f0f, 0 0 82px #f0f;
+}
+
+
+h1:hover {
+  color: #fff;
+  text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
+    0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
+    0 0 82px rgb(130, 252, 16);
 }
 
 main {

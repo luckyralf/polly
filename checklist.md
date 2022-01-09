@@ -5,12 +5,13 @@
 - [ ] Ladda upp på servern
 - [ ] Kolla uiLabels överallt
 - [ ] Home knapp på alla sidor förutom start.
+- [ ] Cursors kvar på waitingroom och results, väntar på att kunna komma vidare mvh adam
 
 ## Poll
 
 - [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske    göra allt lite mindre
 - [ ] Gör konfettin mer "egen"
-- [ ] Slå ihop "submit" och "next question"
+- [x] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer.
 - [ ] Vad händer när timern går ut?
 - [ ] Sekunder på timer

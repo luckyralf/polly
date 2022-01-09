@@ -2,7 +2,7 @@
   <!--<body> -->
   <section class="jjj">
     <header>
-      <h1 class="waitingRoom">WAITINGROOM</h1>
+      <h1 class="waitingRoom">WAITING ROOM</h1>
     </header>
 
     <!--<main> -->
@@ -21,7 +21,7 @@
     </div>
     
     <div>
-      <router-link class="startPoll" v-bind:to="'/poll/' + pollId"  >
+      <router-link class="startPoll" v-bind:to="'/poll/' + pollId" 
         >KÖR POLLJÄVELN
       </router-link>
     </div>
