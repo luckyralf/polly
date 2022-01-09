@@ -157,11 +157,11 @@
             v-model="time"
             v-on:change="saveEditedQuestion"
           >
-            <option value="0" selected>{{ uiLabels.unlimited }}</option>
+            <option value="0">{{ uiLabels.unlimited }}</option>
             <option value="10">10 s</option>
             <option value="30">30 s</option>
             <option value="60">60 s</option>
-            <option value="90">90 s</option>
+            <option value="90" selected>90 s</option>
           </select>
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
@@ -225,7 +225,7 @@ export default {
       data: {},
       uiLabels: {},
       pollHeadline: "",
-      time: "",
+      time: "0",
       selectedAnswer: 0, //används bara för färgbyte på frågeknapparna
     };
   },
@@ -323,6 +323,7 @@ export default {
         q: this.uiLabels.editMe,
         // a: this.answers,
         a: ["", ""],
+        t: "0",
         indexForAddedQuestion,
       });
       this.question = this.uiLabels.editMe;

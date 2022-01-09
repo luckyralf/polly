@@ -45,7 +45,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("addQuestion", function (d) {
-    data.addQuestion(d.pollId, { q: d.q, a: d.a }, d.indexForAddedQuestion);
+    data.addQuestion(d.pollId, { q: d.q, a: d.a, t: d.t }, d.indexForAddedQuestion);
     console.log("addquestion socket fungerar");
     socket.emit("allQuestions", data.getPoll(d.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
