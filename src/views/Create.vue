@@ -481,7 +481,7 @@ body {
 .linkHome {
   background-image: url(https://image.winudf.com/v2/image/bnUuaG9tZS5mbG9hdF9pY29uXzE1MzM0NDc5MDJfMDQ2/icon.png?w=&fakeurl=1);
   background-size: cover;
-  background-position: 19%;
+  /* background-position: 19%; */
   padding-left: 35px;
   border-radius: 100%;
   margin-right: 1300px;
@@ -720,7 +720,7 @@ h4 span {
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
 }
 .infoButton3 {
-  right: 90%;
+  right: 1290px;
   position: relative;
   padding-top: 20px;
   padding-right: 20px;
@@ -728,8 +728,8 @@ h4 span {
   background-position: 50%;
   border-radius: 100%;
   border: none;
-  height: 37px;
-  width: 37px;
+  height: 40px;
+  width: 40px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
 }
 
