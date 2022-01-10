@@ -27,7 +27,7 @@
     </header>
 
     <main class="mainWrapped catCursor">
-      <!-- {{ data }} -->
+      {{ data }}
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
@@ -76,9 +76,10 @@
             >{{ uiLabels.needWritePollName }}</span
           >
           <span
-            v-bind:class="{
-              noIdProvided: typeof polls[pollId] !== 'undefined',
-            }"
+            v-bind:class="[
+              { noIdProvided: typeof polls[pollId] !== 'undefined' },
+              { idProvided: typeof polls[pollId] === 'undefined' },
+            ]"
             >{{ uiLabels.pollExists }}</span
           >
         </div>
