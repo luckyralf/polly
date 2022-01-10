@@ -23,8 +23,6 @@
         </button>
 
                   <div class ="timerFix">
-                    
-
                       <div class="timer" v-if="question.timeOn == true" >
                         {{ timer }}
                       </div>
@@ -176,8 +174,8 @@ export default {
 
     finishQuiz: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null) {
-        this.$emit("answer", this.submittedAnswer);
         this.quizFinished = true;
+        this.$emit("answer", this.submittedAnswer);
       }
     },
 

@@ -15,6 +15,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("createPoll", function (d) {
+        console.log("from socket: ", d.pollId)
     socket.emit("pollCreated", data.createPoll(d.pollId, d.lang));
     socket.emit("allQuestions", data.getPoll(d.pollId));
     socket.emit("pollHead", data.createPollHead(d.pollId));
@@ -67,6 +68,7 @@ function sockets(io, socket, data) {
       time: data.saveTime(questionData.t).time,
       timeOn: data.saveTime(questionData.t).timeOn,
     });
+    console.log("questionData som kommer till saveEditedQuestion", questionData.t);
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
@@ -112,6 +114,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("emitGetPoll", function (ID) {
+    console.log("from socket in participate: ", ID)
     socket.emit("getPoll", data.getPoll(ID));
   });
 

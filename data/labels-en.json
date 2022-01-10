@@ -42,6 +42,7 @@
   "addAnsBtn": "Add another alternative",
   "remove": "Remove",
   "timesUp": "Time's up!",
+  "selectedTime": "Selected time",
   "pollIdInfo": "You have to enter a poll name to participate in a poll",
   "createStartInfo": "You can create your CatPoll here. Start by choosing a name for your poll to make your participants able to join your poll!",
   "needWritePollName": "You need to write a poll name",

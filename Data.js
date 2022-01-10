@@ -29,8 +29,8 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     this.polls[pollId] = poll;
     poll.saveMode = false;
     poll.amountParticipants = 0;
-    console.log("poll created", pollId, poll);
   }
+  console.log("poll created", pollId);
   return this.polls[pollId];
 };
 
@@ -131,6 +131,7 @@ Data.prototype.getAnswers = function (pollId) {
 //Försök att returnera hela pollen till Create-sidan, rad 18 i socket är ändrad
 Data.prototype.getPoll = function (pollId) {
   const poll = this.polls[pollId];
+
   if (typeof poll !== "undefined") {
     return { poll };
   }
@@ -145,9 +146,11 @@ Data.prototype.createPollHead = function (pollId) {
 };
 
 Data.prototype.saveTime = function (t) {
-  if (parseInt(t) === 0) {
+  if (parseInt(t) === 0 || parseInt(t) == null) {
     return { timeOn: false, time: 1 };
   } else {
+    console.log("t som kommer in är", t);
+    console.log("Tiden ändras till", parseInt(t));
     return { timeOn: true, time: parseInt(t) };
   }
 };

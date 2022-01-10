@@ -42,6 +42,7 @@
   "addAnsBtn": "Lägg till svarsalternativ",
   "remove": "Ta bort",
   "timesUp": "Tiden har gått ut!",
+  "selectedTime": "Vald tid",
   "pollIdInfo": "Du måste ange ett pollnamn för att kunna delta i en poll",
   "createStartInfo": "Här kan du skapa din CatPoll. Börja med att bestämma ett namn för att göra det möjligt för deltagare att gå med i omröstningen!",
   "needWritePollName": "Du behöver skriva in ett namn",
