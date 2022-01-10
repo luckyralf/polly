@@ -183,7 +183,7 @@ body {
 }
 
 .bars {
-  
+
   height: 40px;
   width: 700px;
   margin-left: 350px;
@@ -199,9 +199,11 @@ body {
   height: 100%;
   width: 0%;
   max-width: 700px;
+  animation: animate 4s linear infinite;
   animation-name: ansAni;
-  animation-duration: 4s;
+
   transform-origin: left;
+
 }
 @keyframes ansAni {
   0% {transform:scaleX(0%);}

@@ -1,21 +1,41 @@
 <template>
   <body>
 
-   <router-link  to="/" class="homeButton catPawCursor" tag="button"> Home </router-link>
+   <router-link  to="/" >
+   <button class="linkHome" >
+   </button>
+   </router-link>
+
+   <button
+          v-on:click="infoFunction()"
+          class="infoButton2 catPawCursor"
+        ></button>
+        <div id="infoDIV" v-show="showInfoDiv">
+          <div class="infoHeader">
+            <div class="infoTitle">{{ uiLabels.createpageInfoHeader }}</div>
+            <button
+              v-on:click="infoFunction()"
+              class="closeButton catPawCursor"
+            >
+              X
+            </button>
+          </div>
+          <p class="infoText">
+            <b> Information:</b> {{ uiLabels.createpageInfoContent }}
+          </p>
+        </div>
+
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
-    <router-link v-bind:to="/#/" class="link" tag="button">{{
-      uiLabels.participatePoll
-    }}</router-link>
-    
+
     <main class="mainWrapped catCursor">
       <!-- {{ data }} -->
       <br />
       <!-- {{ data.poll.editQuestion }} -->
 
-        Här kan du skapa din omröstning. 
-        Börja med att bestämma ett namn/pollID för att göra det möjligt att deltagare att gå med i omröstningen. 
+      Här kan du skapa din omröstning. Börja med att bestämma ett namn/pollID
+      för att göra det möjligt att deltagare att gå med i omröstningen.
       <div v-for="index in Object.keys(polls).length" :key="index">
         <button
           v-on:click="
@@ -51,13 +71,25 @@
           type="text"
           placeholder="Write the name of your poll"
           v-model="pollId"
-          class="catPawTextCursor" required >
-
-        <button class="createPollBtnActive catPawCursor" v-on:click="createPoll" v-bind:class="{ createPollBtnInActive: pollId===''}">
-          {{ uiLabels.createPoll }}
-        </button>
-        
-
+          class="catPawTextCursor"
+          required
+        />
+        <div class="pollName">
+          <button
+            class="createPollBtnActive catPawCursor"
+            v-on:click="createPoll"
+            v-bind:class="{ createPollBtnInActive: pollId === '' }"
+          >
+            {{ uiLabels.createPoll }}
+          </button>
+          <span
+            v-bind:class="[
+              { noIdProvided: pollId === '' },
+              { idProvided: pollId !== '' },
+            ]"
+            >You need to write a poll name</span
+          >
+        </div>
         <button
           v-on:click="infoFunction()"
           class="infoButton2 catPawCursor"
@@ -209,7 +241,10 @@
 
           <br />
 
-          <button class="deleteQuestBtn catPawCursor" v-on:click="deleteQuestion">
+          <button
+            class="deleteQuestBtn catPawCursor"
+            v-on:click="deleteQuestion"
+          >
             {{ uiLabels.createpageDeleteQuestion }}
           </button>
         </section>
@@ -231,7 +266,6 @@
       {{ Object.keys(polls) }}
       <br />
       <br />
-      {{ data }}
       <div
         id="result"
         v-if="
@@ -330,10 +364,10 @@ export default {
     },
 
     runPollFunction: function () {
-      console.log(this.pollId)
-      socket.emit("runPoll", {
-         pollId: this.pollId,
-      });
+      console.log(this.pollId);
+      socket.emit("runPoll", 
+         this.pollId,
+      );
       //VARFÖR FUNKAR DE INTE
     },
 
@@ -438,14 +472,16 @@ body {
   align-content: center;
 }
 
-.homeButton{
- background-image: url(https://www.vhv.rs/dpng/d/520-5202612_home-button-clipart-png-transparent-png.png);
+.linkHome{
+ background-image: url(https://image.winudf.com/v2/image/bnUuaG9tZS5mbG9hdF9pY29uXzE1MzM0NDc5MDJfMDQ2/icon.png?w=&fakeurl=1);
  background-size: cover;
- background-position: 65%;
- color: transparent;
+ background-position: 19%;
  padding-left: 35px;
  border-radius: 100%;
  margin-right: 1300px;
+ width:40px;
+ height:40px;
+ border: none;
  cursor: url(data:application/octet-stream;base64,AAACAAEAICAAAAMAAQCoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABLAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABfAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAbAAAASwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAAzAAAAZwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAMwAAAGMAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABbAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAACHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAsAAAAjAAAAUwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAIwAAAEsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABDAAAAdwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADMAAABnAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAArAAAAWwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB3AAAAOwAAABMAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAEsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAjwAAAE8AAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAA7AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABvAAAAMwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAKwAAAF8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAhwAAAEsAAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMAAABDAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABfAAAAKwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAIwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAdwAAADsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAA3AAAA/wAAAP8AAAD/AAAA/6GD//+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAIcAAABLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAE8AAAD/oYP//wAAAP8AAAD/oYP//6GD//+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAWwAAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAAzAAAA/6GD//+hg///AAAA/6GD//+hg///oYP//6GD//+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAGcAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAEcAAAD/AAAA/wAAAP8AAAD/oYP//6GD//+hg///oYP//6GD//+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/oYP//6GD//+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8AAAD/AAAA/6GD//+hg///AAAA/wAAAP+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAP8AAAD/oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAFsAAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAA/wAAAP+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABbAAAAMwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsAAAD/AAAA/6GD//8AAAD/AAAA/6GD//+hg///oYP//wAAAP+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAASwAAACsAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAP8AAAD/AAAA/wAAAP+hg///oYP//6GD//8AAAD/AAAA/6GD//8AAAD/AAAA/wAAAP8AAAD/AAAATwAAADMAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAXwAAADsAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAALAAAAGwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAEMAAAArAAAAEwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAACwAAABMAAAAbAAAAHwAAAB8AAAAfAAAAHwAAAB8AAAAbAAAAEwAAAAsAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP/+AAD//gAA//wAAP/4AAD/8AAA/+AAAP/gAAD/gAAA/4AAAP8AAAD+AAAA/AAAAPwAAAD4AAAB8AAAA/AAAAPwAAAH4AAAH+AAAD/AAAA/wAAAf8AAAP/AAAD/wAAA/8AAAP/AAAH/wAAD/8AAA//AAA//wAA///AAf/8=),
     auto;
 }
@@ -492,7 +528,6 @@ h1 {
     0 0 42px #f0f, 0 0 82px #f0f;
 }
 
-
 h1:hover {
   color: #fff;
   text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
@@ -528,6 +563,7 @@ main {
     auto;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
+  margin-top: 10px;
 }
 
 .createPollBtnInActive {
@@ -541,6 +577,28 @@ main {
   font-size: 20px;
   opacity: 0.5;
   pointer-events: none;
+}
+
+.idProvided {
+  visibility: hidden;
+  position: absolute;
+}
+
+.noIdProvided {
+  visibility: hidden;
+  font-size: 100%;
+  background-color: rgb(58, 57, 57);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  margin-left: 3px;
+  position: absolute;
+  margin-top: 10px;
+}
+
+.pollName:hover .noIdProvided {
+  visibility: visible;
 }
 
 .deletePollBtn {
@@ -644,7 +702,7 @@ h4 span {
   align-items: center;
 }
 .infoButton2 {
-  left: 20.5%;
+  left:40%;
   position: relative;
   padding-top: 20px;
   padding-right: -20px;
