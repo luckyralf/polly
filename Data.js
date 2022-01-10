@@ -28,6 +28,7 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1?
     this.polls[pollId] = poll;
     poll.saveMode = false;
+    poll.amountParticipants = 0;
     console.log("poll created", pollId, poll);
   }
   return this.polls[pollId];
@@ -163,6 +164,16 @@ Data.prototype.editOrSavePoll = function (mode, pollId) {
 Data.prototype.getAllPolls = function () {
   return this.polls;
   console.log("data getallpolls");
+};
+
+Data.prototype.editParticipants = function (addOrRemove, pollId) {
+  if (addOrRemove == "add") {
+    this.polls[pollId].amountParticipants += 1;
+    console.log("data add participant");
+  } else if (addOrRemove == "remove") {
+    this.polls[pollId].amountParticipants -= 1;
+    console.log("data remove participant");
+  }
 };
 
 module.exports = Data;

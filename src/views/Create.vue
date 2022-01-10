@@ -25,7 +25,7 @@
     </header>
 
     <main class="mainWrapped catCursor">
-      <!-- {{ data }} -->
+      {{ data }}
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
@@ -47,7 +47,7 @@
 
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
-                  <!-- placeholder -->
+        <!-- placeholder -->
         <input
           type="text"
           placeholder="Write poll name here"
@@ -71,13 +71,14 @@
               { noIdProvided: pollId === '' },
               { idProvided: pollId !== '' },
             ]"
-            >{{uiLabels.needWritePollName}}</span
+            >{{ uiLabels.needWritePollName }}</span
           >
           <span
-            v-bind:class="{
-              noIdProvided: typeof polls[pollId] !== 'undefined',
-            }"
-            >{{uiLabels.pollExists}}</span
+            v-bind:class="[
+              { noIdProvided: typeof polls[pollId] !== 'undefined' },
+              { idProvided: typeof polls[pollId] === 'undefined' },
+            ]"
+            >{{ uiLabels.pollExists }}</span
           >
         </div>
       </div>
@@ -227,13 +228,13 @@
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('savemode')"
       >
-       {{uiLabels.savePoll}}
+        {{ uiLabels.savePoll }}
       </button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('editmode')"
       >
-        {{uiLabels.editPoll}}
+        {{ uiLabels.editPoll }}
       </button>
       {{ Object.keys(polls) }}
       <br />
@@ -342,9 +343,7 @@ export default {
 
     runPollFunction: function () {
       console.log(this.pollId);
-      socket.emit("runPoll", 
-         this.pollId,
-      );
+      socket.emit("runPoll", this.pollId);
       //VARFÖR FUNKAR DE INTE
     },
 

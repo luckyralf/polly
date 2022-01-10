@@ -1,4 +1,4 @@
-<template id = "temp">
+<template id="temp">
   <!--<body> -->
   <section class="jjj">
     <header>
@@ -6,7 +6,7 @@
     </header>
 
     <!--<main> -->
-
+    {{ data }}
     <div>
       <p class="waitingForHost">Waiting for host to start poll...</p>
 
@@ -15,27 +15,25 @@
         <span class="loaderPrick"></span>
         <span class="loaderPrick"></span>
       </div>
-    
+
       <p class="participants">Participants:</p>
+
       <div class="amount"></div>
     </div>
-    
+
     <div>
-      <router-link class="startPoll" v-bind:to="'/poll/' + pollId" 
+      <router-link class="startPoll" v-bind:to="'/poll/' + pollId"
         >KÖR POLLJÄVELN
       </router-link>
     </div>
 
-    <div v-if="this.pollActivated">
-    POLL KÖRS
-    </div>
+    <div v-if="this.pollActivated">POLL KÖRS</div>
 
     <div class="animering"></div>
   </section>
   <!--</main>
     </body> -->
 </template>
-
 
 <script>
 import io from "socket.io-client";
@@ -47,29 +45,36 @@ export default {
   data: function () {
     return {
       pollId: "inactive poll",
-      amountParticipants: "",
+      amountParticipants: 0,
       pollActivated: false,
     };
   },
 
   created: function () {
-   this.pollId = this.$route.params.id;
-   socket.emit("joinPoll",{pollId: this.pollId})
-
-   socket.on("runPolls", () => { 
-    console.log(this.pollId)
-    this.$router.push({ name: 'Poll', params: { id: this.pollId } })
+    this.pollId = this.$route.params.id;
+    socket.emit("joinPoll", { pollId: this.pollId });
+    socket.emit("editParticipants", {
+      addOrRemove: "add",
+      pollId: this.pollId,
+    });
+    // document.addEventListener("beforeunload", this.unRegister);
+    socket.on("dataUpdate", (data) => (this.data = data));
+    socket.on("runPolls", () => {
+      console.log(this.pollId);
+      this.$router.push({ name: "Poll", params: { id: this.pollId } });
     });
   },
-  unmounted: function () {
-  }
-  // socket.on("amountParticipants"), (update) => {
-  //     this.data = update.
-
-  // }
+  // methods: {
+  //   unRegister: function () {
+  //     socket.emit("editParticipants", {
+  //       addOrRemove: "remove",
+  //       pollId: this.pollId,
+  //     });
+  //     console.log("unmount fungerar");
+  //   },
+  // },
 };
 </script>
-
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Exo+2:200i");
