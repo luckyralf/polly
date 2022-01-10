@@ -41,6 +41,8 @@
   "showBars": "Show bar graph",
   "addAnsBtn": "Add another alternative",
   "remove": "Remove",
-  "timesUp": "Time's up!"
+  "timesUp": "Time's up!",
+  "selectedTime": "Vald tid"
+
   
 }

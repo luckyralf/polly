@@ -41,6 +41,7 @@
   "showBars": "Visa stapeldiagram",
   "addAnsBtn": "Lägg till svarsalternativ",
   "remove": "Ta bort",
-  "timesUp": "Tiden har gått ut!"
+  "timesUp": "Tiden har gått ut!",
+  "selectedTime": "Vald tid"
 
 }

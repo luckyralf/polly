@@ -211,6 +211,9 @@
             <option value="60">60 s</option>
             <option value="90" selected>90 s</option>
           </select>
+          <br>
+          
+          {{uiLabels.selectedTime}} {{data.poll.questions.q}} 10
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
@@ -222,6 +225,7 @@
 
           <br />
 
+
           <button
             class="deleteQuestBtn catPawCursor"
             v-on:click="deleteQuestion"
@@ -230,7 +234,7 @@
           </button>
         </section>
       </div>
-
+{{data}}
       <!-- Check Result Knapp -->
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
@@ -327,9 +331,7 @@ export default {
     saveEditedQuestion: function () {
       socket.emit("saveEditedQuestion", {
         pollId: this.pollId,
-        // q: this.question,
         q: this.question,
-        // a: this.answers,
         a: this.answers,
         t: this.time,
       });
