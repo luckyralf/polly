@@ -36,9 +36,7 @@
             selectPoll(Object.keys(polls)[index - 1]);
             chooseQuestionWhenSelectingPoll(Object.keys(polls)[index - 1], 0);
           "
-          v-bind:class="{
-            selectedQuestionBtn: index - 1 == selectedAnswer,
-          }"
+          v-bind:class="{ selectedQuestionBtn: index - 1 == selectedAnswer }"
           class="questionButtons"
         >
           {{ Object.keys(polls)[index - 1] }}
@@ -71,8 +69,8 @@
               { noIdProvided: pollId === '' },
               { idProvided: pollId !== '' },
             ]"
-            >{{ uiLabels.needWritePollName }}</span
-          >
+            >{{ uiLabels.needWritePollName }}
+          </span>
           <span
             v-bind:class="{
               noIdProvided: typeof polls[pollId] !== 'undefined',
@@ -202,9 +200,7 @@
             <option value="60">60 s</option>
             <option value="90" selected>90 s</option>
           </select>
-          <br>
-          
-          
+          <br />
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
@@ -225,7 +221,6 @@
         </section>
       </div>
 
-{{data}} <br>
       <!-- Check Result Knapp -->
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
@@ -263,14 +258,14 @@
           </router-link>
         </div>
         <button
-          class="runPollButton"
+          class="runPollButton controlPanel"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
           {{ uiLabels.runPoll }}
         </button>
         <button
-          lass="deletePollBtn catPawCursor"
+          lass="deletePollBtn catPawCursor controlPanel"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
@@ -278,7 +273,7 @@
         </button>
         <button
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
-          class="deletePollBtn catPawCursor"
+          class="deletePollBtn catPawCursor controlPanel"
           v-on:click="deletePoll"
         >
           {{ uiLabels.deletePoll }}
@@ -311,9 +306,7 @@ export default {
     };
   },
 
-  watch: {
-    
-  },
+  watch: {},
 
   created: function () {
     this.lang = this.$route.params.lang;
@@ -338,7 +331,6 @@ export default {
         t: this.time,
       });
     },
-    
 
     infoFunction: function () {
       var x = document.getElementById("infoDIV");
@@ -837,6 +829,7 @@ h4 span {
   margin-left: 38%;
   display: grid;
   grid-template-rows: auto auto;
+  width: 200px;
 }
 
 #pollHeadLine {
@@ -911,5 +904,9 @@ h4 span {
 
 .runPollButton:hover {
   background: #2c640f;
+}
+
+.controlPanel{
+  margin: 0.8rem 0;
 }
 </style>
