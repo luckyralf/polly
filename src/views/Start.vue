@@ -315,8 +315,6 @@ body {
 }
 
 #headerText {
-  padding-left: 200px;
-  padding-right: 200px;
   text-align: center;
   font-family: "Exo 2", sans-serif;
   overflow: hidden;
