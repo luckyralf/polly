@@ -47,12 +47,16 @@
       <br />
       <div class="linkToPoll">
         <router-link
+
           v-bind:to="'/waiting/' + id"
           class="activeLink"
           tag="button"
           style="color: #fff"
           v-bind:class="{ inactiveLink: id === '' }"
+          
           >{{ uiLabels.participatePoll }}
+
+        
         </router-link>
         <span v-bind:class="[{noIdProvided: id==='' },{idProvided: id!==''}]">{{uiLabels.pollIdInfo}}</span>
       </div>
@@ -131,13 +135,15 @@ export default {
       socket.emit("switchLanguage", this.lang);
     },
     checkPollExist: function () {
+      console.log("from participate: ", this.id, this.id.value)
       socket.emit("emitGetPoll", this.id);
       socket.on("getPoll", (idOfPoll) => {
-        if (typeof idOfPoll == undefined) {
-          // var pollExists = false;
+        if (typeof idOfPoll !== "undefined") {
+          alert(idOfPoll.value);
+          
         }
       });
-      return this.lang == "en";
+      
     },
   },
 };

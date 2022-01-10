@@ -19,6 +19,7 @@ Data.prototype.getUILabels = function (lang = "en") {
 };
 
 Data.prototype.createPoll = function (pollId, lang = "en") {
+
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
     poll.lang = lang;
@@ -28,8 +29,9 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1?
     this.polls[pollId] = poll;
     poll.saveMode = false;
-    console.log("poll created", pollId, poll);
+    
   }
+  console.log("poll created", pollId);
   return this.polls[pollId];
 };
 
@@ -130,7 +132,9 @@ Data.prototype.getAnswers = function (pollId) {
 //Försök att returnera hela pollen till Create-sidan, rad 18 i socket är ändrad
 Data.prototype.getPoll = function (pollId) {
   const poll = this.polls[pollId];
+
   if (typeof poll !== "undefined") {
+    
     return { poll };
   }
   return {};
@@ -147,6 +151,8 @@ Data.prototype.saveTime = function (t) {
   if (parseInt(t) === 0 || parseInt(t) == null) {
     return { timeOn: false, time: 1 };
   } else {
+    console.log("t som kommer in är", t)
+    console.log("Tiden ändras till", parseInt(t));
     return { timeOn: true, time: parseInt(t) };
   }
 };
