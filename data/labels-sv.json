@@ -9,7 +9,7 @@
   "question": "Fråga ",
   "changeLanguage": "English",
   "pollLink": "Poll länk: ",
-  "writePollId": "Skriv poll id:",
+  "writePollId": "Skriv pollnamn:",
   "answerText": "Svarsalternativ: ",
   "addAnswer": "Lägg till svarsalternativ",
   "addQuestion": "Lägg till fråga",
@@ -28,7 +28,7 @@
   "unlimited": "Obegränsat",
   "seeResult": "Se resultat",
   "startpageInfoHeader": "Behöver du hjälp?",
-  "startpageInfoContent": "Du kan välja att delta i en väns poll, eller skapa din egen! Det tar inte lång tid, mjau... Du kommer få pollkoden av personen som gjort pollen.",
+  "startpageInfoContent": "Du kan välja att delta i en väns poll, eller skapa din egen! Det tar inte lång tid, mjau... Du kommer få pollnamnet av personen som gjort pollen.",
   "createpageInfoHeader": "Behöver du hjälp?",
   "createpageInfoContent": "För att göra din egna poll behöver du bara skriva in ett pollnamn, exempelvis Mikaels Poll, och trycka på den gröna knappen för att börja! När du är färdig med dina frågor och svarsalternativ är det bara att låta deltagarna köra pollen med pollnamnet.",
   "createpageDeleteQuestion": "Radera denna fråga",
@@ -41,6 +41,12 @@
   "showBars": "Visa stapeldiagram",
   "addAnsBtn": "Lägg till svarsalternativ",
   "remove": "Ta bort",
-  "timesUp": "Tiden har gått ut!"
+  "timesUp": "Tiden har gått ut!",
+  "pollIdInfo": "Du måste ange ett pollnamn för att kunna delta i en poll",
+  "createStartInfo": "Här kan du skapa din CatPoll. Börja med att bestämma ett namn för att göra det möjligt för deltagare att gå med i omröstningen!",
+  "needWritePollName": "Du behöver skriva in ett namn",
+  "pollExists": "Denna poll finns redan",
+  "savePoll": "Spara poll",
+  "editPoll": "Redigera poll"
 
 }

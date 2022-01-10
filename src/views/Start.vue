@@ -53,7 +53,7 @@
           v-bind:class="{ inactiveLink: id === '' }"
           >{{ uiLabels.participatePoll }}
         </router-link>
-        <span v-bind:class="[{noIdProvided: id==='' },{idProvided: id!==''}]">You have to enter a poll ID participate in a poll</span>
+        <span v-bind:class="[{noIdProvided: id==='' },{idProvided: id!==''}]">{{uiLabels.pollIdInfo}}</span>
       </div>
     </div>
 

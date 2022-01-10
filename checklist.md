@@ -9,8 +9,8 @@
 
 ## Poll
 
-- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske    göra allt lite mindre
-- [ ] Gör konfettin mer "egen"
+- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+- [x] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
 - [ ] OM det bara är en fråga fuckas det upp vad händer.
 - [x] Vad händer när timern går ut?
@@ -25,6 +25,7 @@
 ## Startsida
 
 - [x] Stå omröstning istället för röstning-
+- [] Man ska inte kunna gå in på poll som inte existerar
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 
@@ -36,25 +37,38 @@
 - [Marcus] Style design på "create poll"
 - [Elsa] Flaggor me språk framsida
 - [x] Snyggare knapp på participate in poll på Start
-- [ ] Centrera header och de andra rutorna i Start
+- [x] Centrera header och de andra rutorna i Start
 
-## Create
+## Create CSS
 
-- [x] Göra så att skapade frågor kan tas bort
-- [x] Göra så att svarsalternativ i skapade frågor kan ändras
 - [x] snygga till formuläret där frågor skapas, tycker det ser rätt bra ut nu mvh adam
+- [ ] Flytta CHECK RESULT till ett snyggare ställe
+- [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts
+- [ ] Förtydliga designen, mer användarvänlig
+- [ ] Snygg lista för sparade polls
+- [ ] Snygga till kontrollpanel
+- [ ] Större tydligare pilknappar
+- [ ] Förklaring till alla funktioner i kontrollpanel
+- [ ] Labels till allt
+
+## Create funktiongrejer
+
 - [x] Save knapp
 - [x] Ändra frågor som man redan har skrivit
 - [x] Lägga till ett val av tidsbegränsning per fråga?
 - [x] Det går bara att lägga till en fråga i en poll
-- [ ] Flytta CHECK RESULT till ett snyggare ställe
-- [ ] Säg åt hosten att trycka på "kör poll" efter att pollen har gjorts
-- [ ] Förtydliga designen, mer användarvänlig
-- [ ] Inte kunna göra en poll utan namn
+- [x] Göra så att skapade frågor kan tas bort
+- [x] Göra så att svarsalternativ i skapade frågor kan ändras
+- [x] Något sätt att se tidigare skapta polls
+- [x] SE vilken fråga man är på
+- [x] Inte kunna göra en poll utan namn
 - [ ] Begränsning på antal frågor?
+- [x] Allt ska komma upp på en gång, en fråga skapas från början
+- [ ] När man klickar på en poll kommer man till dess första fråga
+- [ ] Ge run poll funktion
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
-- [ ] Något sätt att se tidigare skapta polls
-- [ ] SE vilken fråga man är på
+- [ ] Abort poll knapp
+- [ ] Edit poll ger: frågeruta, abort poll
 
 ## Generellt
 
@@ -72,13 +86,7 @@
 
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
-- [ ]
 
 ## Poll
 
 - [] Vad ska hända om man inte svarar? En till stapel med "obesvarat"
-- [] Fixa bugg när man klickar på submit utan att ha svarat
-
-## Sidebar
-
-- [ ] Kan någon få så att sidebaren inte "skjuter" sidan med sig, och istället lägger sig ovanpå? mvh adam
