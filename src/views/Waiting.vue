@@ -54,12 +54,15 @@ export default {
 
   created: function () {
    this.pollId = this.$route.params.id;
-   socket.on("runPolls", (pollId) => { 
-    //    this.pollId = pollId;
-       console.log(pollId,"här kommer pollid")
+   socket.emit("joinPoll",{pollId: this.pollId})
+
+   socket.on("runPolls", () => { 
+    console.log(this.pollId)
+    this.$router.push({ name: 'Poll', params: { id: this.pollId } })
     });
   },
-
+  unmounted: function () {
+  }
   // socket.on("amountParticipants"), (update) => {
   //     this.data = update.
 

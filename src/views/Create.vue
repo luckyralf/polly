@@ -6,7 +6,7 @@
 
     <button
       v-on:click="infoFunction()"
-      class="infoButton2 catPawCursor"
+      class="infoButton3 catPawCursor"
     ></button>
     <div id="infoDIV" v-show="showInfoDiv">
       <div class="infoHeader">
@@ -27,10 +27,9 @@
     <main class="mainWrapped catCursor">
       <!-- {{ data }} -->
       <br />
-      <!-- {{ data.poll.editQuestion }} -->
-
-      Här kan du skapa din omröstning. Börja med att bestämma ett namn/pollID
-      för att göra det möjligt att deltagare att gå med i omröstningen.
+      {{ uiLabels.createStartInfo }}
+      <br />
+      <br />
       <div v-for="index in Object.keys(polls).length" :key="index">
         <button
           v-on:click="
@@ -48,9 +47,10 @@
 
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
+                  <!-- placeholder -->
         <input
           type="text"
-          placeholder="Write the name of your poll"
+          placeholder="Write poll name here"
           v-model="pollId"
           class="catPawTextCursor"
           required
@@ -59,7 +59,10 @@
           <button
             class="createPollBtnActive catPawCursor"
             v-on:click="createPoll"
-            v-bind:class="{ createPollBtnInActive: pollId === '' }"
+            v-bind:class="{
+              createPollBtnInActive:
+                pollId === '' || typeof polls[pollId] !== 'undefined',
+            }"
           >
             {{ uiLabels.createPoll }}
           </button>
@@ -68,26 +71,14 @@
               { noIdProvided: pollId === '' },
               { idProvided: pollId !== '' },
             ]"
-            >You need to write a poll name</span
+            >{{uiLabels.needWritePollName}}</span
           >
-        </div>
-        <button
-          v-on:click="infoFunction()"
-          class="infoButton2 catPawCursor"
-        ></button>
-        <div id="infoDIV" v-show="showInfoDiv">
-          <div class="infoHeader">
-            <div class="infoTitle">{{ uiLabels.createpageInfoHeader }}</div>
-            <button
-              v-on:click="infoFunction()"
-              class="closeButton catPawCursor"
-            >
-              X
-            </button>
-          </div>
-          <p class="infoText">
-            <b> Information:</b> {{ uiLabels.createpageInfoContent }}
-          </p>
+          <span
+            v-bind:class="{
+              noIdProvided: typeof polls[pollId] !== 'undefined',
+            }"
+            >{{uiLabels.pollExists}}</span
+          >
         </div>
       </div>
 
@@ -240,13 +231,13 @@
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('savemode')"
       >
-        Save poll
+       {{uiLabels.savePoll}}
       </button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('editmode')"
       >
-        Edit poll
+        {{uiLabels.editPoll}}
       </button>
       {{ Object.keys(polls) }}
       <br />
@@ -277,6 +268,13 @@
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
           {{ uiLabels.runPoll }}
+        </button>
+        <button
+          lass="deletePollBtn catPawCursor"
+          v-on:click="runPollFunction"
+          v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        >
+          Abort poll uilabel
         </button>
         <button
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
@@ -324,8 +322,6 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     socket.on("getAllPolls", (data) => (this.polls = data));
-
-    // socket.on("updateChooseQuestion", (data) => (this.data = data));
   },
   methods: {
     saveEditedQuestion: function () {
@@ -348,9 +344,9 @@ export default {
 
     runPollFunction: function () {
       console.log(this.pollId);
-      socket.emit("runPoll", {
-        pollId: this.pollId,
-      });
+      socket.emit("runPoll", 
+         this.pollId,
+      );
       //VARFÖR FUNKAR DE INTE
     },
 
@@ -403,8 +399,11 @@ export default {
         this.data.poll.questions[this.data.poll.questions.length - 1].a;
     },
     createPoll: function () {
-      socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      socket.emit("getAllPolls");
+      if (typeof this.polls[this.pollId] === "undefined") {
+        socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+        socket.emit("getAllPolls");
+        this.addQuestion(1);
+      }
     },
     selectPoll: function (pollId) {
       socket.emit("createPoll", { pollId: pollId });
@@ -467,6 +466,7 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 2rem 0 5rem 0;
+  padding-bottom: 500px;
   align-content: center;
 }
 
@@ -711,6 +711,20 @@ h4 span {
   width: 37px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
 }
+.infoButton3 {
+  right: 90%;
+  position: relative;
+  padding-top: 20px;
+  padding-right: 20px;
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 100%;
+  border: none;
+  height: 37px;
+  width: 37px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
+}
+
 .infoButton2:hover {
   color: black;
   border: none;

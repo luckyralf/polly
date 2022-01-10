@@ -2,8 +2,9 @@
 <div class="wrapper">
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
     <div v-if="key != ''">
-      <div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]">
-        <span> {{item.count}} </span>
+      <!--<div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]"> -->
+      <div id="individualBar" v-bind:style="[{height: 500*(item.count/getA()) + 'px'},{'background-color':item.color}]">
+        <span> {{item.count}}  {{getA()}}</span>
       </div>
       <div> 
         {{key}} 
@@ -18,7 +19,29 @@ export default {
   name: 'Bars',
   props: {
     data: Object
+  },
+
+data: function () {
+    return {
+      totalQanswered: 0,
+      dataArray: [],
+      
+    }
+},
+
+methods: {
+   getA: function(){
+    let keys = Object.keys(this.data);
+    for (let i = 0; i < keys.length; i++) {
+        if (this.dataArray.length < keys.length) {
+          this.dataArray.push(this.data[keys[i]]);
+          this.totalQanswered += this.dataArray[i].count;
+        }
+      }
+  return this.totalQanswered
   }
+}
+
 }
 
 
