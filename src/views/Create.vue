@@ -320,10 +320,11 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    socket.on("dataUpdate", (data) => (this.data = data));
+
     socket.on("pollCreated", (data) => (this.data = data));
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
+    socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("getAllPolls", (data) => (this.polls = data));
   },
 

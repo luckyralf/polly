@@ -19,7 +19,7 @@
 
 ## Väntrum
 
-- [ ] Räkna antalet deltagare
+- [ ] Importera antalet deltagare
 - [ ] Sätt igång pollen vid rätt tillfälle
 
 ## Startsida

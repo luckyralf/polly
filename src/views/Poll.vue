@@ -4,7 +4,9 @@
       <h1>{{ pollId }}</h1>
     </header>
 
-    <p>{{ uiLabels.totalAmountofQuestions }} {{ thePoll.poll.questions.length }}</p>
+    <p>
+      {{ uiLabels.totalAmountofQuestions }} {{ thePoll.poll.questions.length }}
+    </p>
     <div class="bars">
       <div
         class="answered"
@@ -24,9 +26,9 @@
           v-on:answer="submitAnswer"
         />
       </div>
-       </main>
+    </main>
 
-  <!--
+    <!--
       {{ uiLabels.youareonQnumber }} {{ this.questionNumber + 1 }}
    
 
@@ -90,9 +92,11 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     //försök att få hela pollen
     socket.emit("emitGetPoll", this.pollId);
+    socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
       socket.emit("pageLoaded", this.thePoll.poll.lang);
+      socket.on("dataUpdate", (data) => (this.data = data));
     });
 
     socket.on("init", (labels) => {
@@ -183,7 +187,6 @@ body {
 }
 
 .bars {
-
   height: 40px;
   width: 700px;
   margin-left: 350px;
@@ -203,11 +206,14 @@ body {
   animation-name: ansAni;
 
   transform-origin: left;
-
 }
 @keyframes ansAni {
-  0% {transform:scaleX(0%);}
-  100% {transform:scaleX(100%);}
+  0% {
+    transform: scaleX(0%);
+  }
+  100% {
+    transform: scaleX(100%);
+  }
 }
 
 .answered span {
