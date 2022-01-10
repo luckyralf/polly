@@ -46,13 +46,19 @@
       <br />
       <div class="linkToPoll">
         <router-link
+
           v-bind:to="'/waiting/' + id"
           class="activeLink"
           tag="button"
           style="color: #fff"
           v-bind:class="{ inactiveLink: id === '' }"
+          
           >{{ uiLabels.participatePoll }}
+
+        
         </router-link>
+        <!-- v-on:click="checkPollExist"    Denna ska ligga på activeLink-klassen men funkar ej nu mvh johanna-->
+
         <span v-bind:class="[{noIdProvided: id==='' },{idProvided: id!==''}]">You have to enter a poll ID participate in a poll</span>
       </div>
     </div>
@@ -130,13 +136,15 @@ export default {
       socket.emit("switchLanguage", this.lang);
     },
     checkPollExist: function () {
+      console.log("from participate: ", this.id, this.id.value)
       socket.emit("emitGetPoll", this.id);
       socket.on("getPoll", (idOfPoll) => {
-        if (typeof idOfPoll == undefined) {
-          // var pollExists = false;
+        if (typeof idOfPoll !== "undefined") {
+          alert(idOfPoll.value);
+          
         }
       });
-      return this.lang == "en";
+      
     },
   },
 };
