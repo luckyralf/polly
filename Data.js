@@ -147,6 +147,8 @@ Data.prototype.saveTime = function (t) {
   if (parseInt(t) === 0 || parseInt(t) == null) {
     return { timeOn: false, time: 1 };
   } else {
+    console.log("t som kommer in är", t)
+    console.log("Tiden ändras till", parseInt(t));
     return { timeOn: true, time: parseInt(t) };
   }
 };

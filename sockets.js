@@ -63,6 +63,7 @@ function sockets(io, socket, data) {
       time: data.saveTime(questionData.t).time,
       timeOn: data.saveTime(questionData.t).timeOn,
     });
+    console.log("questionData som kommer till saveEditedQuestion", questionData.t);
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });

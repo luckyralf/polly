@@ -204,7 +204,7 @@
           </select>
           <br>
           
-          {{uiLabels.selectedTime}} {{data.poll.questions.q}} 10
+          
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
@@ -225,7 +225,8 @@
           </button>
         </section>
       </div>
-{{data}}
+
+{{data}} <br>
       <!-- Check Result Knapp -->
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
@@ -310,6 +311,11 @@ export default {
       polls: [],
     };
   },
+
+  watch: {
+    
+  },
+
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -323,6 +329,7 @@ export default {
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     socket.on("getAllPolls", (data) => (this.polls = data));
   },
+
   methods: {
     saveEditedQuestion: function () {
       socket.emit("saveEditedQuestion", {
@@ -332,6 +339,7 @@ export default {
         t: this.time,
       });
     },
+    
 
     infoFunction: function () {
       var x = document.getElementById("infoDIV");
