@@ -377,7 +377,7 @@ body {
 .Wrapped {
   display: grid;
   background-color: #1941b2;
-  padding-top: 25px;
+  padding-top: 2rem;
   margin: 0px 0px;
   border: none;
   width: 100%;
