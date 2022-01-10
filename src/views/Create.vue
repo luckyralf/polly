@@ -6,7 +6,7 @@
 
     <button
       v-on:click="infoFunction()"
-      class="infoButton3 catPawCursor"
+      class="infoButton catPawCursor"
     ></button>
     <div id="infoDIV" v-show="showInfoDiv">
       <div class="infoHeader">
@@ -47,7 +47,7 @@
 
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
-                  <!-- placeholder -->
+        <!-- placeholder -->
         <input
           type="text"
           placeholder="Write poll name here"
@@ -71,13 +71,13 @@
               { noIdProvided: pollId === '' },
               { idProvided: pollId !== '' },
             ]"
-            >{{uiLabels.needWritePollName}}</span
+            >{{ uiLabels.needWritePollName }}</span
           >
           <span
             v-bind:class="{
               noIdProvided: typeof polls[pollId] !== 'undefined',
             }"
-            >{{uiLabels.pollExists}}</span
+            >{{ uiLabels.pollExists }}</span
           >
         </div>
       </div>
@@ -202,9 +202,9 @@
             <option value="60">60 s</option>
             <option value="90" selected>90 s</option>
           </select>
-          <br>
-          
-          {{uiLabels.selectedTime}} {{data.poll.questions.q}} 10
+          <br />
+
+          {{ uiLabels.selectedTime }} {{ data.poll.questions.q }} 10
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
@@ -216,7 +216,6 @@
 
           <br />
 
-
           <button
             class="deleteQuestBtn catPawCursor"
             v-on:click="deleteQuestion"
@@ -225,19 +224,19 @@
           </button>
         </section>
       </div>
-{{data}}
+      {{ data }}
       <!-- Check Result Knapp -->
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('savemode')"
       >
-       {{uiLabels.savePoll}}
+        {{ uiLabels.savePoll }}
       </button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('editmode')"
       >
-        {{uiLabels.editPoll}}
+        {{ uiLabels.editPoll }}
       </button>
       {{ Object.keys(polls) }}
       <br />
@@ -344,9 +343,7 @@ export default {
 
     runPollFunction: function () {
       console.log(this.pollId);
-      socket.emit("runPoll", 
-         this.pollId,
-      );
+      socket.emit("runPoll", this.pollId);
       //VARFÖR FUNKAR DE INTE
     },
 
@@ -675,8 +672,8 @@ h4 span {
 
 #infoDIV {
   position: fixed;
-  top: 35%;
-  left: 82%;
+  top: 350px;
+  left: 250px;
   transform: translate(-50%, -50%) scale(1);
   transition: 200ms ease-in-out;
   border: 1px solid black;
@@ -699,19 +696,19 @@ h4 span {
   justify-content: space-between;
   align-items: center;
 }
-.infoButton2 {
-  left: 40%;
+.infoButton {
+  right: 1290px;
   position: relative;
   padding-top: 20px;
   padding-right: -20px;
   background-size: cover;
   background-position: 50%;
   border-radius: 100%;
-  height: 37px;
-  width: 37px;
+  height: 40px;
+  width: 40px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
 }
-.infoButton3 {
+/* .infoButton3 {
   right: 1290px;
   position: relative;
   padding-top: 20px;
@@ -723,9 +720,9 @@ h4 span {
   height: 40px;
   width: 40px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
-}
+} */
 
-.infoButton2:hover {
+.infoButton:hover {
   color: black;
   border: none;
 }

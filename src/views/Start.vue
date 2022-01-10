@@ -1,10 +1,5 @@
 <template class="temp">
   <body class="Wrapped catCursor">
-    <section id="headerText">
-      <header>
-        <h1 class="CATPOLL">CAT POLL</h1>
-      </header>
-    </section>
 
     <div class="languangeButtonContainer">
       <button
@@ -24,7 +19,7 @@
 
       <button
         v-on:click="infoFunction()"
-        class="infoButton2 catPawCursor"
+        class="infoButton catPawCursor"
       ></button>
       <div id="infoDIV" v-show="showInfoDiv">
         <div class="infoHeader">
@@ -36,6 +31,12 @@
         {{ uiLabels.startpageInfoContent }}
       </div>
     </div>
+
+    <section id="headerText">
+      <header>
+        <h1 class="CATPOLL">CAT POLL</h1>
+      </header>
+    </section>
 
     <div class="writeAndParticipate">
       <label class="catPawTextCursor"
@@ -237,15 +238,38 @@ body {
     auto;
 }
 
-.languageButton:hover {
-  color: black;
-  border: none;
-}
 .languangeButtonContainer {
+  position: relative;
 }
 .createPoll {
   margin-top: 30px;
   margin-bottom: 20px;
+}
+
+.langButtonSV {
+  background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
+  background-size: cover;
+  background-position: 30%;
+  border-radius: 100%;
+  font-family: "Monaco", monospace;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 0px;
+  left: 20px;
+}
+
+.langButtonEN {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/2560px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png);
+  background-size: cover;
+  background-position: 50%;
+  border-radius: 100%;
+  font-family: "Monaco", monospace;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 0px;
+  left: 70px;
 }
 
 .langButtonSV:hover {
@@ -258,50 +282,19 @@ body {
   border: none;
 }
 
-.langButtonSV {
-  padding-top: 20px;
-  padding-right: -20px;
-  background-image: url(https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1200px-Flag_of_Sweden.svg.png);
-  background-size: cover;
-  background-position: 30%;
-  border-radius: 100%;
-  font-family: "Monaco", monospace;
-  height: 35px;
-  width: 35px;
-  position: relative;
-  top: -280px;
-  left: 47%;
-}
-
-.langButtonEN {
-  padding-top: 20px;
-  padding-right: -20px;
-  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/2560px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png);
+.infoButton {
+  position: absolute;
   background-size: cover;
   background-position: 50%;
   border-radius: 100%;
-  font-family: "Monaco", monospace;
-  height: 35px;
-  width: 35px;
-  position: relative;
-  top: -280px;
-  left: 47.5%;
-}
-
-.infoButton2 {
-  top: -280px;
-  left: 39%;
-  position: relative;
-  padding-top: 20px;
-  padding-right: -20px;
-  background-size: cover;
-  background-position: 50%;
-  border-radius: 100%;
-  height: 37px;
-  width: 37px;
+  height: 40px;
+  width: 40px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
+  top: 0px;
+  left: 120px;
 }
-.infoButton2:hover {
+
+.infoButton:hover {
   color: black;
   border: none;
 }
