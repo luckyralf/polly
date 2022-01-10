@@ -64,6 +64,7 @@ function sockets(io, socket, data) {
       time: data.saveTime(questionData.t).time,
       timeOn: data.saveTime(questionData.t).timeOn,
     });
+    console.log("questionData som kommer till saveEditedQuestion", questionData.t);
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
@@ -84,12 +85,11 @@ function sockets(io, socket, data) {
     io.to(d.pollId).emit("dataUpdate", data.getAnswers(d.pollId)); //kanske ta bort io.to pga det skickar till alla?
   });
 
-  socket.on("runPoll", function (d) {
-    socket.emit("runPolls", d);
-    // io.to(d).emit(
-    //   "runPolls", d
+  socket.on("runPoll", function (pollId) {
+    io.to(pollId).emit(
+      "runPolls"
     //   //data.getQuestion(d.pollId)
-    // );
+     );
   });
   // elsa och johanna run q i create
 

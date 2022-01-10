@@ -6,7 +6,7 @@
 
     <button
       v-on:click="infoFunction()"
-      class="infoButton3 catPawCursor"
+      class="infoButton catPawCursor"
     ></button>
     <div id="infoDIV" v-show="showInfoDiv">
       <div class="infoHeader">
@@ -27,19 +27,16 @@
     <main class="mainWrapped catCursor">
       <!-- {{ data }} -->
       <br />
-      <!-- {{ data.poll.editQuestion }} -->
-
-      Här kan du skapa din omröstning. Börja med att bestämma ett namn/pollID
-      för att göra det möjligt att deltagare att gå med i omröstningen.
+      {{ uiLabels.createStartInfo }}
+      <br />
+      <br />
       <div v-for="index in Object.keys(polls).length" :key="index">
         <button
           v-on:click="
             selectPoll(Object.keys(polls)[index - 1]);
             chooseQuestionWhenSelectingPoll(Object.keys(polls)[index - 1], 0);
           "
-          v-bind:class="{
-            selectedQuestionBtn: index - 1 == selectedAnswer,
-          }"
+          v-bind:class="{ selectedQuestionBtn: index - 1 == selectedAnswer }"
           class="questionButtons"
         >
           {{ Object.keys(polls)[index - 1] }}
@@ -48,9 +45,10 @@
 
       <div id="createPollId">
         <!-- {{ uiLabels.pollLink }} -->
+        <!-- placeholder -->
         <input
           type="text"
-          placeholder="Write the name of your poll"
+          placeholder="Write poll name here"
           v-model="pollId"
           class="catPawTextCursor"
           required
@@ -59,7 +57,10 @@
           <button
             class="createPollBtnActive catPawCursor"
             v-on:click="createPoll"
-            v-bind:class="{ createPollBtnInActive: pollId === '' }"
+            v-bind:class="{
+              createPollBtnInActive:
+                pollId === '' || typeof polls[pollId] !== 'undefined',
+            }"
           >
             {{ uiLabels.createPoll }}
           </button>
@@ -68,10 +69,15 @@
               { noIdProvided: pollId === '' },
               { idProvided: pollId !== '' },
             ]"
-            >You need to write a poll name</span
+            >{{ uiLabels.needWritePollName }}
+          </span>
+          <span
+            v-bind:class="{
+              noIdProvided: typeof polls[pollId] !== 'undefined',
+            }"
+            >{{ uiLabels.pollExists }}</span
           >
         </div>
-        
       </div>
 
       <div
@@ -194,6 +200,7 @@
             <option value="60">60 s</option>
             <option value="90" selected>90 s</option>
           </select>
+          <br />
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
@@ -219,13 +226,13 @@
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('savemode')"
       >
-        Save poll
+        {{ uiLabels.savePoll }}
       </button>
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('editmode')"
       >
-        Edit poll
+        {{ uiLabels.editPoll }}
       </button>
       {{ Object.keys(polls) }}
       <br />
@@ -251,15 +258,22 @@
           </router-link>
         </div>
         <button
-          class="runPollButton"
+          class="runPollButton controlPanel"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
           {{ uiLabels.runPoll }}
         </button>
         <button
+          lass="deletePollBtn catPawCursor controlPanel"
+          v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
-          class="deletePollBtn catPawCursor"
+        >
+          Abort poll uilabel
+        </button>
+        <button
+          v-if="data.poll !== undefined && data.poll.questions.length > 0"
+          class="deletePollBtn catPawCursor controlPanel"
           v-on:click="deletePoll"
         >
           {{ uiLabels.deletePoll }}
@@ -291,6 +305,9 @@ export default {
       polls: [],
     };
   },
+
+  watch: {},
+
   created: function () {
     this.lang = this.$route.params.lang;
     socket.emit("pageLoaded", this.lang);
@@ -303,16 +320,13 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     socket.on("getAllPolls", (data) => (this.polls = data));
-
-    // socket.on("updateChooseQuestion", (data) => (this.data = data));
   },
+
   methods: {
     saveEditedQuestion: function () {
       socket.emit("saveEditedQuestion", {
         pollId: this.pollId,
-        // q: this.question,
         q: this.question,
-        // a: this.answers,
         a: this.answers,
         t: this.time,
       });
@@ -329,9 +343,7 @@ export default {
 
     runPollFunction: function () {
       console.log(this.pollId);
-      socket.emit("runPoll", {
-        pollId: this.pollId,
-      });
+      socket.emit("runPoll", this.pollId);
       //VARFÖR FUNKAR DE INTE
     },
 
@@ -348,7 +360,7 @@ export default {
       });
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
-      this.time = this.data.poll.questions[indexForChosenQuestion].t;
+      this.time = this.data.poll.questions[indexForChosenQuestion].time;
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -358,7 +370,7 @@ export default {
       });
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
-      this.time = this.data.poll.questions[indexForChosenQuestion].t;
+      this.time = this.data.poll.questions[indexForChosenQuestion].time;
     },
     moveQuestion: function (direction, editQuestion) {
       console.log("moveQuestion fungerar", direction);
@@ -384,8 +396,11 @@ export default {
         this.data.poll.questions[this.data.poll.questions.length - 1].a;
     },
     createPoll: function () {
-      socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
-      socket.emit("getAllPolls");
+      if (typeof this.polls[this.pollId] === "undefined") {
+        socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+        socket.emit("getAllPolls");
+        this.addQuestion(1);
+      }
     },
     selectPoll: function (pollId) {
       socket.emit("createPoll", { pollId: pollId });
@@ -448,14 +463,14 @@ body {
   min-height: 100%;
   margin: 0;
   padding: 2rem 0 5rem 0;
-  padding-bottom:500px;
+  padding-bottom: 500px;
   align-content: center;
 }
 
 .linkHome {
   background-image: url(https://image.winudf.com/v2/image/bnUuaG9tZS5mbG9hdF9pY29uXzE1MzM0NDc5MDJfMDQ2/icon.png?w=&fakeurl=1);
   background-size: cover;
-  background-position: 19%;
+  /* background-position: 19%; */
   padding-left: 35px;
   border-radius: 100%;
   margin-right: 1300px;
@@ -649,8 +664,8 @@ h4 span {
 
 #infoDIV {
   position: fixed;
-  top: 35%;
-  left: 82%;
+  top: 350px;
+  left: 250px;
   transform: translate(-50%, -50%) scale(1);
   transition: 200ms ease-in-out;
   border: 1px solid black;
@@ -673,33 +688,33 @@ h4 span {
   justify-content: space-between;
   align-items: center;
 }
-.infoButton2 {
-  left: 40%;
+.infoButton {
+  right: 1290px;
   position: relative;
   padding-top: 20px;
   padding-right: -20px;
   background-size: cover;
   background-position: 50%;
   border-radius: 100%;
-  height: 37px;
-  width: 37px;
+  height: 40px;
+  width: 40px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
 }
-.infoButton3 {
-  right: 90%;
+/* .infoButton3 {
+  right: 1290px;
   position: relative;
   padding-top: 20px;
   padding-right: 20px;
   background-size: cover;
   background-position: 50%;
   border-radius: 100%;
-  border:none;
-  height: 37px;
-  width: 37px;
+  border: none;
+  height: 40px;
+  width: 40px;
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWaoEGFgHlaMnIHZFCstyDyPjCYK4ncplDSpqPIHKdF7lBQy_plhW90Dz7kE1PedYqXG0&usqp=CAU");
-}
+} */
 
-.infoButton2:hover {
+.infoButton:hover {
   color: black;
   border: none;
 }
@@ -800,6 +815,7 @@ h4 span {
   margin-left: 38%;
   display: grid;
   grid-template-rows: auto auto;
+  width: 200px;
 }
 
 #pollHeadLine {
@@ -925,5 +941,8 @@ min-width: 180px;
 height:40px;
 margin-left:85px;
 margin-top:5px;
+}
+.controlPanel{
+  margin: 0.8rem 0;
 }
 </style>

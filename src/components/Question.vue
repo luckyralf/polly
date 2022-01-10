@@ -7,7 +7,7 @@
                 
 
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
-      <p>{{ uiLabels.totalAmountofQuestions }} {{ amountQuestion }}</p>
+      
       
         <button
           v-for="(a, index) in question.a"
@@ -23,8 +23,6 @@
         </button>
 
                   <div class ="timerFix">
-                    
-
                       <div class="timer" v-if="question.timeOn == true" >
                         {{ timer }}
                       </div>
@@ -176,8 +174,8 @@ export default {
 
     finishQuiz: function () {
       if (this.answerSubmitted == true && this.submittedAnswer != null) {
-        this.$emit("answer", this.submittedAnswer);
         this.quizFinished = true;
+        this.$emit("answer", this.submittedAnswer);
       }
     },
 
@@ -226,7 +224,6 @@ export default {
   padding: 10px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
-  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -235,7 +232,7 @@ export default {
   color: white;
   border: 3px solid #ffffce;
   padding: 10px;
-  margin-top: 30px;
+  
   font-family: "Outfit", sans-serif;
   font-size: 20px;
 }

@@ -4,6 +4,7 @@
       <h1>{{ pollId }}</h1>
     </header>
 
+    <p>{{ uiLabels.totalAmountofQuestions }} {{ thePoll.poll.questions.length }}</p>
     <div class="bars">
       <div
         class="answered"
@@ -182,10 +183,11 @@ body {
 }
 
 .bars {
+
   height: 40px;
   width: 700px;
   margin-left: 350px;
-  margin-top: 50px;
+  margin-top: 5px;
   background-color: #d794e3;
   border: solid 2px white;
 }
@@ -197,9 +199,11 @@ body {
   height: 100%;
   width: 0%;
   max-width: 700px;
+  animation: animate 4s linear infinite;
   animation-name: ansAni;
-  animation-duration: 4s;
+
   transform-origin: left;
+
 }
 @keyframes ansAni {
   0% {transform:scaleX(0%);}
