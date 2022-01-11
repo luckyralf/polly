@@ -146,11 +146,13 @@ Data.prototype.createPollHead = function (pollId) {
 };
 
 Data.prototype.saveTime = function (t) {
-  if (parseInt(t) === 0 || parseInt(t) === 1 || parseInt(t) == null) {
-    return { timeOn: false, time: 1 };
-  } else {
-    console.log("t som kommer in är", t);
+  console.log("t som kommer in är", t);
     console.log("Tiden ändras till", parseInt(t));
+  if (parseInt(t) === 0 || parseInt(t) === 1 || t == undefined) {
+    return { timeOn: false, time: 1 };
+
+  } else {
+    
     return { timeOn: true, time: parseInt(t) };
   }
 };
