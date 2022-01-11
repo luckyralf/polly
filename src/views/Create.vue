@@ -199,7 +199,7 @@
             v-model="time"
             v-on:change="saveEditedQuestion"
           >
-            <option value="0">{{ uiLabels.unlimited }}</option>
+            <option value="1">{{ uiLabels.unlimited }}</option>
             <option value="10">10 s</option>
             <option value="30">30 s</option>
             <option value="60">60 s</option>
