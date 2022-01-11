@@ -43,10 +43,8 @@ function sockets(io, socket, data) {
   });
 
   socket.on("chooseQuestion", function (d) {
-    // console.log(d.indexForChosenQuestion);
-    // console.log("ChooseQuestion i socket aktiveras");
     data.editQuestion(d.pollId, d.indexForChosenQuestion);
-    socket.emit("updateChooseQuestion", d.indexForChosenQuestion);
+    socket.emit("updateChoosenQuestion", d.indexForChosenQuestion); //denna verkar inte göra något
     socket.emit("allQuestions", data.getPoll(d.pollId));
   });
 

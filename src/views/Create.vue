@@ -37,9 +37,10 @@
           v-on:click="
             selectPoll(Object.keys(polls)[index - 1]);
             chooseQuestionWhenSelectingPoll(Object.keys(polls)[index - 1], 0);
+            changeColor(Object.keys(polls)[index - 1], 'pollChange');
           "
           v-bind:class="{
-            selectedQuestionBtn: index - 1 == selectedAnswer,
+            selectedPollBtn: Object.keys(polls)[index - 1] == selectedPoll,
           }"
           class="questionButtons"
         >
@@ -100,10 +101,10 @@
               <button
                 v-on:click="
                   chooseQuestion(index - 1);
-                  changeColor(index - 1);
+                  changeColor(index - 1, 'questionChange');
                 "
                 v-bind:class="{
-                  selectedQuestionBtn: index - 1 == selectedAnswer,
+                  selectedQuestionBtn: index - 1 == selectedQuestion,
                 }"
                 class="questionButtons catPawCursor"
               >
@@ -145,7 +146,6 @@
           id="formSection"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
-          <!-- {{ data.poll.questions[this.currentlySelectedQuestion - 1].q }} -->
           <br />
 
           {{ uiLabels.question }}
@@ -310,7 +310,8 @@ export default {
       uiLabels: {},
       pollHeadline: "",
       time: "0",
-      selectedAnswer: 0, //används bara för färgbyte på frågeknapparna
+      selectedQuestion: 0, //används bara för färgbyte på frågeknapparna
+      selectedPoll: '',
       editActivated: false,
       polls: [],
     };
@@ -354,20 +355,32 @@ export default {
       //VARFÖR FUNKAR DE INTE
     },
 
-    changeColor: function (i) {
-      if (this.selectedAnswer != i) {
-        this.selectedAnswer = i;
+    changeColor: function (i, msg) {
+      if (msg == "questionChange") {
+        if (this.selectedQuestion != i) {
+          this.selectedQuestion = i;
+          console.log("change Q",i,this.selectedQuestion);
+        }
+      }
+      if (msg == "pollChange") {
+        if (this.selectedPoll != i) {
+          this.selectedPoll = i;
+          console.log("change P",i,this.selectedPoll);
+        }
       }
     },
 
     chooseQuestionWhenSelectingPoll: function (pollId, indexForChosenQuestion) {
       socket.emit("chooseQuestion", {
         pollId: pollId,
-        indexForChosenQuestion: indexForChosenQuestion,
+        indexForChosenQuestion: indexForChosenQuestion, //alltid =0 här
       });
+      console.log(this.question,this.answers,'q and a1') //här blir något fel, krävs 3 tryck för att uppdatera question och answers
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
-      this.time = this.data.poll.questions[indexForChosenQuestion].time;
+      this.time = this.data.poll.questions[indexForChosenQuestion].t;
+      console.log(this.question,this.answers,'q and a2')
+      this.changeColor(indexForChosenQuestion,'questionChange');
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -407,12 +420,14 @@ export default {
         socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
         socket.emit("getAllPolls");
         this.addQuestion(1);
+        this.selectedPoll = this.pollId;
       }
     },
     selectPoll: function (pollId) {
       socket.emit("createPoll", { pollId: pollId });
       socket.emit("getAllPolls");
       this.pollId = pollId;
+      this.selectedPoll = pollId;
     },
     deletePoll: function () {
       if (confirm(this.uiLabels.confirmDeletePoll)) {
@@ -434,7 +449,7 @@ export default {
       });
       this.question = this.uiLabels.editMe;
       this.answers = ["", ""];
-      this.selectedAnswer = indexForAddedQuestion;
+      this.selectedQuestion = indexForAddedQuestion;
     },
     addAnswer: function () {
       this.answers.push("");
@@ -490,7 +505,7 @@ body {
 }
 
 .buttonContainer {
-    position: relative;
+  position: relative;
 }
 
 .linkHome {
@@ -742,6 +757,10 @@ h4 span {
 }
 
 .selectedQuestionBtn {
+  background-color: #c73ee1;
+}
+
+.selectedPollBtn {
   background-color: #c73ee1;
 }
 
