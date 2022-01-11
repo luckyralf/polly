@@ -6,7 +6,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("getAllPolls", function () {
-    socket.emit("getAllPolls", data.getAllPolls());
+    socket.emit("emitAllPolls", data.getAllPolls());
     console.log("socket getallpolls");
   });
 
