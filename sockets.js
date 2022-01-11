@@ -45,6 +45,7 @@ function sockets(io, socket, data) {
   socket.on("chooseQuestion", function (d) {
     // console.log(d.indexForChosenQuestion);
     // console.log("ChooseQuestion i socket aktiveras");
+    console.log(d.pollId,'this is the pollId adam')
     data.editQuestion(d.pollId, d.indexForChosenQuestion);
     socket.emit("updateChooseQuestion", d.indexForChosenQuestion);
     socket.emit("allQuestions", data.getPoll(d.pollId));
