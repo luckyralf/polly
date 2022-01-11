@@ -15,7 +15,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("createPoll", function (d) {
-        console.log("from socket: ", d.pollId)
+    console.log("from socket: ", d.pollId);
     socket.emit("pollCreated", data.createPoll(d.pollId, d.lang));
     socket.emit("allQuestions", data.getPoll(d.pollId));
     socket.emit("pollHead", data.createPollHead(d.pollId));
@@ -51,7 +51,11 @@ function sockets(io, socket, data) {
   });
 
   socket.on("addQuestion", function (d) {
-    data.addQuestion(d.pollId, { q: d.q, a: d.a, t: d.t }, d.indexForAddedQuestion);
+    data.addQuestion(
+      d.pollId,
+      { q: d.q, a: d.a, t: d.t },
+      d.indexForAddedQuestion
+    );
     console.log("addquestion socket fungerar");
     socket.emit("allQuestions", data.getPoll(d.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
@@ -64,7 +68,10 @@ function sockets(io, socket, data) {
       time: data.saveTime(questionData.t).time,
       timeOn: data.saveTime(questionData.t).timeOn,
     });
-    console.log("questionData som kommer till saveEditedQuestion", questionData.t);
+    console.log(
+      "questionData som kommer till saveEditedQuestion",
+      questionData.t
+    );
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
@@ -88,8 +95,8 @@ function sockets(io, socket, data) {
   socket.on("runPoll", function (pollId) {
     io.to(pollId).emit(
       "runPolls"
-    //   //data.getQuestion(d.pollId)
-     );
+      //   //data.getQuestion(d.pollId)
+    );
   });
   // elsa och johanna run q i create
 
@@ -110,13 +117,19 @@ function sockets(io, socket, data) {
   });
 
   socket.on("emitGetPoll", function (ID) {
-    console.log("from socket in participate: ", ID)
+    console.log("from socket in participate: ", ID);
     socket.emit("getPoll", data.getPoll(ID));
   });
 
   socket.on("editOrSavePoll", function (d) {
     data.editOrSavePoll(d.mode, d.pollId);
     socket.emit("allQuestions", data.getPoll(d.pollId));
+  });
+
+  socket.on("editParticipants", function (d) {
+    data.editParticipants(d.addOrRemove, d.pollId);
+    io.to("dataUpdate", data.getPoll(d.pollId));
+    console.log("socket participants funkar");
   });
 }
 
