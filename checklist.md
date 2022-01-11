@@ -19,7 +19,7 @@
 
 ## Väntrum
 
-- [ ] Räkna antalet deltagare
+- [ ] Importera antalet deltagare
 - [ ] Sätt igång pollen vid rätt tillfälle
 
 ## Startsida
@@ -65,7 +65,7 @@
 - [ ] Begränsning på antal frågor?
 - [x] Allt ska komma upp på en gång, en fråga skapas från början
 - [ ] När man klickar på en poll kommer man till dess första fråga
-- [ ] Ge run poll funktion
+- [x] Ge run poll funktion
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
 - [ ] Abort poll knapp
 - [ ] Edit poll ger: frågeruta, abort poll
