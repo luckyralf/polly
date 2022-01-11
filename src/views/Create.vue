@@ -199,7 +199,7 @@
             v-model="time"
             v-on:change="saveEditedQuestion"
           >
-            <option value="0">{{ uiLabels.unlimited }}</option>
+            <option value="1">{{ uiLabels.unlimited }}</option>
             <option value="10">10 s</option>
             <option value="30">30 s</option>
             <option value="60">60 s</option>
@@ -227,8 +227,8 @@
           </button>
         </section>
       </div>
-      {{ data }}
-      <!-- Check Result Knapp -->
+        {{data}}
+      <!-- Edit / Save poll -->
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('savemode')"
@@ -244,6 +244,8 @@
       {{ Object.keys(polls) }}
       <br />
       <br />
+      <!-- Control Panel -->
+
       <div
         id="result"
         v-if="
@@ -259,20 +261,21 @@
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
         </button> -->
-
-          <router-link id="routerLink" v-bind:to="'/result/' + pollId">
+          <button id="checkResultBtn" class="controlPanelBtn">
+          <router-link class="routerLink" v-bind:to="'/result/' + pollId">
             {{ uiLabels.checkResultsText }}
           </router-link>
+          </button>
         </div>
         <button
-          class="runPollButton"
+          class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
           {{ uiLabels.runPoll }}
         </button>
         <button
-          lass="deletePollBtn catPawCursor"
+          class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
@@ -280,7 +283,7 @@
         </button>
         <button
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
-          class="deletePollBtn catPawCursor"
+          class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="deletePoll"
         >
           {{ uiLabels.deletePoll }}
@@ -387,7 +390,7 @@ export default {
       });
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
-      this.time = this.data.poll.questions[indexForChosenQuestion].t;
+      this.time = this.data.poll.questions[indexForChosenQuestion].time;
     },
     moveQuestion: function (direction, editQuestion) {
       console.log("moveQuestion fungerar", direction);
@@ -770,7 +773,7 @@ h4 span {
 
 /*#formSection,*/
 #result {
-  width: min-content;
+  width: 300px;
 }
 
 .inputQuestion {
@@ -890,16 +893,12 @@ h4 span {
   align-self: center;
 } */
 
-#routerLink {
+.routerLink {
   color: white;
   text-decoration: none;
-  background: #20af19;
-  border-radius: 6px;
-  border: solid #229954;
-  margin: 1rem 0;
-  margin-top: 40px;
-  font-size: 1.5rem;
-  padding: 2px;
+  
+  
+  
 }
 
 .runPollButton {
@@ -916,5 +915,16 @@ h4 span {
 
 .runPollButton:hover {
   background: #2c640f;
+}
+#checkResultBtn{
+  background: #20af19;
+  font-size: 1.5rem;
+  border: solid #229954;
+}
+.controlPanelBtn{
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  padding: 2px;
+  width: 250px;
 }
 </style>

@@ -606,4 +606,8 @@ hr:after {
   position: relative;
   top: -13px;
 }
+
+.controlPanel {
+  
+}
 </style>

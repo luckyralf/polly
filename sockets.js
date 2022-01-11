@@ -74,6 +74,8 @@ function sockets(io, socket, data) {
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
 
+  
+
   socket.on("joinPoll", function (d) {
     // d är objekt med pollId och questionNumber
     socket.join(d.pollId);
