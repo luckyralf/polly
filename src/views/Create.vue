@@ -460,7 +460,13 @@ export default {
       // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
     editOrSavePoll: function (mode) {
-      socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+      if (
+        confirm(
+          "uilabel saknas, are you sure you want to save? You cannot make any changes after this."
+        )
+      ) {
+        socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+      }
     },
   },
 };
