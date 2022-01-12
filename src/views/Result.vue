@@ -174,6 +174,8 @@ export default {
 .questionAndBars {
   display: flex;
   grid-gap: 100px;
+  top:30%;
+  position:absolute;
  
 }
 
@@ -195,9 +197,10 @@ export default {
   padding: 10px;
   margin-bottom: 20px;
   /*margin-left: 400px;*/
-  position:relative;
-  top:-50%;
-  left:-42%;
+  position:absolute;
+  
+  left:80%;
+  top:40%;
   transform: translate(50% 50%);
 
 }
