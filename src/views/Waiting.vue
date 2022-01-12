@@ -3,9 +3,9 @@
     <header>
       <h1 class="waitingRoom">{{ uiLabels.WAITINGROOM }}</h1>
     </header>
-   
+
     <div>
-      <p class="waitingForHost"> {{ uiLabels.WaitingForHost }}</p>
+      <p class="waitingForHost">{{ uiLabels.WaitingForHost }}</p>
 
       <div class="loading">
         <span class="loaderPrick"></span>
@@ -13,14 +13,16 @@
         <span class="loaderPrick"></span>
       </div>
 
-      <p class="participants"> {{ uiLabels.participants }} {{ this.thePoll.poll.amountParticipants }}</p>
- 
+      <p class="participants">
+        {{ uiLabels.participants }} {{ this.thePoll.poll.amountParticipants }}
+      </p>
+
       <div class="amount"></div>
     </div>
 
-
-    <div> <!-- SKA TAS BORT -->
-        <router-link class="startPoll" v-bind:to="'/poll/' + pollId">
+    <div>
+      <!-- SKA TAS BORT -->
+      <router-link class="startPoll" v-bind:to="'/poll/' + pollId">
         KÖR POLLJÄVELN
       </router-link>
     </div>
@@ -57,7 +59,6 @@ export default {
       addOrRemove: "add",
       pollId: this.pollId,
     });
-    // document.addEventListener("beforeunload", this.unRegister);
     socket.on("pollCreated", (data) => (this.data = data));
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
@@ -72,15 +73,6 @@ export default {
       this.thePoll = thePoll;
     });
   },
-  // methods: {
-  //   unRegister: function () {
-  //     socket.emit("editParticipants", {
-  //       addOrRemove: "remove",
-  //       pollId: this.pollId,
-  //     });
-  //     console.log("unmount fungerar");
-  //   },
-  // },
 };
 </script>
 
@@ -127,7 +119,7 @@ body {
 
 .wrapper {
   background: pink;
-  height:100vh;
+  height: 100vh;
 }
 
 .waitingRoom {
@@ -193,36 +185,33 @@ body {
 }
 
 /* CSS för mobil version*/
-@media only screen and (max-width:600px){
+@media only screen and (max-width: 600px) {
+  .waitingRoom {
+    position: relative;
+    left: -20%;
+    top: 50%;
+    transform: translate (-50% -50%);
+  }
 
-.waitingRoom{
-    position:relative;
-    left:-20%;
-    top:50%;
-    transform:translate (-50% -50%);
-}
+  .loading {
+    position: absolute;
+    left: 15%;
+    top: 40%;
+    transform: translate (-50% -50%);
+    max-width: 270px;
+    margin-right: 50px;
+  }
+  .wrapper {
+    max-width: 425px;
+    min-width: 425px;
+  }
 
-.loading{
-    position:absolute;
-    left:15%;
-    top:40%;
-    transform:translate (-50% -50%);
-    max-width:270px;
-    margin-right:50px;
-}
-.wrapper{
-    max-width:425px;
-    min-width:425px;
-}
-
-.wrapperBottom{
+  .wrapperBottom {
     background: pink;
-    max-height:120px;
-}
-#temp{
-    max-height:600px;
-}
-
-
+    max-height: 120px;
+  }
+  #temp {
+    max-height: 600px;
+  }
 }
 </style>

@@ -23,9 +23,9 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     let poll = {};
     poll.lang = lang;
     poll.questions = [];
-    poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
+    poll.answers = [];
     poll.editQuestion = -1; //frågan som ska visas när man klickar på en
-    poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1?
+    poll.currentQuestion = 1;
     this.polls[pollId] = poll;
     poll.saveMode = false;
     poll.amountParticipants = 0;
@@ -39,13 +39,13 @@ Data.prototype.deletePoll = function (pollId) {
 };
 
 Data.prototype.addQuestion = function (pollId, q, indexForAddedQuestion) {
-  console.log(indexForAddedQuestion,'indexforaddedQ');
+  console.log(indexForAddedQuestion, "indexforaddedQ");
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== "undefined") {
     poll.questions.push(q);
   }
-  console.log(poll.editQuestion,'editQ')
+  console.log(poll.editQuestion, "editQ");
   poll.editQuestion = indexForAddedQuestion;
 };
 
@@ -59,7 +59,7 @@ Data.prototype.editQuestion = function (pollId, index) {
 Data.prototype.saveEditedQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
   poll.questions[poll.editQuestion] = q;
-  console.log('The poll now looks like: ',poll)
+  console.log("The poll now looks like: ", poll);
 };
 
 Data.prototype.deleteQuestion = function (pollId) {
@@ -165,7 +165,7 @@ Data.prototype.editOrSavePoll = function (mode, pollId) {
 };
 
 Data.prototype.getAllPolls = function () {
-  console.log(this.polls, typeof this.polls)
+  console.log(this.polls, typeof this.polls);
   return this.polls;
 };
 
