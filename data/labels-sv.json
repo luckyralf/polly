@@ -49,6 +49,9 @@
   "pollExists": "Denna poll finns redan",
   "savePoll": "Spara poll",
   "editPoll": "Redigera poll",
-  "pollDontExist": "Omröstningen existerar inte ännu"
-
+  "pollDontExist": "Omröstningen existerar inte ännu",
+  "waitingForHost":"Väntar på att värden ska starta omröstningen",
+  "participants":"Participants",
+  "waitingRoom":"WAITING ROOM",
+  "createOnComputer":"You can create your own poll from a computer"
 }

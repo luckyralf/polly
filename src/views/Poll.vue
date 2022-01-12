@@ -104,15 +104,6 @@ export default {
       this.uiLabels = labels;
     });
   },
-  /* FÖRSÖKTE LÄGGA IN EN WATCHER I DATA FÖR ANIMATIONEN PÅ POLL MEN DEN VÄGRAR FUNKA mvh johanna*/
-  /*watch: {  
-    data: function () {
-      this.answered = "";
-      setTimeout(() => {
-        this.answered = "answered";
-      }, 100);
-    },
-  },*/
     
   methods: {
     submitAnswer: function (answer) {
@@ -204,6 +195,7 @@ body {
   margin: 0;
   padding: 2rem 0 5rem 0;
   align-content: center;
+
 }
 
 .bars {
