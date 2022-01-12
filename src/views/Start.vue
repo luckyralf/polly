@@ -39,14 +39,14 @@
     </section>
 
     <div class="writeAndParticipate">
-      <label class="catPawTextCursor"
-        >{{ uiLabels.writePollId }}
+      <label class="catPawTextCursor">
         <input type="text" v-model="id" class="textArea catPawTextCursor" />
       </label>
       <br />
       <br />
+
       <div class="linkToPoll">
-        <router-link
+        <!-- <router-link
           v-bind:to="'/waiting/' + id"
           class="activeLink"
           tag="button"
@@ -55,15 +55,19 @@
             inactiveLink: id === '',
           }"
           >{{ uiLabels.participatePoll }}
-        </router-link>
-        <!-- <span
-          v-bind:class="[
-            { noIdProvided: typeof polls[id] === 'undefined' },
-            { idProvided: typeof polls[id] !== 'undefined' },
-          ]"
-          >{{ uiLabels.pollDontExist }}</span
-        > -->
+        </router-link> -->
       </div>
+      <button
+        class="activeLink"
+        tag="button"
+        style="color: #fff"
+        v-bind:class="{
+          inactiveLink: id === '',
+        }"
+        v-on:click="joinPoll(id)"
+      >
+        {{ uiLabels.runPoll }}
+      </button>
     </div>
 
     <div class="createOwn">
@@ -118,6 +122,7 @@ export default {
       uiLabels: {},
       id: "",
       lang: "en",
+      pollExistsTrueOrFalse: false,
     };
   },
   created: function () {
@@ -125,8 +130,10 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    // socket.emit("getAllPolls");
-    // socket.on("emitAllPolls", (data) => (this.polls = data));
+    socket.emit("getAllPolls");
+    socket.on("emitAllPolls", (data) => {
+      this.polls = data;
+    });
   },
   methods: {
     playSound: function () {
@@ -155,14 +162,21 @@ export default {
       this.lang = "sv";
       socket.emit("switchLanguage", this.lang);
     },
-    checkPollExist: function () {
-      console.log("from participate: ", this.id, this.id.value);
-      socket.emit("emitGetPoll", this.id);
-      socket.on("getPoll", (idOfPoll) => {
-        if (typeof idOfPoll !== "undefined") {
-          alert(idOfPoll.value);
-        }
+    checkPollExist: function (pollId) {
+      console.log("checkpollexists ");
+      socket.emit("checkPollExists", pollId);
+      socket.on("checkedPollExists", (trueOrFalse) => {
+        this.pollExistsTrueOrFalse = trueOrFalse;
+        console.log(trueOrFalse, "i curly brackets");
       });
+      return this.pollExistsTrueOrFalse;
+    },
+    joinPoll: function (pollId) {
+      if (this.checkPollExist(pollId) === true) {
+        this.$router.push({ name: "Waiting", params: { id: pollId } });
+      } else {
+        alert("poll not existamento stupido");
+      }
     },
   },
 };

@@ -62,13 +62,12 @@
 - [x] Något sätt att se tidigare skapta polls
 - [x] SE vilken fråga man är på
 - [x] Inte kunna göra en poll utan namn
-- [ ] Begränsning på antal frågor?
 - [x] Allt ska komma upp på en gång, en fråga skapas från början
-- [ ] När man klickar på en poll kommer man till dess första fråga
 - [x] Ge run poll funktion
+- [ ] Begränsning på antal svar
+- [ ] Pollen låser sig om man klickat run poll
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
-- [ ] Abort poll knapp
-- [ ] Edit poll ger: frågeruta, abort poll
+- [ ] När man klickar på en poll kommer man till dess första fråga
 
 ## Generellt
 
@@ -79,7 +78,7 @@
 - [x] Meow vid språkbyte
 - [x] Meny
 - [x] Fixa så eny fungerar helt och hållet
-- [ ] Tillbaka-knapp på typ alla sidor
+- [x] Tillbaka-knapp på typ alla sidor
 - [ ] uiLabels på infoknappar
 
 ## Results

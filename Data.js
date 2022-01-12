@@ -165,8 +165,9 @@ Data.prototype.editOrSavePoll = function (mode, pollId) {
 };
 
 Data.prototype.getAllPolls = function () {
-  return this.polls;
+  console.log(typeof this.polls);
   console.log("data getallpolls");
+  return this.polls;
 };
 
 Data.prototype.editParticipants = function (addOrRemove, pollId) {
@@ -176,6 +177,14 @@ Data.prototype.editParticipants = function (addOrRemove, pollId) {
   } else if (addOrRemove == "remove") {
     this.polls[pollId].amountParticipants -= 1;
     console.log("data remove participant");
+  }
+};
+
+Data.prototype.checkPollExists = function (pollId) {
+  if (this.polls[pollId] === "undefined") {
+    return false;
+  } else {
+    return true;
   }
 };
 
