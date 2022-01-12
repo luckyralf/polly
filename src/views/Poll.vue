@@ -31,7 +31,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Question from "@/components/Question.vue";
 import { confetti } from "/public/confetti-creator.js";
 import io from "socket.io-client";
@@ -88,6 +87,7 @@ export default {
         pollId: this.pollId,
         questionNumber: this.questionNumber + 1,
       });
+
       console.log(
         "before addidng ",
         typeof this.questionNumber,
@@ -158,8 +158,6 @@ h1 {
 }
 
 body {
-  /* display: grid;
-  grid-template-rows: auto auto  ; */
   font-family: "Outfit", sans-serif;
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);

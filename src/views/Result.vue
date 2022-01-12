@@ -74,13 +74,10 @@
       <li></li>
     </ul>
 
-    <!-- <input type="number" v-model="questionNumber" />
-<button v-on:click="selectQuestion">Which question?</button> -->
   </body>
 </template>
 
 <script>
-// @ is an alias to /src
 import Bars from "@/components/Bars.vue";
 import Pie from "@/components/Pie.vue";
 import io from "socket.io-client";
@@ -138,7 +135,6 @@ export default {
       this.question = update.q;
       this.data = {};
     });
-    //försök att få hela pollen
     socket.emit("emitGetPoll", this.pollId);
     socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
@@ -210,7 +206,7 @@ export default {
 }
 
 .questionAndBars {
-  top: 30%;
+  top:30%;
   margin-top: 5rem;
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid white 5px;
@@ -242,7 +238,8 @@ export default {
   border: solid white 2px;
   padding: 10px;
   margin-bottom: 20px;
-  position: absolute;
+  position:absolute;
+  
   transform: translate(50% 50%);
 
   left: 80%;
@@ -288,8 +285,7 @@ export default {
 }
 
 h1 {
-  /* margin-left:550px;
-  margin-right:550px; */
+ 
   font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
@@ -307,7 +303,6 @@ h1:hover {
     0 0 82px rgb(130, 252, 16);
 }
 
-/* cirkel bakgrund nedan*/
 .circles {
   position: absolute;
   top: 0;

@@ -22,7 +22,6 @@
       </div>
     </div>
 
-
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
@@ -65,8 +64,8 @@
           >
             {{ uiLabels.createPoll }}
           </button>
-          {{pollIdInput}}
-          
+          {{ pollIdInput }}
+
           <span
             v-bind:class="[
               {
@@ -88,7 +87,10 @@
       </div>
 
       <div class="wrapper">
-        <section v-if="polls[pollId] && !polls[pollId].saveMode" id="questSection">
+        <section
+          v-if="polls[pollId] && !polls[pollId].saveMode"
+          id="questSection"
+        >
           <h4 v-if="pollId !== ''">
             {{ uiLabels.pollCreated }}
             <span id="pollHeadLine"> {{ pollId }}</span>
@@ -96,7 +98,6 @@
 
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="polls[pollId] !== undefined">
-            {{ polls[pollId].questions }}
             <div
               v-for="(questionObject, index) in polls[pollId].questions"
               :key="index"
@@ -123,7 +124,7 @@
               {{ uiLabels.addQuestion }}
             </button>
             <br />
-            <div> 
+            <div>
               <!-- hittahitt -->
               <button
                 v-if="this.indexForChosenQuestion !== 0"
@@ -132,9 +133,11 @@
               >
                 ↑
               </button>
-              {{polls[pollId].questions.length}}
               <button
-                v-if="this.indexForChosenQuestion < this.polls[this.pollId].questions.length"
+                v-if="
+                  this.indexForChosenQuestion <
+                  this.polls[this.pollId].questions.length - 1
+                "
                 class="moveBtn catPawCursor"
                 v-on:click="moveQuestion('down')"
               >
@@ -152,7 +155,10 @@
         </section>
 
         <!-- Här börjar formuläret för högra rutan -->
-        <section v-if="polls[pollId] && !polls[pollId].saveMode" id="formSection">
+        <section
+          v-if="polls[pollId] && !polls[pollId].saveMode"
+          id="formSection"
+        >
           <br />
 
           {{ uiLabels.question }}
@@ -261,13 +267,18 @@
             {{ uiLabels.checkResultsText }}
           </router-link>
         </button>
-
-        <button
+        <!-- <button
+          class="deletePollBtn catPawCursor controlPanelBtn"
+          v-on:click="runPollFunction"
+        >
+          Abort poll uilabel
+        </button> -->
+        <!-- <button
           class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="deletePoll"
         >
           {{ uiLabels.deletePoll }}
-        </button>
+        </button> -->
       </div>
     </main>
   </body>
@@ -421,6 +432,7 @@ export default {
         this.indexForChosenQuestion -= 1;
       }
       if (direction == "down") {
+        
         this.indexForChosenQuestion += 1;
       }
     },
@@ -437,7 +449,6 @@ export default {
       if (typeof this.polls[this.newPollId] === "undefined") {
         socket.emit("createPoll", { pollId: this.newPollId, lang: this.lang });
         socket.emit("getAllPolls");
-        
       }
     },
     selectPoll: function (pollId) {
@@ -445,14 +456,14 @@ export default {
       socket.emit("getAllPolls");
       this.pollId = pollId;
     },
-    deletePoll: function () {
-      if (confirm(this.uiLabels.confirmDeletePoll)) {
-        socket.emit("deletePoll", { pollId: this.pollId });
-        this.pollHeadline = this.uiLabels.createHeader;
-        this.pollId = "";
-        socket.emit("getAllPolls");
-      }
-    },
+    // deletePoll: function () {
+    //   if (confirm(this.uiLabels.confirmDeletePoll)) {
+    //     socket.emit("deletePoll", { pollId: this.pollId });
+    //     this.pollHeadline = this.uiLabels.createHeader;
+    //     this.pollId = "";
+    //     socket.emit("getAllPolls");
+    //   }
+    // },
     addQuestion: function (indexForAddedQuestion) {
       socket.emit("addQuestion", {
         pollId: this.pollId,
@@ -652,7 +663,11 @@ main {
   margin-top: 10px;
 }
 
-/* .createPollBtnInActive {
+.createPollBtnActive:hover {
+  background: #198513;
+}
+
+.createPollBtnInActive {
   color: white;
   background: #20af19;
   border-radius: 3px;
@@ -663,7 +678,7 @@ main {
   font-size: 20px;
   opacity: 0.5;
   pointer-events: none;
-} */
+}
 
 .idProvided {
   visibility: hidden;
