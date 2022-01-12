@@ -14,6 +14,10 @@ function sockets(io, socket, data) {
     socket.emit("init", data.getUILabels(lang));
   });
 
+  socket.on("getPollHead", function(id) {
+    socket.emit("emitPollHead",data.createPollHead(id))
+  });
+
   socket.on("createPoll", function (d) {
     console.log("from socket: ", d.pollId);
     socket.emit("pollCreated", data.createPoll(d.pollId, d.lang));
