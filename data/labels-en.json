@@ -48,6 +48,7 @@
   "needWritePollName": "You need to write a poll name",
   "pollExists": "This poll already exists",
   "savePoll": "Save poll",
-  "editPoll": "Edit Poll"
+  "editPoll": "Edit Poll",
+  "pollDontExist": "Poll does not exist yet"
   
 }

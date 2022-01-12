@@ -27,7 +27,7 @@
     </header>
 
     <main class="mainWrapped catCursor">
-      {{ data }}
+      
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
@@ -328,7 +328,7 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     socket.on("dataUpdate", (data) => (this.data = data));
-    socket.on("getAllPolls", (data) => (this.polls = data));
+    socket.on("emitAllPolls", (data) => (this.polls = data));
   },
   methods: {
     saveEditedQuestion: function () {
