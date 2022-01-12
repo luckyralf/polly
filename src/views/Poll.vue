@@ -179,8 +179,8 @@ body {
   font-family: "Outfit", sans-serif;
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 2rem 0 5rem 0;
   align-content: center;
