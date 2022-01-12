@@ -213,8 +213,9 @@ export default {
   border: solid white 5px;
   border-radius: 20px;
   width: fit-content;
-  min-height: fit-content;
+  min-height: 300px;
   padding: 2rem;
+  height:fit-content;
 }
 
 .questions {
