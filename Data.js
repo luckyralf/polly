@@ -150,9 +150,7 @@ Data.prototype.saveTime = function (t) {
   console.log("Tiden ändras till", parseInt(t));
   if (parseInt(t) === 0 || parseInt(t) === 1 || t == undefined) {
     return { timeOn: false, time: 1 };
-
   } else {
-
     return { timeOn: true, time: parseInt(t) };
   }
 };
@@ -168,10 +166,7 @@ Data.prototype.editOrSavePoll = function (mode, pollId) {
 
 Data.prototype.getAllPolls = function () {
   console.log(this.polls, typeof this.polls)
-  if (Object.keys(this.polls).length === 0 && this.polls.constructor === Object) {
     return this.polls;
-  }
-  return {};
   console.log("data getallpolls");
 };
 
