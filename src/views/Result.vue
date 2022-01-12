@@ -73,13 +73,10 @@
         <li></li>
       </ul>
 
-    <!-- <input type="number" v-model="questionNumber" />
-<button v-on:click="selectQuestion">Which question?</button> -->
   </body>
 </template>
 
 <script>
-// @ is an alias to /src
 import Bars from "@/components/Bars.vue";
 import Pie from "@/components/Pie.vue";
 import io from "socket.io-client";
@@ -130,7 +127,6 @@ export default {
           count: this.data[keys[i]],
           color: this.colorArray[i],
         };
-        // this.colorArray.push("#" + Math.floor(Math.random() * 16777215).toString(16))
       }
       this.question = update.q;
     });
@@ -138,7 +134,6 @@ export default {
       this.question = update.q;
       this.data = {};
     });
-    //försök att få hela pollen
     socket.emit("emitGetPoll", this.pollId);
     socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
@@ -212,9 +207,7 @@ export default {
 }
 
 .questionAndBars {
-  /* grid-gap: 100px; */
   top:30%;
-  /* position:absolute; */
   margin-top: 5rem;
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid white 5px;
@@ -227,7 +220,6 @@ export default {
 
 .questions {
   grid-column: 1;
-  /* margin-left: 50px; */
   margin-top: 0px;
   margin-right: 3rem;
 
@@ -249,11 +241,8 @@ export default {
   border: solid white 2px;
   padding: 10px;
   margin-bottom: 20px;
-  /*margin-left: 400px;*/
   position:absolute;
   
-  /* left:80%;
-  top:40%; */
   transform: translate(50% 50%);
 
 }
@@ -298,8 +287,7 @@ export default {
 }
 
 h1 {
-  /* margin-left:550px;
-  margin-right:550px; */
+ 
   font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
@@ -319,8 +307,6 @@ h1:hover{
     0 0 82px rgb(130, 252, 16);
 }
 
-
-/* cirkel bakgrund nedan*/
 .circles {
   position: absolute;
   top: 0;

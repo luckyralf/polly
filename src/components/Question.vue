@@ -30,7 +30,6 @@
     </div>
     
     <br />
-    <!-- Frågor som submittas UTAN svar-->
 
     <div v-if="timer < 0 && question.timeOn == true" >
       <div v-if="lastQuestion">
@@ -57,7 +56,6 @@
           </router-link>
     </div>
     
-   <!-- Frågor som submittas med svar-->
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button class="nextQuestionButton catPawCursor" v-on:click="answer">
@@ -149,7 +147,6 @@ export default {
     question: {
       handler() {
 
-        this.timer = this.question.time;
         clearInterval(this.timerFunction);
         if (this.thisTimeOn) {
           this.timerFunction = setInterval(() => {

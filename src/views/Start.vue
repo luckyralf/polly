@@ -93,11 +93,7 @@
       </div>
     </div>
 
-    <!-- <router-link
-          style="color: #fff"
-          className="link"
-          v-bind:to="'/waiting/' + id"
-          > testtest </router-link> -->
+    
 
     <div id="Finalword">
       <hr />
