@@ -43,7 +43,7 @@
     <div class="writeAndParticipate">
       <label class="catPawTextCursor"
         >{{ uiLabels.writePollId }}
-        <input type="text" v-model="id" class="catPawTextCursor" />
+        <input type="text" v-model="id" class="textArea catPawTextCursor" />
       </label>
       <br />
       <br />
@@ -234,6 +234,14 @@ body {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+
+  @media only screen and (max-width:600px){ 
+
+    body{
+      background:yellow;
+    }
+  } 
+
 }
 
 .circles li {
@@ -527,8 +535,52 @@ body {
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   margin-left: 250px;
   margin-right: 250px;
+  /*position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50% -50%);*/
   overflow: hidden;
+
+
 }
+
+@media only screen and (max-width:600px){
+  .writeAndParticipate{
+    margin-left: 10%;
+    margin-right: 10%;
+    min-width: 80%;
+    font-size: 27pt;
+  }
+
+  .createOwn{
+    display:none;
+  }
+  .textArea{
+    min-height:27px;
+  }
+
+  .CATPOLL{
+    font-size:50pt;
+
+  }
+
+  #headerText{
+    
+    max-width:80%;
+    min-width:80%;
+    position:relative;
+    /*right:30%;*/
+    top:0%;
+    left:-25%;
+    transform: translate (-50% -50%);
+  }
+
+    .Wrapped{
+      max-width:100%;
+    }
+  
+}
+
 
 .createOwn {
   font-family: "Outfit", sans-serif;

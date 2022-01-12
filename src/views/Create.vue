@@ -260,9 +260,9 @@
           {{ uiLabels.runQuestion }}
         </button> -->
           <button id="checkResultBtn" class="controlPanelBtn">
-          <router-link class="routerLink" v-bind:to="'/result/' + pollId">
-            {{ uiLabels.checkResultsText }}
-          </router-link>
+            <router-link class="routerLink" v-bind:to="'/result/' + pollId">
+              {{ uiLabels.checkResultsText }}
+            </router-link>
           </button>
         </div>
         <button
@@ -309,7 +309,7 @@ export default {
       pollHeadline: "",
       time: "0",
       selectedQuestion: 0, //används bara för färgbyte på frågeknapparna
-      selectedPoll: '',
+      selectedPoll: "",
       editActivated: false,
       polls: [],
     };
@@ -357,13 +357,13 @@ export default {
       if (msg == "questionChange") {
         if (this.selectedQuestion != i) {
           this.selectedQuestion = i;
-          console.log("change Q",i,this.selectedQuestion);
+          console.log("change Q", i, this.selectedQuestion);
         }
       }
       if (msg == "pollChange") {
         if (this.selectedPoll != i) {
           this.selectedPoll = i;
-          console.log("change P",i,this.selectedPoll);
+          console.log("change P", i, this.selectedPoll);
         }
       }
     },
@@ -373,7 +373,8 @@ export default {
         pollId: pollId,
         indexForChosenQuestion: indexForChosenQuestion, //alltid =0 här
       });
-      console.log(this.question,this.answers,'q and a1') //här blir något fel, krävs 3 tryck för att uppdatera question och answers
+      this.changeColor(indexForChosenQuestion, "questionChange");
+      console.log(this.question, this.answers, "q and a 1"); //här blir något fel, krävs 3 tryck för att uppdatera question och answers
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
       this.time = this.data.poll.questions[indexForChosenQuestion].time;
@@ -388,7 +389,7 @@ export default {
       });
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
-      this.time = this.data.poll.questions[indexForChosenQuestion].time;
+      this.time = this.data.poll.questions[indexForChosenQuestion].time; //den andra har t, denna har time, påverkar vad?
     },
     moveQuestion: function (direction, editQuestion) {
       console.log("moveQuestion fungerar", direction);
@@ -894,9 +895,6 @@ h4 span {
 .routerLink {
   color: white;
   text-decoration: none;
-  
-  
-  
 }
 
 .runPollButton {
@@ -914,12 +912,12 @@ h4 span {
 .runPollButton:hover {
   background: #2c640f;
 }
-#checkResultBtn{
+#checkResultBtn {
   background: #20af19;
   font-size: 1.5rem;
   border: solid #229954;
 }
-.controlPanelBtn{
+.controlPanelBtn {
   border-radius: 6px;
   margin: 0.5rem 0;
   padding: 2px;
