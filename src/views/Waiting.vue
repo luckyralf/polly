@@ -191,4 +191,17 @@ body {
   text-decoration: none;
   font-weight: bold;
 }
+
+
+@media only screen and (max-width:600px){
+.loading{
+
+    left:50%;
+    top:40%;
+    transform:translate (-50% -50%);
+
+}
+
+
+}
 </style>

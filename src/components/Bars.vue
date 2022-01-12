@@ -3,8 +3,8 @@
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
     <div v-if="key != ''">
       <!--<div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]"> -->
-      <div id="individualBar" v-bind:style="[{height: 500*(item.count/getA()) + 'px'},{'background-color':item.color}]">
-        <span> {{item.count}}  {{getA()}}</span>
+      <div id="individualBar" v-bind:style="[{height: 500*(item.count/getA()) + 'px'},{'background-color':item.color}]"> 
+        <span> {{item.count}} of {{getA()}}</span>
       </div>
       <div> 
         {{key}} 

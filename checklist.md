@@ -25,7 +25,7 @@
 ## Startsida
 
 - [x] Stå omröstning istället för röstning-
-- [] Man ska inte kunna gå in på poll som inte existerar
+- [x] Man ska inte kunna gå in på poll som inte existerar
 
 ## skriv in saker som behöver göras och bocka av när det är klart
 

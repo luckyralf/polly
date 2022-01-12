@@ -206,7 +206,7 @@
           </select>
           <br />
 
-          {{ uiLabels.selectedTime }} {{ data.poll.questions.q }} 10
+          {{ uiLabels.selectedTime }} {{ data.poll.questions.q }} 
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
