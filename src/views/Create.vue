@@ -206,6 +206,8 @@
           </select>
           <br />
 
+          {{ uiLabels.selectedTime }} {{ data.poll.questions.q }}
+
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
                       v-model="uiLabels.timeArray[i]"/>

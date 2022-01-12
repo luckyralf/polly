@@ -53,6 +53,7 @@
     <div v-if="quizFinished" >
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
             {{ uiLabels.seeResult }}
+            
           </router-link>
     </div>
     
@@ -157,6 +158,9 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    if (this.amountQuestion == 1) {
+      this.lastQuestion = false 
+    }
   },
 
 
