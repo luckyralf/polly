@@ -31,6 +31,11 @@
       {{ uiLabels.createStartInfo }}
       <br />
       <br />
+      {{ data }} <span style="color: red">THIS IS data</span>
+      <br />
+      <br />
+      {{ this.polls }}<span style="color: red">THIS IS this.polls</span>
+      <br />
       <div v-for="index in Object.keys(polls).length" :key="index">
         <button
           v-on:click="
@@ -114,7 +119,7 @@
           <div>
             <button
               class="addQuestBtn catPawCursor"
-              v-on:click="addQuestion(data.poll.questions.length)"
+              v-on:click="addQuestion(data.poll.questions.length); updatePolls();"
             >
               {{ uiLabels.addQuestion }}
             </button>
@@ -126,14 +131,14 @@
               <button
                 class="moveBtn catPawCursor"
                 v-if="data.poll.editQuestion !== 0"
-                v-on:click="moveQuestion('up', data.poll.editQuestion)"
+                v-on:click="moveQuestion('up', data.poll.editQuestion); updatePolls();"
               >
                 ↑
               </button>
               <button
                 class="moveBtn catPawCursor"
                 v-if="data.poll.editQuestion !== data.poll.questions.length - 1"
-                v-on:click="moveQuestion('down', data.poll.editQuestion)"
+                v-on:click="moveQuestion('down', data.poll.editQuestion); updatePolls();"
               >
                 ↓
               </button>
@@ -149,7 +154,7 @@
 
           {{ uiLabels.question }}
           <textarea
-            v-on:input="saveEditedQuestion"
+            v-on:input="saveEditedQuestion(); updatePolls();"
             type="text"
             v-model="question"
             class="inputQuestion catPawTextCursor"
@@ -162,7 +167,7 @@
           >
             <input
               v-model="answers[i]"
-              v-on:input="saveEditedQuestion"
+              v-on:input="saveEditedQuestion(); updatePolls();"
               class="inputAnswers catPawTextCursor"
             />
             <button
@@ -170,6 +175,7 @@
               v-on:click="
                 delAnswer(i);
                 saveEditedQuestion();
+                updatePolls();
               "
             >
               <div class="cross catPawCursor">X</div>
@@ -181,6 +187,7 @@
             v-on:click="
               addAnswer();
               saveEditedQuestion();
+              updatePolls();
             "
           >
             + {{ uiLabels.addAnsBtn }}
@@ -196,7 +203,7 @@
             name="questTime"
             id="questionTime"
             v-model="time"
-            v-on:change="saveEditedQuestion"
+            v-on:change="saveEditedQuestion(); updatePolls();"
           >
             <option value="1">{{ uiLabels.unlimited }}</option>
             <option value="10">10 s</option>
@@ -205,7 +212,6 @@
             <option value="90" selected>90 s</option>
           </select>
           <br />
-
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
@@ -219,7 +225,7 @@
 
           <button
             class="deleteQuestBtn catPawCursor"
-            v-on:click="deleteQuestion"
+            v-on:click="deleteQuestion(); updatePolls();"
           >
             {{ uiLabels.createpageDeleteQuestion }}
           </button>
@@ -353,6 +359,7 @@ export default {
     },
 
     changeColor: function (i, msg) {
+      console.log(i, "detta är i");
       if (msg == "questionChange") {
         if (this.selectedQuestion != i) {
           this.selectedQuestion = i;
@@ -376,8 +383,8 @@ export default {
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
       this.time = this.data.poll.questions[indexForChosenQuestion].time;
-      console.log(this.question,this.answers,'q and a2')
-      this.changeColor(indexForChosenQuestion,'questionChange');
+      console.log(this.question, this.answers, "q and a2");
+      this.changeColor(indexForChosenQuestion, "questionChange");
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -405,6 +412,10 @@ export default {
       // this.answers = this.data.poll.questions[this.data.poll.editQuestion].a;
     },
 
+    updatePolls: function () {
+      socket.emit("getAllPolls");
+    },
+
     deleteQuestion: function () {
       socket.emit("deleteQuestion", this.pollId);
       this.question =
@@ -416,7 +427,7 @@ export default {
       if (typeof this.polls[this.pollId] === "undefined") {
         socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
         socket.emit("getAllPolls");
-        this.addQuestion(1);
+        this.addQuestion(0);
         this.selectedPoll = this.pollId;
       }
     },
