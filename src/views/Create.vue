@@ -30,16 +30,18 @@
       {{ uiLabels.createStartInfo }}
       <br />
       <br />
-      <div v-for="(_, index) in polls" :key="index">
-        <button
-          v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
-          v-bind:class="{
-            selectedPollBtn: index == pollId,
-          }"
-          class="questionButtons"
-        >
-          {{ index }}
-        </button>
+      <div class="pollMenu">
+        <div v-for="(_, index) in polls" :key="index">
+          <button
+            v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
+            v-bind:class="{
+              selectedPollBtn: index == pollId,
+            }"
+            class="questionButtons"
+          >
+            {{ index }}
+          </button>
+        </div>
       </div>
       <div id="createPollId">
         <input
@@ -247,6 +249,7 @@
       <!-- Edit / Save poll -->
       <br />
       <br />
+
       <!-- Control Panel -->
       <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
         <h2>Control panel</h2>
@@ -255,7 +258,10 @@
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
         >
-          {{ uiLabels.runPoll }}
+         {{ uiLabels.runPoll }}
+        <div id="infoDIV" v-show="showInfoDiv">
+         </div>
+
         </button>
         <button id="checkResultBtn" class="controlPanelBtn">
           <router-link class="routerLink" v-bind:to="'/result/' + pollId">
@@ -428,7 +434,6 @@ export default {
         this.indexForChosenQuestion -= 1;
       }
       if (direction == "down") {
-        
         this.indexForChosenQuestion += 1;
       }
     },
@@ -490,6 +495,7 @@ export default {
         )
       ) {
         socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+        this.updatePolls();
       }
     },
   },
