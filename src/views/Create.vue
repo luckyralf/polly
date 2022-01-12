@@ -206,7 +206,6 @@
           </select>
           <br />
 
-
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
                       v-model="uiLabels.timeArray[i]"/>
@@ -375,8 +374,8 @@ export default {
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
       this.time = this.data.poll.questions[indexForChosenQuestion].time;
-      console.log(this.question,this.answers,'q and a2')
-      this.changeColor(indexForChosenQuestion,'questionChange');
+      console.log(this.question, this.answers, "q and a2");
+      this.changeColor(indexForChosenQuestion, "questionChange");
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
