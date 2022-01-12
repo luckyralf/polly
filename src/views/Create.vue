@@ -22,21 +22,14 @@
       </div>
     </div>
 
-
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
-    <!-- {{this.polls}} -->
     <main v-if="polls" class="mainWrapped catCursor">
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
       <br />
-      <!-- {{ polls[pollId] }} <span style="color: red">THIS IS polls[pollId]</span>
-      <br />
-      <br />
-      {{ this.polls }}<span style="color: red">THIS IS this.polls</span>
-      <br /> -->
       <div v-for="(_, index) in polls" :key="index">
         <button
           v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
@@ -50,35 +43,35 @@
       </div>
 
       <div id="createPollId">
-        <!-- {{ uiLabels.pollLink }} -->
-        <!-- placeholder -->
         <input
           type="text"
           placeholder="Write poll name here"
           v-model="newPollId"
           class="catPawTextCursor"
           required
-          v-on:input="updatePolls();"
+          v-on:input="updatePolls()"
         />
-        {{pollId}} <span>pollId</span><br>
-        {{newPollId}} <span>newPollId</span> <br>
-        {{typeof newPollId}}
         <div class="pollName">
           <button
             class="createPollBtnActive catPawCursor"
             v-on:click="createPoll"
             v-bind:class="{
               createPollBtnInActive:
-                 typeof newPollId === 'undefined' || typeof polls[newPollId] !== 'undefined' || newPollId === '',
+                typeof newPollId === 'undefined' ||
+                typeof polls[newPollId] !== 'undefined' ||
+                newPollId === '',
             }"
           >
             {{ uiLabels.createPoll }}
           </button>
-          {{pollIdInput}}
-          
+          {{ pollIdInput }}
+
           <span
             v-bind:class="[
-              { noIdProvided: newPollId === '' || typeof newPollId === 'undefined'},
+              {
+                noIdProvided:
+                  newPollId === '' || typeof newPollId === 'undefined',
+              },
               { idProvided: newPollId !== '' },
             ]"
             >{{ uiLabels.needWritePollName }}</span
@@ -93,8 +86,11 @@
         </div>
       </div>
 
-      <div v-if="!saveMode" class="wrapper">
-        <section id="questSection">
+      <div class="wrapper">
+        <section
+          v-if="polls[pollId] && !polls[pollId].saveMode"
+          id="questSection"
+        >
           <h4 v-if="pollId !== ''">
             {{ uiLabels.pollCreated }}
             <span id="pollHeadLine"> {{ pollId }}</span>
@@ -102,7 +98,6 @@
 
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="polls[pollId] !== undefined">
-            {{ polls[pollId].questions }}
             <div
               v-for="(questionObject, index) in polls[pollId].questions"
               :key="index"
@@ -128,34 +123,45 @@
             >
               {{ uiLabels.addQuestion }}
             </button>
-            <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
             <div>
+              <!-- hittahitt -->
               <button
+                v-if="this.indexForChosenQuestion !== 0"
                 class="moveBtn catPawCursor"
-                v-on:click="
-                  moveQuestion('up');
-                "
+                v-on:click="moveQuestion('up')"
               >
                 ↑
               </button>
               <button
-                class="moveBtn catPawCursor"
-                v-on:click="
-                  moveQuestion('down');
+                v-if="
+                  this.indexForChosenQuestion <
+                  this.polls[this.pollId].questions.length - 1
                 "
+                class="moveBtn catPawCursor"
+                v-on:click="moveQuestion('down')"
               >
                 ↓
               </button>
             </div>
           </div>
+          <button
+            v-if="polls[pollId] && !polls[pollId].saveMode"
+            v-on:click="editOrSavePoll('savemode')"
+            class="createPollBtnActive"
+          >
+            {{ uiLabels.savePoll }}
+          </button>
         </section>
+
         <!-- Här börjar formuläret för högra rutan -->
-        <section id="formSection">
+        <section
+          v-if="polls[pollId] && !polls[pollId].saveMode"
+          id="formSection"
+        >
           <br />
 
           {{ uiLabels.question }}
-          <!-- {{polls[pollId].editQuestion]}} -->
           <textarea
             v-on:input="
               saveEditedQuestion();
@@ -225,14 +231,6 @@
           </select>
           <br />
 
-          <!-- <option v-for="(_, i) in uiLabels.timeArray" 
-                      v-bind:key="i" 
-                      v-model="uiLabels.timeArray[i]"/>
-
-          <option v-for="(_, i) in uiLabels.timeArray" v-bind:key="i" > 
-                {{uiLabels.timeArray[i]}}
-          </option> -->
-
           <br />
 
           <button
@@ -246,25 +244,17 @@
           </button>
         </section>
       </div>
+
       <!-- Edit / Save poll -->
-      <button v-on:click="editOrSavePoll('savemode')">
-        {{ uiLabels.savePoll }}
-      </button>
-      <button v-on:click="editOrSavePoll('editmode')">
-        {{ uiLabels.editPoll }}
-      </button>
-      {{ Object.keys(polls) }}
       <br />
       <br />
       <!-- Control Panel -->
-      <div id="result" v-if="saveMode">
+      <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
         <h2>Control panel</h2>
-        <!-- <div> -->
-        <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
 
-        <button v-on:click="runQuestion">
-          {{ uiLabels.runQuestion }}
-        </button> -->
+      <!-- Control Panel -->
+      <div id="result" v-if="!saveMode">
+        <h2>Control panel</h2>
 
         <button
           class="runPollButton controlPanelBtn"
@@ -283,12 +273,12 @@
         >
           Abort poll uilabel
         </button> -->
-        <button
+        <!-- <button
           class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="deletePoll"
         >
           {{ uiLabels.deletePoll }}
-        </button>
+        </button> -->
       </div>
     </main>
   </body>
@@ -296,7 +286,6 @@
 
 <script>
 import io from "socket.io-client";
-// import func from 'vue-editor-bridge';
 const socket = io();
 
 export default {
@@ -316,13 +305,6 @@ export default {
     };
   },
   computed: {
-    // saveMode: function () {
-    //   if (this.polls && this.pollId) {
-    //     return this.polls[this.pollId].saveMode;
-    //   } else {
-    //     return false;
-    //   }
-    // },
     question: {
       get: function () {
         if (
@@ -375,14 +357,10 @@ export default {
 
     socket.on("pollCreated", () => {
       this.pollId = this.newPollId;
-      this.newPollId = '';
-      // this.polls[this.pollId] = data;
+      this.newPollId = "";
       this.addQuestion(0);
-      
     });
-    // socket.on("allQuestions", (data) => (this.polls[this.pollId] = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
-    // socket.on("dataUpdate", (data) => (this.polls[this.pollId] = data));
     socket.on("emitAllPolls", (data) => {
       this.polls = data;
       this.bindVariables();
@@ -390,7 +368,10 @@ export default {
   },
   methods: {
     bindVariables: function () {
-      if (this.pollId && this.polls[this.pollId].questions[this.indexForChosenQuestion]) {
+      if (
+        this.pollId &&
+        this.polls[this.pollId].questions[this.indexForChosenQuestion]
+      ) {
         this.answers =
           this.polls[this.pollId].questions[this.indexForChosenQuestion].a;
       }
@@ -439,11 +420,6 @@ export default {
       this.indexForChosenQuestion = indexForChosenQuestion;
       this.answers =
         this.polls[this.pollId].questions[indexForChosenQuestion].a;
-      // this.question =
-      //   this.polls[this.pollId].questions[indexForChosenQuestion].q;
-
-      // this.time =
-      //   this.polls[this.pollId].questions[indexForChosenQuestion].time; //den andra har t, denna har time, påverkar vad?
     },
     moveQuestion: function (direction) {
       console.log("moveQuestion fungerar", direction);
@@ -453,13 +429,12 @@ export default {
       });
       this.updatePolls();
       if (direction == "up") {
-        this.indexForChosenQuestion -=1;
+        this.indexForChosenQuestion -= 1;
       }
       if (direction == "down") {
-        this.indexForChosenQuestion +=1;
+        
+        this.indexForChosenQuestion += 1;
       }
-      // this.question = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].q;
-      // this.answers = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].a;
     },
 
     updatePolls: function () {
@@ -474,7 +449,6 @@ export default {
       if (typeof this.polls[this.newPollId] === "undefined") {
         socket.emit("createPoll", { pollId: this.newPollId, lang: this.lang });
         socket.emit("getAllPolls");
-        
       }
     },
     selectPoll: function (pollId) {
@@ -482,20 +456,18 @@ export default {
       socket.emit("getAllPolls");
       this.pollId = pollId;
     },
-    deletePoll: function () {
-      if (confirm(this.uiLabels.confirmDeletePoll)) {
-        socket.emit("deletePoll", { pollId: this.pollId });
-        this.pollHeadline = this.uiLabels.createHeader;
-        this.pollId = "";
-        socket.emit("getAllPolls");
-      }
-    },
+    // deletePoll: function () {
+    //   if (confirm(this.uiLabels.confirmDeletePoll)) {
+    //     socket.emit("deletePoll", { pollId: this.pollId });
+    //     this.pollHeadline = this.uiLabels.createHeader;
+    //     this.pollId = "";
+    //     socket.emit("getAllPolls");
+    //   }
+    // },
     addQuestion: function (indexForAddedQuestion) {
       socket.emit("addQuestion", {
         pollId: this.pollId,
-        // q: this.question,
         q: this.uiLabels.editMe,
-        // a: this.answers,
         a: ["", ""],
         t: "0",
         indexForAddedQuestion,
@@ -514,7 +486,6 @@ export default {
         pollId: this.pollId,
         questionNumber: this.questionNumber,
       });
-      // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
     editOrSavePoll: function (mode) {
       if (
@@ -550,8 +521,6 @@ export default {
 }
 
 body {
-  /* display: grid;
-  grid-template-rows: auto auto  ; */
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   min-width: 100%;
@@ -607,8 +576,6 @@ body {
 }
 .infoButton {
   position: absolute;
-  /* padding-top: 20px;
-  padding-right: -20px; */
   background-size: cover;
   background-position: 50%;
   border-radius: 100%;
@@ -646,19 +613,6 @@ body {
 
 header {
   margin-bottom: 1rem;
-  /* text-align: center;
-  border: 7px solid white;
-  border-radius: 30px;
-
-  box-shadow:
-    0 0 20px 7px #fff,
-    0 0 37px 15px #f0f,
-    0 0 40px 27px #0ff,
-    inset 0 0 20px 8px #fff,
-    inset 0 0 37px 18px #f0f,
-    inset 0 0 30px 27px #0ff;
-  margin: 0 4rem;
-  padding: 1rem 0; */
 }
 
 h1 {
@@ -709,7 +663,11 @@ main {
   margin-top: 10px;
 }
 
-/* .createPollBtnInActive {
+.createPollBtnActive:hover {
+  background: #198513;
+}
+
+.createPollBtnInActive {
   color: white;
   background: #20af19;
   border-radius: 3px;
@@ -720,7 +678,7 @@ main {
   font-size: 20px;
   opacity: 0.5;
   pointer-events: none;
-} */
+}
 
 .idProvided {
   visibility: hidden;
@@ -778,7 +736,6 @@ main {
 
 #questSection {
   grid-column: 1;
-  /* padding: 1rem 3rem 1rem 3rem ; */
 }
 #questSection h4 {
   margin: 0;
@@ -829,7 +786,6 @@ h4 span {
   margin-left: 120px;
 }
 
-/*#formSection,*/
 #result {
   width: 300px;
 }
@@ -944,12 +900,6 @@ h4 span {
 .moveBtn:hover {
   background-color: #bfc7dd;
 }
-/* button{
-  font-size: 1rem;
-  margin-top: 5px;
-  width: fit-content;
-  align-self: center;
-} */
 
 .routerLink {
   color: white;

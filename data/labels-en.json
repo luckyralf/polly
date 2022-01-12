@@ -50,12 +50,10 @@
   "editPoll": "Edit Poll",
   "pollDontExist": "Poll does not exist yet",
   "waitingforHost": "waiting for host to start poll...",
-  "waitingRoom":"VÄNTRUM",
-  "createOnComputer":"Du kan skapa din egna omröstning från en dator!",
-  "congratulations":"Congratulations! You are done with the poll!",
-  "timeLeft":"Time left:",
+  "waitingRoom": "VÄNTRUM",
+  "createOnComputer": "Du kan skapa din egna omröstning från en dator!",
+  "congratulations": "Congratulations! You are done with the poll!",
+  "timeLeft": "Time left:",
   "showBar": "Show bar chart",
   "peopleWhoDidntAnswer": "People did not answer to this question."
-
-  
 }

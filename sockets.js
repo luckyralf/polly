@@ -121,7 +121,7 @@ function sockets(io, socket, data) {
 
   socket.on("editOrSavePoll", function (d) {
     data.editOrSavePoll(d.mode, d.pollId);
-    socket.emit("allQuestions", data.getPoll(d.pollId));
+    socket.emit("emitAllPolls", data.getAllPolls());
   });
 
   socket.on("editParticipants", function (d) {

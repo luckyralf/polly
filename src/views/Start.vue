@@ -42,24 +42,11 @@
       <label class="catPawTextCursor">
         {{ uiLabels.writePollId }}
         <input type="text" v-model="id" class="textArea catPawTextCursor" />
-        
       </label>
       <br />
-      {{id}}
       <br />
 
       <div class="linkToPoll">
-        <!-- <router-link
-          v-bind:to="'/waiting/' + id"
-          class="activeLink"
-          tag="button"
-          style="color: #fff"
-          v-bind:class="{
-            inactiveLink: id === '',
-          }"
-          >{{ uiLabels.participatePoll }}
-        </router-link> -->
-
         <button
           class="activeLink"
           tag="button"
@@ -93,11 +80,7 @@
       </div>
     </div>
 
-    <!-- <router-link
-          style="color: #fff"
-          className="link"
-          v-bind:to="'/waiting/' + id"
-          > testtest </router-link> -->
+    
 
     <div id="Finalword">
       <hr />
@@ -105,9 +88,8 @@
         <h3>&copy; Cat Poll Corp.</h3>
       </footer>
     </div>
-
     <ul class="circles">
-      <li></li>
+      <li>1</li>
       <li></li>
       <li></li>
       <li></li>
@@ -149,7 +131,7 @@ export default {
       if (trueOrFalse) {
         this.joinPoll(this.id);
       } else {
-        alert("poll no existo hello?s");
+        alert(this.uiLabels.pollDontExist);
       }
     });
   },
@@ -159,11 +141,6 @@ export default {
       audio.play();
     },
 
-    // switchLanguage: function () {
-    //   if (this.lang === "en") this.lang = "sv";
-    //   else this.lang = "en";
-    //   socket.emit("switchLanguage", this.lang);
-    // },
     infoFunction: function () {
       var x = document.getElementById("infoDIV");
       if (x.style.display === "none") {
@@ -183,22 +160,9 @@ export default {
     checkPollExist: function (pollId) {
       console.log("checkpollexists ");
       socket.emit("checkPollExists", pollId);
-
-      // console.log("checkpollexist html kommer den ens hit?", trueOrFalse);
-      // return trueOrFalse;
-      // if (this.pollExistsTrueOrFalse === true) {
-      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
-      // } else {
-      //   alert("poll not existamento stupido");
-      // }
     },
     joinPoll: function (pollId) {
       this.$router.push({ name: "Waiting", params: { id: pollId } });
-      // if (this.checkPollExist(pollId) === true) {
-      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
-      // } else {
-      //   alert("poll not existamento stupido");
-      // }
     },
   },
 };
@@ -411,7 +375,7 @@ body {
   opacity: 85%;
   font-family: "Outfit", sans-serif;
   display: none;
-  z-index:4;
+  z-index: 4;
 }
 
 .infoTitle {
@@ -548,19 +512,19 @@ body {
   overflow: hidden;
 }
 
-.CreateMobileVersion{
-  display:none
+.CreateMobileVersion {
+  display: none;
 }
 
 /* CSS för mobil-version nedan */
 @media only screen and (max-width: 600px) {
-.activeLink {
-  color: white;
-  background: #20af19;
-  border-radius: 4%;
-  border: solid #229954;
-  text-decoration: none;
-  margin-top:0px;
+  .activeLink {
+    color: white;
+    background: #20af19;
+    border-radius: 4%;
+    border: solid #229954;
+    text-decoration: none;
+    margin-top: 0px;
   }
 
   .writeAndParticipate {
@@ -573,10 +537,10 @@ body {
     display: none;
   }
 
-  .CreateMobileVersion{
-  display:grid;
-  margin-bottom:-10px;
-}
+  .CreateMobileVersion {
+    display: grid;
+    margin-bottom: -10px;
+  }
   .textArea {
     min-height: 27px;
   }
@@ -712,8 +676,5 @@ hr:after {
   padding: 0 4px;
   position: relative;
   top: -13px;
-}
-
-.controlPanel {
 }
 </style>
