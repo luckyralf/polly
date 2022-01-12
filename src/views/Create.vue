@@ -226,7 +226,11 @@
       </div>
       <!-- Edit / Save poll -->
       <button
-        v-if="data.poll !== undefined && data.poll.questions.length > 0"
+        v-if="
+          data.poll !== undefined &&
+          data.poll.questions.length > 0 &&
+          !data.poll.saveMode
+        "
         v-on:click="editOrSavePoll('savemode')"
       >
         {{ uiLabels.savePoll }}
@@ -251,24 +255,23 @@
         "
       >
         <h2>Control panel</h2>
-        <div v-if="data.poll !== undefined && data.poll.questions.length > 0">
-          <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
+        <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
 
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
         </button> -->
-          <button id="checkResultBtn" class="controlPanelBtn">
-            <router-link class="routerLink" v-bind:to="'/result/' + pollId">
-              {{ uiLabels.checkResultsText }}
-            </router-link>
-          </button>
-        </div>
+
         <button
           class="runPollButton controlPanelBtn"
-          v-on:click="runPollFunction"
+          v-on:click="runPollFunction()"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
           {{ uiLabels.runPoll }}
+        </button>
+        <button id="checkResultBtn" class="controlPanelBtn">
+          <router-link class="routerLink" v-bind:to="'/result/' + pollId">
+            {{ uiLabels.checkResultsText }}
+          </router-link>
         </button>
         <!-- <button
           class="deletePollBtn catPawCursor controlPanelBtn"
