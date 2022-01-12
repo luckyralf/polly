@@ -131,6 +131,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("checkPollExists", function (pollId) {
+    console.log("checkpollexists socket", pollId, data.checkPollExists(pollId));
     socket.emit("checkedPollExists", data.checkPollExists(pollId));
   });
 }

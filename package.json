@@ -2,6 +2,9 @@
   "name": "polly",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",

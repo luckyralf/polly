@@ -409,10 +409,6 @@ export default {
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
     0 0 42px #f0f, 0 0 82px #f0f;
-  margin-left:465px;
-  margin-right:465px;
-  
-  
 }
 
 

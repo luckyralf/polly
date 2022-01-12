@@ -28,7 +28,7 @@
             X
           </button>
         </div>
-        <div >{{ uiLabels.startpageInfoContent }}</div>
+        <div>{{ uiLabels.startpageInfoContent }}</div>
       </div>
     </div>
 
@@ -40,6 +40,7 @@
 
     <div class="writeAndParticipate">
       <label class="catPawTextCursor">
+        {{ uiLabels.writePollId }}
         <input type="text" v-model="id" class="textArea catPawTextCursor" />
       </label>
       <br />
@@ -56,18 +57,26 @@
           }"
           >{{ uiLabels.participatePoll }}
         </router-link> -->
+
+        <button
+          class="activeLink"
+          tag="button"
+          style="color: #fff"
+          v-bind:class="{
+            inactiveLink: id === '',
+          }"
+          v-on:click="checkPollExist(id)"
+        >
+          {{ uiLabels.participatePoll }}
+        </button>
+        <span
+          v-bind:class="[
+            { noIdProvided: id === '' },
+            { idProvided: id !== '' },
+          ]"
+          >{{ uiLabels.needWritePollName }}</span
+        >
       </div>
-      <button
-        class="activeLink"
-        tag="button"
-        style="color: #fff"
-        v-bind:class="{
-          inactiveLink: id === '',
-        }"
-        v-on:click="joinPoll(id)"
-      >
-        {{ uiLabels.runPoll }}
-      </button>
     </div>
 
     <div class="createOwn">
@@ -134,6 +143,13 @@ export default {
     socket.on("emitAllPolls", (data) => {
       this.polls = data;
     });
+    socket.on("checkedPollExists", (trueOrFalse) => {
+      if (trueOrFalse) {
+        this.joinPoll(this.id);
+      } else {
+        alert("poll no existo hello?s");
+      }
+    });
   },
   methods: {
     playSound: function () {
@@ -165,18 +181,22 @@ export default {
     checkPollExist: function (pollId) {
       console.log("checkpollexists ");
       socket.emit("checkPollExists", pollId);
-      socket.on("checkedPollExists", (trueOrFalse) => {
-        this.pollExistsTrueOrFalse = trueOrFalse;
-        console.log(trueOrFalse, "i curly brackets");
-      });
-      return this.pollExistsTrueOrFalse;
+
+      // console.log("checkpollexist html kommer den ens hit?", trueOrFalse);
+      // return trueOrFalse;
+      // if (this.pollExistsTrueOrFalse === true) {
+      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
+      // } else {
+      //   alert("poll not existamento stupido");
+      // }
     },
     joinPoll: function (pollId) {
-      if (this.checkPollExist(pollId) === true) {
-        this.$router.push({ name: "Waiting", params: { id: pollId } });
-      } else {
-        alert("poll not existamento stupido");
-      }
+      this.$router.push({ name: "Waiting", params: { id: pollId } });
+      // if (this.checkPollExist(pollId) === true) {
+      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
+      // } else {
+      //   alert("poll not existamento stupido");
+      // }
     },
   },
 };
@@ -248,12 +268,11 @@ body {
   pointer-events: none;
 }
 
-  @media only screen and (max-width: 600px) {
-    body {
-      background: yellow;
-    }
+@media only screen and (max-width: 600px) {
+  body {
+    background: yellow;
   }
-
+}
 
 .circles li {
   position: absolute;
@@ -585,19 +604,15 @@ body {
     max-width: 100%;
   }
 
-#infoDIV{
-  position:absolute;
-  z-index:1;
-  opacity:100%;
-  min-height:148pt;
-  min-width:260pt;
-  top:100%;
+  #infoDIV {
+    position: absolute;
+    z-index: 1;
+    opacity: 100%;
+    min-height: 148pt;
+    min-width: 260pt;
+    top: 100%;
+  }
 }
-
-
-  
-}
-
 
 .createOwn {
   font-family: "Outfit", sans-serif;
