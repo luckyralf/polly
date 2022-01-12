@@ -6,7 +6,7 @@
     </header>
 
     <!--<main> -->
-    {{ data }}
+   
     <div>
       <p class="waitingForHost">Waiting for host to start poll...</p>
 
@@ -16,8 +16,8 @@
         <span class="loaderPrick"></span>
       </div>
 
-      <p class="participants">Participants:</p>
-
+      <p class="participants">Participants: {{ this.thePoll.poll.amountParticipants }}</p>
+ 
       <div class="amount"></div>
     </div>
 
@@ -47,6 +47,8 @@ export default {
       pollId: "inactive poll",
       amountParticipants: 0,
       pollActivated: false,
+      thePoll: {},
+      data: {},
     };
   },
 
@@ -66,6 +68,10 @@ export default {
     socket.on("runPolls", () => {
       console.log(this.pollId);
       this.$router.push({ name: "Poll", params: { id: this.pollId } });
+    });
+    socket.emit("emitGetPoll", this.pollId);
+    socket.on("getPoll", (thePoll) => {
+      this.thePoll = thePoll;
     });
   },
   // methods: {

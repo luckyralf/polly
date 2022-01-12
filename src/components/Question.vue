@@ -136,6 +136,8 @@ export default {
   created: function () {
     this.pollId = this.$route.params.id;
   },
+
+
   methods: {
     emptyAnswer: function(){
       this.answerSubmitted = true;
@@ -167,7 +169,7 @@ export default {
       this.questionNumber = this.questionNumber + 1;
 
       if (this.questionNumber === this.amountQuestion) {
-        this.lastQuestion = false;
+        this.lastQuestion = false; //Innebär att de är sista frågan!!! false är egentligen true :) /elsa
       }
     },
 
