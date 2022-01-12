@@ -64,7 +64,9 @@ methods: {
 <style scoped>
 
 @media (max-width: 600px){
-
+  #individualBar{
+    margin-top: 2rem;
+  }
 }
 
 .ansAlt{

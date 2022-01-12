@@ -174,6 +174,14 @@ export default {
 
 <style scoped>
 
+@media (min-width: 601px) {
+  .questionAndBars{
+    display: flex;
+    flex-direction: row;
+
+  }
+}
+
 .linkHome {
   background-image: url(https://image.winudf.com/v2/image/bnUuaG9tZS5mbG9hdF9pY29uXzE1MzM0NDc5MDJfMDQ2/icon.png?w=&fakeurl=1);
   background-size: cover;
@@ -204,7 +212,6 @@ export default {
 }
 
 .questionAndBars {
-  display: flex;
   /* grid-gap: 100px; */
   top:30%;
   /* position:absolute; */
