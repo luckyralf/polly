@@ -64,7 +64,9 @@ methods: {
 <style scoped>
 
 @media (max-width: 600px){
-
+  #individualBar{
+    margin-top: 2rem;
+  }
 }
 
 .ansAlt{
@@ -119,7 +121,7 @@ methods: {
   /* margin-right: 200px; */
   display:flex;
   grid-gap:40px;
-  max-height:180px;
+  /* max-height:180px; */
 
 }
 

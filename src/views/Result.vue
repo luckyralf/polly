@@ -174,6 +174,13 @@ export default {
 
 <style scoped>
 
+@media (min-width: 601px) {
+  .questionAndBars{
+    display: flex;
+    flex-direction: row;
+  }
+}
+
 .linkHome {
   background-image: url(https://image.winudf.com/v2/image/bnUuaG9tZS5mbG9hdF9pY29uXzE1MzM0NDc5MDJfMDQ2/icon.png?w=&fakeurl=1);
   background-size: cover;
@@ -213,7 +220,7 @@ export default {
   border: solid white 5px;
   border-radius: 20px;
   width: fit-content;
-  min-height: fit-content;
+  height: fit-content;
   padding: 2rem;
 }
 
