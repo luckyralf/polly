@@ -7,7 +7,7 @@
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
     <div v-if="key != ''">
       <!--<div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]"> -->
-      <div id="individualBar" v-bind:style="[{height: 500*(item.count/getA()) + 'px'},{'background-color':item.color}]">
+      <div id="individualBar" v-bind:style="[{height: 400*(item.count/getA()) + 'px'},{'background-color':item.color}]">
         <span> {{item.count}} </span>
       </div>
        
@@ -63,12 +63,11 @@ methods: {
 
 
 .allBars {
-
 }
 
 .bar {
   display: inline-block;
-  width: 60px;
+  width: 70px;
   vertical-align: bottom;
   margin: 7px;
   font-family:"Exo 2", sans-serif;
@@ -88,6 +87,7 @@ methods: {
 
 .participants {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
+  font-family: "Exo", sans-serif;
   border: solid 5px;
   border-radius: 20px;
   border-color: white;
@@ -97,13 +97,14 @@ methods: {
   font-size: 15px;
   padding: 10px;
   padding-bottom: 20px;
-  
   width: 100px;
-
+  max-height:300px;
 }
 .wrapper{
   margin-right: 200px;
-  display:grid;
+  display:flex;
+  grid-gap:40px;
+  max-height:180px;
 
 }
 
