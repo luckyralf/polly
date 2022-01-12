@@ -3,13 +3,18 @@
 ## Kvar att göra
 
 - [ ] Ladda upp på servern
-- [ ] Kolla uiLabels överallt
-- [ ] Home knapp på alla sidor förutom start.
+- [x] uiLabels poll
+- [x] uiLabels waiting
+- [ ] uiLabels create
+- [x] uiLabels start
+- [x] uiLabels result
+- [ ] Home knapp på alla sidor förutom start. (tvek om det behövs). 
 - [ ] Cursors kvar på waitingroom och results, väntar på att kunna komma vidare mvh adam
+- [ ] Kod hygien!!
 
 ## Poll
 
-- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+- [x] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
 - [x] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
 - [x] OM det bara är en fråga fuckas det upp vad händer.
@@ -87,7 +92,9 @@
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
 - [x] De som inte svarat
-- [ ] FIXA design tillexempel en animering
+- [x] FIXA design tillexempel en animering
+- [x] Bar chart ska visas istället för pie chart ibland
+- [ ] VAD ÄR DE GULA I PIE
 
 ## Poll
 

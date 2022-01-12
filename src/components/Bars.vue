@@ -93,7 +93,7 @@ methods: {
   border-radius: 20px;
   border-color: white;
   border-style: outset;
-  color: #B22222;
+  color: white;
   margin-bottom: 50px;
   margin-left: 200px;
   position: right;

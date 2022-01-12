@@ -31,11 +31,11 @@
       {{ uiLabels.createStartInfo }}
       <br />
       <br />
-      {{ polls[pollId] }} <span style="color: red">THIS IS polls[pollId]</span>
+      <!-- {{ polls[pollId] }} <span style="color: red">THIS IS polls[pollId]</span>
       <br />
       <br />
       {{ this.polls }}<span style="color: red">THIS IS this.polls</span>
-      <br />
+      <br /> -->
       <div v-for="(_, index) in polls" :key="index">
         <button
           v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
