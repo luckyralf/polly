@@ -1,6 +1,4 @@
-
-
-  <template class="temp">
+<template class="temp">
   <body class="Wrapped catCursor">
     <div class="languangeButtonContainer">
       <button
@@ -47,23 +45,21 @@
       </label>
       <br />
       <br />
-      {{ data }}
       <div class="linkToPoll">
         <router-link
           v-bind:to="'/waiting/' + id"
           class="activeLink"
           tag="button"
           style="color: #fff"
-          v-bind:class="{ inactiveLink: id === '' || typeof polls[id] === 'undefined' }"
           >{{ uiLabels.participatePoll }}
         </router-link>
-        <span
-            v-bind:class="[
-              { noIdProvided: typeof polls[id] === 'undefined'  },
-              { idProvided: typeof polls[id] !== 'undefined'   },
-            ]"
-            >{{ uiLabels.pollDontExist }}</span
-          >
+        <!-- <span
+          v-bind:class="[
+            { noIdProvided: typeof polls[id] === 'undefined' },
+            { idProvided: typeof polls[id] !== 'undefined' },
+          ]"
+          >{{ uiLabels.pollDontExist }}</span
+        > -->
       </div>
     </div>
 
@@ -106,7 +102,6 @@
     </ul>
   </body>
 </template>
-
 
 <script>
 import io from "socket.io-client";
@@ -235,13 +230,11 @@ body {
   overflow: hidden;
   pointer-events: none;
 
-  @media only screen and (max-width:600px){ 
-
-    body{
-      background:yellow;
+  @media only screen and (max-width: 600px) {
+    body {
+      background: yellow;
     }
-  } 
-
+  }
 }
 
 .circles li {
@@ -513,7 +506,7 @@ body {
   text-transform: uppercase;
 }
 
-.CATPOLL{
+.CATPOLL {
   margin-top: 2rem;
 }
 
@@ -540,47 +533,41 @@ body {
   left:50%;
   transform:translate(-50% -50%);*/
   overflow: hidden;
-
-
 }
 
-@media only screen and (max-width:600px){
-  .writeAndParticipate{
+@media only screen and (max-width: 600px) {
+  .writeAndParticipate {
     margin-left: 10%;
     margin-right: 10%;
     min-width: 80%;
     font-size: 27pt;
   }
 
-  .createOwn{
-    display:none;
+  .createOwn {
+    display: none;
   }
-  .textArea{
-    min-height:27px;
-  }
-
-  .CATPOLL{
-    font-size:50pt;
-
+  .textArea {
+    min-height: 27px;
   }
 
-  #headerText{
-    
-    max-width:80%;
-    min-width:80%;
-    position:relative;
+  .CATPOLL {
+    font-size: 50pt;
+  }
+
+  #headerText {
+    max-width: 80%;
+    min-width: 80%;
+    position: relative;
     /*right:30%;*/
-    top:0%;
-    left:-25%;
+    top: 0%;
+    left: -25%;
     transform: translate (-50% -50%);
   }
 
-    .Wrapped{
-      max-width:100%;
-    }
-  
+  .Wrapped {
+    max-width: 100%;
+  }
 }
-
 
 .createOwn {
   font-family: "Outfit", sans-serif;
@@ -689,6 +676,5 @@ hr:after {
 }
 
 .controlPanel {
-  
 }
 </style>
