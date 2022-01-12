@@ -22,6 +22,7 @@
       </div>
     </div>
 
+
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
@@ -54,7 +55,7 @@
         <input
           type="text"
           placeholder="Write poll name here"
-          v-model="pollId"
+          v-model="pollIdInput"
           class="catPawTextCursor"
           required
         />
@@ -64,11 +65,14 @@
             v-on:click="createPoll"
             v-bind:class="{
               createPollBtnInActive:
-                pollId === '' || typeof polls[pollId] !== 'undefined',
-            }"
-          >
+              pollId === '' || typeof polls[pollId] !== 'undefined',
+            }" 
+            >
+
             {{ uiLabels.createPoll }}
           </button>
+          {{pollIdInput}}
+          
           <span
             v-bind:class="[
               { noIdProvided: pollId === '' },
@@ -92,6 +96,7 @@
             {{ uiLabels.pollCreated }}
             <span id="pollHeadLine"> {{ pollId }}</span>
           </h4>
+
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="polls[pollId] !== undefined">
             {{ polls[pollId].questions }}
@@ -308,6 +313,7 @@ export default {
       editActivated: false,
       polls: null,
       indexForChosenQuestion: 0,
+      pollIdInput: "",
     };
   },
   computed: {
@@ -451,9 +457,11 @@ export default {
       this.indexForChosenQuestion -= 1;
     },
     createPoll: function () {
+      this.pollId = this.pollIdInput;
       if (typeof this.polls[this.pollId] === "undefined") {
         socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
         socket.emit("getAllPolls");
+        
       }
     },
     selectPoll: function (pollId) {
@@ -689,7 +697,7 @@ main {
   margin-top: 10px;
 }
 
-.createPollBtnInActive {
+/* .createPollBtnInActive {
   color: white;
   background: #20af19;
   border-radius: 3px;
@@ -700,7 +708,7 @@ main {
   font-size: 20px;
   opacity: 0.5;
   pointer-events: none;
-}
+} */
 
 .idProvided {
   visibility: hidden;

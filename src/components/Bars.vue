@@ -1,8 +1,6 @@
 <template>
 <div class="wrapper">
-<div class= "participants"> 
-      {{amountParticipants- getA()}} Svarade inte på denna fråga och syns inte i barsen. 
- </div>
+
  <div class= "allBars"> 
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
     <div v-if="key != ''">
@@ -17,6 +15,9 @@
     </div>
   </div>
   </div>
+  <div class= "participants"> 
+     <span id="partiNum"> {{amountParticipants- getA()}}</span> <br> Svarade inte på denna fråga och syns inte i barsen. 
+ </div>
     
 </div>
 
@@ -61,6 +62,9 @@ methods: {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+@media (max-width: 600px){
+
+}
 
 .allBars {
 }
@@ -84,6 +88,9 @@ methods: {
   transform-origin: bottom;
 }
 
+#partiNum{
+  font-size: 2rem;
+}
 
 .participants {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
@@ -91,17 +98,18 @@ methods: {
   border: solid 5px;
   border-radius: 20px;
   border-color: white;
+  color: white;
   margin-bottom: 50px;
-  margin-left: 200px;
-  position: right;
+  /* margin-left: 200px; */
+  /* position: right; */
   font-size: 15px;
   padding: 10px;
   padding-bottom: 20px;
   width: 100px;
-  max-height:300px;
+  height: fit-content;
 }
 .wrapper{
-  margin-right: 200px;
+  /* margin-right: 200px; */
   display:flex;
   grid-gap:40px;
   max-height:180px;
