@@ -58,18 +58,18 @@
           v-model="newPollId"
           class="catPawTextCursor"
           required
-          v-on:input="updatePolls();"
+          v-on:input="updatePolls()"
         />
-        {{pollId}} <span>pollId</span><br>
-        {{newPollId}} <span>newPollId</span> <br>
-        {{typeof newPollId}}
+        <!-- {{polls[pollId].saveMode}} -->
         <div class="pollName">
           <button
             class="createPollBtnActive catPawCursor"
             v-on:click="createPoll"
             v-bind:class="{
               createPollBtnInActive:
-                 typeof newPollId === 'undefined' || typeof polls[newPollId] !== 'undefined' || newPollId === '',
+                typeof newPollId === 'undefined' ||
+                typeof polls[newPollId] !== 'undefined' ||
+                newPollId === '',
             }"
           >
             {{ uiLabels.createPoll }}
@@ -78,7 +78,10 @@
           
           <span
             v-bind:class="[
-              { noIdProvided: newPollId === '' || typeof newPollId === 'undefined'},
+              {
+                noIdProvided:
+                  newPollId === '' || typeof newPollId === 'undefined',
+              },
               { idProvided: newPollId !== '' },
             ]"
             >{{ uiLabels.needWritePollName }}</span
@@ -93,8 +96,8 @@
         </div>
       </div>
 
-      <div v-if="!saveMode" class="wrapper">
-        <section id="questSection">
+      <div class="wrapper">
+        <section v-if="polls[pollId] && !polls[pollId].saveMode" id="questSection">
           <h4 v-if="pollId !== ''">
             {{ uiLabels.pollCreated }}
             <span id="pollHeadLine"> {{ pollId }}</span>
@@ -130,28 +133,35 @@
             </button>
             <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
-            <div>
+            <div> 
+              <!-- hittahitt -->
               <button
+                v-if="this.indexForChosenQuestion !== 0"
                 class="moveBtn catPawCursor"
-                v-on:click="
-                  moveQuestion('up');
-                "
+                v-on:click="moveQuestion('up')"
               >
                 ↑
               </button>
+              {{polls[pollId].questions.length}}
               <button
+                v-if="this.indexForChosenQuestion < this.polls[this.pollId].questions.length"
                 class="moveBtn catPawCursor"
-                v-on:click="
-                  moveQuestion('down');
-                "
+                v-on:click="moveQuestion('down')"
               >
                 ↓
               </button>
             </div>
           </div>
+          <button
+            v-if="polls[pollId] && !polls[pollId].saveMode"
+            v-on:click="editOrSavePoll('savemode')"
+            class="createPollBtnActive"
+          >
+            {{ uiLabels.savePoll }}
+          </button>
         </section>
         <!-- Här börjar formuläret för högra rutan -->
-        <section id="formSection">
+        <section v-if="polls[pollId] && !polls[pollId].saveMode" id="formSection">
           <br />
 
           {{ uiLabels.question }}
@@ -247,17 +257,10 @@
         </section>
       </div>
       <!-- Edit / Save poll -->
-      <button v-on:click="editOrSavePoll('savemode')">
-        {{ uiLabels.savePoll }}
-      </button>
-      <button v-on:click="editOrSavePoll('editmode')">
-        {{ uiLabels.editPoll }}
-      </button>
-      {{ Object.keys(polls) }}
       <br />
       <br />
       <!-- Control Panel -->
-      <div id="result" v-if="saveMode">
+      <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
         <h2>Control panel</h2>
         <!-- <div> -->
         <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
@@ -375,10 +378,9 @@ export default {
 
     socket.on("pollCreated", () => {
       this.pollId = this.newPollId;
-      this.newPollId = '';
+      this.newPollId = "";
       // this.polls[this.pollId] = data;
       this.addQuestion(0);
-      
     });
     // socket.on("allQuestions", (data) => (this.polls[this.pollId] = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
@@ -390,7 +392,10 @@ export default {
   },
   methods: {
     bindVariables: function () {
-      if (this.pollId && this.polls[this.pollId].questions[this.indexForChosenQuestion]) {
+      if (
+        this.pollId &&
+        this.polls[this.pollId].questions[this.indexForChosenQuestion]
+      ) {
         this.answers =
           this.polls[this.pollId].questions[this.indexForChosenQuestion].a;
       }
@@ -453,10 +458,10 @@ export default {
       });
       this.updatePolls();
       if (direction == "up") {
-        this.indexForChosenQuestion -=1;
+        this.indexForChosenQuestion -= 1;
       }
-      if (direction == "down") {
-        this.indexForChosenQuestion +=1;
+      if (direction == "down") { //hittahit
+        this.indexForChosenQuestion += 1;
       }
       // this.question = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].q;
       // this.answers = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].a;

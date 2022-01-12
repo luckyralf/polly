@@ -1,11 +1,11 @@
 <template id="temp">
   <section class="wrapper">
     <header>
-      <h1 class="waitingRoom">{{ WAITINGROOM }}</h1>
+      <h1 class="waitingRoom">{{ uiLabels.WAITINGROOM }}</h1>
     </header>
    
     <div>
-      <p class="waitingForHost"> {{ WaitingForHost }}</p>
+      <p class="waitingForHost"> {{ uiLabels.WaitingForHost }}</p>
 
       <div class="loading">
         <span class="loaderPrick"></span>
@@ -13,7 +13,7 @@
         <span class="loaderPrick"></span>
       </div>
 
-      <p class="participants"> {{ participants }} {{ this.thePoll.poll.amountParticipants }}</p>
+      <p class="participants"> {{ uiLabels.participants }} {{ this.thePoll.poll.amountParticipants }}</p>
  
       <div class="amount"></div>
     </div>
@@ -127,6 +127,7 @@ body {
 
 .wrapper {
   background: pink;
+  height:100vh;
 }
 
 .waitingRoom {
