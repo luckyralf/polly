@@ -85,7 +85,7 @@
   </div>
 <div v-if="quizFinished" >
   <div class ="popUpResult"> 
-      Congratulations! You are done with the poll! 
+      {{ uiLabels.congratulations }}
   </div>
 
 <div class="drawing-holder">
@@ -380,8 +380,8 @@ export default {
   color: white;
   font-size: 30px;
   font-family: "Outfit", sans-serif;
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 45px;
+  margin-bottom: 60px;
   margin-right: 50px;
 }
 

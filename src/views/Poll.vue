@@ -159,6 +159,7 @@ export default {
   margin: 0;
   padding: 2rem 0 5rem 0;
   align-content: center; 
+  height:100vh;
 }
 
 .catPawCursor {
