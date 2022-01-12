@@ -88,18 +88,21 @@ methods: {
 
 .participants {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
-  font-family: "Exo", sans-serif;
+  font-family: "Outfit", sans-serif;
   border: solid 5px;
   border-radius: 20px;
   border-color: white;
+  border-style: outset;
+  color: #B22222;
   margin-bottom: 50px;
   margin-left: 200px;
   position: right;
-  font-size: 15px;
+  font-size: 20px;
   padding: 10px;
   padding-bottom: 20px;
   width: 100px;
   max-height:300px;
+
 }
 .wrapper{
   margin-right: 200px;
