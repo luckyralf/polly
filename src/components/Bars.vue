@@ -1,8 +1,7 @@
 <template>
 <div class="wrapper">
 <div class= "participants"> 
-     {{getA()}} stycken svarade på denna frågan.
-      {{amountParticipants- getA()}} Svarade inte på denna fråga och syns inte i baren. 
+      {{amountParticipants- getA()}} Svarade inte på denna fråga och syns inte i barsen. 
  </div>
  <div class= "allBars"> 
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
