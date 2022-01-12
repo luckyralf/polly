@@ -115,6 +115,7 @@ export default {
   },
 
   created: function () {
+    console.log('result skapas');
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {
       pollId: this.pollId,
