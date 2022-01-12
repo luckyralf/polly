@@ -32,7 +32,7 @@
 
 <script>
 import Question from "@/components/Question.vue";
-import { confetti } from "/public/confetti-creator.js";
+//import { confetti } from "/public/confetti-creator.js";
 import io from "socket.io-client";
 const socket = io();
 
@@ -111,7 +111,7 @@ export default {
       }
     },
     confettiButton: function () {
-      confetti();
+      //confetti();
     },
   },
 };
