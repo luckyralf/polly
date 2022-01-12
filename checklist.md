@@ -6,10 +6,11 @@
 - [ ] Kolla uiLabels överallt
 - [ ] Home knapp på alla sidor förutom start.
 - [ ] Cursors kvar på waitingroom och results, väntar på att kunna komma vidare mvh adam
+- [ ] Kod hygien!!
 
 ## Poll
 
-- [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
+- [x] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
 - [x] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
 - [x] OM det bara är en fråga fuckas det upp vad händer.
