@@ -28,7 +28,7 @@
             X
           </button>
         </div>
-        {{ uiLabels.startpageInfoContent }}
+        <div >{{ uiLabels.startpageInfoContent }}</div>
       </div>
     </div>
 
@@ -230,11 +230,6 @@ body {
   overflow: hidden;
   pointer-events: none;
 
-  @media only screen and (max-width: 600px) {
-    body {
-      background: yellow;
-    }
-  }
 }
 
 .circles li {
@@ -535,6 +530,7 @@ body {
   overflow: hidden;
 }
 
+/* CSS för mobil-version nedan */
 @media only screen and (max-width: 600px) {
   .writeAndParticipate {
     margin-left: 10%;
@@ -542,7 +538,6 @@ body {
     min-width: 80%;
     font-size: 27pt;
   }
-
   .createOwn {
     display: none;
   }
@@ -560,14 +555,26 @@ body {
     position: relative;
     /*right:30%;*/
     top: 0%;
-    left: -25%;
+    left: -40%;
     transform: translate (-50% -50%);
   }
-
   .Wrapped {
     max-width: 100%;
   }
+
+#infoDIV{
+  position:absolute;
+  z-index:1;
+  opacity:100%;
+  min-height:148pt;
+  min-width:260pt;
+  top:100%;
 }
+
+
+  
+}
+
 
 .createOwn {
   font-family: "Outfit", sans-serif;
