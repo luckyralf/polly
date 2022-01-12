@@ -23,9 +23,9 @@ Data.prototype.createPoll = function (pollId, lang = "en") {
     let poll = {};
     poll.lang = lang;
     poll.questions = [];
-    poll.answers = []; //tror detta är svaren som ges, ej svarsalternativen
+    poll.answers = [];
     poll.editQuestion = -1; //frågan som ska visas när man klickar på en
-    poll.currentQuestion = 1; //kanske rimligt att denna börjar på 1?
+    poll.currentQuestion = 1;
     this.polls[pollId] = poll;
     poll.saveMode = false;
     poll.amountParticipants = 0;
@@ -39,13 +39,13 @@ Data.prototype.deletePoll = function (pollId) {
 };
 
 Data.prototype.addQuestion = function (pollId, q, indexForAddedQuestion) {
-  console.log(indexForAddedQuestion,'indexforaddedQ');
+  console.log(indexForAddedQuestion, "indexforaddedQ");
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== "undefined") {
     poll.questions.push(q);
   }
-  console.log(poll.editQuestion,'editQ')
+  console.log(poll.editQuestion, "editQ");
   poll.editQuestion = indexForAddedQuestion;
 };
 
@@ -54,13 +54,12 @@ Data.prototype.editQuestion = function (pollId, index) {
   if (poll.editQuestion !== undefined) {
     poll.editQuestion = index;
   }
-  // console.log("The currently selected question is", index,'and editQ is:', poll.editQuestion);
 };
 
 Data.prototype.saveEditedQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
   poll.questions[poll.editQuestion] = q;
-  console.log('The poll now looks like: ',poll)
+  console.log("The poll now looks like: ", poll);
 };
 
 Data.prototype.deleteQuestion = function (pollId) {
@@ -93,7 +92,6 @@ Data.prototype.moveQuestion = function (pollId, direction) {
 };
 
 Data.prototype.getQuestion = function (pollId, qId = null) {
-  //tror att qId blir null endast om man inte ger ett värde mvh adam
   const poll = this.polls[pollId];
   console.log("hejhej", poll, pollId, typeof pollId);
   console.log("question requested for ", pollId, qId);
@@ -131,7 +129,7 @@ Data.prototype.getAnswers = function (pollId) {
   }
   return {};
 };
-//Försök att returnera hela pollen till Create-sidan, rad 18 i socket är ändrad
+
 Data.prototype.getPoll = function (pollId) {
   const poll = this.polls[pollId];
 
@@ -168,7 +166,7 @@ Data.prototype.editOrSavePoll = function (mode, pollId) {
 };
 
 Data.prototype.getAllPolls = function () {
-  console.log(this.polls, typeof this.polls)
+  console.log(this.polls, typeof this.polls);
   return this.polls;
 };
 

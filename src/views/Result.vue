@@ -1,28 +1,28 @@
 <template>
   <body class="Wrap catCursor">
-  <router-link to="/">
+    <router-link to="/">
       <button class="linkHome"></button>
-     </router-link>
+    </router-link>
 
     <header>
-      <h1>{{ uiLabels.pollResult }}: {{this.pollId }}</h1>
+      <h1>{{ uiLabels.pollResult }}: {{ this.pollId }}</h1>
     </header>
-    
 
     <main>
       <br />
-      <button class="switchComponentBtn catPawCursor" v-on:click="switchComponent()">
-
-        <div v-if="this.dataRepresentation === 'Bars'" >
-        {{ uiLabels.showPie }}
+      <button
+        class="switchComponentBtn catPawCursor"
+        v-on:click="switchComponent()"
+      >
+        <div v-if="this.dataRepresentation === 'Bars'">
+          {{ uiLabels.showPie }}
         </div>
 
-        <div v-else if="this.dataRepresentation === 'Pies'" >
-        {{ uiLabels.showBar }}
+        <div v-else if="this.dataRepresentation === 'Pies'">
+          {{ uiLabels.showBar }}
         </div>
-        
       </button>
-    
+
       <br />
       <div class="questionAndBars">
         <div class="questions">
@@ -45,10 +45,11 @@
         </div>
         <div id="componentContaner">
           <div id="bars" v-if="this.dataRepresentation === 'Bars'">
-            <Bars v-bind:data="data" 
-                  v-bind:amountParticipants="thePoll.poll.amountParticipants"
-                  v-bind:uiLabels="uiLabels" 
-                  />
+            <Bars
+              v-bind:data="data"
+              v-bind:amountParticipants="thePoll.poll.amountParticipants"
+              v-bind:uiLabels="uiLabels"
+            />
           </div>
           <div id="pie" v-if="this.dataRepresentation === 'Pie'">
             <Pie v-bind:data="data" />
@@ -56,7 +57,7 @@
         </div>
       </div>
     </main>
-        <ul class="circles">
+    <ul class="circles">
       <li></li>
       <li></li>
       <li></li>
@@ -68,9 +69,6 @@
       <li></li>
       <li></li>
     </ul>
-
-    <!-- <input type="number" v-model="questionNumber" />
-<button v-on:click="selectQuestion">Which question?</button> -->
   </body>
 </template>
 
@@ -108,7 +106,7 @@ export default {
         "#D85D55",
       ],
       dataRepresentation: "Bars",
-      selectedQuestion: 0, //anvnds bara för färgändring när man valt en fråga man vill se svaren på
+      selectedQuestion: 0,
     };
   },
 
@@ -126,7 +124,6 @@ export default {
           count: this.data[keys[i]],
           color: this.colorArray[i],
         };
-        // this.colorArray.push("#" + Math.floor(Math.random() * 16777215).toString(16))
       }
       this.question = update.q;
     });
@@ -169,7 +166,6 @@ export default {
 </script>
 
 <style scoped>
-
 .linkHome {
   background-image: url(https://image.winudf.com/v2/image/bnUuaG9tZS5mbG9hdF9pY29uXzE1MzM0NDc5MDJfMDQ2/icon.png?w=&fakeurl=1);
   background-size: cover;
@@ -202,9 +198,8 @@ export default {
 .questionAndBars {
   display: flex;
   grid-gap: 100px;
-  top:30%;
-  position:absolute;
- 
+  top: 30%;
+  position: absolute;
 }
 
 .questions {
@@ -215,7 +210,7 @@ export default {
 
 .switchComponentBtn {
   font-family: "Outfit", sans-serif;
-  font-size:1em;
+  font-size: 1em;
   margin-top: 1rem;
   color: white;
   background-color: #296ad3;
@@ -223,13 +218,11 @@ export default {
   border: solid white 2px;
   padding: 10px;
   margin-bottom: 20px;
-  /*margin-left: 400px;*/
-  position:absolute;
-  
-  left:80%;
-  top:40%;
-  transform: translate(50% 50%);
+  position: absolute;
 
+  left: 80%;
+  top: 40%;
+  transform: translate(50% 50%);
 }
 
 .resultQuestions {
@@ -243,8 +236,7 @@ export default {
   display: block;
   margin: 2px;
   font-size: 20px;
-  margin-top:6px;
-
+  margin-top: 6px;
 }
 
 .resultQuestions:hover {
@@ -264,11 +256,10 @@ export default {
   background: linear-gradient(to left, #0c2c63, #1941b2);
   padding-top: 1px;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-  padding-bottom:0px;
-  height:100vh;
+  padding-bottom: 0px;
+  height: 100vh;
   border: 0;
   margin: 0;
-
 }
 
 h1 {
@@ -280,16 +271,13 @@ h1 {
     0 0 42px #f0f, 0 0 82px #f0f;
   padding-bottom: 50px;
   border-bottom: 4px pink dashed;
-  
-    
 }
-h1:hover{
+h1:hover {
   color: #fff;
-  
+
   text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
     0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
     0 0 82px rgb(130, 252, 16);
-
 }
 
 /* cirkel bakgrund nedan*/
@@ -302,7 +290,6 @@ h1:hover{
   overflow: hidden;
   pointer-events: none;
 }
-
 
 .circles li {
   position: absolute;

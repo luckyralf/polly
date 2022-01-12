@@ -50,10 +50,8 @@
   "savePoll": "Save poll",
   "editPoll": "Edit Poll",
   "pollDontExist": "Poll does not exist yet",
-  "congratulations":"Congratulations! You are done with the poll!",
-  "timeLeft":"Time left:",
+  "congratulations": "Congratulations! You are done with the poll!",
+  "timeLeft": "Time left:",
   "showBar": "Show bar chart",
   "peopleWhoDidntAnswer": "People did not answer to this question."
-
-  
 }

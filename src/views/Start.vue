@@ -44,21 +44,9 @@
         <input type="text" v-model="id" class="textArea catPawTextCursor" />
       </label>
       <br />
-      {{id}}
       <br />
 
       <div class="linkToPoll">
-        <!-- <router-link
-          v-bind:to="'/waiting/' + id"
-          class="activeLink"
-          tag="button"
-          style="color: #fff"
-          v-bind:class="{
-            inactiveLink: id === '',
-          }"
-          >{{ uiLabels.participatePoll }}
-        </router-link> -->
-
         <button
           class="activeLink"
           tag="button"
@@ -92,21 +80,14 @@
       </div>
     </div>
 
-    <!-- <router-link
-          style="color: #fff"
-          className="link"
-          v-bind:to="'/waiting/' + id"
-          > testtest </router-link> -->
-
     <div id="Finalword">
       <hr />
       <footer>
         <h3>&copy; Cat Poll Corp.</h3>
       </footer>
     </div>
-
     <ul class="circles">
-      <li></li>
+      <li>1</li>
       <li></li>
       <li></li>
       <li></li>
@@ -148,7 +129,7 @@ export default {
       if (trueOrFalse) {
         this.joinPoll(this.id);
       } else {
-        alert("poll no existo hello?s");
+        alert(this.uiLabels.pollDontExist);
       }
     });
   },
@@ -158,11 +139,6 @@ export default {
       audio.play();
     },
 
-    // switchLanguage: function () {
-    //   if (this.lang === "en") this.lang = "sv";
-    //   else this.lang = "en";
-    //   socket.emit("switchLanguage", this.lang);
-    // },
     infoFunction: function () {
       var x = document.getElementById("infoDIV");
       if (x.style.display === "none") {
@@ -182,22 +158,9 @@ export default {
     checkPollExist: function (pollId) {
       console.log("checkpollexists ");
       socket.emit("checkPollExists", pollId);
-
-      // console.log("checkpollexist html kommer den ens hit?", trueOrFalse);
-      // return trueOrFalse;
-      // if (this.pollExistsTrueOrFalse === true) {
-      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
-      // } else {
-      //   alert("poll not existamento stupido");
-      // }
     },
     joinPoll: function (pollId) {
       this.$router.push({ name: "Waiting", params: { id: pollId } });
-      // if (this.checkPollExist(pollId) === true) {
-      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
-      // } else {
-      //   alert("poll not existamento stupido");
-      // }
     },
   },
 };
@@ -268,8 +231,6 @@ body {
   overflow: hidden;
   pointer-events: none;
 }
-
-
 
 .circles li {
   position: absolute;
@@ -715,8 +676,5 @@ hr:after {
   padding: 0 4px;
   position: relative;
   top: -13px;
-}
-
-.controlPanel {
 }
 </style>
