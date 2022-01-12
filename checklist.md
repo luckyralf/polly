@@ -7,7 +7,7 @@
 - [x] uiLabels waiting
 - [ ] uiLabels create
 - [x] uiLabels start
-- [ ] uiLabels result
+- [x] uiLabels result
 - [ ] Home knapp på alla sidor förutom start. (tvek om det behövs). 
 - [ ] Cursors kvar på waitingroom och results, väntar på att kunna komma vidare mvh adam
 - [ ] Kod hygien!!
