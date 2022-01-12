@@ -44,6 +44,7 @@
         <input type="text" v-model="id" class="textArea catPawTextCursor" />
       </label>
       <br />
+      {{id}}
       <br />
 
       <div class="linkToPoll">

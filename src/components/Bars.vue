@@ -9,14 +9,14 @@
         <span> {{item.count}} </span>
       </div>
        
-      <div> 
+      <div class="ansAlt"> 
         {{key}} 
       </div>
     </div>
   </div>
   </div>
   <div class= "participants"> 
-     <span id="partiNum"> {{amountParticipants- getA()}}</span> <br> Svarade inte på denna fråga och syns inte i barsen. 
+     <span id="partiNum"> {{amountParticipants- getA()}}</span> <br> {{uiLabels.peopleWhoDidntAnswer}}
  </div>
     
 </div>
@@ -29,6 +29,7 @@ export default {
   props: {
     data: Object,
     amountParticipants: Number,
+    uiLabels: Object,
   },
 
 data: function () {
@@ -66,6 +67,12 @@ methods: {
 
 }
 
+.ansAlt{
+  color: black;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+
 .allBars {
 }
 
@@ -94,7 +101,7 @@ methods: {
 
 .participants {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
-  font-family: "Exo", sans-serif;
+  font-family: "Outfit", sans-serif;
   border: solid 5px;
   border-radius: 20px;
   border-color: white;
@@ -102,7 +109,7 @@ methods: {
   margin-bottom: 50px;
   /* margin-left: 200px; */
   /* position: right; */
-  font-size: 15px;
+  font-size: 20px;
   padding: 10px;
   padding-bottom: 20px;
   width: 100px;

@@ -9,7 +9,7 @@
     >
     <div v-if="key != ''">
       <div class="colorBox" v-bind:style="{ 'background-color': item.color }"></div>
-      {{ key }}
+      <span id="keyColor"> {{ key }}</span>
     </div>
     </div>
   </div>
@@ -71,6 +71,11 @@ export default {
   display: flex;
 }
 
+#keyColor{
+  color: black;
+  font-weight: bolder;
+  font-size: 1rem;
+}
 .legends {
   display: flex;
   padding: 5px;

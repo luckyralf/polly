@@ -49,6 +49,9 @@
   "pollExists": "Denna poll finns redan",
   "savePoll": "Spara poll",
   "editPoll": "Redigera poll",
-  "pollDontExist": "Omröstningen existerar inte ännu"
-
+  "pollDontExist": "Omröstningen existerar inte ännu",
+  "congratulations":"Grattis! Du är klar med omröstningen!",
+  "timeLeft":"Tid kvar:",
+  "showBar": "Visa stapeldiagram",
+  "peopleWhoDidntAnswer":"Personer svarade inte på denna frågan."
 }
