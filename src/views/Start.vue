@@ -42,6 +42,7 @@
       <label class="catPawTextCursor">
         {{ uiLabels.writePollId }}
         <input type="text" v-model="id" class="textArea catPawTextCursor" />
+        
       </label>
       <br />
       {{id}}
@@ -268,9 +269,6 @@ body {
   overflow: hidden;
   pointer-events: none;
 }
-
-
-
 .circles li {
   position: absolute;
   display: block;
@@ -413,6 +411,7 @@ body {
   opacity: 85%;
   font-family: "Outfit", sans-serif;
   display: none;
+  z-index:4;
 }
 
 .infoTitle {
@@ -480,22 +479,6 @@ body {
   border: none;
 }
 
-/* .modal {
-  position: fixed;
-  top: 55%;
-  left: 70%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-  border: 1px solid black;
-  border-radius: 10px;
-  z-index: 10;
-  background-color: white;
-  width: 500px;
-  max-width: 80%;
-  opacity: 70%;
-  font-family: "Outfit", sans-serif;
-} */
-
 .infoHeader {
   padding: 10px 15px;
   display: flex;
@@ -503,10 +486,6 @@ body {
   align-items: center;
   border-bottom: 1px solid black;
 }
-
-/* .modal.active {
-  transform: translate(-50%, -50%) scale(1);
-} */
 
 .infoHeader .closeButton {
   border: none;
@@ -569,8 +548,21 @@ body {
   overflow: hidden;
 }
 
+.CreateMobileVersion{
+  display:none
+}
+
 /* CSS för mobil-version nedan */
 @media only screen and (max-width: 600px) {
+.activeLink {
+  color: white;
+  background: #20af19;
+  border-radius: 4%;
+  border: solid #229954;
+  text-decoration: none;
+  margin-top:0px;
+  }
+
   .writeAndParticipate {
     margin-left: 10%;
     margin-right: 10%;
@@ -580,6 +572,11 @@ body {
   .createOwn {
     display: none;
   }
+
+  .CreateMobileVersion{
+  display:grid;
+  margin-bottom:-10px;
+}
   .textArea {
     min-height: 27px;
   }

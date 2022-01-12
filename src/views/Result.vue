@@ -10,6 +10,7 @@
     
 
     <main>
+      <div id="questAndBarsWrap">
       <br />
       <button class="switchComponentBtn catPawCursor" v-on:click="switchComponent()">
 
@@ -24,50 +25,53 @@
       </button>
     
       <br />
-      <div class="questionAndBars">
-        <div class="questions">
-          <div v-for="index in thePoll.poll.questions.length" :key="index">
-            <button
-              class="resultQuestions catPawCursor"
-              type="number"
-              v-on:click="
-                selectQuestion(index - 1);
-                changeColor(index - 1);
-              "
-              v-bind:class="{
-                selectedQuestionBtn: index - 1 === selectedQuestion,
-              }"
-            >
-              {{ uiLabels.question }} {{ index }}:
-              {{ thePoll.poll.questions[index - 1].q }}
-            </button>
+      
+        <div class="questionAndBars">
+          <div class="questions">
+            <div v-for="index in thePoll.poll.questions.length" :key="index">
+              <button
+                class="resultQuestions catPawCursor"
+                type="number"
+                v-on:click="
+                  selectQuestion(index - 1);
+                  changeColor(index - 1);
+                "
+                v-bind:class="{
+                  selectedQuestionBtn: index - 1 === selectedQuestion,
+                }"
+              >
+                {{ uiLabels.question }} {{ index }}:
+                {{ thePoll.poll.questions[index - 1].q }}
+              </button>
+            </div>
           </div>
-        </div>
-        <div id="componentContaner">
-          <div id="bars" v-if="this.dataRepresentation === 'Bars'">
-            <Bars v-bind:data="data" 
-                  v-bind:amountParticipants="thePoll.poll.amountParticipants"
-                  v-bind:uiLabels="uiLabels" 
-                  />
-          </div>
-          <div id="pie" v-if="this.dataRepresentation === 'Pie'">
-            <Pie v-bind:data="data" />
+          
+          <div id="componentContaner">
+            <div id="bars" v-if="this.dataRepresentation === 'Bars'">
+              <Bars v-bind:data="data" 
+                    v-bind:amountParticipants="thePoll.poll.amountParticipants"
+                    v-bind:uiLabels="uiLabels" 
+                    />
+            </div>
+            <div id="pie" v-if="this.dataRepresentation === 'Pie'">
+              <Pie v-bind:data="data" />
+            </div>
           </div>
         </div>
       </div>
     </main>
-        <ul class="circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
 
     <!-- <input type="number" v-model="questionNumber" />
 <button v-on:click="selectQuestion">Which question?</button> -->
@@ -170,6 +174,14 @@ export default {
 
 <style scoped>
 
+@media (min-width: 601px) {
+  .questionAndBars{
+    display: flex;
+    flex-direction: row;
+
+  }
+}
+
 .linkHome {
   background-image: url(https://image.winudf.com/v2/image/bnUuaG9tZS5mbG9hdF9pY29uXzE1MzM0NDc5MDJfMDQ2/icon.png?w=&fakeurl=1);
   background-size: cover;
@@ -200,17 +212,31 @@ export default {
 }
 
 .questionAndBars {
-  display: flex;
-  grid-gap: 100px;
+  /* grid-gap: 100px; */
   top:30%;
-  position:absolute;
- 
+  /* position:absolute; */
+  margin-top: 5rem;
+  background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
+  border: solid white 5px;
+  border-radius: 20px;
+  width: fit-content;
+  min-height: 300px;
+  padding: 2rem;
+  height:fit-content;
 }
 
 .questions {
   grid-column: 1;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   margin-top: 0px;
+  margin-right: 3rem;
+
+}
+
+#questAndBarsWrap{
+  display: flex;
+  justify-content: center;
+  
 }
 
 .switchComponentBtn {
@@ -226,8 +252,8 @@ export default {
   /*margin-left: 400px;*/
   position:absolute;
   
-  left:80%;
-  top:40%;
+  /* left:80%;
+  top:40%; */
   transform: translate(50% 50%);
 
 }
@@ -272,6 +298,8 @@ export default {
 }
 
 h1 {
+  /* margin-left:550px;
+  margin-right:550px; */
   font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
@@ -289,8 +317,8 @@ h1:hover{
   text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
     0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
     0 0 82px rgb(130, 252, 16);
-
 }
+
 
 /* cirkel bakgrund nedan*/
 .circles {

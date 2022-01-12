@@ -22,6 +22,7 @@
       </div>
     </div>
 
+
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
@@ -73,6 +74,8 @@
           >
             {{ uiLabels.createPoll }}
           </button>
+          {{pollIdInput}}
+          
           <span
             v-bind:class="[
               {
@@ -99,6 +102,7 @@
             {{ uiLabels.pollCreated }}
             <span id="pollHeadLine"> {{ pollId }}</span>
           </h4>
+
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="polls[pollId] !== undefined">
             {{ polls[pollId].questions }}
@@ -311,6 +315,7 @@ export default {
       editActivated: false,
       polls: null,
       indexForChosenQuestion: 0,
+      pollIdInput: "",
     };
   },
   computed: {
@@ -474,6 +479,7 @@ export default {
       if (typeof this.polls[this.newPollId] === "undefined") {
         socket.emit("createPoll", { pollId: this.newPollId, lang: this.lang });
         socket.emit("getAllPolls");
+        
       }
     },
     selectPoll: function (pollId) {
@@ -708,7 +714,7 @@ main {
   margin-top: 10px;
 }
 
-.createPollBtnInActive {
+/* .createPollBtnInActive {
   color: white;
   background: #20af19;
   border-radius: 3px;
@@ -719,7 +725,7 @@ main {
   font-size: 20px;
   opacity: 0.5;
   pointer-events: none;
-}
+} */
 
 .idProvided {
   visibility: hidden;
