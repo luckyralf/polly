@@ -254,8 +254,9 @@ export default {
 .isClicked {
   background-color: #3ac7ff;
   border: outset 3px white;
-  width: 10rem;
-  height: 60px;
+  width: 200px;
+  max-height: fit-content;
+  min-height: 60px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
   border-radius: 5px;
