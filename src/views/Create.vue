@@ -206,7 +206,10 @@
           </select>
           <br />
 
+<<<<<<< HEAD
           {{ uiLabels.selectedTime }} {{ data.poll.questions.q }}
+=======
+>>>>>>> 1c0c143b2f8c132ddfbb025f6c263a81b4bf7903
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 
@@ -226,7 +229,6 @@
           </button>
         </section>
       </div>
-      {{ data }}
       <!-- Edit / Save poll -->
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
@@ -376,8 +378,9 @@ export default {
       console.log(this.question, this.answers, "q and a 1"); //här blir något fel, krävs 3 tryck för att uppdatera question och answers
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
-      this.time = this.data.poll.questions[indexForChosenQuestion].t;
-      console.log(this.question, this.answers, "q and a 2");
+      this.time = this.data.poll.questions[indexForChosenQuestion].time;
+      console.log(this.question,this.answers,'q and a2')
+      this.changeColor(indexForChosenQuestion,'questionChange');
     },
 
     chooseQuestion: function (indexForChosenQuestion) {

@@ -11,7 +11,7 @@
       <div
         class="answered"
         v-bind:style="{
-          width: (700 / thePoll.poll.questions.length) * questionNumber + 'px',
+          width: (100 / thePoll.poll.questions.length) * questionNumber + '%',
         }"
       ></div>
     </div>
@@ -179,20 +179,21 @@ body {
   font-family: "Outfit", sans-serif;
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 2rem 0 5rem 0;
   align-content: center;
 }
 
 .bars {
-  height: 40px;
-  width: 700px;
-  margin-left: 350px;
+  height: 1rem;
+  width: 80%;
+  margin-left: 10%;
   margin-top: 5px;
   background-color: #d794e3;
   border: solid 2px white;
+  border-radius: 6px;
 }
 
 .answered {
@@ -200,9 +201,8 @@ body {
   background-position: bottom;
   background-size: 460px;
   height: 100%;
-  width: 0%;
-  max-width: 700px;
-  animation: animate 4s linear infinite;
+  
+  animation: animate ;
   animation-name: ansAni;
 
   transform-origin: left;

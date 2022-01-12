@@ -85,6 +85,7 @@
 
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
+- [ ] De som inte svarat
 
 ## Poll
 
