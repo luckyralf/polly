@@ -39,25 +39,28 @@ Data.prototype.deletePoll = function (pollId) {
 };
 
 Data.prototype.addQuestion = function (pollId, q, indexForAddedQuestion) {
-  console.log(indexForAddedQuestion);
+  console.log(indexForAddedQuestion,'indexforaddedQ');
   const poll = this.polls[pollId];
   console.log("question added to", pollId, q);
   if (typeof poll !== "undefined") {
     poll.questions.push(q);
   }
+  console.log(poll.editQuestion,'editQ')
   poll.editQuestion = indexForAddedQuestion;
 };
 
 Data.prototype.editQuestion = function (pollId, index) {
   const poll = this.polls[pollId];
-  console.log("The currently selected question is", index);
-  poll.editQuestion = index;
+  if (poll.editQuestion !== undefined) {
+    poll.editQuestion = index;
+  }
+  // console.log("The currently selected question is", index,'and editQ is:', poll.editQuestion);
 };
 
 Data.prototype.saveEditedQuestion = function (pollId, q) {
   const poll = this.polls[pollId];
-  console.log("The question with index", poll.editQuestion, "was edited");
   poll.questions[poll.editQuestion] = q;
+  console.log('The poll now looks like: ',poll)
 };
 
 Data.prototype.deleteQuestion = function (pollId) {
@@ -165,8 +168,7 @@ Data.prototype.editOrSavePoll = function (mode, pollId) {
 };
 
 Data.prototype.getAllPolls = function () {
-  console.log(typeof this.polls);
-  console.log("data getallpolls");
+  console.log(this.polls, typeof this.polls)
   return this.polls;
 };
 

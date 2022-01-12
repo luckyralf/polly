@@ -51,5 +51,7 @@
   "editPoll": "Redigera poll",
   "pollDontExist": "Omröstningen existerar inte ännu",
   "congratulations":"Grattis! Du är klar med omröstningen!",
-  "timeLeft":"Tid kvar:"
+  "timeLeft":"Tid kvar:",
+  "showBar": "Visa stapeldiagram",
+  "peopleWhoDidntAnswer":"Personer svarade inte på denna frågan."
 }

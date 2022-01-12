@@ -6,7 +6,7 @@
     </header>
 
     <!--<main> -->
-   
+
     <div>
       <p class="waitingForHost">Waiting for host to start poll...</p>
 
@@ -17,13 +17,14 @@
       </div>
 
       <p class="participants">Participants: {{ this.thePoll.poll.amountParticipants }}</p>
- 
+
       <div class="amount"></div>
     </div>
 
-    <div>
-      <router-link class="startPoll" v-bind:to="'/poll/' + pollId"
-        >KÖR POLLJÄVELN
+
+    <div> <!-- SKA TAS BORT -->
+        <router-link class="startPoll" v-bind:to="'/poll/' + pollId">
+        KÖR POLLJÄVELN
       </router-link>
     </div>
 

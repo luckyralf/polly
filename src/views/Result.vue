@@ -3,11 +3,19 @@
     <header>
       <h1>{{ uiLabels.pollResult }}: {{this.pollId }}</h1>
     </header>
-    
+
     <main>
       <br />
       <button class="switchComponentBtn catPawCursor" v-on:click="switchComponent()">
+
+        <div v-if="this.dataRepresentation === 'Bars'" >
         {{ uiLabels.showPie }}
+        </div>
+
+        <div v-else if="this.dataRepresentation === 'Pies'" >
+        {{ uiLabels.showBar }}
+        </div>
+        
       </button>
     
       <br />
@@ -34,6 +42,7 @@
           <div id="bars" v-if="this.dataRepresentation === 'Bars'">
             <Bars v-bind:data="data" 
                   v-bind:amountParticipants="thePoll.poll.amountParticipants"
+                  v-bind:uiLabels="uiLabels" 
                   />
           </div>
           <div id="pie" v-if="this.dataRepresentation === 'Pie'">
@@ -174,6 +183,8 @@ export default {
 .questionAndBars {
   display: flex;
   grid-gap: 100px;
+  top:30%;
+  position:absolute;
  
 }
 
@@ -194,9 +205,10 @@ export default {
   padding: 10px;
   margin-bottom: 20px;
   /*margin-left: 400px;*/
-  position:relative;
-  top:-50%;
-  left:-42%;
+  position:absolute;
+  
+  left:80%;
+  top:40%;
   transform: translate(50% 50%);
 
 }
@@ -241,14 +253,15 @@ export default {
 }
 
 h1 {
-  margin-left:550px;
-  margin-right:550px;
   font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
   text-align: center;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
     0 0 42px #f0f, 0 0 82px #f0f;
+  padding-bottom: 50px;
+  border-bottom: 4px pink dashed;
+  
     
 }
 h1:hover{
