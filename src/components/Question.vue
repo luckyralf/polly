@@ -21,7 +21,7 @@
 
     <div class ="timerFix">
       <div class="timer" v-if="question.timeOn == true && timer > -1" >
-        {{ timer }} 
+       {{uiLabels.timeLeft}} {{ timer }} 
       </div>
     </div>
 
@@ -84,23 +84,29 @@
     </div>
 
   </div>
+
+
 <div v-if="quizFinished" >
   <div class ="popUpResult"> 
-      Congratulations! You are done with the poll! 
+      {{ uiLabels.congratulations }}
+   <br/>
   </div>
-
-<div class="drawing-holder">
-  <div class="cat-face">
-          
-		<div class="cat-eyes"></div>
-    <div class="cat-nose"></div>
-		<div class="cat-mouth"></div>    
-	</div>
-</div>
+ 
 
   <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
     {{ uiLabels.seeResult }}
   </router-link>
+    
+  <div class="drawing-holder">
+    <div class="cat-face">
+      <div class="cat-eyes"></div>
+      <div class="cat-nose"></div>
+       <div class="cat-mouth"></div>    
+    </div>
+	</div>
+
+
+
 
   
 
@@ -384,9 +390,9 @@ export default {
   color: white;
   font-size: 30px;
   font-family: "Outfit", sans-serif;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  margin-right: 50px;
+  margin-top: 45px;
+  margin-bottom: 85px;
+  margin-right: 35px;
 }
 
 #routLink {
@@ -396,16 +402,8 @@ export default {
   border-radius: 6px;
   border: solid #229954;
   font-size: 2rem;
-  padding: 20px;
-  margin-bottom: 100px;
-}
-
-.catPic{
-  margin-top: 50px;
-  border-style: groove;
-  border-color:  #1941b2;
-  border: 10px;
-
+  padding: 40px;
+  margin-top: 100px;
 }
 
 .timer{
@@ -419,11 +417,13 @@ export default {
 .drawing-holder{
 	width: 100px;
 	height: 100px;
-	position: absolute;
-	margin-top: -170px;
-	margin-left: 270px;
+	margin-top: 100px;
+  margin-right: 200px;  
 	top: 50%;
-	left: 50%;
+	left: 47%;
+
+  position: relative;
+  transform:translate(50% 50%);
 }
 .cat-face{
 	background-color: #E58C56;
@@ -432,7 +432,6 @@ export default {
 	border-radius: 50%;
 	display: block;
 	position: relative;
-	float: left;
 }
 
 .cat-nose{
@@ -446,6 +445,7 @@ export default {
     border-left: 46px solid transparent;
     border-bottom: 82px solid #fff;
     border-radius: 50%;
+
 }
 
 .cat-nose:after{

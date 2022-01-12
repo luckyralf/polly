@@ -18,9 +18,10 @@
       <div class="amount"></div>
     </div>
 
-    <div>
-      <router-link class="startPoll" v-bind:to="'/poll/' + pollId"
-        >KÖR POLLJÄVELN
+
+    <div> <!-- SKA TAS BORT -->
+        <router-link class="startPoll" v-bind:to="'/poll/' + pollId">
+        KÖR POLLJÄVELN
       </router-link>
     </div>
 

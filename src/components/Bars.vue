@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
 <div class= "participants"> 
-      {{amountParticipants- getA()}} Svarade inte på denna fråga och syns inte i barsen. 
+      {{amountParticipants- getA()}} {{uiLabels.peopleWhoDidntAnswer}}
  </div>
  <div class= "allBars"> 
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
@@ -28,6 +28,7 @@ export default {
   props: {
     data: Object,
     amountParticipants: Number,
+    uiLabels: Object,
   },
 
 data: function () {
@@ -87,18 +88,21 @@ methods: {
 
 .participants {
   background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
-  font-family: "Exo", sans-serif;
+  font-family: "Outfit", sans-serif;
   border: solid 5px;
   border-radius: 20px;
   border-color: white;
+  border-style: outset;
+  color: white;
   margin-bottom: 50px;
   margin-left: 200px;
   position: right;
-  font-size: 15px;
+  font-size: 20px;
   padding: 10px;
   padding-bottom: 20px;
   width: 100px;
   max-height:300px;
+
 }
 .wrapper{
   margin-right: 200px;

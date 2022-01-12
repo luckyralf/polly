@@ -25,8 +25,8 @@
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
-
-    <main v-if="this.polls" class="mainWrapped catCursor">
+    <!-- {{this.polls}} -->
+    <main v-if="polls" class="mainWrapped catCursor">
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
@@ -54,7 +54,7 @@
         <input
           type="text"
           placeholder="Write poll name here"
-          v-model="pollId"
+          v-model="newPollId"
           class="catPawTextCursor"
           required
         />
@@ -64,7 +64,7 @@
             v-on:click="createPoll"
             v-bind:class="{
               createPollBtnInActive:
-                pollId === '' || typeof polls[pollId] !== 'undefined',
+                newPollId === '' || typeof polls[newPollId] !== 'undefined',
             }"
           >
             {{ uiLabels.createPoll }}
@@ -126,8 +126,7 @@
               <button
                 class="moveBtn catPawCursor"
                 v-on:click="
-                  moveQuestion('up', polls[this.pollId].editQuestion);
-                  updatePolls();
+                  moveQuestion('up');
                 "
               >
                 ↑
@@ -135,8 +134,7 @@
               <button
                 class="moveBtn catPawCursor"
                 v-on:click="
-                  moveQuestion('down', polls[this.pollId].editQuestion);
-                  updatePolls();
+                  moveQuestion('down');
                 "
               >
                 ↓
@@ -254,7 +252,7 @@
       <div id="result" v-if="saveMode">
         <h2>Control panel</h2>
         <!-- <div> -->
-          <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
+        <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
 
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
@@ -299,32 +297,35 @@ export default {
     return {
       lang: "",
       pollId: "",
-      // question: "",
       answers: ["", ""],
       questionNumber: 1,
       uiLabels: {},
       pollHeadline: "",
-      // time: "0",
       editActivated: false,
       polls: null,
       indexForChosenQuestion: 0,
     };
   },
   computed: {
-    saveMode: function () {
-      if (this.polls && this.pollId) {
-        return this.polls[this.pollId].saveMode;
-      } else {
-        return false;
-      }
-    },
+    // saveMode: function () {
+    //   if (this.polls && this.pollId) {
+    //     return this.polls[this.pollId].saveMode;
+    //   } else {
+    //     return false;
+    //   }
+    // },
     question: {
       get: function () {
-        if (this.polls && this.pollId) {
-          console.log(
-            "är question 0? ",
-            this.polls[this.pollId].questions[this.indexForChosenQuestion].q
-          );
+        if (
+          this.polls &&
+          this.pollId &&
+          this.polls[this.pollId] &&
+          this.polls[this.pollId].questions &&
+          this.polls[this.pollId].questions[this.indexForChosenQuestion]
+        ) {
+          console.log(this.pollId);
+          console.log(this.polls);
+          console.log(this.polls[this.pollId]);
           return this.polls[this.pollId].questions[this.indexForChosenQuestion]
             .q;
         } else {
@@ -337,7 +338,13 @@ export default {
     },
     time: {
       get: function () {
-        if (this.polls && this.pollId) {
+        if (
+          this.polls &&
+          this.pollId &&
+          this.polls[this.pollId] &&
+          this.polls[this.pollId].questions &&
+          this.polls[this.pollId].questions[this.indexForChosenQuestion]
+        ) {
           return this.polls[this.pollId].questions[this.indexForChosenQuestion]
             .time;
         } else {
@@ -357,24 +364,27 @@ export default {
       this.uiLabels = labels;
     });
 
-    socket.on("pollCreated", (data) => {
-      this.polls[this.pollId] = data;
+    socket.on("pollCreated", () => {
+      this.pollId = this.newPollId;
+      this.newPollId = '';
+      // this.polls[this.pollId] = data;
       this.addQuestion(0);
-      this.bindVariables();
+      
     });
     // socket.on("allQuestions", (data) => (this.polls[this.pollId] = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     // socket.on("dataUpdate", (data) => (this.polls[this.pollId] = data));
-    socket.on("emitAllPolls", (data) => (this.polls = data));
+    socket.on("emitAllPolls", (data) => {
+      this.polls = data;
+      this.bindVariables();
+    });
   },
   methods: {
     bindVariables: function () {
-      // this.question =
-      //   this.polls[this.pollId].questions[this.indexForChosenQuestion].q;
-      this.answers =
-        this.polls[this.pollId].questions[this.indexForChosenQuestion].a;
-      this.time =
-        this.polls[this.pollId].questions[this.indexForChosenQuestion].time;
+      if (this.pollId && this.polls[this.pollId].questions[this.indexForChosenQuestion]) {
+        this.answers =
+          this.polls[this.pollId].questions[this.indexForChosenQuestion].a;
+      }
     },
     saveEditedQuestion: function () {
       socket.emit("saveEditedQuestion", {
@@ -426,17 +436,18 @@ export default {
       // this.time =
       //   this.polls[this.pollId].questions[indexForChosenQuestion].time; //den andra har t, denna har time, påverkar vad?
     },
-    moveQuestion: function (direction, editQuestion) {
+    moveQuestion: function (direction) {
       console.log("moveQuestion fungerar", direction);
       socket.emit("moveQuestion", {
         pollId: this.pollId,
         direction: direction,
       });
+      this.updatePolls();
       if (direction == "up") {
-        this.changeColor(editQuestion - 1);
+        this.indexForChosenQuestion -=1;
       }
       if (direction == "down") {
-        this.changeColor(editQuestion + 1);
+        this.indexForChosenQuestion +=1;
       }
       // this.question = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].q;
       // this.answers = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].a;
@@ -451,8 +462,8 @@ export default {
       this.indexForChosenQuestion -= 1;
     },
     createPoll: function () {
-      if (typeof this.polls[this.pollId] === "undefined") {
-        socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
+      if (typeof this.polls[this.newPollId] === "undefined") {
+        socket.emit("createPoll", { pollId: this.newPollId, lang: this.lang });
         socket.emit("getAllPolls");
       }
     },
@@ -479,8 +490,7 @@ export default {
         t: "0",
         indexForAddedQuestion,
       });
-      this.question = this.uiLabels.editMe;
-      this.answers = ["", ""];
+      socket.emit("getAllPolls");
       this.indexForChosenQuestion = indexForAddedQuestion;
     },
     addAnswer: function () {
