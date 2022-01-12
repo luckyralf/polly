@@ -27,7 +27,6 @@
     </header>
 
     <main class="mainWrapped catCursor">
-      
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
@@ -35,9 +34,9 @@
       <div v-for="index in Object.keys(polls).length" :key="index">
         <button
           v-on:click="
-            selectPoll(Object.keys(polls)[index - 1]);
             chooseQuestionWhenSelectingPoll(Object.keys(polls)[index - 1], 0);
             changeColor(Object.keys(polls)[index - 1], 'pollChange');
+            changeColor(0, 'questionChange');
           "
           v-bind:class="{
             selectedPollBtn: Object.keys(polls)[index - 1] == selectedPoll,
@@ -375,7 +374,6 @@ export default {
         pollId: pollId,
         indexForChosenQuestion: indexForChosenQuestion, //alltid =0 här
       });
-      this.changeColor(indexForChosenQuestion, "questionChange");
       console.log(this.question, this.answers, "q and a 1"); //här blir något fel, krävs 3 tryck för att uppdatera question och answers
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
