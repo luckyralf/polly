@@ -1,12 +1,13 @@
 <template id="temp">
   <section class="wrapper">
     <header>
-      <h1 class="waitingRoom">{{ uiLabels.WAITINGROOM }}</h1>
+      <h1 class="waitingRoom">{{ uiLabels.waitingRoom}}</h1>
     </header>
    
     <div>
-      <p class="waitingForHost"> {{ uiLabels.WaitingForHost }}</p>
+      <p class="waitingForHost"> {{ uiLabels.waitingForHost }}</p>
 
+   
       <div class="loading">
         <span class="loaderPrick"></span>
         <span class="loaderPrick"></span>
@@ -19,11 +20,12 @@
     </div>
 
 
-    <div> <!-- SKA TAS BORT -->
+    <!--<div>  SKA TAS BORT 
         <router-link class="startPoll" v-bind:to="'/poll/' + pollId">
         KÖR POLLJÄVELN
       </router-link>
     </div>
+    -->
 
     <div v-if="this.pollActivated">POLL KÖRS</div>
 
@@ -51,6 +53,7 @@ export default {
   },
 
   created: function () {
+
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", { pollId: this.pollId });
     socket.emit("editParticipants", {
@@ -68,9 +71,21 @@ export default {
       this.$router.push({ name: "Poll", params: { id: this.pollId } });
     });
     socket.emit("emitGetPoll", this.pollId);
+
     socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
+    socket.emit("pageLoaded", this.thePoll.poll.lang);
+
+    socket.on("dataUpdate", (data) => (this.data = data));
     });
+
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
+
+    // this.lang = this.thePoll.poll.lang;
+    // socket.emit("pageLoaded", this.lang);
+    
   },
   // methods: {
   //   unRegister: function () {

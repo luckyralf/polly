@@ -96,8 +96,8 @@ export default {
     socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
-      socket.emit("pageLoaded", this.thePoll.poll.lang);
-      socket.on("dataUpdate", (data) => (this.data = data));
+    socket.emit("pageLoaded", this.thePoll.poll.lang);
+     socket.on("dataUpdate", (data) => (this.data = data));
     });
 
     socket.on("init", (labels) => {
