@@ -127,8 +127,7 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    socket.emit("getAllPolls");
-    socket.on("emitAllPolls", (data) => (this.polls = data));
+
   },
   methods: {
     playSound: function () {
@@ -158,13 +157,9 @@ export default {
       socket.emit("switchLanguage", this.lang);
     },
     checkPollExist: function () {
-      console.log("from participate: ", this.id, this.id.value);
-      socket.emit("emitGetPoll", this.id);
-      socket.on("getPoll", (idOfPoll) => {
-        if (typeof idOfPoll !== "undefined") {
-          alert(idOfPoll.value);
-        }
-      });
+      // console.log("from participate: ", this.id, this.id.value);
+    socket.emit("getAllPolls");
+    socket.on("emitAllPolls", (data) => (this.polls = data));
     },
   },
 };
