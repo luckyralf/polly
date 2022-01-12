@@ -3,8 +3,12 @@
 ## Kvar att göra
 
 - [ ] Ladda upp på servern
-- [ ] Kolla uiLabels överallt
-- [ ] Home knapp på alla sidor förutom start.
+- [x] uiLabels poll
+- [x] uiLabels waiting
+- [ ] uiLabels create
+- [x] uiLabels start
+- [ ] uiLabels result
+- [ ] Home knapp på alla sidor förutom start. (tvek om det behövs). 
 - [ ] Cursors kvar på waitingroom och results, väntar på att kunna komma vidare mvh adam
 - [ ] Kod hygien!!
 
@@ -88,7 +92,9 @@
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
 - [x] De som inte svarat
-- [ ] FIXA design tillexempel en animering
+- [x] FIXA design tillexempel en animering
+- [x] Bar chart ska visas istället för pie chart ibland
+- [ ] VAD ÄR DE GULA I PIE
 
 ## Poll
 
