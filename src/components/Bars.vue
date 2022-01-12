@@ -121,7 +121,7 @@ methods: {
   /* margin-right: 200px; */
   display:flex;
   grid-gap:40px;
-  /* max-height:180px; */
+  /*max-height:180px;*/
 
 }
 
@@ -134,7 +134,10 @@ methods: {
 .bar span {
   position: relative;
   top: -1.2em;
+  
 }
-
+#individualBar{
+  border:solid 2px white;
+}
 
 </style>

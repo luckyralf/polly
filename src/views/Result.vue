@@ -178,6 +178,7 @@ export default {
   .questionAndBars{
     display: flex;
     flex-direction: row;
+
   }
 }
 
@@ -211,7 +212,6 @@ export default {
 }
 
 .questionAndBars {
-  display: flex;
   /* grid-gap: 100px; */
   top:30%;
   /* position:absolute; */
@@ -220,8 +220,9 @@ export default {
   border: solid white 5px;
   border-radius: 20px;
   width: fit-content;
-  height: fit-content;
+  min-height: 300px;
   padding: 2rem;
+  height:fit-content;
 }
 
 .questions {
