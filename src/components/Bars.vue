@@ -1,45 +1,56 @@
 <template>
 <div class="wrapper">
+<div class= "participants"> 
+     {{getA()}} stycken svarade på denna frågan.
+      {{amountParticipants- getA()}} Svarade inte på denna fråga och syns inte i baren. 
+ </div>
+ <div class= "allBars"> 
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
     <div v-if="key != ''">
       <!--<div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]"> -->
-      <div id="individualBar" v-bind:style="[{height: 500*(item.count/getA()) + 'px'},{'background-color':item.color}]"> 
-        <span> {{item.count}} of {{getA()}}</span>
+      <div id="individualBar" v-bind:style="[{height: 500*(item.count/getA()) + 'px'},{'background-color':item.color}]">
+        <span> {{item.count}} </span>
       </div>
+       
       <div> 
         {{key}} 
       </div>
     </div>
   </div>
+  </div>
+    
 </div>
+
 </template>
 
 <script>
 export default {
   name: 'Bars',
   props: {
-    data: Object
+    data: Object,
+    amountParticipants: Number,
   },
 
 data: function () {
     return {
       totalQanswered: 0,
       dataArray: [],
-      
     }
 },
 
 methods: {
    getA: function(){
-    let keys = Object.keys(this.data);
-    for (let i = 0; i < keys.length; i++) {
+     this.totalQanswered = 0;
+     this.dataArray = [];
+     let keys = Object.keys(this.data);
+     for (let i = 0; i < keys.length; i++) {
         if (this.dataArray.length < keys.length) {
           this.dataArray.push(this.data[keys[i]]);
           this.totalQanswered += this.dataArray[i].count;
         }
       }
-  return this.totalQanswered
-  }
+     return this.totalQanswered
+    }, 
 }
 
 }
@@ -50,6 +61,12 @@ methods: {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
+.allBars {
+
+}
+
 .bar {
   display: inline-block;
   width: 60px;
@@ -57,6 +74,7 @@ methods: {
   margin: 7px;
   font-family:"Exo 2", sans-serif;
   color:white;
+  
   text-shadow: 
       0 0 10px #fff,
     0 0 10px #fff,
@@ -68,6 +86,29 @@ methods: {
   transform-origin: bottom;
 }
 
+
+.participants {
+  background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
+  border: solid 5px;
+  border-radius: 20px;
+  border-color: white;
+  margin-bottom: 50px;
+  margin-left: 200px;
+  position: right;
+  font-size: 15px;
+  padding: 10px;
+  padding-bottom: 20px;
+  
+  width: 100px;
+
+}
+.wrapper{
+  margin-right: 200px;
+  display:grid;
+
+}
+
+
 @keyframes barAni {
   0% {transform:scaleY(0%);}
   100% {transform:scaleY(100%);}
@@ -78,7 +119,5 @@ methods: {
   top: -1.2em;
 }
 
-.wrapper {
-  padding:3em;
-}
+
 </style>

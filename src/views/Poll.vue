@@ -186,6 +186,16 @@ body {
   align-content: center;
 }
 
+.participants {
+  background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
+  border: solid 5px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  margin-left: 100px;
+  position: right;
+  font-size: 20px;
+
+}
 .bars {
   height: 40px;
   width: 700px;
