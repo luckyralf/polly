@@ -1,5 +1,5 @@
 <template>
-  <div class="questionWrap">
+  <div class="questionWrap" v-if="this.quizFinished == false" >
     <p id="question">
       {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
     </p>     
@@ -7,8 +7,6 @@
 
      <!-- svarsalternativ         -->
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
-      
-      
         <button
           v-for="(a, index) in question.a"
           v-bind:class="{ selected: index === selectedAnswer }"
@@ -32,7 +30,7 @@
     </div>
     
     <br />
-<!-- Frågor som submittas UTAN svar-->
+    <!-- Frågor som submittas UTAN svar-->
 
     <div v-if="timer < 0 && question.timeOn == true" >
       <div v-if="lastQuestion">
@@ -50,13 +48,15 @@
           {{ uiLabels.finishQuiz }}
         </button>
       </div>
-      <div v-if="quizFinished">
+    
+    </div>
+    <div v-if="quizFinished" >
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
             {{ uiLabels.seeResult }}
           </router-link>
-        </div>
     </div>
-<!-- Frågor som submittas med svar-->
+    
+   <!-- Frågor som submittas med svar-->
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button class="nextQuestionButton catPawCursor" v-on:click="answer">
@@ -83,6 +83,28 @@
     </div>
 
   </div>
+<div v-if="quizFinished" >
+  <div class ="popUpResult"> 
+      Congratulations! You are done with the poll! 
+  </div>
+
+<div class="drawing-holder">
+  <div class="cat-face">
+          
+		<div class="cat-eyes"></div>
+    <div class="cat-nose"></div>
+		<div class="cat-mouth"></div>    
+	</div>
+</div>
+
+  <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+    {{ uiLabels.seeResult }}
+  </router-link>
+
+  
+
+</div>
+
 </template>
 
 
@@ -354,6 +376,15 @@ export default {
   font-family: "Outfit", sans-serif;
 }
 
+.popUpResult{
+  color: white;
+  font-size: 30px;
+  font-family: "Outfit", sans-serif;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+}
+
 #routLink {
   color: white;
   text-decoration: none;
@@ -362,8 +393,16 @@ export default {
   border: solid #229954;
   font-size: 2rem;
   padding: 20px;
+  margin-bottom: 100px;
 }
 
+.catPic{
+  margin-top: 50px;
+  border-style: groove;
+  border-color:  #1941b2;
+  border: 10px;
+
+}
 
 .timer{
   font-size: 2.5rem;
@@ -377,7 +416,148 @@ export default {
 }
 
 
-
-.result {
+.drawing-holder{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	margin-top: -170px;
+	margin-left: 270px;
+	top: 50%;
+	left: 50%;
 }
+.cat-face{
+	background-color: #E58C56;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: block;
+	position: relative;
+	float: left;
+}
+
+.cat-nose{
+	position: absolute;
+    bottom: 0;
+    z-index: 1;
+    left: 4px;
+    width: 0px;
+    height: 0px;
+    border-right: 46px solid transparent;
+    border-left: 46px solid transparent;
+    border-bottom: 82px solid #fff;
+    border-radius: 50%;
+}
+
+.cat-nose:after{
+	display: block;
+	content: "";
+	position: absolute;
+	top: 50px;
+    left: 50%;
+    margin-left: -5px;
+	width: 0;
+	height: 0;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	border-top: 5px solid #000;
+}
+
+.cat-mouth{
+	width: 50px;
+	height: 11px;
+	position: absolute;
+	top: 73px;
+	left: 50%;
+	margin-left: -25px;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.cat-mouth:before{
+	content: "";
+	display: block;
+	position: absolute;
+	left: 3px;
+	bottom: 0;
+	border: 2px solid #000;
+	width: 19px;
+	height: 13px;
+	border-radius: 50%;
+}
+
+.cat-mouth:after{
+	content: "";
+	display: block;
+	position: absolute;
+	right: 3px;
+	bottom: 0;
+	border: 2px solid #000;
+	width: 19px;
+	height: 13px;
+	border-radius: 50%;
+}
+
+.cat-eyes{
+	position: absolute;
+	top: 50px;
+	width: 55px;
+	left: 50%;
+	margin-left: -27px;
+	z-index: 2;
+}
+
+.cat-eyes:before{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 13px;
+	height: 13px;
+	background-color: #000;
+	left: 0;
+	top: 0;
+	border-radius: 50%;
+}
+
+.cat-eyes:after{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 13px;
+	height: 13px;
+	background-color: #000;
+	right: 0;
+	top: 0;
+	border-radius: 50%;
+}
+
+.cat-face:before{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 40px solid #E58C56;
+	border-radius: 5px;
+	left: -15px;
+	top: -5px;
+	transform: rotate(-40deg);
+}
+
+.cat-face:after{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 40px solid #E58C56;
+	border-radius: 5px;
+	right: -15px;
+	top: -5px;
+	transform: rotate(40deg);
+}
+
 </style>

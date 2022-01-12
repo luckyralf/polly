@@ -169,7 +169,6 @@ export default {
   grid-column: 1;
   margin-left: 50px;
   margin-top: 40px;
-
 }
 
 .switchComponentBtn {
