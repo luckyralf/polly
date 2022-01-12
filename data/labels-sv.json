@@ -53,9 +53,9 @@
   "waitingForHost":"Väntar på att värden ska starta omröstningen...",
   "participants":"Deltagare:",
   "waitingRoom":"Väntrum",
-  "createOnComputer":"",
   "congratulations":"Grattis! Du är klar med omröstningen!",
   "timeLeft":"Tid kvar:",
   "showBar": "Visa stapeldiagram",
-  "peopleWhoDidntAnswer":"Personer svarade inte på denna frågan."
+  "peopleWhoDidntAnswer": "Personer svarade inte på denna frågan.",
+  "createOnComputer": "Du kan skapa en egen poll från en dator!"
 }

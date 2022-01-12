@@ -1,31 +1,31 @@
 <template>
   <body class="Wrap catCursor">
-  <router-link to="/">
+    <router-link to="/">
       <button class="linkHome"></button>
-     </router-link>
+    </router-link>
 
     <header>
-      <h1>{{ uiLabels.pollResult }}: {{this.pollId }}</h1>
+      <h1>{{ uiLabels.pollResult }}: {{ this.pollId }}</h1>
     </header>
-    
 
     <main>
       <div id="questAndBarsWrap">
-      <br />
-      <button class="switchComponentBtn catPawCursor" v-on:click="switchComponent()">
+        <br />
+        <button
+          class="switchComponentBtn catPawCursor"
+          v-on:click="switchComponent()"
+        >
+          <div v-if="this.dataRepresentation === 'Bars'">
+            {{ uiLabels.showPie }}
+          </div>
 
-        <div v-if="this.dataRepresentation === 'Bars'" >
-        {{ uiLabels.showPie }}
-        </div>
+          <div v-else if="this.dataRepresentation === 'Pies'">
+            {{ uiLabels.showBar }}
+          </div>
+        </button>
 
-        <div v-else if="this.dataRepresentation === 'Pies'" >
-        {{ uiLabels.showBar }}
-        </div>
-        
-      </button>
-    
-      <br />
-      
+        <br />
+
         <div class="questionAndBars">
           <div class="questions">
             <div v-for="index in thePoll.poll.questions.length" :key="index">
@@ -45,13 +45,14 @@
               </button>
             </div>
           </div>
-          
+
           <div id="componentContaner">
             <div id="bars" v-if="this.dataRepresentation === 'Bars'">
-              <Bars v-bind:data="data" 
-                    v-bind:amountParticipants="thePoll.poll.amountParticipants"
-                    v-bind:uiLabels="uiLabels" 
-                    />
+              <Bars
+                v-bind:data="data"
+                v-bind:amountParticipants="thePoll.poll.amountParticipants"
+                v-bind:uiLabels="uiLabels"
+              />
             </div>
             <div id="pie" v-if="this.dataRepresentation === 'Pie'">
               <Pie v-bind:data="data" />
@@ -60,26 +61,23 @@
         </div>
       </div>
     </main>
-      <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
 
-    <!-- <input type="number" v-model="questionNumber" />
-<button v-on:click="selectQuestion">Which question?</button> -->
   </body>
 </template>
 
 <script>
-// @ is an alias to /src
 import Bars from "@/components/Bars.vue";
 import Pie from "@/components/Pie.vue";
 import io from "socket.io-client";
@@ -112,7 +110,7 @@ export default {
         "#D85D55",
       ],
       dataRepresentation: "Bars",
-      selectedQuestion: 0, //anvnds bara för färgändring när man valt en fråga man vill se svaren på
+      selectedQuestion: 0,
     };
   },
 
@@ -130,7 +128,6 @@ export default {
           count: this.data[keys[i]],
           color: this.colorArray[i],
         };
-        // this.colorArray.push("#" + Math.floor(Math.random() * 16777215).toString(16))
       }
       this.question = update.q;
     });
@@ -138,7 +135,6 @@ export default {
       this.question = update.q;
       this.data = {};
     });
-    //försök att få hela pollen
     socket.emit("emitGetPoll", this.pollId);
     socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
@@ -173,12 +169,10 @@ export default {
 </script>
 
 <style scoped>
-
 @media (min-width: 601px) {
-  .questionAndBars{
+  .questionAndBars {
     display: flex;
     flex-direction: row;
-
   }
 }
 
@@ -212,9 +206,7 @@ export default {
 }
 
 .questionAndBars {
-  /* grid-gap: 100px; */
   top:30%;
-  /* position:absolute; */
   margin-top: 5rem;
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid white 5px;
@@ -222,26 +214,23 @@ export default {
   width: fit-content;
   min-height: 300px;
   padding: 2rem;
-  height:fit-content;
+  height: fit-content;
 }
 
 .questions {
   grid-column: 1;
-  /* margin-left: 50px; */
   margin-top: 0px;
   margin-right: 3rem;
-
 }
 
-#questAndBarsWrap{
+#questAndBarsWrap {
   display: flex;
   justify-content: center;
-  
 }
 
 .switchComponentBtn {
   font-family: "Outfit", sans-serif;
-  font-size:1em;
+  font-size: 1em;
   margin-top: 1rem;
   color: white;
   background-color: #296ad3;
@@ -249,13 +238,13 @@ export default {
   border: solid white 2px;
   padding: 10px;
   margin-bottom: 20px;
-  /*margin-left: 400px;*/
   position:absolute;
   
-  /* left:80%;
-  top:40%; */
   transform: translate(50% 50%);
 
+  left: 80%;
+  top: 40%;
+  transform: translate(50% 50%);
 }
 
 .resultQuestions {
@@ -269,8 +258,7 @@ export default {
   display: block;
   margin: 2px;
   font-size: 20px;
-  margin-top:6px;
-
+  margin-top: 6px;
 }
 
 .resultQuestions:hover {
@@ -290,16 +278,14 @@ export default {
   background: linear-gradient(to left, #0c2c63, #1941b2);
   padding-top: 1px;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-  padding-bottom:0px;
-  height:100vh;
+  padding-bottom: 0px;
+  height: 100vh;
   border: 0;
   margin: 0;
-
 }
 
 h1 {
-  /* margin-left:550px;
-  margin-right:550px; */
+ 
   font-family: "Exo 2", sans-serif;
   font-size: 4rem;
   color: white;
@@ -308,19 +294,15 @@ h1 {
     0 0 42px #f0f, 0 0 82px #f0f;
   padding-bottom: 50px;
   border-bottom: 4px pink dashed;
-  
-    
 }
-h1:hover{
+h1:hover {
   color: #fff;
-  
+
   text-shadow: 0 0 7px rgb(65, 253, 65), 0 0 10px rgb(130, 252, 16),
     0 0 21px rgb(130, 252, 16), 0 0 42px rgb(130, 252, 16),
     0 0 82px rgb(130, 252, 16);
 }
 
-
-/* cirkel bakgrund nedan*/
 .circles {
   position: absolute;
   top: 0;
@@ -330,7 +312,6 @@ h1:hover{
   overflow: hidden;
   pointer-events: none;
 }
-
 
 .circles li {
   position: absolute;
