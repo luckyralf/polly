@@ -20,7 +20,7 @@
 ## Väntrum
 
 - [ ] Importera antalet deltagare
-- [ ] Sätt igång pollen vid rätt tillfälle
+- [x] Sätt igång pollen vid rätt tillfälle
 
 ## Startsida
 
