@@ -1,12 +1,12 @@
 <template id="temp">
   <!--<body> -->
-  <section class="jjj">
+  <section class="wrapper">
     <header>
       <h1 class="waitingRoom">WAITING ROOM</h1>
     </header>
 
     <!--<main> -->
-    {{ data }}
+   
     <div>
       <p class="waitingForHost">Waiting for host to start poll...</p>
 
@@ -16,8 +16,8 @@
         <span class="loaderPrick"></span>
       </div>
 
-      <p class="participants">Participants:</p>
-
+      <p class="participants">Participants: {{ this.thePoll.poll.amountParticipants }}</p>
+ 
       <div class="amount"></div>
     </div>
 
@@ -29,7 +29,7 @@
 
     <div v-if="this.pollActivated">POLL KÖRS</div>
 
-    <div class="animering"></div>
+    <div class="wrapperBottom"></div>
   </section>
   <!--</main>
     </body> -->
@@ -47,6 +47,8 @@ export default {
       pollId: "inactive poll",
       amountParticipants: 0,
       pollActivated: false,
+      thePoll: {},
+      data: {},
     };
   },
 
@@ -66,6 +68,10 @@ export default {
     socket.on("runPolls", () => {
       console.log(this.pollId);
       this.$router.push({ name: "Poll", params: { id: this.pollId } });
+    });
+    socket.emit("emitGetPoll", this.pollId);
+    socket.on("getPoll", (thePoll) => {
+      this.thePoll = thePoll;
     });
   },
   // methods: {
@@ -119,14 +125,11 @@ export default {
   }
 }
 
-#temp {
-  background: black;
-}
 body {
   background: yellow;
 }
 
-.jjj {
+.wrapper {
   background: pink;
 }
 
@@ -175,7 +178,7 @@ body {
   font-weight: bold;
 }
 
-.animering {
+.wrapperBottom {
   background: pink;
   height: 300px;
 }
@@ -192,14 +195,35 @@ body {
   font-weight: bold;
 }
 
-
+/* CSS för mobil version*/
 @media only screen and (max-width:600px){
-.loading{
 
-    left:50%;
+.waitingRoom{
+    position:relative;
+    left:-20%;
+    top:50%;
+    transform:translate (-50% -50%);
+}
+
+.loading{
+    position:absolute;
+    left:15%;
     top:40%;
     transform:translate (-50% -50%);
+    max-width:270px;
+    margin-right:50px;
+}
+.wrapper{
+    max-width:425px;
+    min-width:425px;
+}
 
+.wrapperBottom{
+    background: pink;
+    max-height:120px;
+}
+#temp{
+    max-height:600px;
 }
 
 

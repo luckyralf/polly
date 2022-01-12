@@ -28,7 +28,7 @@
             X
           </button>
         </div>
-        {{ uiLabels.startpageInfoContent }}
+        <div>{{ uiLabels.startpageInfoContent }}</div>
       </div>
     </div>
 
@@ -39,14 +39,15 @@
     </section>
 
     <div class="writeAndParticipate">
-      <label class="catPawTextCursor"
-        >{{ uiLabels.writePollId }}
+      <label class="catPawTextCursor">
+        {{ uiLabels.writePollId }}
         <input type="text" v-model="id" class="textArea catPawTextCursor" />
       </label>
       <br />
       <br />
+
       <div class="linkToPoll">
-        <router-link
+        <!-- <router-link
           v-bind:to="'/waiting/' + id"
           class="activeLink"
           tag="button"
@@ -55,14 +56,26 @@
             inactiveLink: id === '',
           }"
           >{{ uiLabels.participatePoll }}
-        </router-link>
-        <!-- <span
+        </router-link> -->
+
+        <button
+          class="activeLink"
+          tag="button"
+          style="color: #fff"
+          v-bind:class="{
+            inactiveLink: id === '',
+          }"
+          v-on:click="checkPollExist(id)"
+        >
+          {{ uiLabels.participatePoll }}
+        </button>
+        <span
           v-bind:class="[
-            { noIdProvided: typeof polls[id] === 'undefined' },
-            { idProvided: typeof polls[id] !== 'undefined' },
+            { noIdProvided: id === '' },
+            { idProvided: id !== '' },
           ]"
-          >{{ uiLabels.pollDontExist }}</span
-        > -->
+          >{{ uiLabels.needWritePollName }}</span
+        >
       </div>
     </div>
 
@@ -118,6 +131,7 @@ export default {
       uiLabels: {},
       id: "",
       lang: "en",
+      pollExistsTrueOrFalse: false,
     };
   },
   created: function () {
@@ -125,8 +139,17 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    // socket.emit("getAllPolls");
-    // socket.on("emitAllPolls", (data) => (this.polls = data));
+    socket.emit("getAllPolls");
+    socket.on("emitAllPolls", (data) => {
+      this.polls = data;
+    });
+    socket.on("checkedPollExists", (trueOrFalse) => {
+      if (trueOrFalse) {
+        this.joinPoll(this.id);
+      } else {
+        alert("poll no existo hello?s");
+      }
+    });
   },
   methods: {
     playSound: function () {
@@ -155,10 +178,25 @@ export default {
       this.lang = "sv";
       socket.emit("switchLanguage", this.lang);
     },
-    checkPollExist: function () {
-      // console.log("from participate: ", this.id, this.id.value);
-    socket.emit("getAllPolls");
-    socket.on("emitAllPolls", (data) => (this.polls = data));
+    checkPollExist: function (pollId) {
+      console.log("checkpollexists ");
+      socket.emit("checkPollExists", pollId);
+
+      // console.log("checkpollexist html kommer den ens hit?", trueOrFalse);
+      // return trueOrFalse;
+      // if (this.pollExistsTrueOrFalse === true) {
+      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
+      // } else {
+      //   alert("poll not existamento stupido");
+      // }
+    },
+    joinPoll: function (pollId) {
+      this.$router.push({ name: "Waiting", params: { id: pollId } });
+      // if (this.checkPollExist(pollId) === true) {
+      //   this.$router.push({ name: "Waiting", params: { id: pollId } });
+      // } else {
+      //   alert("poll not existamento stupido");
+      // }
     },
   },
 };
@@ -228,13 +266,9 @@ body {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-
-  @media only screen and (max-width: 600px) {
-    body {
-      background: yellow;
-    }
-  }
 }
+
+
 
 .circles li {
   position: absolute;
@@ -534,6 +568,7 @@ body {
   overflow: hidden;
 }
 
+/* CSS för mobil-version nedan */
 @media only screen and (max-width: 600px) {
   .writeAndParticipate {
     margin-left: 10%;
@@ -541,7 +576,6 @@ body {
     min-width: 80%;
     font-size: 27pt;
   }
-
   .createOwn {
     display: none;
   }
@@ -559,12 +593,20 @@ body {
     position: relative;
     /*right:30%;*/
     top: 0%;
-    left: -25%;
+    left: -40%;
     transform: translate (-50% -50%);
   }
-
   .Wrapped {
     max-width: 100%;
+  }
+
+  #infoDIV {
+    position: absolute;
+    z-index: 1;
+    opacity: 100%;
+    min-height: 148pt;
+    min-width: 260pt;
+    top: 100%;
   }
 }
 

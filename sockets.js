@@ -74,8 +74,6 @@ function sockets(io, socket, data) {
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
 
-  
-
   socket.on("joinPoll", function (d) {
     // d är objekt med pollId och questionNumber
     socket.join(d.pollId);
@@ -130,6 +128,11 @@ function sockets(io, socket, data) {
     data.editParticipants(d.addOrRemove, d.pollId);
     io.to("dataUpdate", data.getPoll(d.pollId));
     console.log("socket participants funkar");
+  });
+
+  socket.on("checkPollExists", function (pollId) {
+    console.log("checkpollexists socket", pollId, data.checkPollExists(pollId));
+    socket.emit("checkedPollExists", data.checkPollExists(pollId));
   });
 }
 

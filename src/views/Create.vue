@@ -253,30 +253,30 @@
       <!-- Control Panel -->
       <div id="result" v-if="saveMode">
         <h2>Control panel</h2>
-        <div>
+        <!-- <div> -->
           <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
 
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
         </button> -->
-          <button id="checkResultBtn" class="controlPanelBtn">
-            <router-link class="routerLink" v-bind:to="'/result/' + pollId">
-              {{ uiLabels.checkResultsText }}
-            </router-link>
-          </button>
-        </div>
+
         <button
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
         >
           {{ uiLabels.runPoll }}
         </button>
-        <button
+        <button id="checkResultBtn" class="controlPanelBtn">
+          <router-link class="routerLink" v-bind:to="'/result/' + pollId">
+            {{ uiLabels.checkResultsText }}
+          </router-link>
+        </button>
+        <!-- <button
           class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="runPollFunction"
         >
           Abort poll uilabel
-        </button>
+        </button> -->
         <button
           class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="deletePoll"
@@ -397,7 +397,6 @@ export default {
     runPollFunction: function () {
       console.log(this.pollId);
       socket.emit("runPoll", this.pollId);
-      //VARFÖR FUNKAR DE INTE
     },
 
     chooseQuestionWhenSelectingPoll: function (pollId, indexForChosenQuestion) {
@@ -498,7 +497,13 @@ export default {
       // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
     editOrSavePoll: function (mode) {
-      socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+      if (
+        confirm(
+          "uilabel saknas, are you sure you want to save? You cannot make any changes after this."
+        )
+      ) {
+        socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+      }
     },
   },
 };

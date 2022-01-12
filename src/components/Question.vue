@@ -1,5 +1,5 @@
 <template>
-  <div class="questionWrap">
+  <div class="questionWrap" v-if="this.quizFinished == false" >
     <p id="question">
       {{ uiLabels.question }} {{ questionNumber }}: {{ question.q }}
     </p>     
@@ -7,7 +7,6 @@
 
      <!-- svarsalternativ         -->
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
-      
         <button
           v-for="(a, index) in question.a"
           v-bind:class="{ selected: index === selectedAnswer }"
@@ -18,20 +17,20 @@
           class="isClicked catPawCursor">
           <span id="a"> {{ a }}</span>
         </button>
-
-                  <div class ="timerFix">
-                      <div class="timer" v-if="question.timeOn == true" >
-                        {{ timer }}
-                      </div>
-                    </div>
-
     </div>
+
+    <div class ="timerFix">
+      <div class="timer" v-if="question.timeOn == true && timer > -1" >
+        {{ timer }} 
+      </div>
+    </div>
+
     <div id="timesUp" v-if="timer < 0 ">
       {{uiLabels.timesUp}}
     </div>
     
     <br />
-<!-- Frågor som submittas UTAN svar-->
+    <!-- Frågor som submittas UTAN svar-->
 
     <div v-if="timer < 0 && question.timeOn == true" >
       <div v-if="lastQuestion">
@@ -49,13 +48,16 @@
           {{ uiLabels.finishQuiz }}
         </button>
       </div>
-      <div v-if="quizFinished">
+    
+    </div>
+    <div v-if="quizFinished" >
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
             {{ uiLabels.seeResult }}
+            
           </router-link>
-        </div>
     </div>
-<!-- Frågor som submittas med svar-->
+    
+   <!-- Frågor som submittas med svar-->
     <div v-if="answerSubmitted">
       <div v-if="lastQuestion">
         <button class="nextQuestionButton catPawCursor" v-on:click="answer">
@@ -82,6 +84,28 @@
     </div>
 
   </div>
+<div v-if="quizFinished" >
+  <div class ="popUpResult"> 
+      Congratulations! You are done with the poll! 
+  </div>
+
+<div class="drawing-holder">
+  <div class="cat-face">
+          
+		<div class="cat-eyes"></div>
+    <div class="cat-nose"></div>
+		<div class="cat-mouth"></div>    
+	</div>
+</div>
+
+  <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
+    {{ uiLabels.seeResult }}
+  </router-link>
+
+  
+
+</div>
+
 </template>
 
 
@@ -118,6 +142,7 @@ export default {
   watch: {
     question: {
       handler() {
+
         this.timer = this.question.time;
         clearInterval(this.timerFunction);
         if (this.thisTimeOn) {
@@ -133,7 +158,12 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    if (this.amountQuestion == 1) {
+      this.lastQuestion = false 
+    }
   },
+
+
   methods: {
     emptyAnswer: function(){
       this.answerSubmitted = true;
@@ -165,7 +195,7 @@ export default {
       this.questionNumber = this.questionNumber + 1;
 
       if (this.questionNumber === this.amountQuestion) {
-        this.lastQuestion = false;
+        this.lastQuestion = false; //Innebär att de är sista frågan!!! false är egentligen true :) /elsa
       }
     },
 
@@ -200,18 +230,85 @@ export default {
 <style>
 
 
-@media (max-width: 680px) {
+@media (max-width: 549px) {
   #timesUp{
     font-size: 2rem;
+  }
+  .isClicked {
+    width: 230px;
+    max-height: fit-content;
+    min-height: 60px;
+    margin-top: 5px;
+    margin: 1rem;
+
+} 
+  .questionWrap {
+    margin: 2rem;
   }
 
 }
 
-@media (min-width: 681px) {
+@media (min-width: 550px) and (max-width: 980px) {
   #timesUp{
     font-size: 3rem;
   }
+  .questionWrap {
+    margin: 2rem 10%;
+    
+  }
+  .answerAlternatives{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .isClicked {
+    width: 250px;
+    height: fit-content;
+    min-height: 100px;
+    padding: 1rem;
+    margin: 1rem;
+    margin-top: 0;
+    align-self: center;
 
+  }
+
+}
+
+@media (min-width: 981px) {
+  #timesUp{
+    font-size: 3rem;
+  }
+  .questionWrap {
+    margin-top: 2rem;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+  .answerAlternatives{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .isClicked {
+    width: 250px;
+    height: fit-content;
+    min-height: 100px;
+    padding: 1rem;
+    margin: 1rem;
+    margin-top: 0;
+    align-self: center;
+
+  }
+
+
+}
+
+.questionWrap {
+  background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
+  border: solid 5px ;
+  border-radius: 20px;
+  position: center;
+  font-size: 20px;
+  padding-bottom: 50px;
 }
 
 
@@ -254,15 +351,14 @@ export default {
 .isClicked {
   background-color: #3ac7ff;
   border: outset 3px white;
-  width: 200px;
-  max-height: fit-content;
-  min-height: 60px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
   border-radius: 5px;
   color: white;
   margin-top: 5px;
-}
+  overflow-wrap: break-word;
+
+  }
 
 .isClicked:hover {
   background-color: #d794e3;
@@ -276,24 +372,21 @@ export default {
   background-color: #c73ee1;
 }
 
-.questionWrap {
-  background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
-  border: solid 5px;
-  border-radius: 20px;
-  margin-top: 2rem;
-  margin-left: 1px;
-  
-  margin-left: 200px;
-  margin-right: 200px;
-  position: center;
-  font-size: 20px;
-  padding-bottom: 50px;
-}
+
 
 #question {
   color: white;
   font-size: 30px;
   font-family: "Outfit", sans-serif;
+}
+
+.popUpResult{
+  color: white;
+  font-size: 30px;
+  font-family: "Outfit", sans-serif;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-right: 50px;
 }
 
 #routLink {
@@ -304,22 +397,167 @@ export default {
   border: solid #229954;
   font-size: 2rem;
   padding: 20px;
+  margin-bottom: 100px;
 }
 
+.catPic{
+  margin-top: 50px;
+  border-style: groove;
+  border-color:  #1941b2;
+  border: 10px;
+
+}
 
 .timer{
   font-size: 2.5rem;
   color: #fff;
   text-shadow: 0 0 7px rgb(253, 117, 67), 0 0 10px #f0f, 0 0 21px #f0f,
     0 0 42px #f0f, 0 0 82px #f0f;
-  margin-left:465px;
-  margin-right:465px;
-  
-  
 }
 
 
-
-.result {
+.drawing-holder{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	margin-top: -170px;
+	margin-left: 270px;
+	top: 50%;
+	left: 50%;
 }
+.cat-face{
+	background-color: #E58C56;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	display: block;
+	position: relative;
+	float: left;
+}
+
+.cat-nose{
+	position: absolute;
+    bottom: 0;
+    z-index: 1;
+    left: 4px;
+    width: 0px;
+    height: 0px;
+    border-right: 46px solid transparent;
+    border-left: 46px solid transparent;
+    border-bottom: 82px solid #fff;
+    border-radius: 50%;
+}
+
+.cat-nose:after{
+	display: block;
+	content: "";
+	position: absolute;
+	top: 50px;
+    left: 50%;
+    margin-left: -5px;
+	width: 0;
+	height: 0;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	border-top: 5px solid #000;
+}
+
+.cat-mouth{
+	width: 50px;
+	height: 11px;
+	position: absolute;
+	top: 73px;
+	left: 50%;
+	margin-left: -25px;
+	z-index: 2;
+	overflow: hidden;
+}
+
+.cat-mouth:before{
+	content: "";
+	display: block;
+	position: absolute;
+	left: 3px;
+	bottom: 0;
+	border: 2px solid #000;
+	width: 19px;
+	height: 13px;
+	border-radius: 50%;
+}
+
+.cat-mouth:after{
+	content: "";
+	display: block;
+	position: absolute;
+	right: 3px;
+	bottom: 0;
+	border: 2px solid #000;
+	width: 19px;
+	height: 13px;
+	border-radius: 50%;
+}
+
+.cat-eyes{
+	position: absolute;
+	top: 50px;
+	width: 55px;
+	left: 50%;
+	margin-left: -27px;
+	z-index: 2;
+}
+
+.cat-eyes:before{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 13px;
+	height: 13px;
+	background-color: #000;
+	left: 0;
+	top: 0;
+	border-radius: 50%;
+}
+
+.cat-eyes:after{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 13px;
+	height: 13px;
+	background-color: #000;
+	right: 0;
+	top: 0;
+	border-radius: 50%;
+}
+
+.cat-face:before{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 40px solid #E58C56;
+	border-radius: 5px;
+	left: -15px;
+	top: -5px;
+	transform: rotate(-40deg);
+}
+
+.cat-face:after{
+	position: absolute;
+	display: block;
+	content: "";
+	width: 0;
+	height: 0;
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	border-bottom: 40px solid #E58C56;
+	border-radius: 5px;
+	right: -15px;
+	top: -5px;
+	transform: rotate(40deg);
+}
+
 </style>
