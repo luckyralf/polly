@@ -4,7 +4,6 @@
  <div class= "allBars"> 
   <div class="bar" v-for="(item, key) in data" v-bind:key="key" >
     <div v-if="key != ''">
-      <!--<div id="individualBar" v-bind:style="[{height: 50*item.count + 'px'},{'background-color':item.color}]"> -->
       <div id="individualBar" v-bind:style="[{height: 400*(item.count/getA()) + 'px'},{'background-color':item.color}]">
         <span> {{item.count}} </span>
       </div>
@@ -109,8 +108,6 @@ methods: {
   border-color: white;
   color: white;
   margin-bottom: 50px;
-  /* margin-left: 200px; */
-  /* position: right; */
   font-size: 20px;
   padding: 10px;
   padding-bottom: 20px;
@@ -118,10 +115,8 @@ methods: {
   height: fit-content;
 }
 .wrapper{
-  /* margin-right: 200px; */
   display:flex;
   grid-gap:40px;
-  /*max-height:180px;*/
 
 }
 
