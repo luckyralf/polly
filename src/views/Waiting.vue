@@ -119,9 +119,6 @@ export default {
   }
 }
 
-#temp {
-  background: black;
-}
 body {
   background: yellow;
 }
@@ -192,14 +189,37 @@ body {
   font-weight: bold;
 }
 
-
+/* CSS för mobil version*/
 @media only screen and (max-width:600px){
-.loading{
 
-    left:50%;
+.waitingRoom{
+    position:relative;
+    left:-20%;
+    top:50%;
+    transform:translate (-50% -50%);
+    
+}
+.loading{
+    position:absolute;
+    left:15%;
     top:40%;
     transform:translate (-50% -50%);
+    max-width:270px;
+    margin-right:50px;
+    
 
+}
+.jjj{
+    max-width:425px;
+    min-width:425px;
+}
+
+.animering{
+    background: pink;
+    max-height:120px;
+}
+#temp{
+    max-height:600px;
 }
 
 
