@@ -8,6 +8,7 @@
      <!-- svarsalternativ         -->
     <div class="answerAlternatives" v-if="timer > -1 || question.timeOn == false">
       
+      
         <button
           v-for="(a, index) in question.a"
           v-bind:class="{ selected: index === selectedAnswer }"
@@ -18,14 +19,14 @@
           class="isClicked catPawCursor">
           <span id="a"> {{ a }}</span>
         </button>
-
-                  <div class ="timerFix">
-                      <div class="timer" v-if="question.timeOn == true" >
-                        {{ timer }}
-                      </div>
-                    </div>
-
     </div>
+
+    <div class ="timerFix">
+      <div class="timer" v-if="question.timeOn == true && timer > -1" >
+        {{ timer }} 
+      </div>
+    </div>
+
     <div id="timesUp" v-if="timer < 0 ">
       {{uiLabels.timesUp}}
     </div>
@@ -118,6 +119,7 @@ export default {
   watch: {
     question: {
       handler() {
+
         this.timer = this.question.time;
         clearInterval(this.timerFunction);
         if (this.thisTimeOn) {
@@ -200,18 +202,85 @@ export default {
 <style>
 
 
-@media (max-width: 680px) {
+@media (max-width: 549px) {
   #timesUp{
     font-size: 2rem;
+  }
+  .isClicked {
+    width: 230px;
+    max-height: fit-content;
+    min-height: 60px;
+    margin-top: 5px;
+    margin: 1rem;
+
+} 
+  .questionWrap {
+    margin: 2rem;
   }
 
 }
 
-@media (min-width: 681px) {
+@media (min-width: 550px) and (max-width: 980px) {
   #timesUp{
     font-size: 3rem;
   }
+  .questionWrap {
+    margin: 2rem 10%;
+    
+  }
+  .answerAlternatives{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .isClicked {
+    width: 250px;
+    height: fit-content;
+    min-height: 100px;
+    padding: 1rem;
+    margin: 1rem;
+    margin-top: 0;
+    align-self: center;
 
+  }
+
+}
+
+@media (min-width: 981px) {
+  #timesUp{
+    font-size: 3rem;
+  }
+  .questionWrap {
+    margin-top: 2rem;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+  .answerAlternatives{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .isClicked {
+    width: 250px;
+    height: fit-content;
+    min-height: 100px;
+    padding: 1rem;
+    margin: 1rem;
+    margin-top: 0;
+    align-self: center;
+
+  }
+
+
+}
+
+.questionWrap {
+  background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
+  border: solid 5px ;
+  border-radius: 20px;
+  position: center;
+  font-size: 20px;
+  padding-bottom: 50px;
 }
 
 
@@ -254,15 +323,14 @@ export default {
 .isClicked {
   background-color: #3ac7ff;
   border: outset 3px white;
-  width: 200px;
-  max-height: fit-content;
-  min-height: 60px;
   font-family: "Outfit", sans-serif;
   font-size: 20px;
   border-radius: 5px;
   color: white;
   margin-top: 5px;
-}
+  overflow-wrap: break-word;
+
+  }
 
 .isClicked:hover {
   background-color: #d794e3;
@@ -276,19 +344,7 @@ export default {
   background-color: #c73ee1;
 }
 
-.questionWrap {
-  background: linear-gradient(to right, #008fc8, hsl(202, 99%, 49%));
-  border: solid 5px;
-  border-radius: 20px;
-  margin-top: 2rem;
-  margin-left: 1px;
-  
-  margin-left: 200px;
-  margin-right: 200px;
-  position: center;
-  font-size: 20px;
-  padding-bottom: 50px;
-}
+
 
 #question {
   color: white;

@@ -11,7 +11,7 @@
       <div
         class="answered"
         v-bind:style="{
-          width: (700 / thePoll.poll.questions.length) * questionNumber + 'px',
+          width: (100 / thePoll.poll.questions.length) * questionNumber + '%',
         }"
       ></div>
     </div>
@@ -187,12 +187,13 @@ body {
 }
 
 .bars {
-  height: 40px;
-  width: 700px;
-  margin-left: 350px;
+  height: 1rem;
+  width: 80%;
+  margin-left: 10%;
   margin-top: 5px;
   background-color: #d794e3;
   border: solid 2px white;
+  border-radius: 6px;
 }
 
 .answered {
@@ -200,9 +201,8 @@ body {
   background-position: bottom;
   background-size: 460px;
   height: 100%;
-  width: 0%;
   max-width: 700px;
-  animation: animate 4s linear infinite;
+  animation: animate 4s ;
   animation-name: ansAni;
 
   transform-origin: left;
