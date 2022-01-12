@@ -30,12 +30,6 @@
       {{ uiLabels.createStartInfo }}
       <br />
       <br />
-<<<<<<< HEAD
-      <!-- {{ polls[pollId] }} <span style="color: red">THIS IS polls[pollId]</span>
-      <br />
-      <br />
-      {{ this.polls }}<span style="color: red">THIS IS this.polls</span>
-      <br /> -->
       <div class="pollMenu">
         <div v-for="(_, index) in polls" :key="index">
           <button
@@ -48,18 +42,6 @@
             {{ index }}
           </button>
         </div>
-=======
-      <div v-for="(_, index) in polls" :key="index">
-        <button
-          v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
-          v-bind:class="{
-            selectedPollBtn: index == pollId,
-          }"
-          class="questionButtons"
-        >
-          {{ index }}
-        </button>
->>>>>>> 5938d514ffa84fa2b9d2225319e28ceeb6a10b39
       </div>
       <div id="createPollId">
         <input
@@ -267,12 +249,9 @@
       <!-- Edit / Save poll -->
       <br />
       <br />
-      <!-- Control Panel -->
-      <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
-        <h2>Control panel</h2>
 
       <!-- Control Panel -->
-      <div id="result" v-if="!saveMode">
+      <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
         <h2>Control panel</h2>
 
         <button
