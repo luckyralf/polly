@@ -58,14 +58,18 @@
           v-model="newPollId"
           class="catPawTextCursor"
           required
+          v-on:input="updatePolls();"
         />
+        {{pollId}} <span>pollId</span><br>
+        {{newPollId}} <span>newPollId</span> <br>
+        {{typeof newPollId}}
         <div class="pollName">
           <button
             class="createPollBtnActive catPawCursor"
             v-on:click="createPoll"
             v-bind:class="{
               createPollBtnInActive:
-                newPollId === '' || typeof polls[newPollId] !== 'undefined',
+                 typeof newPollId === 'undefined' || typeof polls[newPollId] !== 'undefined' || newPollId === '',
             }"
           >
             {{ uiLabels.createPoll }}
@@ -74,15 +78,15 @@
           
           <span
             v-bind:class="[
-              { noIdProvided: pollId === '' },
-              { idProvided: pollId !== '' },
+              { noIdProvided: newPollId === '' || typeof newPollId === 'undefined'},
+              { idProvided: newPollId !== '' },
             ]"
             >{{ uiLabels.needWritePollName }}</span
           >
           <span
             v-bind:class="[
-              { noIdProvided: typeof polls[pollId] !== 'undefined' },
-              { idProvided: typeof polls[pollId] === 'undefined' },
+              { noIdProvided: typeof polls[newPollId] !== 'undefined' },
+              { idProvided: typeof polls[newPollId] === 'undefined' },
             ]"
             >{{ uiLabels.pollExists }}</span
           >
