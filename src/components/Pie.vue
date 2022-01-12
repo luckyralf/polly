@@ -92,8 +92,8 @@ export default {
 }
 
 .thePie {
-  height: 200px;
-  width: 200px;
+  height: 220px;
+  width: 220px;
   border: 2px solid white;
   border-radius: 50%;
   animation-name: pieAni;

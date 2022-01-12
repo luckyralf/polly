@@ -21,7 +21,7 @@
 
     <div class ="timerFix">
       <div class="timer" v-if="question.timeOn == true && timer > -1" >
-        {{ timer }} 
+       {{uiLabels.timeLeft}} {{ timer }} 
       </div>
     </div>
 
@@ -53,6 +53,7 @@
     <div v-if="quizFinished" >
           <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
             {{ uiLabels.seeResult }}
+            
           </router-link>
     </div>
     
@@ -86,7 +87,7 @@
 <div v-if="quizFinished" >
   <div class ="popUpResult"> 
       {{ uiLabels.congratulations }}
-  </div>
+  
 
 <div class="drawing-holder">
   <div class="cat-face">
@@ -95,6 +96,7 @@
     <div class="cat-nose"></div>
 		<div class="cat-mouth"></div>    
 	</div>
+</div>
 </div>
 
   <router-link id="routLink" v-bind:to="'/result/' + this.pollId">
@@ -157,6 +159,9 @@ export default {
   },
   created: function () {
     this.pollId = this.$route.params.id;
+    if (this.amountQuestion == 1) {
+      this.lastQuestion = false 
+    }
   },
 
 

@@ -50,5 +50,6 @@
   "savePoll": "Spara poll",
   "editPoll": "Redigera poll",
   "pollDontExist": "Omröstningen existerar inte ännu",
-  "congratulations":"Grattis! Du är klar med omröstningen!"
+  "congratulations":"Grattis! Du är klar med omröstningen!",
+  "timeLeft":"Tid kvar:"
 }

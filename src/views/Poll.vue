@@ -79,6 +79,7 @@ export default {
       pollId: "inactive poll",
       questionNumber: 0,
       thePoll: {},
+      answered:"answered",
       amountQuestions: 0,
     };
   },
@@ -103,6 +104,16 @@ export default {
       this.uiLabels = labels;
     });
   },
+  /* FÖRSÖKTE LÄGGA IN EN WATCHER I DATA FÖR ANIMATIONEN PÅ POLL MEN DEN VÄGRAR FUNKA mvh johanna*/
+  /*watch: {  
+    data: function () {
+      this.answered = "";
+      setTimeout(() => {
+        this.answered = "answered";
+      }, 100);
+    },
+  },*/
+    
   methods: {
     submitAnswer: function (answer) {
       socket.emit("submitAnswer", { pollId: this.pollId, answer: answer });
@@ -138,6 +149,7 @@ export default {
     confettiButton: function () {
       confetti();
     },
+
   },
 };
 </script>
@@ -210,19 +222,7 @@ body {
   background-position: bottom;
   background-size: 460px;
   height: 100%;
-  
-  animation: animate ;
-  animation-name: ansAni;
-
-  transform-origin: left;
-}
-@keyframes ansAni {
-  0% {
-    transform: scaleX(0%);
-  }
-  100% {
-    transform: scaleX(100%);
-  }
+  transition:ease-in 2000ms;
 }
 
 .answered span {

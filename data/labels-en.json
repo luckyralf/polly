@@ -50,6 +50,7 @@
   "savePoll": "Save poll",
   "editPoll": "Edit Poll",
   "pollDontExist": "Poll does not exist yet",
-  "congratulations":"Congratulations! You are done with the poll!"
+  "congratulations":"Congratulations! You are done with the poll!",
+  "timeLeft":"Time left:"
   
 }
