@@ -6,7 +6,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on("getAllPolls", function () {
-    socket.emit("getAllPolls", data.getAllPolls());
+    socket.emit("emitAllPolls", data.getAllPolls());
     console.log("socket getallpolls");
   });
 
@@ -43,10 +43,8 @@ function sockets(io, socket, data) {
   });
 
   socket.on("chooseQuestion", function (d) {
-    // console.log(d.indexForChosenQuestion);
-    // console.log("ChooseQuestion i socket aktiveras");
     data.editQuestion(d.pollId, d.indexForChosenQuestion);
-    socket.emit("updateChooseQuestion", d.indexForChosenQuestion);
+    socket.emit("updateChoosenQuestion", d.indexForChosenQuestion); //denna verkar inte göra något
     socket.emit("allQuestions", data.getPoll(d.pollId));
   });
 
@@ -75,6 +73,8 @@ function sockets(io, socket, data) {
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
   });
+
+  
 
   socket.on("joinPoll", function (d) {
     // d är objekt med pollId och questionNumber

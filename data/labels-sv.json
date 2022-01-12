@@ -48,6 +48,7 @@
   "needWritePollName": "Du behöver skriva in ett namn",
   "pollExists": "Denna poll finns redan",
   "savePoll": "Spara poll",
-  "editPoll": "Redigera poll"
+  "editPoll": "Redigera poll",
+  "pollDontExist": "Omröstningen existerar inte ännu"
 
 }

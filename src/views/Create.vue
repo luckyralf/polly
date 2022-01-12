@@ -27,7 +27,7 @@
     </header>
 
     <main class="mainWrapped catCursor">
-      {{ data }}
+      
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
@@ -37,9 +37,10 @@
           v-on:click="
             selectPoll(Object.keys(polls)[index - 1]);
             chooseQuestionWhenSelectingPoll(Object.keys(polls)[index - 1], 0);
+            changeColor(Object.keys(polls)[index - 1], 'pollChange');
           "
           v-bind:class="{
-            selectedQuestionBtn: index - 1 == selectedAnswer,
+            selectedPollBtn: Object.keys(polls)[index - 1] == selectedPoll,
           }"
           class="questionButtons"
         >
@@ -100,10 +101,10 @@
               <button
                 v-on:click="
                   chooseQuestion(index - 1);
-                  changeColor(index - 1);
+                  changeColor(index - 1, 'questionChange');
                 "
                 v-bind:class="{
-                  selectedQuestionBtn: index - 1 == selectedAnswer,
+                  selectedQuestionBtn: index - 1 == selectedQuestion,
                 }"
                 class="questionButtons catPawCursor"
               >
@@ -145,7 +146,6 @@
           id="formSection"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
-          <!-- {{ data.poll.questions[this.currentlySelectedQuestion - 1].q }} -->
           <br />
 
           {{ uiLabels.question }}
@@ -199,7 +199,7 @@
             v-model="time"
             v-on:change="saveEditedQuestion"
           >
-            <option value="0">{{ uiLabels.unlimited }}</option>
+            <option value="1">{{ uiLabels.unlimited }}</option>
             <option value="10">10 s</option>
             <option value="30">30 s</option>
             <option value="60">60 s</option>
@@ -228,7 +228,7 @@
         </section>
       </div>
       {{ data }}
-      <!-- Check Result Knapp -->
+      <!-- Edit / Save poll -->
       <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('savemode')"
@@ -244,6 +244,8 @@
       {{ Object.keys(polls) }}
       <br />
       <br />
+      <!-- Control Panel -->
+
       <div
         id="result"
         v-if="
@@ -259,20 +261,21 @@
         <button v-on:click="runQuestion">
           {{ uiLabels.runQuestion }}
         </button> -->
-
-          <router-link id="routerLink" v-bind:to="'/result/' + pollId">
-            {{ uiLabels.checkResultsText }}
-          </router-link>
+          <button id="checkResultBtn" class="controlPanelBtn">
+            <router-link class="routerLink" v-bind:to="'/result/' + pollId">
+              {{ uiLabels.checkResultsText }}
+            </router-link>
+          </button>
         </div>
         <button
-          class="runPollButton"
+          class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
           {{ uiLabels.runPoll }}
         </button>
         <button
-          lass="deletePollBtn catPawCursor"
+          class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
@@ -280,7 +283,7 @@
         </button>
         <button
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
-          class="deletePollBtn catPawCursor"
+          class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="deletePoll"
         >
           {{ uiLabels.deletePoll }}
@@ -307,7 +310,8 @@ export default {
       uiLabels: {},
       pollHeadline: "",
       time: "0",
-      selectedAnswer: 0, //används bara för färgbyte på frågeknapparna
+      selectedQuestion: 0, //används bara för färgbyte på frågeknapparna
+      selectedPoll: "",
       editActivated: false,
       polls: [],
     };
@@ -324,7 +328,7 @@ export default {
     socket.on("allQuestions", (data) => (this.data = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
     socket.on("dataUpdate", (data) => (this.data = data));
-    socket.on("getAllPolls", (data) => (this.polls = data));
+    socket.on("emitAllPolls", (data) => (this.polls = data));
   },
   methods: {
     saveEditedQuestion: function () {
@@ -351,20 +355,32 @@ export default {
       //VARFÖR FUNKAR DE INTE
     },
 
-    changeColor: function (i) {
-      if (this.selectedAnswer != i) {
-        this.selectedAnswer = i;
+    changeColor: function (i, msg) {
+      if (msg == "questionChange") {
+        if (this.selectedQuestion != i) {
+          this.selectedQuestion = i;
+          console.log("change Q", i, this.selectedQuestion);
+        }
+      }
+      if (msg == "pollChange") {
+        if (this.selectedPoll != i) {
+          this.selectedPoll = i;
+          console.log("change P", i, this.selectedPoll);
+        }
       }
     },
 
     chooseQuestionWhenSelectingPoll: function (pollId, indexForChosenQuestion) {
       socket.emit("chooseQuestion", {
         pollId: pollId,
-        indexForChosenQuestion: indexForChosenQuestion,
+        indexForChosenQuestion: indexForChosenQuestion, //alltid =0 här
       });
+      this.changeColor(indexForChosenQuestion, "questionChange");
+      console.log(this.question, this.answers, "q and a 1"); //här blir något fel, krävs 3 tryck för att uppdatera question och answers
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
       this.time = this.data.poll.questions[indexForChosenQuestion].t;
+      console.log(this.question, this.answers, "q and a 2");
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -374,7 +390,7 @@ export default {
       });
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
-      this.time = this.data.poll.questions[indexForChosenQuestion].t;
+      this.time = this.data.poll.questions[indexForChosenQuestion].time; //den andra har t, denna har time, påverkar vad?
     },
     moveQuestion: function (direction, editQuestion) {
       console.log("moveQuestion fungerar", direction);
@@ -404,12 +420,14 @@ export default {
         socket.emit("createPoll", { pollId: this.pollId, lang: this.lang });
         socket.emit("getAllPolls");
         this.addQuestion(1);
+        this.selectedPoll = this.pollId;
       }
     },
     selectPoll: function (pollId) {
       socket.emit("createPoll", { pollId: pollId });
       socket.emit("getAllPolls");
       this.pollId = pollId;
+      this.selectedPoll = pollId;
     },
     deletePoll: function () {
       if (confirm(this.uiLabels.confirmDeletePoll)) {
@@ -431,7 +449,7 @@ export default {
       });
       this.question = this.uiLabels.editMe;
       this.answers = ["", ""];
-      this.selectedAnswer = indexForAddedQuestion;
+      this.selectedQuestion = indexForAddedQuestion;
     },
     addAnswer: function () {
       this.answers.push("");
@@ -487,7 +505,7 @@ body {
 }
 
 .buttonContainer {
-    position: relative;
+  position: relative;
 }
 
 .linkHome {
@@ -742,6 +760,10 @@ h4 span {
   background-color: #c73ee1;
 }
 
+.selectedPollBtn {
+  background-color: #c73ee1;
+}
+
 #formSection {
   text-align: center;
   grid-column: 2;
@@ -751,7 +773,7 @@ h4 span {
 
 /*#formSection,*/
 #result {
-  width: min-content;
+  width: 300px;
 }
 
 .inputQuestion {
@@ -871,16 +893,9 @@ h4 span {
   align-self: center;
 } */
 
-#routerLink {
+.routerLink {
   color: white;
   text-decoration: none;
-  background: #20af19;
-  border-radius: 6px;
-  border: solid #229954;
-  margin: 1rem 0;
-  margin-top: 40px;
-  font-size: 1.5rem;
-  padding: 2px;
 }
 
 .runPollButton {
@@ -897,5 +912,16 @@ h4 span {
 
 .runPollButton:hover {
   background: #2c640f;
+}
+#checkResultBtn {
+  background: #20af19;
+  font-size: 1.5rem;
+  border: solid #229954;
+}
+.controlPanelBtn {
+  border-radius: 6px;
+  margin: 0.5rem 0;
+  padding: 2px;
+  width: 250px;
 }
 </style>
