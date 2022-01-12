@@ -122,8 +122,8 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels;
     });
-    socket.emit("getAllPolls");
-    socket.on("emitAllPolls", (data) => (this.polls = data));
+    // socket.emit("getAllPolls");
+    // socket.on("emitAllPolls", (data) => (this.polls = data));
   },
   methods: {
     playSound: function () {
