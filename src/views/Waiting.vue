@@ -127,6 +127,7 @@ body {
 
 .wrapper {
   background: pink;
+  height:100vh;
 }
 
 .waitingRoom {

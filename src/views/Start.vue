@@ -411,6 +411,7 @@ body {
   opacity: 85%;
   font-family: "Outfit", sans-serif;
   display: none;
+  z-index:4;
 }
 
 .infoTitle {
