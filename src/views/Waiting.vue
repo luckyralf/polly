@@ -1,11 +1,11 @@
 <template id="temp">
   <section class="wrapper">
     <header>
-      <h1 class="waitingRoom">WAITING ROOM</h1>
+      <h1 class="waitingRoom">{{ uiLabels.WAITINGROOM }}</h1>
     </header>
 
     <div>
-      <p class="waitingForHost">Waiting for host to start poll...</p>
+      <p class="waitingForHost">{{ uiLabels.WaitingForHost }}</p>
 
       <div class="loading">
         <span class="loaderPrick"></span>
@@ -14,7 +14,7 @@
       </div>
 
       <p class="participants">
-        Participants: {{ this.thePoll.poll.amountParticipants }}
+        {{ uiLabels.participants }} {{ this.thePoll.poll.amountParticipants }}
       </p>
 
       <div class="amount"></div>
@@ -42,6 +42,8 @@ export default {
   components: {},
   data: function () {
     return {
+      uiLabels: {},
+      lang: "",
       pollId: "inactive poll",
       amountParticipants: 0,
       pollActivated: false,
@@ -117,6 +119,7 @@ body {
 
 .wrapper {
   background: pink;
+  height: 100vh;
 }
 
 .waitingRoom {
