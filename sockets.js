@@ -44,7 +44,7 @@ function sockets(io, socket, data) {
 
   socket.on("chooseQuestion", function (d) {
     data.editQuestion(d.pollId, d.indexForChosenQuestion);
-    socket.emit("updateChoosenQuestion", d.indexForChosenQuestion); //denna verkar inte göra något
+   // socket.emit("updateChoosenQuestion", d.indexForChosenQuestion); denna verkar inte göra något
     socket.emit("allQuestions", data.getPoll(d.pollId));
   });
 
@@ -68,7 +68,7 @@ function sockets(io, socket, data) {
     });
     console.log(
       "questionData som kommer till saveEditedQuestion",
-      questionData.t
+      questionData
     );
     socket.emit("allQuestions", data.getPoll(questionData.pollId));
     // socket.emit('questionObject', data.getAnswers(d.pollId)); //returnera hela pollen istället
