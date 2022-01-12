@@ -51,6 +51,9 @@
           class="activeLink"
           tag="button"
           style="color: #fff"
+          v-bind:class="{
+            inactiveLink: id === '',
+          }"
           >{{ uiLabels.participatePoll }}
         </router-link>
         <!-- <span
