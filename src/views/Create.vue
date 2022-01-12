@@ -252,10 +252,6 @@
       <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
         <h2>Control panel</h2>
 
-      <!-- Control Panel -->
-      <div id="result" v-if="!saveMode">
-        <h2>Control panel</h2>
-
         <button
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
@@ -432,7 +428,6 @@ export default {
         this.indexForChosenQuestion -= 1;
       }
       if (direction == "down") {
-        
         this.indexForChosenQuestion += 1;
       }
     },
@@ -494,6 +489,7 @@ export default {
         )
       ) {
         socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+        this.updatePolls();
       }
     },
   },
