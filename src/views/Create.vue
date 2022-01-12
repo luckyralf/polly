@@ -275,7 +275,10 @@
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
         >
-          {{ uiLabels.runPoll }}
+         {{ uiLabels.runPoll }}
+        <div id="infoDIV" v-show="showInfoDiv">
+        </div>
+
         </button>
         <button id="checkResultBtn" class="controlPanelBtn">
           <router-link class="routerLink" v-bind:to="'/result/' + pollId">
@@ -423,6 +426,7 @@ export default {
     runPollFunction: function () {
       console.log(this.pollId);
       socket.emit("runPoll", this.pollId);
+      
     },
 
     chooseQuestionWhenSelectingPoll: function (pollId, indexForChosenQuestion) {

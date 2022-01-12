@@ -32,7 +32,7 @@
 
 <script>
 import Question from "@/components/Question.vue";
-import { confetti } from "/public/confetti-creator.js";
+//import { confetti } from "/public/confetti-creator.js";
 import io from "socket.io-client";
 const socket = io();
 
@@ -71,8 +71,8 @@ export default {
     socket.on("dataUpdate", (data) => (this.data = data));
     socket.on("getPoll", (thePoll) => {
       this.thePoll = thePoll;
-      socket.emit("pageLoaded", this.thePoll.poll.lang);
-      socket.on("dataUpdate", (data) => (this.data = data));
+    socket.emit("pageLoaded", this.thePoll.poll.lang);
+     socket.on("dataUpdate", (data) => (this.data = data));
     });
 
     socket.on("init", (labels) => {
@@ -111,7 +111,7 @@ export default {
       }
     },
     confettiButton: function () {
-      confetti();
+      //confetti();
     },
   },
 };
