@@ -50,15 +50,12 @@
   "savePoll": "Spara poll",
   "editPoll": "Redigera poll",
   "pollDontExist": "Omröstningen existerar inte ännu",
-<<<<<<< HEAD
   "waitingForHost":"Väntar på att värden ska starta omröstningen",
   "participants":"Participants",
   "waitingRoom":"WAITING ROOM",
-  "createOnComputer":"You can create your own poll from a computer"
-=======
+  "createOnComputer":"You can create your own poll from a computer",
   "congratulations":"Grattis! Du är klar med omröstningen!",
   "timeLeft":"Tid kvar:",
   "showBar": "Visa stapeldiagram",
   "peopleWhoDidntAnswer":"Personer svarade inte på denna frågan."
->>>>>>> 21ea3aacb2ba0b4f46e619c122f6c41576cfde23
 }
