@@ -206,10 +206,7 @@
           </select>
           <br />
 
-<<<<<<< HEAD
           {{ uiLabels.selectedTime }} {{ data.poll.questions.q }}
-=======
->>>>>>> 1c0c143b2f8c132ddfbb025f6c263a81b4bf7903
 
           <!-- <option v-for="(_, i) in uiLabels.timeArray" 
                       v-bind:key="i" 

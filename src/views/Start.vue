@@ -248,12 +248,6 @@ body {
   pointer-events: none;
 }
 
-  @media only screen and (max-width: 600px) {
-    body {
-      background: yellow;
-    }
-  }
-
 
 .circles li {
   position: absolute;
