@@ -1,6 +1,6 @@
 <template id="temp">
   <!--<body> -->
-  <section class="jjj">
+  <section class="wrapper">
     <header>
       <h1 class="waitingRoom">WAITING ROOM</h1>
     </header>
@@ -29,7 +29,7 @@
 
     <div v-if="this.pollActivated">POLL KÖRS</div>
 
-    <div class="animering"></div>
+    <div class="wrapperBottom"></div>
   </section>
   <!--</main>
     </body> -->
@@ -123,7 +123,7 @@ body {
   background: yellow;
 }
 
-.jjj {
+.wrapper {
   background: pink;
 }
 
@@ -172,7 +172,7 @@ body {
   font-weight: bold;
 }
 
-.animering {
+.wrapperBottom {
   background: pink;
   height: 300px;
 }
@@ -197,8 +197,8 @@ body {
     left:-20%;
     top:50%;
     transform:translate (-50% -50%);
-    
 }
+
 .loading{
     position:absolute;
     left:15%;
@@ -206,15 +206,13 @@ body {
     transform:translate (-50% -50%);
     max-width:270px;
     margin-right:50px;
-    
-
 }
-.jjj{
+.wrapper{
     max-width:425px;
     min-width:425px;
 }
 
-.animering{
+.wrapperBottom{
     background: pink;
     max-height:120px;
 }
