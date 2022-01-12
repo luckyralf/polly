@@ -85,7 +85,8 @@
 
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
-- [ ] De som inte svarat
+- [x] De som inte svarat
+- [ ] FIXA design tillexempel en animering
 
 ## Poll
 
