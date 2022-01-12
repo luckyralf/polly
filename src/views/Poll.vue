@@ -201,8 +201,8 @@ body {
   background-position: bottom;
   background-size: 460px;
   height: 100%;
-  max-width: 700px;
-  animation: animate 4s ;
+  
+  animation: animate ;
   animation-name: ansAni;
 
   transform-origin: left;

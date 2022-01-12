@@ -1,13 +1,15 @@
 <template>
   <body class="Wrap catCursor">
     <header>
-      <h1>{{ uiLabels.pollResult }}</h1>
+      <h1>{{ uiLabels.pollResult }}: {{this.pollId }}</h1>
     </header>
+    
     <main>
       <br />
       <button class="switchComponentBtn catPawCursor" v-on:click="switchComponent()">
         {{ uiLabels.showPie }}
       </button>
+    
       <br />
       <div class="questionAndBars">
         <div class="questions">
@@ -30,7 +32,9 @@
         </div>
         <div id="componentContaner">
           <div id="bars" v-if="this.dataRepresentation === 'Bars'">
-            <Bars v-bind:data="data" />
+            <Bars v-bind:data="data" 
+                  v-bind:amountParticipants="thePoll.poll.amountParticipants"
+                  />
           </div>
           <div id="pie" v-if="this.dataRepresentation === 'Pie'">
             <Pie v-bind:data="data" />
@@ -65,6 +69,7 @@ export default {
       data: {},
       questionNumber: 0,
       thePoll: {},
+      pollId: "",
       colorArray: [
         "#f46036",
         "#1b998b",
@@ -156,13 +161,15 @@ export default {
 
 .questionAndBars {
   display: flex;
-  grid-gap: 300px;
+  grid-gap: 100px;
+ 
 }
 
 .questions {
   grid-column: 1;
   margin-left: 50px;
   margin-top: 40px;
+
 }
 
 .switchComponentBtn {
@@ -171,9 +178,14 @@ export default {
   color: white;
   background-color: #296ad3;
   border-radius: 5px;
-  padding: 5px;
+  padding: 20px;
   margin-bottom: 20px;
+  margin-left: 400px;
+
 }
+
+
+
 
 .resultQuestions {
   font-family: "Outfit", sans-serif;
@@ -186,6 +198,7 @@ export default {
   display: block;
   margin: 2px;
   font-size: 20px;
+
 }
 
 .resultQuestions:hover {
@@ -207,6 +220,7 @@ export default {
   padding-bottom: 500px;
   border: 0;
   margin: 0;
+
 }
 
 h1 {
