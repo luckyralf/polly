@@ -68,6 +68,7 @@
 - [ ] Pollen låser sig om man klickat run poll
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
 - [ ] När man klickar på en poll kommer man till dess första fråga
+- [ ] Skriv ut att
 
 ## Generellt
 
