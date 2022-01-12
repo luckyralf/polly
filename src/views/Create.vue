@@ -260,7 +260,7 @@
         >
          {{ uiLabels.runPoll }}
         <div id="infoDIV" v-show="showInfoDiv">
-         </div>
+        </div>
 
         </button>
         <button id="checkResultBtn" class="controlPanelBtn">
