@@ -232,12 +232,12 @@
       >
         {{ uiLabels.savePoll }}
       </button>
-      <button
+      <!-- <button
         v-if="data.poll !== undefined && data.poll.questions.length > 0"
         v-on:click="editOrSavePoll('editmode')"
       >
-        {{ uiLabels.editPoll }}
-      </button>
+        {{ uiLabels.editPoll }} 
+      </button> -->
       {{ Object.keys(polls) }}
       <br />
       <br />
@@ -271,13 +271,13 @@
         >
           {{ uiLabels.runPoll }}
         </button>
-        <button
+        <!-- <button
           class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="runPollFunction"
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
         >
           Abort poll uilabel
-        </button>
+        </button> -->
         <button
           v-if="data.poll !== undefined && data.poll.questions.length > 0"
           class="deletePollBtn catPawCursor controlPanelBtn"
@@ -349,7 +349,6 @@ export default {
     runPollFunction: function () {
       console.log(this.pollId);
       socket.emit("runPoll", this.pollId);
-      //VARFÖR FUNKAR DE INTE
     },
 
     changeColor: function (i, msg) {
