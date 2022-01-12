@@ -376,8 +376,8 @@ export default {
       this.question = this.data.poll.questions[indexForChosenQuestion].q;
       this.answers = this.data.poll.questions[indexForChosenQuestion].a;
       this.time = this.data.poll.questions[indexForChosenQuestion].time;
-      console.log(this.question,this.answers,'q and a2')
-      this.changeColor(indexForChosenQuestion,'questionChange');
+      console.log(this.question, this.answers, "q and a2");
+      this.changeColor(indexForChosenQuestion, "questionChange");
     },
 
     chooseQuestion: function (indexForChosenQuestion) {
@@ -462,7 +462,13 @@ export default {
       // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
     editOrSavePoll: function (mode) {
-      socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+      if (
+        confirm(
+          "uilabel saknas, are you sure you want to save? You cannot make any changes after this."
+        )
+      ) {
+        socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
+      }
     },
   },
 };

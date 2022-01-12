@@ -181,7 +181,12 @@ Data.prototype.editParticipants = function (addOrRemove, pollId) {
 };
 
 Data.prototype.checkPollExists = function (pollId) {
-  if (this.polls[pollId] === "undefined") {
+  console.log(
+    "checkpollexists data",
+    this.polls[pollId],
+    typeof this.polls[pollId]
+  );
+  if (typeof this.polls[pollId] === "undefined") {
     return false;
   } else {
     return true;

@@ -12,15 +12,15 @@
 - [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
 - [x] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
-- [ ] OM det bara är en fråga fuckas det upp vad händer.
+- [x] OM det bara är en fråga fuckas det upp vad händer.
 - [x] Vad händer när timern går ut?
 - [x] Sekunder på timer
 - [x] Timer stanna när man tryckt submit
 
 ## Väntrum
 
-- [ ] Importera antalet deltagare
-- [ ] Sätt igång pollen vid rätt tillfälle
+- [x] Importera antalet deltagare
+- [x] Sätt igång pollen vid rätt tillfälle
 
 ## Startsida
 
@@ -68,6 +68,7 @@
 - [ ] Pollen låser sig om man klickat run poll
 - [ ] Check result kan komma upp när man tryckt run poll, och att de kommer upp en "poll is running"
 - [ ] När man klickar på en poll kommer man till dess första fråga
+- [ ] Skriv ut att
 
 ## Generellt
 
@@ -85,7 +86,8 @@
 
 - [x] Få in de valda svaren (logik)
 - [x] Layout för svarsrepresentation
-- [ ] De som inte svarat
+- [x] De som inte svarat
+- [ ] FIXA design tillexempel en animering
 
 ## Poll
 
