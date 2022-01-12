@@ -12,14 +12,14 @@
 - [ ] Design Pollsidan, ska frågorna hamna över varann, bredvid? kanske göra allt lite mindre
 - [x] Gör konfettin mer "egen"
 - [x] Slå ihop "submit" och "next question"
-- [ ] OM det bara är en fråga fuckas det upp vad händer.
+- [x] OM det bara är en fråga fuckas det upp vad händer.
 - [x] Vad händer när timern går ut?
 - [x] Sekunder på timer
 - [x] Timer stanna när man tryckt submit
 
 ## Väntrum
 
-- [ ] Importera antalet deltagare
+- [x] Importera antalet deltagare
 - [x] Sätt igång pollen vid rätt tillfälle
 
 ## Startsida
