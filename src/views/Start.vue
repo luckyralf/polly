@@ -47,17 +47,17 @@
       <br />
 
       <div class="linkToPoll">
-        <button
-          class="activeLink"
-          tag="button"
-          style="color: #fff"
-          v-bind:class="{
-            inactiveLink: id === '',
-          }"
-          v-on:click="checkPollExist(id)"
-        >
-          {{ uiLabels.participatePoll }}
-        </button>
+          <button
+            class="activeLink"
+            tag="button"
+            style="color: #fff"
+            v-bind:class="{
+              inactiveLink: id === '',
+            }"
+            v-on:click="checkPollExist(id)"
+          >
+            {{ uiLabels.participatePoll }}
+          </button>
         <span
           v-bind:class="[
             { noIdProvided: id === '' },
@@ -79,8 +79,6 @@
         >
       </div>
     </div>
-
-    
 
     <div id="Finalword">
       <hr />
@@ -658,6 +656,7 @@ body {
 .linkToPoll:hover .noIdProvided {
   visibility: visible;
 }
+
 
 hr {
   border: none;

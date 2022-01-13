@@ -208,6 +208,7 @@ export default {
 .questionAndBars {
   top:30%;
   margin-top: 5rem;
+  margin-bottom: 5rem;
   background: linear-gradient(to right, #88ddff, hsl(202, 79%, 49%));
   border: solid white 5px;
   border-radius: 20px;
@@ -279,7 +280,7 @@ export default {
   padding-top: 1px;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   padding-bottom: 0px;
-  height: 100vh;
+  height: fit-content;
   border: 0;
   margin: 0;
 }
