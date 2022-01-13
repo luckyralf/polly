@@ -4,7 +4,6 @@
       <router-link to="/">
         <button class="linkHome"></button>
       </router-link>
-
       <button
         v-on:click="infoFunction()"
         class="infoButton catPawCursor"
@@ -27,7 +26,7 @@
     </header>
     <main v-if="polls" class="mainWrapped catCursor">
       <br />
-      {{ uiLabels.createStartInfo }}
+    <p class = "infoCreate">{{ uiLabels.createStartInfo }}</p>
       <br />
       <br />
       <div class="pollMenu">
@@ -162,7 +161,7 @@
         >
           <br />
 
-          {{ uiLabels.question }}
+          <p class= "questionTitle">{{ uiLabels.question }}</p>
           <textarea
             v-on:input="
               saveEditedQuestion();
@@ -258,25 +257,20 @@
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
         >
-          {{ uiLabels.runPoll }}
+        <div v-if= "pollActivated">
+        {{ uiLabels.activatedPoll }}
+        </div>
+
+        <div v-else>
+        {{ uiLabels.runPoll }}
+        </div>
+
         </button>
         <button id="checkResultBtn" class="controlPanelBtn">
           <router-link class="routerLink" v-bind:to="'/result/' + pollId">
             {{ uiLabels.checkResultsText }}
           </router-link>
         </button>
-        <!-- <button
-          class="deletePollBtn catPawCursor controlPanelBtn"
-          v-on:click="runPollFunction"
-        >
-          Abort poll uilabel
-        </button> -->
-        <!-- <button
-          class="deletePollBtn catPawCursor controlPanelBtn"
-          v-on:click="deletePoll"
-        >
-          {{ uiLabels.deletePoll }}
-        </button> -->
       </div>
     </main>
   </body>
@@ -300,6 +294,7 @@ export default {
       polls: null,
       indexForChosenQuestion: 0,
       pollIdInput: "",
+      pollActivated: false,
     };
   },
   computed: {
@@ -395,6 +390,7 @@ export default {
     runPollFunction: function () {
       console.log(this.pollId);
       socket.emit("runPoll", this.pollId);
+      this.pollActivated = true;
     },
 
     chooseQuestionWhenSelectingPoll: function (pollId, indexForChosenQuestion) {
@@ -521,11 +517,14 @@ export default {
 body {
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-  min-width: 100%;
-  min-height: 100%;
+  /*min-width: 100%;*/
+  /*min-height: 100%;*/
+  height:100vh;
+  width:100vw;
+  min-height:1000px;
   padding-top: 2rem;
   margin: 0;
-  padding-bottom: 500px;
+  /*padding-bottom: 500px;*/
   align-content: center;
 }
 
@@ -565,6 +564,7 @@ body {
   font-family: "Outfit", sans-serif;
   display: none;
 }
+
 
 .infoTitle {
   font-family: "Outfit", sans-serif;
@@ -607,6 +607,12 @@ body {
   background: none;
   font-size: 1.24rem;
   font-weight: bold;
+}
+
+.infoCreate{
+  border:dotted white 4px;
+  margin-top:4px;
+  font-size:18px;
 }
 
 header {
@@ -654,6 +660,12 @@ main {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 50% 50%;
+}
+
+.questionTitle{
+font-size:24px;
+margin-bottom:2px;
+margin-top:3px;
 }
 
 .createPollBtnActive {
@@ -815,6 +827,7 @@ h4 span {
 .inputAnswers {
   background: #fff;
   font-size: 15px;
+  margin-top:5px;
 }
 
 .delAnsBtn {
@@ -861,6 +874,12 @@ h4 span {
   border-radius: 5px;
   color: white;
   background-color: #296ad3;
+  font-family: "Outfit", sans-serif;
+  font-size:15px;
+  border:solid 2px white;
+  height:30px;
+  width:200px;
+  
 }
 
 #result {
