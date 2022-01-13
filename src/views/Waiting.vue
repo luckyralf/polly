@@ -5,7 +5,7 @@
     </header>
 
     <div>
-      <p class="waitingForHost">{{ uiLabels.WaitingForHost }}</p>
+      <div class="waitingForHost"> {{ uiLabels.waitingForHost }} </div>
 
    
       <div class="loading">

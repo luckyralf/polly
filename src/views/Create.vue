@@ -610,9 +610,10 @@ body {
 }
 
 .infoCreate{
-  border:dotted white 4px;
+  border-bottom:solid white 4px;
+  font-weight: bold;
   margin-top:4px;
-  font-size:18px;
+  font-size:20px;
 }
 
 header {
