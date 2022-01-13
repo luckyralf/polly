@@ -4,7 +4,6 @@
       <router-link to="/">
         <button class="linkHome"></button>
       </router-link>
-
       <button
         v-on:click="infoFunction()"
         class="infoButton catPawCursor"
@@ -31,7 +30,7 @@
     {{this.polls}}
     <main v-if="polls" class="mainWrapped catCursor">
       <br />
-      {{ uiLabels.createStartInfo }}
+    <p class = "infoCreate">{{ uiLabels.createStartInfo }}</p>
       <br />
       <br />
       <!-- {{ polls[pollId] }} <span style="color: red">THIS IS polls[pollId]</span>
@@ -164,9 +163,9 @@
         </section>
         <!-- Här börjar formuläret för högra rutan -->
         <section v-if="polls[pollId] && !polls[pollId].saveMode" id="formSection">
-          <br />
+          <!--<br/> -->
 
-          {{ uiLabels.question }}
+          <p class= "questionTitle">{{ uiLabels.question }}</p>
           <!-- {{polls[pollId].editQuestion]}} -->
           <textarea
             v-on:input="
@@ -565,11 +564,14 @@ body {
   grid-template-rows: auto auto  ; */
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-  min-width: 100%;
-  min-height: 100%;
+  /*min-width: 100%;*/
+  /*min-height: 100%;*/
+  height:100vh;
+  width:100vw;
+  min-height:1000px;
   padding-top: 2rem;
   margin: 0;
-  padding-bottom: 500px;
+  /*padding-bottom: 500px;*/
   align-content: center;
 }
 
@@ -655,6 +657,12 @@ body {
   font-weight: bold;
 }
 
+.infoCreate{
+  border:dotted white 4px;
+  margin-top:4px;
+  font-size:18px;
+}
+
 header {
   margin-bottom: 1rem;
   /* text-align: center;
@@ -706,6 +714,12 @@ main {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 50% 50%;
+}
+
+.questionTitle{
+font-size:24px;
+margin-bottom:2px;
+margin-top:3px;
 }
 
 .createPollBtnActive {
@@ -862,6 +876,7 @@ h4 span {
 .inputAnswers {
   background: #fff;
   font-size: 15px;
+  margin-top:5px;
 }
 
 .delAnsBtn {
@@ -908,6 +923,12 @@ h4 span {
   border-radius: 5px;
   color: white;
   background-color: #296ad3;
+  font-family: "Outfit", sans-serif;
+  font-size:15px;
+  border:solid 2px white;
+  height:30px;
+  width:200px;
+  
 }
 
 #result {
