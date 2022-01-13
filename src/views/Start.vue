@@ -50,7 +50,7 @@
         <button
           class="activeLink"
           tag="button"
-          style="color: #fff"
+          style="font-size:20px"
           v-bind:class="{
             inactiveLink: id === '',
           }"
@@ -72,7 +72,6 @@
       <p>{{ uiLabels.orMakeOwn }}</p>
       <div class="createBtn">
         <router-link
-          style="color: #fff"
           className="activeLink"
           v-bind:to="'/create/' + lang"
           >{{ uiLabels.createPoll }}</router-link
@@ -525,6 +524,7 @@ body {
     border: solid #229954;
     text-decoration: none;
     margin-top: 0px;
+
   }
 
   .writeAndParticipate {
