@@ -488,7 +488,7 @@ export default {
     editOrSavePoll: function (mode) {
       if (
         confirm(
-          "uilabel saknas, are you sure you want to save? You cannot make any changes after this."
+          "uilabel is missing, are you sure you want to save? You cannot make any changes after this."
         )
       ) {
         socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
