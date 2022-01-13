@@ -47,17 +47,17 @@
       <br />
 
       <div class="linkToPoll">
-          <button
-            class="activeLink"
-            tag="button"
-            style="color: #fff"
-            v-bind:class="{
-              inactiveLink: id === '',
-            }"
-            v-on:click="checkPollExist(id)"
-          >
-            {{ uiLabels.participatePoll }}
-          </button>
+        <button
+          class="activeLink"
+          tag="button"
+          style="font-size:20px"
+          v-bind:class="{
+            inactiveLink: id === '',
+          }"
+          v-on:click="checkPollExist(id)"
+        >
+          {{ uiLabels.participatePoll }}
+        </button>
         <span
           v-bind:class="[
             { noIdProvided: id === '' },
@@ -72,7 +72,6 @@
       <p>{{ uiLabels.orMakeOwn }}</p>
       <div class="createBtn">
         <router-link
-          style="color: #fff"
           className="activeLink"
           v-bind:to="'/create/' + lang"
           >{{ uiLabels.createPoll }}</router-link
@@ -147,6 +146,7 @@ export default {
         x.style.display = "none";
       }
     },
+
     switchLanguageToEN: function () {
       this.lang = "en";
       socket.emit("switchLanguage", this.lang);
@@ -523,6 +523,7 @@ body {
     border: solid #229954;
     text-decoration: none;
     margin-top: 0px;
+
   }
 
   .writeAndParticipate {

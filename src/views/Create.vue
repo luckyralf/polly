@@ -430,6 +430,7 @@ export default {
         this.indexForChosenQuestion -= 1;
       }
       if (direction == "down") {
+        
         this.indexForChosenQuestion += 1;
       }
     },
@@ -491,7 +492,6 @@ export default {
         )
       ) {
         socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
-        this.updatePolls();
       }
     },
   },

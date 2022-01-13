@@ -1,5 +1,4 @@
 {
-  "sales-pitch": "Simply. Great. Polling.",
   "createHeader": "Create Cat Poll",
   "invite": "Invite participants with this link:",
   "createPoll": "Create poll",
@@ -50,11 +49,13 @@
   "savePoll": "Save poll",
   "editPoll": "Edit Poll",
   "pollDontExist": "Poll does not exist yet",
-  "waitingforHost": "waiting for host to start poll...",
-  "waitingRoom": "VÄNTRUM",
-  "createOnComputer": "Du kan skapa din egna omröstning från en dator!",
+  "waitingForHost": "waiting for host to start poll...",
+  "waitingRoom": "Waiting room",
+  "createOnComputer": "You can create your own poll from a computer!",
   "congratulations": "Congratulations! You are done with the poll!",
   "timeLeft": "Time left:",
   "showBar": "Show bar chart",
-  "peopleWhoDidntAnswer": "People did not answer to this question."
+  "peopleWhoDidntAnswer": "People did not answer to this question.",
+  "saveThePollWarning": "You can not edit the poll after saving it, are you sure you want to continue?",
+  "participants": "Participants:"
 }
