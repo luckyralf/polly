@@ -115,6 +115,7 @@ export default {
   },
 
   created: function () {
+    console.log('result skapas');
     this.pollId = this.$route.params.id;
     socket.emit("joinPoll", {
       pollId: this.pollId,
@@ -278,8 +279,9 @@ export default {
   background: linear-gradient(to left, #0c2c63, #1941b2);
   padding-top: 1px;
   background: linear-gradient(to left, #0c2c63, #1941b2);
-  padding-bottom: 0px;
-  height: 100vh;
+  padding-bottom:0px;
+  height:100vh;
+  min-height:711px;
   border: 0;
   margin: 0;
 }

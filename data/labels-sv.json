@@ -1,5 +1,4 @@
 {
-  "sales-pitch": "Svar. Helt. Enkelt.",
   "createHeader": "Skapa Cat Poll",
   "invite": "Bjud in deltagare med den här länken:",
   "createPoll": "Skapa omröstning",
@@ -50,13 +49,13 @@
   "savePoll": "Spara poll",
   "editPoll": "Redigera poll",
   "pollDontExist": "Omröstningen existerar inte ännu",
-  "waitingForHost": "Väntar på att värden ska starta omröstningen",
-  "participants": "Participants",
-  "waitingRoom": "WAITING ROOM",
-  "createOnComputer": "You can create your own poll from a computer",
+  "waitingForHost": "Väntar på att värden ska starta omröstningen...",
+  "participants": "Deltagare:",
+  "waitingRoom": "Väntrum",
   "congratulations": "Grattis! Du är klar med omröstningen!",
   "timeLeft": "Tid kvar:",
   "showBar": "Visa stapeldiagram",
   "peopleWhoDidntAnswer": "Personer svarade inte på denna frågan.",
-  "saveThePollWarning": "Du kan inte ändra på din poll efter du har sparat, är du säker på att du vill fortsätta?"
+  "saveThePollWarning": "Du kan inte ändra på din poll efter du har sparat, är du säker på att du vill fortsätta?",
+  "createOnComputer": "Du kan skapa en egen poll från en dator!"
 }
