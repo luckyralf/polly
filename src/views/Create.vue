@@ -9,6 +9,7 @@
         v-on:click="infoFunction()"
         class="infoButton catPawCursor"
       ></button>
+
       <div id="infoDIV" v-show="showInfoDiv">
         <div class="infoHeader">
           <div class="infoTitle">{{ uiLabels.createpageInfoHeader }}</div>
@@ -25,25 +26,28 @@
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
+
+    {{ this.polls }}
     <main v-if="polls" class="mainWrapped catCursor">
       <br />
       {{ uiLabels.createStartInfo }}
       <br />
       <br />
-      <div class="pollMenu">
-        <div v-for="(_, index) in polls" :key="index">
-          <button
-            v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
-            v-bind:class="{
-              selectedPollBtn: index == pollId,
-            }"
-            class="questionButtons"
-          >
-            {{ index }}
-          </button>
-        </div>
+      <div v-for="(_, index) in polls" :key="index">
+        <button
+          v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
+          v-bind:class="{
+            selectedPollBtn: index == pollId,
+          }"
+          class="questionButtons"
+        >
+          {{ index }}
+        </button>
       </div>
+
       <div id="createPollId">
+        <!-- {{ uiLabels.pollLink }} -->
+        <!-- placeholder -->
         <input
           type="text"
           placeholder="Write poll name here"
@@ -52,6 +56,7 @@
           required
           v-on:input="updatePolls()"
         />
+        <!-- {{polls[pollId].saveMode}} -->
         <div class="pollName">
           <button
             class="createPollBtnActive catPawCursor"
@@ -99,6 +104,7 @@
 
           <!-- Skriver ut frågorna som skapas -->
           <div class="buttonChooseQuestion" v-if="polls[pollId] !== undefined">
+            {{ polls[pollId].questions }}
             <div
               v-for="(questionObject, index) in polls[pollId].questions"
               :key="index"
@@ -124,6 +130,7 @@
             >
               {{ uiLabels.addQuestion }}
             </button>
+            <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
             <div>
               <!-- hittahitt -->
@@ -134,10 +141,11 @@
               >
                 ↑
               </button>
+              {{ polls[pollId].questions.length }}
               <button
                 v-if="
                   this.indexForChosenQuestion <
-                  this.polls[this.pollId].questions.length - 1
+                  this.polls[this.pollId].questions.length
                 "
                 class="moveBtn catPawCursor"
                 v-on:click="moveQuestion('down')"
@@ -154,7 +162,6 @@
             {{ uiLabels.savePoll }}
           </button>
         </section>
-
         <!-- Här börjar formuläret för högra rutan -->
         <section
           v-if="polls[pollId] && !polls[pollId].saveMode"
@@ -163,6 +170,7 @@
           <br />
 
           {{ uiLabels.question }}
+          <!-- {{polls[pollId].editQuestion]}} -->
           <textarea
             v-on:input="
               saveEditedQuestion();
@@ -232,6 +240,14 @@
           </select>
           <br />
 
+          <!-- <option v-for="(_, i) in uiLabels.timeArray" 
+                      v-bind:key="i" 
+                      v-model="uiLabels.timeArray[i]"/>
+
+          <option v-for="(_, i) in uiLabels.timeArray" v-bind:key="i" > 
+                {{uiLabels.timeArray[i]}}
+          </option> -->
+
           <br />
 
           <button
@@ -245,15 +261,12 @@
           </button>
         </section>
       </div>
-
       <!-- Edit / Save poll -->
       <br />
       <br />
-
       <!-- Control Panel -->
       <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
         <h2>Control panel</h2>
-
         <button
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
@@ -266,25 +279,18 @@
         {{ uiLabels.runPoll }}
         </div>
 
-        
         </button>
         <button id="checkResultBtn" class="controlPanelBtn">
           <router-link class="routerLink" v-bind:to="'/result/' + pollId">
             {{ uiLabels.checkResultsText }}
           </router-link>
         </button>
-        <!-- <button
-          class="deletePollBtn catPawCursor controlPanelBtn"
-          v-on:click="runPollFunction"
-        >
-          Abort poll uilabel
-        </button> -->
-        <!-- <button
+        <button
           class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="deletePoll"
         >
           {{ uiLabels.deletePoll }}
-        </button> -->
+        </button>
       </div>
     </main>
   </body>
@@ -312,6 +318,13 @@ export default {
     };
   },
   computed: {
+    // saveMode: function () {
+    //   if (this.polls && this.pollId) {
+    //     return this.polls[this.pollId].saveMode;
+    //   } else {
+    //     return false;
+    //   }
+    // },
     question: {
       get: function () {
         if (
@@ -365,9 +378,12 @@ export default {
     socket.on("pollCreated", () => {
       this.pollId = this.newPollId;
       this.newPollId = "";
+      // this.polls[this.pollId] = data;
       this.addQuestion(0);
     });
+    // socket.on("allQuestions", (data) => (this.polls[this.pollId] = data));
     socket.on("pollHead", (pollHead) => (this.pollHeadline = pollHead));
+    // socket.on("dataUpdate", (data) => (this.polls[this.pollId] = data));
     socket.on("emitAllPolls", (data) => {
       this.polls = data;
       this.bindVariables();
@@ -428,6 +444,11 @@ export default {
       this.indexForChosenQuestion = indexForChosenQuestion;
       this.answers =
         this.polls[this.pollId].questions[indexForChosenQuestion].a;
+      // this.question =
+      //   this.polls[this.pollId].questions[indexForChosenQuestion].q;
+
+      // this.time =
+      //   this.polls[this.pollId].questions[indexForChosenQuestion].time; //den andra har t, denna har time, påverkar vad?
     },
     moveQuestion: function (direction) {
       console.log("moveQuestion fungerar", direction);
@@ -440,8 +461,11 @@ export default {
         this.indexForChosenQuestion -= 1;
       }
       if (direction == "down") {
+        //hittahit
         this.indexForChosenQuestion += 1;
       }
+      // this.question = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].q;
+      // this.answers = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].a;
     },
 
     updatePolls: function () {
@@ -463,18 +487,20 @@ export default {
       socket.emit("getAllPolls");
       this.pollId = pollId;
     },
-    // deletePoll: function () {
-    //   if (confirm(this.uiLabels.confirmDeletePoll)) {
-    //     socket.emit("deletePoll", { pollId: this.pollId });
-    //     this.pollHeadline = this.uiLabels.createHeader;
-    //     this.pollId = "";
-    //     socket.emit("getAllPolls");
-    //   }
-    // },
+    deletePoll: function () {
+      if (confirm(this.uiLabels.confirmDeletePoll)) {
+        socket.emit("deletePoll", { pollId: this.pollId });
+        this.pollHeadline = this.uiLabels.createHeader;
+        this.pollId = "";
+        socket.emit("getAllPolls");
+      }
+    },
     addQuestion: function (indexForAddedQuestion) {
       socket.emit("addQuestion", {
         pollId: this.pollId,
+        // q: this.question,
         q: this.uiLabels.editMe,
+        // a: this.answers,
         a: ["", ""],
         t: "0",
         indexForAddedQuestion,
@@ -493,15 +519,11 @@ export default {
         pollId: this.pollId,
         questionNumber: this.questionNumber,
       });
+      // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
     editOrSavePoll: function (mode) {
-      if (
-        confirm(
-          "uilabel saknas, are you sure you want to save? You cannot make any changes after this."
-        )
-      ) {
+      if (confirm(this.uiLabels.saveThePollWarning)) {
         socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
-        this.updatePolls();
       }
     },
   },
@@ -529,6 +551,8 @@ export default {
 }
 
 body {
+  /* display: grid;
+  grid-template-rows: auto auto  ; */
   color: white;
   background: linear-gradient(to left, #0c2c63, #1941b2);
   min-width: 100%;
@@ -585,6 +609,8 @@ body {
 }
 .infoButton {
   position: absolute;
+  /* padding-top: 20px;
+  padding-right: -20px; */
   background-size: cover;
   background-position: 50%;
   border-radius: 100%;
@@ -622,6 +648,19 @@ body {
 
 header {
   margin-bottom: 1rem;
+  /* text-align: center;
+  border: 7px solid white;
+  border-radius: 30px;
+
+  box-shadow:
+    0 0 20px 7px #fff,
+    0 0 37px 15px #f0f,
+    0 0 40px 27px #0ff,
+    inset 0 0 20px 8px #fff,
+    inset 0 0 37px 18px #f0f,
+    inset 0 0 30px 27px #0ff;
+  margin: 0 4rem;
+  padding: 1rem 0; */
 }
 
 h1 {
@@ -654,13 +693,6 @@ main {
   text-align: center;
 }
 
-.pollMenu {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
 .wrapper {
   display: grid;
   grid-gap: 10px;
@@ -679,11 +711,7 @@ main {
   margin-top: 10px;
 }
 
-.createPollBtnActive:hover {
-  background: #198513;
-}
-
-.createPollBtnInActive {
+/* .createPollBtnInActive {
   color: white;
   background: #20af19;
   border-radius: 3px;
@@ -694,7 +722,7 @@ main {
   font-size: 20px;
   opacity: 0.5;
   pointer-events: none;
-}
+} */
 
 .idProvided {
   visibility: hidden;
@@ -752,6 +780,7 @@ main {
 
 #questSection {
   grid-column: 1;
+  /* padding: 1rem 3rem 1rem 3rem ; */
 }
 #questSection h4 {
   margin: 0;
@@ -779,7 +808,7 @@ h4 span {
   font-size: 19px;
   margin: 0.5rem 1rem;
   cursor: url(data:application/octet-stream;base64,AAACAAEAICAAAAMAAQCoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABLAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABfAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAbAAAASwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAAzAAAAZwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAMwAAAGMAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABbAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAACHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAsAAAAjAAAAUwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAIwAAAEsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABDAAAAdwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADMAAABnAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAArAAAAWwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB3AAAAOwAAABMAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAEsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAjwAAAE8AAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAA7AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABvAAAAMwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAKwAAAF8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAhwAAAEsAAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMAAABDAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABfAAAAKwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAIwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAdwAAADsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAA3AAAA/wAAAP8AAAD/AAAA/6GD//+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAIcAAABLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAE8AAAD/oYP//wAAAP8AAAD/oYP//6GD//+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAWwAAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAAzAAAA/6GD//+hg///AAAA/6GD//+hg///oYP//6GD//+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAGcAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAEcAAAD/AAAA/wAAAP8AAAD/oYP//6GD//+hg///oYP//6GD//+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/oYP//6GD//+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8AAAD/AAAA/6GD//+hg///AAAA/wAAAP+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAP8AAAD/oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAFsAAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAA/wAAAP+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABbAAAAMwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsAAAD/AAAA/6GD//8AAAD/AAAA/6GD//+hg///oYP//wAAAP+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAASwAAACsAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAP8AAAD/AAAA/wAAAP+hg///oYP//6GD//8AAAD/AAAA/6GD//8AAAD/AAAA/wAAAP8AAAD/AAAATwAAADMAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAXwAAADsAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAALAAAAGwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAEMAAAArAAAAEwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAACwAAABMAAAAbAAAAHwAAAB8AAAAfAAAAHwAAAB8AAAAbAAAAEwAAAAsAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP/+AAD//gAA//wAAP/4AAD/8AAA/+AAAP/gAAD/gAAA/4AAAP8AAAD+AAAA/AAAAPwAAAD4AAAB8AAAA/AAAAPwAAAH4AAAH+AAAD/AAAA/wAAAf8AAAP/AAAD/wAAA/8AAAP/AAAH/wAAD/8AAA//AAA//wAA///AAf/8=),
-    auto;  
+    auto;
 }
 
 .questionButtons:hover {
@@ -805,6 +834,7 @@ h4 span {
   margin-left: 120px;
 }
 
+/*#formSection,*/
 #result {
   width: 300px;
 }
@@ -919,6 +949,12 @@ h4 span {
 .moveBtn:hover {
   background-color: #bfc7dd;
 }
+/* button{
+  font-size: 1rem;
+  margin-top: 5px;
+  width: fit-content;
+  align-self: center;
+} */
 
 .routerLink {
   color: white;

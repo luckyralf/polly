@@ -50,7 +50,7 @@
         <button
           class="activeLink"
           tag="button"
-          style="color: #fff"
+          style="font-size:20px"
           v-bind:class="{
             inactiveLink: id === '',
           }"
@@ -72,15 +72,12 @@
       <p>{{ uiLabels.orMakeOwn }}</p>
       <div class="createBtn">
         <router-link
-          style="color: #fff"
           className="activeLink"
           v-bind:to="'/create/' + lang"
           >{{ uiLabels.createPoll }}</router-link
         >
       </div>
     </div>
-
-    
 
     <div id="Finalword">
       <hr />
@@ -149,6 +146,7 @@ export default {
         x.style.display = "none";
       }
     },
+
     switchLanguageToEN: function () {
       this.lang = "en";
       socket.emit("switchLanguage", this.lang);
@@ -525,6 +523,7 @@ body {
     border: solid #229954;
     text-decoration: none;
     margin-top: 0px;
+
   }
 
   .writeAndParticipate {

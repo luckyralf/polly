@@ -146,7 +146,7 @@ export default {
   watch: {
     question: {
       handler() {
-
+        this.timer = this.question.time;
         clearInterval(this.timerFunction);
         if (this.thisTimeOn) {
           this.timerFunction = setInterval(() => {
