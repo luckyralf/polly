@@ -258,10 +258,15 @@
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
         >
-         {{ uiLabels.runPoll }}
-        <div id="infoDIV" v-show="showInfoDiv">
+        <div v-if= "pollActivated">
+        {{ uiLabels.activatedPoll }}
         </div>
 
+        <div v-else>
+        {{ uiLabels.runPoll }}
+        </div>
+
+        
         </button>
         <button id="checkResultBtn" class="controlPanelBtn">
           <router-link class="routerLink" v-bind:to="'/result/' + pollId">
@@ -303,6 +308,7 @@ export default {
       polls: null,
       indexForChosenQuestion: 0,
       pollIdInput: "",
+      pollActivated: false,
     };
   },
   computed: {
@@ -398,7 +404,7 @@ export default {
     runPollFunction: function () {
       console.log(this.pollId);
       socket.emit("runPoll", this.pollId);
-      
+      this.pollActivated = true;
     },
 
     chooseQuestionWhenSelectingPoll: function (pollId, indexForChosenQuestion) {
@@ -569,6 +575,7 @@ body {
   font-family: "Outfit", sans-serif;
   display: none;
 }
+
 
 .infoTitle {
   font-family: "Outfit", sans-serif;

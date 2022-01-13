@@ -56,7 +56,8 @@
   "timeLeft":"Time left:",
   "showBar": "Show bar chart",
   "peopleWhoDidntAnswer": "People did not answer to this question.",
-  "participants":"Participants:"
+  "participants":"Participants:",
+  "activatedPoll": "Poll is running..."
 
   
 }

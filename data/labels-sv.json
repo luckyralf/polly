@@ -56,5 +56,6 @@
   "timeLeft":"Tid kvar:",
   "showBar": "Visa stapeldiagram",
   "peopleWhoDidntAnswer": "Personer svarade inte på denna frågan.",
-  "createOnComputer": "Du kan skapa en egen poll från en dator!"
+  "createOnComputer": "Du kan skapa en egen poll från en dator!",
+  "activatedPoll": "Omröstningen körs..."
 }
