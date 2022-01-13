@@ -56,5 +56,6 @@
   "congratulations": "Congratulations! You are done with the poll!",
   "timeLeft": "Time left:",
   "showBar": "Show bar chart",
-  "peopleWhoDidntAnswer": "People did not answer to this question."
+  "peopleWhoDidntAnswer": "People did not answer to this question.",
+  "saveThePollWarning": "You can not edit the poll after saving it, are you sure you want to continue?"
 }

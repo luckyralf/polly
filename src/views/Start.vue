@@ -80,8 +80,6 @@
       </div>
     </div>
 
-    
-
     <div id="Finalword">
       <hr />
       <footer>
@@ -149,6 +147,7 @@ export default {
         x.style.display = "none";
       }
     },
+
     switchLanguageToEN: function () {
       this.lang = "en";
       socket.emit("switchLanguage", this.lang);
