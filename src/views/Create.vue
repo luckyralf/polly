@@ -22,22 +22,16 @@
       </div>
     </div>
 
-
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
 
-    {{this.polls}}
+    {{ this.polls }}
     <main v-if="polls" class="mainWrapped catCursor">
       <br />
     <p class = "infoCreate">{{ uiLabels.createStartInfo }}</p>
       <br />
       <br />
-      <!-- {{ polls[pollId] }} <span style="color: red">THIS IS polls[pollId]</span>
-      <br />
-      <br />
-      {{ this.polls }}<span style="color: red">THIS IS this.polls</span>
-      <br /> -->
       <div v-for="(_, index) in polls" :key="index">
         <button
           v-on:click="chooseQuestionWhenSelectingPoll(index, 0)"
@@ -75,8 +69,8 @@
           >
             {{ uiLabels.createPoll }}
           </button>
-          {{pollIdInput}}
-          
+          {{ pollIdInput }}
+
           <span
             v-bind:class="[
               {
@@ -98,7 +92,10 @@
       </div>
 
       <div class="wrapper">
-        <section v-if="polls[pollId] && !polls[pollId].saveMode" id="questSection">
+        <section
+          v-if="polls[pollId] && !polls[pollId].saveMode"
+          id="questSection"
+        >
           <h4 v-if="pollId !== ''">
             {{ uiLabels.pollCreated }}
             <span id="pollHeadLine"> {{ pollId }}</span>
@@ -134,7 +131,7 @@
             </button>
             <!-- {{ datpoll.questions.findIndex(q1) }} -->
             <br />
-            <div> 
+            <div>
               <!-- hittahitt -->
               <button
                 v-if="this.indexForChosenQuestion !== 0"
@@ -143,9 +140,12 @@
               >
                 ↑
               </button>
-              {{polls[pollId].questions.length}}
+              {{ polls[pollId].questions.length }}
               <button
-                v-if="this.indexForChosenQuestion < this.polls[this.pollId].questions.length"
+                v-if="
+                  this.indexForChosenQuestion <
+                  this.polls[this.pollId].questions.length
+                "
                 class="moveBtn catPawCursor"
                 v-on:click="moveQuestion('down')"
               >
@@ -162,8 +162,11 @@
           </button>
         </section>
         <!-- Här börjar formuläret för högra rutan -->
-        <section v-if="polls[pollId] && !polls[pollId].saveMode" id="formSection">
-          <!--<br/> -->
+        <section
+          v-if="polls[pollId] && !polls[pollId].saveMode"
+          id="formSection"
+        >
+          <br />
 
           <p class= "questionTitle">{{ uiLabels.question }}</p>
           <!-- {{polls[pollId].editQuestion]}} -->
@@ -263,19 +266,16 @@
       <!-- Control Panel -->
       <div id="result" v-if="polls[pollId] && polls[pollId].saveMode">
         <h2>Control panel</h2>
-        <!-- <div> -->
-        <!-- <input id="questNrBox" type="number" v-model="questionNumber" />
-
-        <button v-on:click="runQuestion">
-          {{ uiLabels.runQuestion }}
-        </button> -->
-
         <button
           class="runPollButton controlPanelBtn"
           v-on:click="runPollFunction"
         >
-         {{ uiLabels.runPoll }}
-        <div id="infoDIV" v-show="showInfoDiv">
+        <div v-if= "pollActivated">
+        {{ uiLabels.activatedPoll }}
+        </div>
+
+        <div v-else>
+        {{ uiLabels.runPoll }}
         </div>
 
         </button>
@@ -284,12 +284,6 @@
             {{ uiLabels.checkResultsText }}
           </router-link>
         </button>
-        <!-- <button
-          class="deletePollBtn catPawCursor controlPanelBtn"
-          v-on:click="runPollFunction"
-        >
-          Abort poll uilabel
-        </button> -->
         <button
           class="deletePollBtn catPawCursor controlPanelBtn"
           v-on:click="deletePoll"
@@ -303,7 +297,6 @@
 
 <script>
 import io from "socket.io-client";
-// import func from 'vue-editor-bridge';
 const socket = io();
 
 export default {
@@ -320,6 +313,7 @@ export default {
       polls: null,
       indexForChosenQuestion: 0,
       pollIdInput: "",
+      pollActivated: false,
     };
   },
   computed: {
@@ -425,7 +419,7 @@ export default {
     runPollFunction: function () {
       console.log(this.pollId);
       socket.emit("runPoll", this.pollId);
-      
+      this.pollActivated = true;
     },
 
     chooseQuestionWhenSelectingPoll: function (pollId, indexForChosenQuestion) {
@@ -465,7 +459,8 @@ export default {
       if (direction == "up") {
         this.indexForChosenQuestion -= 1;
       }
-      if (direction == "down") { //hittahit
+      if (direction == "down") {
+        //hittahit
         this.indexForChosenQuestion += 1;
       }
       // this.question = this.polls[this.pollId].questions[this.polls[this.pollId].editQuestion].q;
@@ -484,7 +479,6 @@ export default {
       if (typeof this.polls[this.newPollId] === "undefined") {
         socket.emit("createPoll", { pollId: this.newPollId, lang: this.lang });
         socket.emit("getAllPolls");
-        
       }
     },
     selectPoll: function (pollId) {
@@ -527,11 +521,7 @@ export default {
       // console.log(typeof this.questionNumber, this.questionNumber); //ger number och siffran som står i fältet
     },
     editOrSavePoll: function (mode) {
-      if (
-        confirm(
-          "uilabel saknas, are you sure you want to save? You cannot make any changes after this."
-        )
-      ) {
+      if (confirm(this.uiLabels.saveThePollWarning)) {
         socket.emit("editOrSavePoll", { mode: mode, pollId: this.pollId });
       }
     },
@@ -611,6 +601,7 @@ body {
   font-family: "Outfit", sans-serif;
   display: none;
 }
+
 
 .infoTitle {
   font-family: "Outfit", sans-serif;
@@ -829,6 +820,9 @@ h4 span {
   border-radius: 5px;
   border: outset 3px white;
   font-size: 19px;
+  margin: 0.5rem 1rem;
+  cursor: url(data:application/octet-stream;base64,AAACAAEAICAAAAMAAQCoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABLAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABfAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAbAAAASwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAAzAAAAZwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAMwAAAGMAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAACsAAABbAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAACHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAsAAAAjAAAAUwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAIwAAAEsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABsAAABDAAAAdwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAATAAAAOwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAEwAAADMAAABnAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAF8AAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAArAAAAWwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB3AAAAOwAAABMAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAEsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAjwAAAE8AAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAABMAAAA7AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABvAAAAMwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAKwAAAF8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAhwAAAEsAAAAbAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMAAABDAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABfAAAAKwAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAIwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAdwAAADsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAA3AAAA/wAAAP8AAAD/AAAA/6GD//+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAIcAAABLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAGwAAAE8AAAD/oYP//wAAAP8AAAD/oYP//6GD//+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAWwAAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAAzAAAA/6GD//+hg///AAAA/6GD//+hg///oYP//6GD//+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAGcAAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAEcAAAD/AAAA/wAAAP8AAAD/oYP//6GD//+hg///oYP//6GD//+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/oYP//6GD//+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAnwAAAF8AAAAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB8AAAD/AAAA/6GD//+hg///AAAA/wAAAP+hg///oYP//6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAB/AAAAQwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAP8AAAD/oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAFsAAAArAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAA/wAAAP+hg///oYP//wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/6GD//+hg///AAAA/wAAAP8AAAD/AAAA/wAAAP8AAABbAAAAMwAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsAAAD/AAAA/6GD//8AAAD/AAAA/6GD//+hg///oYP//wAAAP+hg///oYP//6GD//8AAAD/AAAA/wAAAP8AAAD/AAAASwAAACsAAAATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAP8AAAD/AAAA/wAAAP+hg///oYP//6GD//8AAAD/AAAA/6GD//8AAAD/AAAA/wAAAP8AAAD/AAAATwAAADMAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAXwAAADsAAAAbAAAACwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAALAAAAGwAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAEMAAAArAAAAEwAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAACwAAABMAAAAbAAAAHwAAAB8AAAAfAAAAHwAAAB8AAAAbAAAAEwAAAAsAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP/+AAD//gAA//wAAP/4AAD/8AAA/+AAAP/gAAD/gAAA/4AAAP8AAAD+AAAA/AAAAPwAAAD4AAAB8AAAA/AAAAPwAAAH4AAAH+AAAD/AAAA/wAAAf8AAAP/AAAD/wAAA/8AAAP/AAAH/wAAD/8AAA//AAA//wAA///AAf/8=),
+    auto;
 }
 
 .questionButtons:hover {
