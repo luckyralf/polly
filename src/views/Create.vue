@@ -28,7 +28,6 @@
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
 
-    {{this.polls}}
     <main v-if="polls" class="mainWrapped catCursor">
       <br />
       {{ uiLabels.createStartInfo }}
