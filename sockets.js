@@ -15,7 +15,6 @@ function sockets(io, socket, data) {
   });
 
   socket.on("createPoll", function (d) {
-    console.log("from socket: ", d.pollId);
     socket.emit("pollCreated", data.createPoll(d.pollId, d.lang));
     socket.emit("allQuestions", data.getPoll(d.pollId));
     socket.emit("pollHead", data.createPollHead(d.pollId));

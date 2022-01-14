@@ -50,13 +50,14 @@
   "editPoll": "Edit Poll",
   "pollDontExist": "Poll does not exist yet",
   "waitingForHost": "waiting for host to start poll...",
-  "waitingRoom":"Waiting room",
-  "createOnComputer":"You can create your own poll from a computer!",
-  "congratulations":"Congratulations! You are done with the poll!",
-  "timeLeft":"Time left:",
+  "waitingRoom": "Waiting room",
+  "createOnComputer": "You can create your own poll from a computer!",
+  "congratulations": "Congratulations! You are done with the poll!",
+  "timeLeft": "Time left:",
   "showBar": "Show bar chart",
   "peopleWhoDidntAnswer": "People did not answer to this question.",
-  "participants":"Participants:"
+  "participants":"Participants:",
+  "activatedPoll": "Poll is running...",
+  "saveThePollWarning": "You can not edit the poll after saving it, are you sure you want to continue?"
 
-  
 }
