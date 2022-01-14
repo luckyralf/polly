@@ -24,10 +24,8 @@
     <header class="catCursor">
       <h1>{{ uiLabels.createHeader }}</h1>
     </header>
-<<<<<<< HEAD
+    
 
-=======
->>>>>>> 622ac8cb6bf79dab9336ea3d6104ab123f879a4d
     <main v-if="polls" class="mainWrapped catCursor">
       <br />
       <p class="infoCreate">{{ uiLabels.createStartInfo }}</p>
